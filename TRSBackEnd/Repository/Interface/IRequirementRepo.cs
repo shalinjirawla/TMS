@@ -10,7 +10,7 @@ namespace Repository.Interface
     public interface IRequirementRepo
     {
         List<RequirementModel> GetRequirementModels();
-        bool SaveRequirement(RequirementModel model);
+        int SaveRequirement(RequirementModel model);
         RequirementModel GetRequirement(int id);
         bool UpdateRequirement(RequirementModel model);
         bool DeleteRequirement(int id);

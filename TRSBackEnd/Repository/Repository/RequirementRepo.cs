@@ -68,7 +68,7 @@ namespace Repository.Repository
             }
         }
 
-        public bool SaveRequirement(RequirementModel model)
+        public int SaveRequirement(RequirementModel model)
         {
             try
             {
@@ -108,19 +108,20 @@ namespace Repository.Repository
                     tRSEntities.Requirements.Add(requirement);
                     tRSEntities.SaveChanges();
 
-                    var lastid = requirement.id;
-                    return true;
+                    model.id = requirement.id;
+                    return model.id;
                 }
-                else
-                {
-                    return false;
-                }
+                //else
+                //{
+                //    return false;
+                //}
             }
             catch (Exception e)
             {
 
                 throw e;
             }
+            return model.id;
         }
 
         public RequirementModel GetRequirement(int id)

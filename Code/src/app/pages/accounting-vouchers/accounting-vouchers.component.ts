@@ -300,10 +300,11 @@ export class AccountingVouchersComponent implements OnInit {
     debugger
     let obj = Object.assign({}, this.hk, this.AccountingVoouchersForm.value);
     this.accountingvouchersService.SaveRequirement(obj).subscribe((res: boolean) => {
-      obj.id = this.id,
-      this.AccountingVoouchersForm.controls.id.setValue(obj.id);
+      let id = this.AccountingVoouchersForm.controls.id.value;
+      this.rows=res;
+      //this.AccountingVoouchersForm.controls.id.patchValue(this.rows = res);
     })
-
+    //this.AccountingVoouchersForm.setValue(obj);
 
     // this.accountingvouchersService.().subscribe((res: accountingVouchersModel[]) => {
     //   this.AccountingVoouchersForm.patchValue({
