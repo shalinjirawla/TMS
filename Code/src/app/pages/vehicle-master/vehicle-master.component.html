@@ -1,0 +1,603 @@
+<div class="row">
+  <div class="col-12">
+    <div id="kick-start" class="card">
+      <div class="card-header">
+        <h4 class="card-title">Vehicle Master</h4>
+      </div>
+      <div class="card-body">
+        <div class="card-block">
+          <div class="card-text">
+            <div class="row">
+              <div class="col-md-11">
+                <!-- Vehicle Master List -->
+              </div>
+              <div class="col-md-1 btnStyle">
+                <button class="btn btn-raised shadow-z-2 btn-info" (click)="ShowPopUp()">Add New</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="myclass">
+                <table class="table table-hover" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Manufacturer</th>
+                      <th>Vehicle Model</th>
+                      <th>Vehicle No</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let client of rows">
+                      <td>{{client.manufacturername}}</td>
+                      <td>{{client.vehiclemodelname}}</td>
+                      <td>{{client.vehicleNo}}</td>
+                      <td>
+                        <button (click)="ShowData(client.id)" class="btn btn-raised shadow-z-2 btn-info">
+                          <i class="fa fa-edit"></i>
+                        </button>
+                        <button (click)="DeleteVehilce(client.id)" class="btn btn-raised shadow-z-2 btn-danger">
+                          <i class="fa fa-trash "></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<ng-template #template>
+  <form [formGroup]="VehicleMastersForm" (ngSubmit)="SaveDetail(VehicleMastersForm.value)">
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">{{Title}}</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="HidePopUp()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <ul class="nav nav-tabs" role="tablist">
+      <li class="nav-item" class="active">
+        <a class="nav-link active" href="#general" role="tab" data-toggle="tab">General</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " href="#engine" role="tab" data-toggle="tab">Engine/Body</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " href="#loan" role="tab" data-toggle="tab">Loan Details</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " href="#chassis" role="tab" data-toggle="tab">Chassis/Tyre</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " href="#statutory" role="tab" data-toggle="tab">Statutory Details</a>
+      </li>
+      <!-- <li class="nav-item">
+          <a class="nav-link " href="#multiple" role="tab" data-toggle="tab">Multiple Attachment</a>
+        </li> -->
+    </ul>
+
+    <div class="tab-content">
+
+      <div role="tabpanel" class="tab-pane active" id="general">
+
+        <div class="row">
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class="control-label">Vehicle Category <span class="text-danger">*</span></label>
+              <div class="">
+                <select class="form-control" formControlName="vehiclecategory">
+                  <option value="0">--Select--</option>
+                  <option *ngFor="let cont of VehicleCapacityChechbox" value={{cont.Name}}>
+                    {{cont.Name}}
+                  </option>
+                </select>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Vehicle No <span class="text-danger">*</span></label>
+              <div class="">
+                <input class="form-control" type="text" placeholder="Vehicle No" formControlName="vehicleNo"
+                  (input)="Validator($event)" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Vehicle Type <span class="text-danger">*</span></label>
+              <div class="">
+                <select class="form-control" formControlName="vehicleType">
+                  <option value="0">--Select--</option>
+                  <option *ngFor="let cont of VehicleTypes" value={{cont.id}}>
+                    {{cont.name}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Manufacturer <span class="text-danger">*</span></label>
+              <div class="">
+                <select class="form-control" formControlName="manufacturer" (change)="onChange($event.target.value)">
+                  <option value="0">--Select--</option>
+                  <option *ngFor="let cont of Vendors" value={{cont.id}}>
+                    {{cont.name}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Owner Details <span class="text-danger">*</span></label>
+              <div class="">
+                <select class="form-control" formControlName="ownerdetails" disabled>
+                  <option value="0">--Select--</option>
+                  <option *ngFor="let cont of Vendors" value={{cont.id}}>
+                    {{cont.name}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Year of Manufacturing</label>
+              <div class="">
+                <input class="form-control" type="text" placeholder="Year of Manufacturing"
+                  formControlName="yearofmanufacturing" (input)="Validator($event)" />
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">GPSID</label>
+              <div class="">
+                <input class="form-control" type="text" placeholder="GPSID" formControlName="GPSID"
+                  (input)="Validator($event)" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class="control-label">Driver Name<span class="text-danger">*</span></label>
+              <div class="">
+                <select class="form-control" formControlName="drivername">
+                  <option value="0">--Select--</option>
+                  <option *ngFor="let cont of driver" value={{cont.id}}>
+                    {{cont.name}}
+                  </option>
+                </select>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Vehicle Model <span class="text-danger">*</span></label>
+              <div class="">
+                <select class="form-control" formControlName="vehiclemodel">
+                  <option value="0">--Select--</option>
+                  <option *ngFor="let cont of vehicleModels" value={{cont.id}}>
+                    {{cont.modelname}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div role="tabpanel" class="tab-pane" id="engine">
+        <div class="row">
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Chassis No</label>
+              <div class="">
+                <input class="form-control" type="text" placeholder="Chassis No" formControlName="chassisNo"
+                  (input)="Validator($event)" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Engine No</label>
+              <div class="">
+                <input class="form-control" (input)="Validator($event)" type="text" placeholder="Engine No"
+                  formControlName="engineNo" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Trolly Chassis No</label>
+              <div class="">
+                <input class="form-control" type="text" placeholder="Trolly Chassis No"
+                  formControlName="trollychassisNo" (input)="Validator($event)" />
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Fuel Tank capaCity</label>
+              <div class="">
+                <input class="form-control" type="text" placeholder="Fuel Tank capaCity"
+                  formControlName="fueltankCapacity" (input)="Validator($event)" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class="control-label">Vehicle Weight in MT <span class="text-danger">*</span></label>
+              <div class="">
+                <input class="form-control" type="number" (blur)="onBlurMethod($event.target.value)"
+                  placeholder="Vehicle Weight in MT" formControlName="vehicleweightinMT" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class="control-label">Unladen Weight in MT <span class="text-danger">*</span></label>
+              <div class="">
+                <input class="form-control" type="number" (blur)="onBlurMethods($event.target.value)"
+                  placeholder="Unladen Weight in MT" formControlName="unladenweightinMT" />
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Vehicle CapaCity <span class="text-danger">*</span></label>
+              <div class="">
+                <input class="form-control" type="text" formControlName="vehicleCapacity" disabled />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Wheel Base in MM</label>
+              <div class="">
+                <input class="form-control" type="text" placeholder="Wheel Base in MM" formControlName="wheelbaseinMM"
+                  (input)="Validator($event)" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Length in Ft</label>
+              <div class="">
+                <input class="form-control" type="text" placeholder="Length in Ft" formControlName="lengthinFt"
+                  (input)="Validator($event)" />
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Width in Ft</label>
+              <div class="">
+                <input class="form-control" type="text" placeholder="Width in Ft" formControlName="widthinft"
+                  (input)="Validator($event)" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Height in Ft</label>
+              <div class="">
+                <input class="form-control" type="text" placeholder="Width in Ft" formControlName="heightinft"
+                  (input)="Validator($event)" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Power in CC</label>
+              <div class="">
+                <input class="form-control" type="text" placeholder="Power in CC" formControlName="powerinCC"
+                  (input)="Validator($event)" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Paint Code</label>
+              <div class="">
+                <input class="form-control" type="text" placeholder="Paint Code" formControlName="paintCode"
+                  (input)="Validator($event)" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Paint Colour</label>
+              <div class="">
+                <input class="form-control" type="text" placeholder="Paint Colour" formControlName="paintColour"
+                  (input)="Validator($event)" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Ignition Key Code</label>
+              <div class="">
+                <input class="form-control" type="text" placeholder="Ignition Key Code" formControlName="ignitionkey"
+                  (input)="Validator($event)" />
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Door Key Code</label>
+              <div class="">
+                <input class="form-control" type="text" placeholder="Door Key Code" formControlName="doorkeycode"
+                  (input)="Validator($event)" />
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div role="tabpanel" class="tab-pane" id="loan">
+
+        <div class="row">
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class=" control-label">Bank or Financial</label>
+              <div class="">
+                <input class="form-control" type="text" placeholder="Bank or Financial Institution Name"
+                  formControlName="bankfanainstuName" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class=" control-label">Loan A/c No</label>
+              <div class="">
+                <input class="form-control" type="text" placeholder="Loan A/c No" formControlName="loanaccountNo"
+                  (input)="Validator($event)" />
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="filePicker">File Upload</label><br>
+              <input #file type="file" accept='image/*' (change)="preview(file.files,$event)" />
+              <br><br>
+              <img [src]="imgURL" height="200" *ngIf="imgURL">
+              <br>
+              <br>
+              <button type="button" (click)="downloadFile(imgURL)" class="btn btn-raised shadow-z-2 btn-default"
+                aria-label="Close">
+                <i class="fa fa-download" aria-hidden="true"></i>Download</button>
+              <br>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+      <div role="tabpanel" class="tab-pane" id="chassis">
+
+        <div class="row" style="margin-left:1px;margin-right:1px;">
+
+          <fieldset class="row">
+            <legend tooltip="deliveryAgainstAsCne">Front</legend>
+
+            <div class="panel-body">
+              <div class="form-row">
+                <div class="row">
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class="control-label">Wheel Size</label>
+                      <div class="">
+                        <input class="form-control" type="text" placeholder="Wheel Size" formControlName="wheelsize"
+                          (input)="Validator($event)" required />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class="control-label">Tyre Size</label>
+                      <div class="">
+                        <input class="form-control" type="number" (input)="Validator($event)" placeholder="Tyre Size"
+                          (input)="Validator($event)" formControlName="tyresize" required />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class="control-label">PSI</label>
+                      <div class="">
+                        <input class="form-control" type="email" placeholder="PSI" formControlName="psi"
+                          (input)="Validator($event)" required />
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+          </fieldset>
+
+          <fieldset class="row" style="margin-left:1px;margin-right:1px;">
+            <legend tooltip="deliveryAgainstAsCne">Rear</legend>
+
+
+            <div class="panel-body">
+              <div class="form-row">
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class="control-label">Wheel Size</label>
+                      <div class="">
+                        <input class="form-control" type="text" placeholder="Wheel Size" formControlName="wheelsize"
+                          (input)="Validator($event)" required />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class="control-label">Tyre Size</label>
+                      <div class="">
+                        <input class="form-control" type="number" (input)="Validator($event)" placeholder="Tyre Size"
+                          (input)="Validator($event)" formControlName="tyresize" required />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class="control-label">PSI</label>
+                      <div class="">
+                        <input class="form-control" type="email" placeholder="PSI" formControlName="psi"
+                          (input)="Validator($event)" required />
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+          </fieldset>
+
+        </div>
+
+      </div>
+
+      <div role="tabpanel" class="tab-pane" id="statutory">
+
+        <div class="row">
+
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label class="control-label">Registration Date</label>
+              <div class="">
+                <input class="form-control" type="date" placeholder="Registration Date"
+                  formControlName="registrationDate" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label class="control-label">Fitness from Date</label>
+              <div class="">
+                <input class="form-control" type="date" placeholder="Fitness from Date" formControlName="fitnessDate" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label class="control-label">Permit from Date</label>
+              <div class="">
+                <input class="form-control" type="date" placeholder="Permit from Date"
+                  formControlName="permitfromdate" />
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label class="control-label">Insurance from Date</label>
+              <div class="">
+                <input class="form-control" type="date" placeholder="Insurance from Date"
+                  formControlName="insurancefromdate" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="modal-footer">
+      <button type="reset" class="btn btn-raised shadow-z-2 btn-default" (click)="modalRef.hide()"
+        aria-label="Close">Close</button>
+      <button type="submit" class="btn btn-raised shadow-z-2 btn-success" [disabled]="!VehicleMastersForm.valid">Save
+        changes</button>
+    </div>
+  </form>
+</ng-template>

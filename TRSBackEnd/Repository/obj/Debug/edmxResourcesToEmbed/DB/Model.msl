@@ -1,0 +1,366 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TRSModelStoreContainer" CdmEntityContainer="TRSEntities">
+    <EntitySetMapping Name="BranchMasters">
+      <EntityTypeMapping TypeName="TRSModel.BranchMaster">
+        <MappingFragment StoreEntitySet="BranchMaster">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="defaultBankLedger" ColumnName="defaultBankLedger" />
+          <ScalarProperty Name="defaultCashLedger" ColumnName="defaultCashLedger" />
+          <ScalarProperty Name="maxAdvance" ColumnName="maxAdvance" />
+          <ScalarProperty Name="expectedUnloadingAfterArrival" ColumnName="expectedUnloadingAfterArrival" />
+          <ScalarProperty Name="expectedUnderLoad" ColumnName="expectedUnderLoad" />
+          <ScalarProperty Name="freightBill" ColumnName="freightBill" />
+          <ScalarProperty Name="challan" ColumnName="challan" />
+          <ScalarProperty Name="mr" ColumnName="mr" />
+          <ScalarProperty Name="cn" ColumnName="cn" />
+          <ScalarProperty Name="servicesOffered" ColumnName="servicesOffered" />
+          <ScalarProperty Name="areaId" ColumnName="areaId" />
+          <ScalarProperty Name="regionId" ColumnName="regionId" />
+          <ScalarProperty Name="mobileNo" ColumnName="mobileNo" />
+          <ScalarProperty Name="phoneNo" ColumnName="phoneNo" />
+          <ScalarProperty Name="gstNo" ColumnName="gstNo" />
+          <ScalarProperty Name="stateId" ColumnName="stateId" />
+          <ScalarProperty Name="pincode" ColumnName="pincode" />
+          <ScalarProperty Name="cityId" ColumnName="cityId" />
+          <ScalarProperty Name="deliveryAgainstAs" ColumnName="deliveryAgainstAs" />
+          <ScalarProperty Name="branchType" ColumnName="branchType" />
+          <ScalarProperty Name="branchName" ColumnName="branchName" />
+          <ScalarProperty Name="branchCode" ColumnName="branchCode" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CityMasters">
+      <EntityTypeMapping TypeName="TRSModel.CityMaster">
+        <MappingFragment StoreEntitySet="CityMaster">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="stdCode" ColumnName="stdCode" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="cityName" ColumnName="cityName" />
+          <ScalarProperty Name="cityCode" ColumnName="cityCode" />
+          <ScalarProperty Name="stateId" ColumnName="stateId" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GodownMasters">
+      <EntityTypeMapping TypeName="TRSModel.GodownMaster">
+        <MappingFragment StoreEntitySet="GodownMaster">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="storageCapacity" ColumnName="storageCapacity" />
+          <ScalarProperty Name="mobileNo" ColumnName="mobileNo" />
+          <ScalarProperty Name="phoneNo" ColumnName="phoneNo" />
+          <ScalarProperty Name="stateId" ColumnName="stateId" />
+          <ScalarProperty Name="pincode" ColumnName="pincode" />
+          <ScalarProperty Name="cityId" ColumnName="cityId" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="branchId" ColumnName="branchId" />
+          <ScalarProperty Name="godownName" ColumnName="godownName" />
+          <ScalarProperty Name="godownCode" ColumnName="godownCode" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RegionMasters">
+      <EntityTypeMapping TypeName="TRSModel.RegionMaster">
+        <MappingFragment StoreEntitySet="RegionMaster">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="defaultBankLegder" ColumnName="defaultBankLegder" />
+          <ScalarProperty Name="defaultCashLedger" ColumnName="defaultCashLedger" />
+          <ScalarProperty Name="bankBalanceLimit" ColumnName="bankBalanceLimit" />
+          <ScalarProperty Name="cashBalanceLimit" ColumnName="cashBalanceLimit" />
+          <ScalarProperty Name="emailId" ColumnName="emailId" />
+          <ScalarProperty Name="mobileNo" ColumnName="mobileNo" />
+          <ScalarProperty Name="phoneNo" ColumnName="phoneNo" />
+          <ScalarProperty Name="stateId" ColumnName="stateId" />
+          <ScalarProperty Name="pincode" ColumnName="pincode" />
+          <ScalarProperty Name="cityId" ColumnName="cityId" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="regionName" ColumnName="regionName" />
+          <ScalarProperty Name="regionCode" ColumnName="regionCode" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RegularClientMasters">
+      <EntityTypeMapping TypeName="TRSModel.RegularClientMaster">
+        <MappingFragment StoreEntitySet="RegularClientMaster">
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="multipleBillingBranches" ColumnName="multipleBillingBranches" />
+          <ScalarProperty Name="deliveryType" ColumnName="deliveryType" />
+          <ScalarProperty Name="bookingType" ColumnName="bookingType" />
+          <ScalarProperty Name="paymentMode" ColumnName="paymentMode" />
+          <ScalarProperty Name="isGodownInsured" ColumnName="isGodownInsured" />
+          <ScalarProperty Name="isMarineInsured" ColumnName="isMarineInsured" />
+          <ScalarProperty Name="insuranceAmount" ColumnName="insuranceAmount" />
+          <ScalarProperty Name="validToDate" ColumnName="validToDate" />
+          <ScalarProperty Name="validFromDate" ColumnName="validFromDate" />
+          <ScalarProperty Name="policyNo" ColumnName="policyNo" />
+          <ScalarProperty Name="companyNo" ColumnName="companyNo" />
+          <ScalarProperty Name="chequeInTheNameOf" ColumnName="chequeInTheNameOf" />
+          <ScalarProperty Name="accountNo" ColumnName="accountNo" />
+          <ScalarProperty Name="bankId" ColumnName="bankId" />
+          <ScalarProperty Name="creditGraceDays" ColumnName="creditGraceDays" />
+          <ScalarProperty Name="interest" ColumnName="interest" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="days" ColumnName="days" />
+          <ScalarProperty Name="ledgerName" ColumnName="ledgerName" />
+          <ScalarProperty Name="deliveryAgainstAsCne" ColumnName="deliveryAgainstAsCne" />
+          <ScalarProperty Name="deliveryAgainstAsCnr" ColumnName="deliveryAgainstAsCnr" />
+          <ScalarProperty Name="smsAlert" ColumnName="smsAlert" />
+          <ScalarProperty Name="emailAlert" ColumnName="emailAlert" />
+          <ScalarProperty Name="mobileNo" ColumnName="mobileNo" />
+          <ScalarProperty Name="phoneNo" ColumnName="phoneNo" />
+          <ScalarProperty Name="StateId" ColumnName="StateId" />
+          <ScalarProperty Name="pinCode" ColumnName="pinCode" />
+          <ScalarProperty Name="cityId" ColumnName="cityId" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="gstIN" ColumnName="gstIN" />
+          <ScalarProperty Name="pan" ColumnName="pan" />
+          <ScalarProperty Name="clientGroupId" ColumnName="clientGroupId" />
+          <ScalarProperty Name="clientName" ColumnName="clientName" />
+          <ScalarProperty Name="clientCode" ColumnName="clientCode" />
+          <ScalarProperty Name="branchId" ColumnName="branchId" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StateMasters">
+      <EntityTypeMapping TypeName="TRSModel.StateMaster">
+        <MappingFragment StoreEntitySet="StateMaster">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="StateRtoCode" ColumnName="StateRtoCode" />
+          <ScalarProperty Name="StateName" ColumnName="StateName" />
+          <ScalarProperty Name="GSTCode" ColumnName="GSTCode" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VirtualGodownMasters">
+      <EntityTypeMapping TypeName="TRSModel.VirtualGodownMaster">
+        <MappingFragment StoreEntitySet="VirtualGodownMaster">
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="storageCapacity" ColumnName="storageCapacity" />
+          <ScalarProperty Name="godownId" ColumnName="godownId" />
+          <ScalarProperty Name="branchId" ColumnName="branchId" />
+          <ScalarProperty Name="virtualGodownCode" ColumnName="virtualGodownCode" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BookingMasters">
+      <EntityTypeMapping TypeName="TRSModel.BookingMaster">
+        <MappingFragment StoreEntitySet="BookingMaster">
+          <ScalarProperty Name="weightInKg" ColumnName="weightInKg" />
+          <ScalarProperty Name="meter" ColumnName="meter" />
+          <ScalarProperty Name="rollNo" ColumnName="rollNo" />
+          <ScalarProperty Name="lotNo" ColumnName="lotNo" />
+          <ScalarProperty Name="srtoNo" ColumnName="srtoNo" />
+          <ScalarProperty Name="cnTo" ColumnName="cnTo" />
+          <ScalarProperty Name="cnFrom" ColumnName="cnFrom" />
+          <ScalarProperty Name="reserveReason" ColumnName="reserveReason" />
+          <ScalarProperty Name="branch" ColumnName="branch" />
+          <ScalarProperty Name="riskCharge" ColumnName="riskCharge" />
+          <ScalarProperty Name="financeEffect" ColumnName="financeEffect" />
+          <ScalarProperty Name="cod" ColumnName="cod" />
+          <ScalarProperty Name="godownCharges" ColumnName="godownCharges" />
+          <ScalarProperty Name="miscellaneousCharges" ColumnName="miscellaneousCharges" />
+          <ScalarProperty Name="statisticalCharges" ColumnName="statisticalCharges" />
+          <ScalarProperty Name="doorDeliveryCharge" ColumnName="doorDeliveryCharge" />
+          <ScalarProperty Name="localCartages" ColumnName="localCartages" />
+          <ScalarProperty Name="hamaliCharge" ColumnName="hamaliCharge" />
+          <ScalarProperty Name="surcharge" ColumnName="surcharge" />
+          <ScalarProperty Name="freight" ColumnName="freight" />
+          <ScalarProperty Name="insuredBy" ColumnName="insuredBy" />
+          <ScalarProperty Name="privateMark" ColumnName="privateMark" />
+          <ScalarProperty Name="freightRate" ColumnName="freightRate" />
+          <ScalarProperty Name="chargeWeight" ColumnName="chargeWeight" />
+          <ScalarProperty Name="isCod" ColumnName="isCod" />
+          <ScalarProperty Name="isCcAttached" ColumnName="isCcAttached" />
+          <ScalarProperty Name="ftl" ColumnName="ftl" />
+          <ScalarProperty Name="freightBasis" ColumnName="freightBasis" />
+          <ScalarProperty Name="consignorInvoice" ColumnName="consignorInvoice" />
+          <ScalarProperty Name="invoiceValue" ColumnName="invoiceValue" />
+          <ScalarProperty Name="invoiceNo" ColumnName="invoiceNo" />
+          <ScalarProperty Name="modeOfTransport" ColumnName="modeOfTransport" />
+          <ScalarProperty Name="deliveryType" ColumnName="deliveryType" />
+          <ScalarProperty Name="bookingType" ColumnName="bookingType" />
+          <ScalarProperty Name="agentDetails" ColumnName="agentDetails" />
+          <ScalarProperty Name="agentName" ColumnName="agentName" />
+          <ScalarProperty Name="consignor" ColumnName="consignor" />
+          <ScalarProperty Name="consignorDetails" ColumnName="consignorDetails" />
+          <ScalarProperty Name="virtualGoddownNo" ColumnName="virtualGoddownNo" />
+          <ScalarProperty Name="deliveryBranch" ColumnName="deliveryBranch" />
+          <ScalarProperty Name="cnNo" ColumnName="cnNo" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="consignee" ColumnName="consignee" />
+          <ScalarProperty Name="actualWeight" ColumnName="actualWeight" />
+          <ScalarProperty Name="paymentType" ColumnName="paymentType" />
+          <ScalarProperty Name="godownNo" ColumnName="godownNo" />
+          <ScalarProperty Name="to" ColumnName="to" />
+          <ScalarProperty Name="from" ColumnName="from" />
+          <ScalarProperty Name="expectedDelivery" ColumnName="expectedDelivery" />
+          <ScalarProperty Name="cn" ColumnName="cn" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PackingMasters">
+      <EntityTypeMapping TypeName="TRSModel.PackingMaster">
+        <MappingFragment StoreEntitySet="PackingMaster">
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="bookingId" ColumnName="bookingId" />
+          <ScalarProperty Name="packingType" ColumnName="packingType" />
+          <ScalarProperty Name="actualWeight" ColumnName="actualWeight" />
+          <ScalarProperty Name="item" ColumnName="item" />
+          <ScalarProperty Name="article" ColumnName="article" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RTOMasters">
+      <EntityTypeMapping TypeName="TRSModel.RTOMaster">
+        <MappingFragment StoreEntitySet="RTOMaster">
+          <ScalarProperty Name="mobileNo" ColumnName="mobileNo" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="website" ColumnName="website" />
+          <ScalarProperty Name="emailId" ColumnName="emailId" />
+          <ScalarProperty Name="phoneNo" ColumnName="phoneNo" />
+          <ScalarProperty Name="stdCode" ColumnName="stdCode" />
+          <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="pinCode" ColumnName="pinCode" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="rtoCode" ColumnName="rtoCode" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AreaMasters">
+      <EntityTypeMapping TypeName="TRSModel.AreaMaster">
+        <MappingFragment StoreEntitySet="AreaMaster">
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="deafultBankLedger" ColumnName="deafultBankLedger" />
+          <ScalarProperty Name="defaultCashLedger" ColumnName="defaultCashLedger" />
+          <ScalarProperty Name="bankBalanceLimit" ColumnName="bankBalanceLimit" />
+          <ScalarProperty Name="cashBalanceLimit" ColumnName="cashBalanceLimit" />
+          <ScalarProperty Name="region" ColumnName="region" />
+          <ScalarProperty Name="emailId" ColumnName="emailId" />
+          <ScalarProperty Name="mobileNo" ColumnName="mobileNo" />
+          <ScalarProperty Name="phoneNo" ColumnName="phoneNo" />
+          <ScalarProperty Name="stdCode" ColumnName="stdCode" />
+          <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="pinCode" ColumnName="pinCode" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="areaName" ColumnName="areaName" />
+          <ScalarProperty Name="areaCode" ColumnName="areaCode" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GodownOwnerDetailsMasters">
+      <EntityTypeMapping TypeName="TRSModel.GodownOwnerDetailsMaster">
+        <MappingFragment StoreEntitySet="GodownOwnerDetailsMaster">
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="noticePeriodInDays" ColumnName="noticePeriodInDays" />
+          <ScalarProperty Name="agreementEndDate" ColumnName="agreementEndDate" />
+          <ScalarProperty Name="agreementStartDate" ColumnName="agreementStartDate" />
+          <ScalarProperty Name="securityDeposit" ColumnName="securityDeposit" />
+          <ScalarProperty Name="rentPaymentType" ColumnName="rentPaymentType" />
+          <ScalarProperty Name="isRented" ColumnName="isRented" />
+          <ScalarProperty Name="reamrk" ColumnName="reamrk" />
+          <ScalarProperty Name="holdPaymentInstruction" ColumnName="holdPaymentInstruction" />
+          <ScalarProperty Name="nextVersionDate" ColumnName="nextVersionDate" />
+          <ScalarProperty Name="chequeInTheNameOf" ColumnName="chequeInTheNameOf" />
+          <ScalarProperty Name="a_cno" ColumnName="a/cno" />
+          <ScalarProperty Name="ifsc" ColumnName="ifsc" />
+          <ScalarProperty Name="bank" ColumnName="bank" />
+          <ScalarProperty Name="gstin" ColumnName="gstin" />
+          <ScalarProperty Name="pan" ColumnName="pan" />
+          <ScalarProperty Name="netRent" ColumnName="netRent" />
+          <ScalarProperty Name="tds" ColumnName="tds" />
+          <ScalarProperty Name="totalRent" ColumnName="totalRent" />
+          <ScalarProperty Name="gst" ColumnName="gst" />
+          <ScalarProperty Name="rentAmount" ColumnName="rentAmount" />
+          <ScalarProperty Name="ratePerSqft" ColumnName="ratePerSqft" />
+          <ScalarProperty Name="sqft" ColumnName="sqft" />
+          <ScalarProperty Name="emailId" ColumnName="emailId" />
+          <ScalarProperty Name="mobileNo" ColumnName="mobileNo" />
+          <ScalarProperty Name="phoneNo" ColumnName="phoneNo" />
+          <ScalarProperty Name="stdCode" ColumnName="stdCode" />
+          <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="pinCode" ColumnName="pinCode" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="ownerName" ColumnName="ownerName" />
+          <ScalarProperty Name="goddown" ColumnName="goddown" />
+          <ScalarProperty Name="branch" ColumnName="branch" />
+          <ScalarProperty Name="goddownOwnerCode" ColumnName="goddownOwnerCode" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BankMasters">
+      <EntityTypeMapping TypeName="TRSModel.BankMaster">
+        <MappingFragment StoreEntitySet="BankMaster">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="DOM" ColumnName="DOM" />
+          <ScalarProperty Name="DOC" ColumnName="DOC" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="Contact" ColumnName="Contact" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Bank_Branch" ColumnName="Bank_Branch" />
+          <ScalarProperty Name="IFSC_code" ColumnName="IFSC_code" />
+          <ScalarProperty Name="Bank_Name" ColumnName="Bank_Name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="TRSModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="definition" ColumnName="definition" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="TRSModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="TRSModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="TRSModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="TRSModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TRSModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="TRSModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TRSModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="TRSModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="TRSModel.Store.sp_upgraddiagrams" />
+  </EntityContainerMapping>
+</Mapping>

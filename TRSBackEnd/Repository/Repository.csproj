@@ -1,0 +1,460 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1930ED71-28DD-433F-83A3-ED31704B375E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Repository</RootNamespace>
+    <AssemblyName>Repository</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Cors, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.7\lib\net45\System.Web.Cors.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.7\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.Cors, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Cors.5.2.7\lib\net45\System.Web.Http.Cors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DB\AccountMaster.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\AreaMaster.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\BankMaster.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\Bill.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\BookingMaster.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\BranchMaster.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\BranchRate.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\CityMaster.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\CommodityMaster.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\CommodityTypeMaster.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\ConsignmentOperation.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\ContractMaster.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\CostCentre.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\CrossingMaster.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\DDLocalChallan.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\DeliveryMaster.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\DepartmentMaster.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\DocumentAllocationMaster.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\DocumentSeriesAllocation.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\DoorDeliveryConfirm.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\DriverMaster.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\FreightMaster.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\GodownDelivery.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\GodownMaster.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\GodownOwnerDetailsMaster.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\InwardMaster.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\LateReportReasonMaster.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\Ledger.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\LedgerGroupFinance.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\LocalVehicleContractMaster.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DB\OutwardMaster.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\PackingMaster.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\PackingTypeMaster.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\PreDelivery.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\PrintingStationary.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\ReceiptMaster.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\RegionMaster.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\RegularClientMaster.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\RegularClient_Contact_info.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\Requirement.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\ReserveBooking.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\RTOMaster.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\SeriesGeneration.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\ServiceLocationMaster.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\StandardLorryHireMaster.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\StateMaster.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\TruckArrival.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\TruckUnloading.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\UploadPackingSlip.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\UserMaster.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\VehicleMaster.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\VehicleModelMaster.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\VehicleTypeMaster.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\VendorMaster.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\VendorTypeMaster.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\VirtualGodownMaster.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\Walk_inClientMaster.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Interface\IAccountRepo.cs" />
+    <Compile Include="Interface\IBillRepo.cs" />
+    <Compile Include="Interface\IConsignmentRepo.cs" />
+    <Compile Include="Interface\ICostCentreRepo.cs" />
+    <Compile Include="Interface\IDDLocalChallanRepo.cs" />
+    <Compile Include="Interface\IDeliveryRepo.cs" />
+    <Compile Include="Interface\IBankMasterRepo.cs" />
+    <Compile Include="Interface\IBranchRateRepo.cs" />
+    <Compile Include="Interface\ICommodityRepo.cs" />
+    <Compile Include="Interface\ICommodityTypeRepo.cs" />
+    <Compile Include="Interface\IContractRepo.cs" />
+    <Compile Include="Interface\ICrossingRepo.cs" />
+    <Compile Include="Interface\IDepartmentRepo.cs" />
+    <Compile Include="Interface\IDocumentAllocationRepo.cs" />
+    <Compile Include="Interface\IDocumentSeriesAlloactionRepo.cs" />
+    <Compile Include="Interface\IDoorDeliveryConfirmRepo.cs" />
+    <Compile Include="Interface\IDriverRepo.cs" />
+    <Compile Include="Interface\IFreightRepo.cs" />
+    <Compile Include="Interface\IGoddownOwnerDetailsRepo.cs" />
+    <Compile Include="Interface\IAreaRepo.cs" />
+    <Compile Include="Interface\IBookingRepo.cs" />
+    <Compile Include="Interface\IBranchRepo.cs" />
+    <Compile Include="Interface\ICityRepo.cs" />
+    <Compile Include="Interface\IGodownDeliveryRepo.cs" />
+    <Compile Include="Interface\IGodownRepo.cs" />
+    <Compile Include="Interface\IInwardRepo.cs" />
+    <Compile Include="Interface\ILateReportReasonRepo.cs" />
+    <Compile Include="Interface\ILedgerGroupFinanceRepo.cs" />
+    <Compile Include="Interface\ILedgerRepo.cs" />
+    <Compile Include="Interface\ILocalVehicleContractRepo.cs" />
+    <Compile Include="Interface\IOutwardRepo.cs" />
+    <Compile Include="Interface\IPackingRepo.cs" />
+    <Compile Include="Interface\IPackingTypeRepo.cs" />
+    <Compile Include="Interface\IPreDeliveryRepo.cs" />
+    <Compile Include="Interface\IPrintingStationaryRepo.cs" />
+    <Compile Include="Interface\IReceiptRepo.cs" />
+    <Compile Include="Interface\IRegionRepo.cs" />
+    <Compile Include="Interface\IRegularClientRepo.cs" />
+    <Compile Include="Interface\IRequirementRepo.cs" />
+    <Compile Include="Interface\IReserveBookingRepo.cs" />
+    <Compile Include="Interface\IRTORepo.cs" />
+    <Compile Include="Interface\ISeriesGenerationRepo.cs" />
+    <Compile Include="Interface\IServiceLocationRepo.cs" />
+    <Compile Include="Interface\IStandardLorryHireRepo.cs" />
+    <Compile Include="Interface\IStateRepo.cs" />
+    <Compile Include="Interface\ITruckArrivalRepo.cs" />
+    <Compile Include="Interface\ITruckUnloadingRepo.cs" />
+    <Compile Include="Interface\IUploadPackingSlipRepo.cs" />
+    <Compile Include="Interface\IUserMasterRepo.cs" />
+    <Compile Include="Interface\IVehicleMasterRepo.cs" />
+    <Compile Include="Interface\IVehicleModelRepo.cs" />
+    <Compile Include="Interface\IVehicleTypeRepo.cs" />
+    <Compile Include="Interface\IVendorRepo.cs" />
+    <Compile Include="Interface\IVendorTypeRepo.cs" />
+    <Compile Include="Interface\IVirtualGodownRepo.cs" />
+    <Compile Include="Interface\IWalkinClientRepo.cs" />
+    <Compile Include="Model\AccountModel.cs" />
+    <Compile Include="Model\AreaModel.cs" />
+    <Compile Include="Model\BankMasterModel.cs" />
+    <Compile Include="Model\BillModel.cs" />
+    <Compile Include="Model\BookingModel.cs" />
+    <Compile Include="Model\BranchModel.cs" />
+    <Compile Include="Model\BranchRateModel.cs" />
+    <Compile Include="Model\CityModel.cs" />
+    <Compile Include="Model\CommodityModel.cs" />
+    <Compile Include="Model\CommodityTypeModel.cs" />
+    <Compile Include="Model\ConsignmentModel.cs" />
+    <Compile Include="Model\ContractModel.cs" />
+    <Compile Include="Model\CrossingModel.cs" />
+    <Compile Include="Model\DDLocalChallanModel.cs" />
+    <Compile Include="Model\DeliveryModel.cs" />
+    <Compile Include="Model\DepartmentModel.cs" />
+    <Compile Include="Model\DocumentAllocationModel.cs" />
+    <Compile Include="Model\DocumentSeriesAllocationModel.cs" />
+    <Compile Include="Model\DoorDeliveryConfirmModel.cs" />
+    <Compile Include="Model\DriverModel.cs" />
+    <Compile Include="Model\FreightModel.cs" />
+    <Compile Include="Model\GoddownOwnerDetailsModel.cs" />
+    <Compile Include="Model\GodownDeliveryModel.cs" />
+    <Compile Include="Model\GodownModel.cs" />
+    <Compile Include="Model\InwardModel.cs" />
+    <Compile Include="Model\LateReportReasonModel.cs" />
+    <Compile Include="Model\LedgerGroupFinanceModel.cs" />
+    <Compile Include="Model\LedgerModel.cs" />
+    <Compile Include="Model\LocalVehicleContractModel.cs" />
+    <Compile Include="Model\OutwardModel.cs" />
+    <Compile Include="Model\PackingModel.cs" />
+    <Compile Include="Model\PackingTypeModel.cs" />
+    <Compile Include="Model\PreDeliveryModel.cs" />
+    <Compile Include="Model\PrintingStationaryModel.cs" />
+    <Compile Include="Model\ReceiptModel.cs" />
+    <Compile Include="Model\RegionModel.cs" />
+    <Compile Include="Model\RegularClientModel.cs" />
+    <Compile Include="Model\RequirementModel.cs" />
+    <Compile Include="Model\ReserveBookingModel.cs" />
+    <Compile Include="Model\RTOModel.cs" />
+    <Compile Include="Model\SeriesGenerationModel.cs" />
+    <Compile Include="Model\ServiceLocationModel.cs" />
+    <Compile Include="Model\StandardLorryHireModel.cs" />
+    <Compile Include="Model\StateModel.cs" />
+    <Compile Include="Model\TruckArrivalModel.cs" />
+    <Compile Include="Model\TruckUnloadingModel.cs" />
+    <Compile Include="Model\UploadPackingSlipModel.cs" />
+    <Compile Include="Model\UserMasterModel.cs" />
+    <Compile Include="Model\VehicleMasterModel.cs" />
+    <Compile Include="Model\VehicleModel.cs" />
+    <Compile Include="Model\VehicleTypeModel.cs" />
+    <Compile Include="Model\VendorModel.cs" />
+    <Compile Include="Model\VendorTypeModel.cs" />
+    <Compile Include="Model\VirtualGodownModel.cs" />
+    <Compile Include="Model\WalkinClientModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\AccountRepo.cs" />
+    <Compile Include="Repository\AreaRepo.cs" />
+    <Compile Include="Repository\BankMasterRepo.cs" />
+    <Compile Include="Repository\BillRepo.cs" />
+    <Compile Include="Repository\BookingRepo.cs" />
+    <Compile Include="Repository\BranchRateRepo.cs" />
+    <Compile Include="Repository\BranchRepo.cs" />
+    <Compile Include="Repository\CityRepo.cs" />
+    <Compile Include="Repository\CommodityRepo.cs" />
+    <Compile Include="Repository\CommodityTypeRepo.cs" />
+    <Compile Include="Repository\ConsignmentRepo.cs" />
+    <Compile Include="Repository\ContractRepo.cs" />
+    <Compile Include="Repository\CostCentreRepo.cs" />
+    <Compile Include="Repository\CrossingRepo.cs" />
+    <Compile Include="Repository\DDLocalChallanRepo.cs" />
+    <Compile Include="Repository\DeliveryRepo.cs" />
+    <Compile Include="Repository\DepartmentRepo.cs" />
+    <Compile Include="Repository\DocumentAllocationRepo.cs" />
+    <Compile Include="Repository\DocumentSeriesAllocationRepo.cs" />
+    <Compile Include="Repository\DoorDeliveryConfirmRepo.cs" />
+    <Compile Include="Repository\DriverRepo.cs" />
+    <Compile Include="Repository\FreightRepo.cs" />
+    <Compile Include="Repository\GoddownOwnerDetailsRepo.cs" />
+    <Compile Include="Repository\GodownDeliveryRepo.cs" />
+    <Compile Include="Repository\GodownRepo.cs" />
+    <Compile Include="Repository\InwardRepo.cs" />
+    <Compile Include="Repository\LateReportReasonRepo.cs" />
+    <Compile Include="Repository\LedgerGroupFinanceRepo.cs" />
+    <Compile Include="Repository\LedgerRepo.cs" />
+    <Compile Include="Repository\LocalVehicleContractRepo.cs" />
+    <Compile Include="Repository\OutwardRepo.cs" />
+    <Compile Include="Repository\PackingRepo.cs" />
+    <Compile Include="Repository\PackingTypeRepo.cs" />
+    <Compile Include="Repository\PreDeliveryRepo.cs" />
+    <Compile Include="Repository\PrintingStationaryRepo.cs" />
+    <Compile Include="Repository\ReceiptRepo.cs" />
+    <Compile Include="Repository\RegionRepo.cs" />
+    <Compile Include="Repository\RegularClientRepo.cs" />
+    <Compile Include="Repository\RequirementRepo.cs" />
+    <Compile Include="Repository\ReserveBookingRepo.cs" />
+    <Compile Include="Repository\RTORepo.cs" />
+    <Compile Include="Repository\SeriesGenerationRepo.cs" />
+    <Compile Include="Repository\ServiceLocationRepo.cs" />
+    <Compile Include="Repository\StandardLorryHireRepo.cs" />
+    <Compile Include="Repository\StateRepo.cs" />
+    <Compile Include="Repository\TruckArrivalRepo.cs" />
+    <Compile Include="Repository\TruckUnloadingRepo.cs" />
+    <Compile Include="Repository\UploadPackingSlipRepo.cs" />
+    <Compile Include="Repository\UserMasterRepo.cs" />
+    <Compile Include="Repository\VehicleMasterRepo.cs" />
+    <Compile Include="Repository\VehicleModelRepo.cs" />
+    <Compile Include="Repository\VehicleTypeRepo.cs" />
+    <Compile Include="Repository\VendorRepo.cs" />
+    <Compile Include="Repository\VendorTypeRepo.cs" />
+    <Compile Include="Repository\VirtualGodownRepo.cs" />
+    <Compile Include="Repository\WalkinClientRepo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <EntityDeploy Include="DB\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="DB\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DB\Model1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DB\Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Model\CostCentreModel.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

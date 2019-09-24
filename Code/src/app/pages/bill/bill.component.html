@@ -1,0 +1,244 @@
+<div class="row">
+  <div class="col-12">
+    <div id="kick-start" class="card">
+      <div class="card-header">
+        <h4 class="card-title">Bill</h4>
+      </div>
+      <div class="card-body">
+        <div class="card-block">
+          <div class="card-text">
+            <div class="row">
+              <div class="col-md-11">
+                <!-- City Master List -->
+              </div>
+              <div class="col-md-1 btnStyle">
+                <button class="btn btn-raised shadow-z-2 btn-info" (click)="ShowPopUp()">Add New</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="myclass">
+                <table class="table table-hover" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Bill No</th>
+                      <th>Bill Date</th>
+                      <th>CN No</th>
+                      <th>CN Date</th>
+                      <th>Booking Branch</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let client of rows">
+                      <td>{{client.billNo}}</td>
+                      <td>{{client.billdate | date:"yyyy-MM-dd"}}</td>
+                      <td>{{client.CNno}}</td>
+                      <td>{{client.CNdate | date:"yyyy-MM-dd"}}</td>
+                      <td>{{client.bookingbranchName}}</td>
+                      <td>
+                        <button (click)="ShowData(client.id)" class="btn btn-raised shadow-z-2 btn-info">
+                          <i class="fa fa-edit"></i>
+                        </button>
+                        <button (click)="DeleteBill(client.id)" class="btn btn-raised shadow-z-2 btn-danger">
+                          <i class="fa fa-trash "></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #template>
+  <form [formGroup]="BillForm" (ngSubmit)="SaveDetail(BillForm.value)">
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">{{Title}}</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="hidepopup()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+
+      <div class="row">
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">Bill No</label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="Bill No" formControlName="billNo"
+                (input)="Validator($event)" required />
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">Bill Date</label>
+            <div class="">
+              <input class="form-control" type="date" placeholder="Bill Date" formControlName="billdate" required />
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">CN No</label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="CN No" formControlName="CNno"
+                (input)="Validator($event)" required />
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">CN Date</label>
+            <div class="">
+              <input class="form-control" type="date" placeholder="CN Date" formControlName="CNdate" required />
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Booking Branch</label>
+            <div class="">
+              <select class="form-control" formControlName="bookingbranch" required>
+                <option value="">--Select--</option>
+                <option *ngFor="let cont of branchModel" value={{cont.id}}>
+                  {{cont.branchName}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">Delivery Branch</label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="Delivery Branch" formControlName="deliverybranch" />
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">Article</label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="Article" formControlName="article" />
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">Actual Weight</label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="Actual Weight" formControlName="actualweight"
+                (input)="Validator($event)" />
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">Charge Weight</label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="Charge Weight" formControlName="chargeweight"
+                (input)="Validator($event)" />
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">Freight Details</label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="Freight Details" formControlName="freightdetails" />
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="checkbox h-30">
+            <label class="control-label">Payment Mode</label>
+            <div class="">
+              <input type="checkbox" formControlName="paymentmode" />
+
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">Cheque No</label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="Cheque No" formControlName="chequeNo"
+                (input)="Validator($event)" />
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">Cheque Date</label>
+            <div class="">
+              <input class="form-control" type="date" placeholder="Cheque Date" formControlName="chequedate" />
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">Amount</label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="Amount" formControlName="amount1"
+                (input)="Validator($event)" />
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">Remark</label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="Remark" formControlName="remark4" />
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <button type="reset" class="btn btn-raised shadow-z-2 btn-default" (click)="modalRef.hide()"
+        aria-label="Close">Close</button>
+      <button type="submit" class="btn btn-raised shadow-z-2 btn-success" [disabled]="!BillForm.valid">Save
+        changes</button>
+    </div>
+  </form>
+</ng-template>

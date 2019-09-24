@@ -1,0 +1,25 @@
+export class AccountModel{
+    id:number;
+    ledgergroupname:string;
+    nature:string;
+    ledgername:string;
+    PAN:string;
+    GSTIN:string;
+    accountno:string;
+    address:string;
+    city:string;
+    pincode:string;
+    state:string;
+    STDcode:string;
+    phoneno:string;
+    mobileno:string;
+    emailid:string;
+    emailalert:string;
+    mobilealert:string;
+    openingbalance:string;
+    openingamount:string;
+    applicablelocation:string;
+    remark:string;
+    costcentrename:string;
+    remark1:string;
+}

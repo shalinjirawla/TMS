@@ -1,0 +1,215 @@
+<div class="row">
+  <div class="col-12">
+    <div id="kick-start" class="card">
+      <div class="card-header">
+        <h4 class="card-title">Branch Rate Master</h4>
+      </div>
+      <div class="card-body">
+        <div class="card-block">
+          <div class="card-text">
+            <div class="row">
+              <div class="col-md-11">
+                <!-- Branch Rate Master List -->
+              </div>
+              <div class="col-md-1 btnStyle">
+                <button class="btn btn-raised shadow-z-2 btn-info" (click)="ShowPopUp()">Add New</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="myclass">
+                <table class="table table-hover" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>General</th>
+                      <th>Commodity</th>
+                      <th>Minimum Charge Weight</th>
+                      <th>Statistic Charges RS</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let client of rows">
+                      <td>{{client.General}}</td>
+                      <td>{{client.Commodity}}</td>
+                      <td>{{client.MinimumChargeWeightin}}</td>
+                      <td>{{client.StatisticChargesinRS}}</td>
+                      <td>
+                        <button (click)="GetEditDetails(client.Id)" class="btn btn-raised shadow-z-2 btn-info">
+                          <i class="fa fa-edit"></i>
+                        </button>
+                        <button (click)="DeleteBranchRate(client.Id)" class="btn btn-raised shadow-z-2 btn-danger">
+                          <i class="fa fa-trash "></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #template>
+  <form [formGroup]="BranchRateMasterForm" (ngSubmit)="SaveBranchRateData(BranchRateMasterForm.value)">
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">{{ Title }}</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="HidePopUp()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">General</label>
+            <input type="text" formControlName="General" class="form-control" placeholder="General" required>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Commodity</label>
+            <input class="form-control" type="text" placeholder="Commodity" formControlName="Commodity" required>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Minimum Charge Weight in</label>
+            <input class="form-control" type="number" placeholder="Minimum Charge Weight in" formControlName="MinimumChargeWeightin" required>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">Statistic Charges in RS</label>
+            <input type="number" formControlName="StatisticChargesinRS" class="form-control" placeholder="Statistic Charges in RS"
+              >
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">CFT Factor in KG</label>
+            <input class="form-control" type="number" placeholder="CFT Factor in KG" formControlName="CFTFactorinKG" />
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">FOV </label>
+            <input class="form-control" type="number" placeholder="FOV" formControlName="FOVin" />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">Hamaliper Article in RS</label>
+            <input type="number" formControlName="HamaliperArticleinRS" class="form-control" placeholder="Hamaliper  Article in RS"
+              >
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Minimum Hamali in RS</label>
+            <input class="form-control" type="number" placeholder="Minimum Hamali in RS" formControlName="MinimumHamaliinRS" />
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Sur charges </label>
+            <input class="form-control" type="number" placeholder="Sur charges" formControlName="Surcharges" />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">Cover Charges</label>
+            <input type="number" formControlName="CoverCharges" class="form-control" placeholder="Cover Charges"
+              >
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Misc Charges</label>
+            <input class="form-control" type="number" placeholder="Misc Charges" formControlName="MiscCharges" />
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Godown Charges </label>
+            <input class="form-control" type="number" placeholder="Godown Charges" formControlName="GodownCharges" required>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">COD Charges</label>
+            <input type="number" formControlName="CODCharges" class="form-control" placeholder="COD Charges" required>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Demurrage Exempt Days</label>
+            <input class="form-control" type="number" placeholder="Demurrage Exempt Days" formControlName="DemurrageExemptDays" />
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Demurrage Rate</label>
+            <input class="form-control" type="number" placeholder="Demurrage Rate" formControlName="DemurrageRate" />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">GIC harges</label>
+            <input type="number" formControlName="GICharges" class="form-control" placeholder="GIC harges" required>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Door Delivery Charges</label>
+            <input class="form-control" type="number" placeholder="Door Delivery Charges" formControlName="DoorDeliveryCharges" />
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">First Notice Days</label>
+            <input class="form-control" type="number" placeholder="First Notice Days" formControlName="FirstNoticeDays" required>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Second Notice Days</label>
+              <input type="number" formControlName="SecondNoticeDays" class="form-control" placeholder="Second Notice Days" >
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class="control-label">Final  Notice Days</label>
+              <input class="form-control" type="number" placeholder="Final Notice Days" formControlName="FinalNoticeDays" />
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class="control-label">Discount</label>
+              <input class="form-control" type="number" placeholder="Discount" formControlName="Discount" />
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+      <button type="reset" class="btn btn-raised shadow-z-2 btn-default" aria-label="Close" (click)="HidePopUp()">Close</button>
+      <button type="submit" class="btn btn-raised shadow-z-2 btn-success" [disabled]="!BranchRateMasterForm.valid">Save
+        changes</button>
+    </div>
+  </form>
+</ng-template>

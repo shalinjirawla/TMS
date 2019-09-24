@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="91aeeb635dcd48648c13a83d1405c3a6" Name="Diagram1" ZoomLevel="81">
+        <EntityTypeShape EntityType="TRSModel.AreaMaster" Width="1.5" PointX="5.25" PointY="38.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TRSModel.BankMaster" Width="1.5" PointX="8.25" PointY="39.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TRSModel.BranchRate" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TRSModel.CityMaster" Width="1.5" PointX="3" PointY="48.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TRSModel.GodownMaster" Width="1.5" PointX="16.5" PointY="38.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TRSModel.GodownOwnerDetailsMaster" Width="1.5" PointX="24.75" PointY="37" IsExpanded="true" />
+        <EntityTypeShape EntityType="TRSModel.PackingMaster" Width="1.5" PointX="15.75" PointY="45" IsExpanded="true" />
+        <EntityTypeShape EntityType="TRSModel.RegionMaster" Width="1.5" PointX="8.25" PointY="34.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TRSModel.RegularClient_Contact_info" Width="1.5" PointX="21.75" PointY="40" IsExpanded="true" />
+        <EntityTypeShape EntityType="TRSModel.RegularClientMaster" Width="1.5" PointX="19.5" PointY="36.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TRSModel.RTOMaster" Width="1.5" PointX="8.25" PointY="44.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TRSModel.StateMaster" Width="1.5" PointX="0.75" PointY="30.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TRSModel.UserMaster" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TRSModel.VirtualGodownMaster" Width="1.5" PointX="21.75" PointY="36" IsExpanded="true" />
+        <AssociationConnector Association="TRSModel.FK_AreaMaster_CityMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="TRSModel.FK_AreaMaster_RegionMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="TRSModel.FK_AreaMaster_StateMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="TRSModel.FK_BankMaster_CityMaster1" ManuallyRouted="false" />
+        <AssociationConnector Association="TRSModel.FK_BankMaster_StateMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="TRSModel.FK__CityMaste__state__15502E78" ManuallyRouted="false" />
+        <AssociationConnector Association="TRSModel.FK_GodownMaster_CityMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="TRSModel.FK_GodownOwnerDetailsMaster_CityMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="TRSModel.FK_RegionMaster_CityMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="TRSModel.FK_RegularClientMaster_CityMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="TRSModel.FK_RTOMaster_CityMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="TRSModel.FK_GodownMaster_StateMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="TRSModel.FK_GodownOwnerDetailsMaster_GodownMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="TRSModel.FK_VirtualGodownMaster_GodownMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="TRSModel.FK_GodownOwnerDetailsMaster_StateMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="TRSModel.FK_RegionMaster_StateMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="TRSModel.FK_RegularClient_Contact_info_RegularClientMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="TRSModel.FK_RegularClientMaster_StateMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="TRSModel.FK_RTOMaster_StateMaster" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="TRSModel.ServiceLocationMaster" Width="1.5" PointX="13.5" PointY="53.125" />
+        <EntityTypeShape EntityType="TRSModel.Walk_inClientMaster" Width="1.5" PointX="5.25" PointY="31.25" />
+        <AssociationConnector Association="TRSModel.FK_Walk_inClientMaster_CityMaster1" />
+        <AssociationConnector Association="TRSModel.FK_Walk_inClientMaster_StateMaster1" />
+        <EntityTypeShape EntityType="TRSModel.CommodityTypeMaster" Width="1.5" PointX="5.375" PointY="1.25" />
+        <EntityTypeShape EntityType="TRSModel.CommodityMaster" Width="1.5" PointX="7.625" PointY="1" />
+        <AssociationConnector Association="TRSModel.FK_CommodityMaster_CommodityTypeMaster" />
+        <EntityTypeShape EntityType="TRSModel.DepartmentMaster" Width="1.5" PointX="3.375" PointY="5.75" />
+        <EntityTypeShape EntityType="TRSModel.PackingTypeMaster" Width="1.5" PointX="5.375" PointY="4.75" />
+        <EntityTypeShape EntityType="TRSModel.LateReportReasonMaster" Width="1.5" PointX="7.375" PointY="4.75" />
+        <EntityTypeShape EntityType="TRSModel.VendorTypeMaster" Width="1.5" PointX="5.375" PointY="7.75" />
+        <EntityTypeShape EntityType="TRSModel.VendorMaster" Width="1.5" PointX="10.5" PointY="26.625" />
+        <AssociationConnector Association="TRSModel.FK_VendorMaster_BankMaster" />
+        <AssociationConnector Association="TRSModel.FK_VendorMaster_BankMaster1" />
+        <AssociationConnector Association="TRSModel.FK_VendorMaster_BankMaster2" />
+        <AssociationConnector Association="TRSModel.FK_VendorMaster_CityMaster" />
+        <AssociationConnector Association="TRSModel.FK_VendorMaster_StateMaster" />
+        <AssociationConnector Association="TRSModel.FK_VendorMaster_VendorMaster1" />
+        <EntityTypeShape EntityType="TRSModel.VehicleTypeMaster" Width="1.5" PointX="7.375" PointY="7.75" />
+        <EntityTypeShape EntityType="TRSModel.VehicleModelMaster" Width="1.5" PointX="12.75" PointY="25.875" />
+        <AssociationConnector Association="TRSModel.FK_VehicleModelMaster_VendorMaster" />
+        <EntityTypeShape EntityType="TRSModel.FreightMaster" Width="1.5" PointX="13.5" PointY="48.625" />
+        <EntityTypeShape EntityType="TRSModel.ContractMaster" Width="1.5" PointX="0.75" PointY="8.75" />
+        <EntityTypeShape EntityType="TRSModel.CrossingMaster" Width="1.5" PointX="13.5" PointY="30.25" />
+        <EntityTypeShape EntityType="TRSModel.LocalVehicleContractMaster" Width="1.5" PointX="17.25" PointY="29.875" />
+        <AssociationConnector Association="TRSModel.FK_LocalVehicleContractMaster_VendorMaster" />
+        <EntityTypeShape EntityType="TRSModel.StandardLorryHireMaster" Width="1.5" PointX="17.5" PointY="24.625" />
+        <AssociationConnector Association="TRSModel.FK_StandardLorryHireMaster_BranchMaster" />
+        <AssociationConnector Association="TRSModel.FK_StandardLorryHireMaster_VehicleTypeMaster" />
+        <EntityTypeShape EntityType="TRSModel.VehicleMaster" Width="1.5" PointX="20" PointY="25.625" />
+        <AssociationConnector Association="TRSModel.FK_LocalVehicleContractMaster_VehicleMaster" />
+        <AssociationConnector Association="TRSModel.FK_VehicleMaster_VehicleModelMaster" />
+        <AssociationConnector Association="TRSModel.FK_VehicleMaster_VehicleTypeMaster" />
+        <AssociationConnector Association="TRSModel.FK_VehicleMaster_VendorMaster" />
+        <AssociationConnector Association="TRSModel.FK_VehicleMaster_VendorMaster1" />
+        <EntityTypeShape EntityType="TRSModel.DocumentAllocationMaster" Width="1.5" PointX="13.5" PointY="57.75" />
+        <EntityTypeShape EntityType="TRSModel.InwardMaster" Width="1.5" PointX="24" PointY="18.375" />
+        <AssociationConnector Association="TRSModel.FK_InwardMaster_CommodityMaster" />
+        <AssociationConnector Association="TRSModel.FK_InwardMaster_GodownMaster" />
+        <AssociationConnector Association="TRSModel.FK_InwardMaster_PackingTypeMaster" />
+        <AssociationConnector Association="TRSModel.FK_InwardMaster_VehicleMaster" />
+        <AssociationConnector Association="TRSModel.FK_InwardMaster_VehicleMaster1" />
+        <AssociationConnector Association="TRSModel.FK_InwardMaster_VirtualGodownMaster" />
+        <EntityTypeShape EntityType="TRSModel.DeliveryMaster" Width="1.5" PointX="27" PointY="12.875" />
+        <AssociationConnector Association="TRSModel.FK_DeliveryMaster_GodownMaster" />
+        <AssociationConnector Association="TRSModel.FK_DeliveryMaster_GodownMaster1" />
+        <AssociationConnector Association="TRSModel.FK_DeliveryMaster_PackingTypeMaster1" />
+        <AssociationConnector Association="TRSModel.FK_DeliveryMaster_PackingTypeMaster2" />
+        <AssociationConnector Association="TRSModel.FK_DeliveryMaster_RegularClientMaster" />
+        <AssociationConnector Association="TRSModel.FK_DeliveryMaster_RegularClientMaster1" />
+        <AssociationConnector Association="TRSModel.FK_DeliveryMaster_RegularClientMaster2" />
+        <AssociationConnector Association="TRSModel.FK_DeliveryMaster_RegularClientMaster3" />
+        <AssociationConnector Association="TRSModel.FK_DeliveryMaster_VirtualGodownMaster" />
+        <AssociationConnector Association="TRSModel.FK_DeliveryMaster_VirtualGodownMaster1" />
+        <EntityTypeShape EntityType="TRSModel.ReceiptMaster" Width="1.5" PointX="9.375" PointY="4.75" />
+        <EntityTypeShape EntityType="TRSModel.AccountMaster" Width="1.5" PointX="8.25" PointY="49.75" />
+        <AssociationConnector Association="TRSModel.FK_AccountMaster_CityMaster" />
+        <AssociationConnector Association="TRSModel.FK_AccountMaster_StateMaster" />
+        <EntityTypeShape EntityType="TRSModel.DriverMaster" Width="1.5" PointX="5.25" PointY="45.5" />
+        <AssociationConnector Association="TRSModel.FK_DriverMaster_CityMaster" />
+        <AssociationConnector Association="TRSModel.FK_DriverMaster_CityMaster1" />
+        <AssociationConnector Association="TRSModel.FK_DriverMaster_StateMaster" />
+        <AssociationConnector Association="TRSModel.FK_VehicleMaster_DriverMaster" />
+        <EntityTypeShape EntityType="TRSModel.SeriesGeneration" Width="1.5" PointX="9.375" PointY="9.75" />
+        <EntityTypeShape EntityType="TRSModel.PrintingStationary" Width="1.5" PointX="10.375" PointY="0.75" />
+        <EntityTypeShape EntityType="TRSModel.DocumentSeriesAllocation" Width="1.5" PointX="13.5" PointY="21.5" />
+        <EntityTypeShape EntityType="TRSModel.ConsignmentOperation" Width="1.5" PointX="30" PointY="37" />
+        <AssociationConnector Association="TRSModel.FK_ConsignmentOperation_GodownMaster" />
+        <AssociationConnector Association="TRSModel.FK_ConsignmentOperation_RegularClientMaster" />
+        <AssociationConnector Association="TRSModel.FK_ConsignmentOperation_RegularClientMaster1" />
+        <AssociationConnector Association="TRSModel.FK_ConsignmentOperation_RegularClientMaster2" />
+        <AssociationConnector Association="TRSModel.FK_ConsignmentOperation_RegularClientMaster3" />
+        <AssociationConnector Association="TRSModel.FK_ConsignmentOperation_VirtualGodownMaster" />
+        <EntityTypeShape EntityType="TRSModel.UploadPackingSlip" Width="1.5" PointX="3.375" PointY="10.75" />
+        <EntityTypeShape EntityType="TRSModel.TruckArrival" Width="1.5" PointX="29.25" PointY="29.625" />
+        <AssociationConnector Association="TRSModel.FK_TruckArrival_VehicleMaster" />
+        <EntityTypeShape EntityType="TRSModel.TruckUnloading" Width="1.5" PointX="30" PointY="18.125" />
+        <AssociationConnector Association="TRSModel.FK_TruckUnloading_CommodityMaster" />
+        <AssociationConnector Association="TRSModel.FK_TruckUnloading_GodownMaster" />
+        <AssociationConnector Association="TRSModel.FK_TruckUnloading_PackingTypeMaster" />
+        <AssociationConnector Association="TRSModel.FK_TruckUnloading_VehicleMaster" />
+        <AssociationConnector Association="TRSModel.FK_TruckUnloading_VirtualGodownMaster" />
+        <EntityTypeShape EntityType="TRSModel.GodownDelivery" Width="1.5" PointX="32" PointY="28.875" />
+        <AssociationConnector Association="TRSModel.FK_GodownDelivery_GodownMaster" />
+        <AssociationConnector Association="TRSModel.FK_GodownDelivery_PackingTypeMaster" />
+        <AssociationConnector Association="TRSModel.FK_GodownDelivery_RegularClientMaster" />
+        <AssociationConnector Association="TRSModel.FK_GodownDelivery_RegularClientMaster1" />
+        <AssociationConnector Association="TRSModel.FK_GodownDelivery_VirtualGodownMaster" />
+        <EntityTypeShape EntityType="TRSModel.PreDelivery" Width="1.5" PointX="33" PointY="21.5" />
+        <AssociationConnector Association="TRSModel.FK_PreDelivery_GodownMaster" />
+        <AssociationConnector Association="TRSModel.FK_PreDelivery_PackingTypeMaster1" />
+        <AssociationConnector Association="TRSModel.FK_PreDelivery_RegularClientMaster" />
+        <AssociationConnector Association="TRSModel.FK_PreDelivery_RegularClientMaster1" />
+        <AssociationConnector Association="TRSModel.FK_PreDelivery_VirtualGodownMaster" />
+        <EntityTypeShape EntityType="TRSModel.DDLocalChallan" Width="1.5" PointX="22.25" PointY="32.5" />
+        <AssociationConnector Association="TRSModel.FK_DDLocalChallan_VehicleMaster" />
+        <EntityTypeShape EntityType="TRSModel.DoorDeliveryConfirm" Width="1.5" PointX="35.25" PointY="32.125" />
+        <AssociationConnector Association="TRSModel.FK_DoorDeliveryConfirm_PreDelivery" />
+        <EntityTypeShape EntityType="TRSModel.OutwardMaster" Width="1.5" PointX="27.25" PointY="34.25" />
+        <AssociationConnector Association="TRSModel.FK_OutwardMaster_DriverMaster" />
+        <AssociationConnector Association="TRSModel.FK_OutwardMaster_DriverMaster1" />
+        <AssociationConnector Association="TRSModel.FK_OutwardMaster_DriverMaster2" />
+        <AssociationConnector Association="TRSModel.FK_OutwardMaster_VehicleMaster" />
+        <AssociationConnector Association="TRSModel.FK_OutwardMaster_VendorMaster" />
+        <EntityTypeShape EntityType="TRSModel.BookingMaster" Width="1.5" PointX="21.75" PointY="43.5" />
+        <AssociationConnector Association="TRSModel.FK_Booking_GodownMaster" />
+        <AssociationConnector Association="TRSModel.FK_Booking_RegularClientMaster" />
+        <AssociationConnector Association="TRSModel.FK_BookingMaster_BookingMaster" />
+        <AssociationConnector Association="TRSModel.FK_BookingMaster_GodownMaster" />
+        <AssociationConnector Association="TRSModel.FK_BookingMaster_RegularClientMaster" />
+        <AssociationConnector Association="TRSModel.FK_BookingMaster_RegularClientMaster1" />
+        <AssociationConnector Association="TRSModel.FK_DeliveryMaster_BookingMaster" />
+        <AssociationConnector Association="TRSModel.FK_DeliveryMaster_BookingMaster1" />
+        <AssociationConnector Association="TRSModel.FK_DeliveryMaster_BookingMaster2" />
+        <AssociationConnector Association="TRSModel.FK_DeliveryMaster_BookingMaster3" />
+        <AssociationConnector Association="TRSModel.FK_InwardMaster_BookingMaster" />
+        <AssociationConnector Association="TRSModel.FK_OutwardMaster_BookingMaster" />
+        <AssociationConnector Association="TRSModel.FK_PackingMaster_BookingMaster" />
+        <AssociationConnector Association="TRSModel.FK_TruckUnloading_BookingMaster" />
+        <EntityTypeShape EntityType="TRSModel.BranchMaster" Width="1.5" PointX="11.25" PointY="35.75" />
+        <EntityTypeShape EntityType="TRSModel.ReserveBooking" Width="1.5" PointX="21.75" PointY="59" />
+        <AssociationConnector Association="TRSModel.FK_Booking_BranchMaster" />
+        <AssociationConnector Association="TRSModel.FK_Booking_BranchMaster1" />
+        <AssociationConnector Association="TRSModel.FK_BookingMaster_BranchMaster" />
+        <AssociationConnector Association="TRSModel.FK_BranchMaster_CityMaster" />
+        <AssociationConnector Association="TRSModel.FK_BranchMaster_StateMaster" />
+        <AssociationConnector Association="TRSModel.FK_ConsignmentOperation_BranchMaster" />
+        <AssociationConnector Association="TRSModel.FK_ConsignmentOperation_BranchMaster1" />
+        <AssociationConnector Association="TRSModel.FK_ConsignmentOperation_BranchMaster2" />
+        <AssociationConnector Association="TRSModel.FK_CrossingMaster_BranchMaster" />
+        <AssociationConnector Association="TRSModel.FK_CrossingMaster_BranchMaster1" />
+        <AssociationConnector Association="TRSModel.FK_DocumentAllocationMaster_BranchMaster" />
+        <AssociationConnector Association="TRSModel.FK_DocumentSeriesAllocation_BranchMaster" />
+        <AssociationConnector Association="TRSModel.FK_FreightMaster_BranchMaster" />
+        <AssociationConnector Association="TRSModel.FK_FreightMaster_FreightMaster" />
+        <AssociationConnector Association="TRSModel.FK_GodownMaster_BranchMaster" />
+        <AssociationConnector Association="TRSModel.FK_GodownOwnerDetailsMaster_BranchMaster" />
+        <AssociationConnector Association="TRSModel.FK_InwardMaster_BranchMaster" />
+        <AssociationConnector Association="TRSModel.FK_InwardMaster_BranchMaster1" />
+        <AssociationConnector Association="TRSModel.FK_InwardMaster_BranchMaster2" />
+        <AssociationConnector Association="TRSModel.FK_LocalVehicleContractMaster_BranchMaster" />
+        <AssociationConnector Association="TRSModel.FK_OutwardMaster_BranchMaster3" />
+        <AssociationConnector Association="TRSModel.FK_OutwardMaster_BranchMaster4" />
+        <AssociationConnector Association="TRSModel.FK_OutwardMaster_BranchMaster5" />
+        <AssociationConnector Association="TRSModel.FK_OutwardMaster_BranchMaster6" />
+        <AssociationConnector Association="TRSModel.FK_RegularClientMaster_BranchMaster" />
+        <AssociationConnector Association="TRSModel.FK_ServiceLocationMaster_BranchMaster" />
+        <AssociationConnector Association="TRSModel.FK_ServiceLocationMaster_BranchMaster1" />
+        <AssociationConnector Association="TRSModel.FK_StandardLorryHireMaster_BranchMaster1" />
+        <AssociationConnector Association="TRSModel.FK_TruckArrival_BranchMaster" />
+        <AssociationConnector Association="TRSModel.FK_TruckArrival_BranchMaster1" />
+        <AssociationConnector Association="TRSModel.FK_TruckArrival_BranchMaster2" />
+        <AssociationConnector Association="TRSModel.FK_VirtualGodownMaster_BranchMaster" />
+        <AssociationConnector Association="TRSModel.FK_DoorDeliveryConfirm_ReserveBooking" />
+        <AssociationConnector Association="TRSModel.FK_GodownDelivery_ReserveBooking" />
+        <AssociationConnector Association="TRSModel.FK_PreDelivery_ReserveBooking" />
+        <AssociationConnector Association="TRSModel.FK_ReserveBooking_RegularClientMaster" />
+        <EntityTypeShape EntityType="TRSModel.Bill" Width="1.5" PointX="13.5" PointY="39.5" />
+        <AssociationConnector Association="TRSModel.FK_Bill_BranchMaster" />
+        <EntityTypeShape EntityType="TRSModel.LedgerGroupFinance" Width="1.5" PointX="5.375" PointY="10.75" />
+        <EntityTypeShape EntityType="TRSModel.Ledger" Width="1.5" PointX="11.25" PointY="49.25" />
+        <AssociationConnector Association="TRSModel.FK_Ledger_CityMaster" />
+        <AssociationConnector Association="TRSModel.FK_Ledger_StateMaster" />
+        <EntityTypeShape EntityType="TRSModel.CostCentre" Width="1.5" PointX="11.375" PointY="4.75" />
+        <EntityTypeShape EntityType="TRSModel.Requirement" Width="1.5" PointX="13.5" PointY="63.875" />
+        <AssociationConnector Association="TRSModel.FK_Requirement_Ledger" />
+        <AssociationConnector Association="TRSModel.FK_Requirement_Ledger1" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,33 @@
+export class DriverModel{
+    id:number;
+    name:string;
+    drivercategory:string;
+    isreliable:boolean;
+    DOB:Date;
+    Religion:string;
+    qualification:string;
+    maritalstatus:boolean;
+    drivinglicencecategory:string;
+    drivinglicenceNo:string;
+    drivLiceIssueAuthoLoca:string;
+    drivLiceExDate:Date;
+    bloodgroup:string;
+    Address:string;
+    state:number;
+    city:number;
+    STDcode:string;
+    phoneno:string;
+    mobileno:string;
+    referencename:string;
+    referenceaddress:string;
+    referencecity:number;
+    referencepincode:string;
+    referencephoneno:string;
+    referencemobileno:string;
+    policyno:string;
+    insurancecompany:string;
+    insurancevalue:string;
+    nomination:string;
+    insuranceexpirydate:string;
+    fileupload:string;
+}

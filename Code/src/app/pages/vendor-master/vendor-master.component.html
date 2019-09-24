@@ -1,0 +1,378 @@
+<div class="row">
+  <div class="col-12">
+    <div id="kick-start" class="card">
+      <div class="card-header">
+        <h4 class="card-title">Vendor Master</h4>
+      </div>
+      <div class="card-body">
+        <div class="card-block">
+          <div class="card-text">
+            <div class="row">
+              <div class="col-md-11">
+                <!-- Vendor Master List -->
+              </div>
+              <div class="col-md-1 btnStyle">
+                <button class="btn btn-raised shadow-z-2 btn-info" (click)="ShowPopUp()">Add New</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="myclass">
+                <table class="table table-hover" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Mobile No</th>
+                      <th>Pincode</th>
+                      <th>Credit Days</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let client of rows">
+                      <td>{{client.name}}</td>
+                      <td>{{client.mobileno}}</td>
+                      <td>{{client.pincode}}</td>
+                      <td>{{client.creditdays}}</td>
+                      <td>
+                        <button (click)="ShowData(client.id)" class="btn btn-raised shadow-z-2 btn-info">
+                          <i class="fa fa-edit"></i>
+                        </button>
+                        <button (click)="DeleteVendor(client.id)" class="btn btn-raised shadow-z-2 btn-danger">
+                          <i class="fa fa-trash "></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #template>
+  <form [formGroup]="VendorMasterForm" (ngSubmit)="SaveDetail(VendorMasterForm.value)">
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">{{Title}}</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="HidePopUp()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <!-- <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">Code</label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="Code" formControlName="code" />
+            </div>
+          </div>
+        </div> -->
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">Name</label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="Name" formControlName="name" required />
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Vendor Type</label>
+            <div class="">
+              <select class="form-control" formControlName="vendorType">
+                <option value="0">--Select--</option>
+                <option *ngFor="let cont of Vendortypes" value={{cont.id}}>
+                  {{cont.Name}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">Address</label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="Address" formControlName="address" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">State</label>
+            <div class="">
+              <select class="form-control" formControlName="state" (change)="onChange($event.target.value)">
+                <option value="0">--Select--</option>
+                <option *ngFor="let cont of States" value={{cont.id}}>
+                  {{cont.StateName}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">City</label>
+            <div class="">
+              <select class="form-control" formControlName="city">
+                <option value="0">--Select--</option>
+                <option *ngFor="let cont of Citys" value={{cont.id}}>
+                  {{cont.cityName}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">Pincode</label>
+            <div class="">
+              <input class="form-control" (input)="Validator($event)" type="text" placeholder="Pincode"
+                formControlName="pincode" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">STDcode</label>
+            <div class="">
+              <input class="form-control" (input)="Validator($event)" type="text" placeholder="STDcode"
+                formControlName="STDcode" />
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">Phone No</label>
+            <div class="">
+              <input class="form-control" (input)="Validator($event)" type="text" placeholder="Phone No"
+                formControlName="phoneno" />
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">Mobile No</label>
+            <div class="">
+              <input class="form-control" (input)="Validator($event)" type="text" placeholder="Mobile No"
+                formControlName="mobileno" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">Email Id</label>
+            <div class="">
+              <input class="form-control"  type="text" placeholder="Email Id"
+                formControlName="emailid" />
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="row" *ngFor="let list of AlertChechbox">
+            <div class="col-lg-2">
+              <input id="Alert{{list.id}}" class="form-control radio radio-inline" type="checkbox" value="{{list.id}}"
+                [checked]="list.Selected" formControlName="{{list.formControlName}}" />
+            </div>
+            <div class="col-lg-6">
+              <label for="Alert{{list.id}}"> {{list.Name}}</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">PAN</label>
+            <div class="">
+              <input class="form-control" (input)="Validator($event)" type="text" placeholder="PAN"
+                formControlName="PAN" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <!-- <div class="col-md-4">
+          <div class="row" *ngFor="let list of MobileChechbox">
+            <div class="col-lg-2">
+              <input id="Alert{{list.id}}" class="form-control radio radio-inline" type="checkbox" value="{{list.id}}"
+                [checked]="list.Selected" formControlName="{{list.formControlName}}" />
+            </div>
+            <div class="col-lg-6">
+              <label for="Alert{{list.id}}"> {{list.Name}}</label>
+            </div>
+          </div>
+        </div> -->
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">GSTIN</label>
+            <div class="">
+              <input class="form-control" (input)="Validator($event)" type="text" placeholder="GSTIN"
+                formControlName="GSTIN" />
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">Reference Name</label>
+            <div class="">
+              <input class="form-control"  type="text" placeholder="Reference Name"
+                formControlName="referencename" />
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">Reference Phone No</label>
+            <div class="">
+              <input class="form-control" (input)="Validator($event)" type="text" placeholder="Reference Phone No"
+                formControlName="referphoneno" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">Reference Mobile No</label>
+            <div class="">
+              <input class="form-control" (input)="Validator($event)" type="text" placeholder="Reference Mobile No"
+                formControlName="refermobileno" />
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">Credit Days</label>
+            <div class="">
+              <input class="form-control" (input)="Validator($event)" type="text" placeholder="Credit Days"
+                formControlName="creditdays" />
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">Credit Amount</label>
+            <div class="">
+              <input class="form-control" (input)="Validator($event)" type="text" placeholder="Credit Amount"
+                formControlName="creditamount" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Bank Name</label>
+            <div class="">
+              <select class="form-control" formControlName="bankname" (change)="onChangeBank($event.target.value)">
+                <option value="0">--Select--</option>
+                <option *ngFor="let bank of Banks" value="{{bank.id}}">{{bank.Bank_Name}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Bank Branch</label>
+            <div class="">
+              <select class="form-control" formControlName="bankbranch">
+                <option value="0">--Select--</option>
+                <option *ngFor="let bank of BankBranchs" value="{{bank.id}}">{{bank.Bank_Branch}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">IFSC</label>
+            <div class="">
+              <select class="form-control" formControlName="IFSC">
+                <option value="0">--Select--</option>
+                <option *ngFor="let bank of BankIFSC" value="{{bank.id}}">{{bank.IFSC_code}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">A/c No</label>
+            <div class="">
+              <input class="form-control" (input)="Validator($event)" type="text" placeholder="A/c No"
+                formControlName="accountno" />
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">Cheque Name</label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="Cheque Name"
+                formControlName="chequename" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="filePicker">File Upload</label><br>
+            <input #file type="file" accept='image/*' (change)="preview(file.files,$event)" />
+            <br><br>
+            <img [src]="imgURL" height="200" *ngIf="imgURL">
+            <br>
+            <br>
+            <button type="button" (click)="downloadFile(imgURL)" class="btn btn-raised shadow-z-2 btn-default"
+              aria-label="Close">
+              <i class="fa fa-download" aria-hidden="true"></i>Download</button>
+            <br>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="reset" class="btn btn-raised shadow-z-2 btn-default" (click)="modalRef.hide()"
+        aria-label="Close">Close</button>
+      <button type="submit" class="btn btn-raised shadow-z-2 btn-success" [disabled]="!VendorMasterForm.valid">Save
+        changes</button>
+    </div>
+  </form>
+</ng-template>

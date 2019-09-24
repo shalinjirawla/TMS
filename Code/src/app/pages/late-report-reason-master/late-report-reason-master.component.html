@@ -1,0 +1,152 @@
+<div class="row">
+  <div class="col-12">
+    <div id="kick-start" class="card">
+      <div class="card-header">
+        <h4 class="card-title">Late Report Reason Master</h4>
+      </div>
+      <div class="card-body">
+        <div class="card-block">
+          <div class="card-text">
+            <div class="row">
+              <div class="col-md-11">
+                <!-- Late Report Reason Master List -->
+              </div>
+              <div class="col-md-1 btnStyle">
+                <button class="btn btn-raised shadow-z-2 btn-info" (click)="ShowPopUp()">Add New</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="myclass">
+                <table class="table table-hover" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Reason</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let client of rows">
+                      <td>{{client.reason}}</td>
+                      <td>
+                        <button (click)="ShowData(client.id)" class="btn btn-raised shadow-z-2 btn-info">
+                          <i class="fa fa-edit"></i>
+                        </button>
+                        <button (click)="DeleteLateReportReason(client.id)" class="btn btn-raised shadow-z-2 btn-danger">
+                          <i class="fa fa-trash "></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<ng-template #template>
+  <form [formGroup]="LateReportReasonMasterForm" (ngSubmit)="SaveDetail(LateReportReasonMasterForm.valid)">
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Modal</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="hidepopup()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+
+      <div class="form-group">
+        <label class=" control-label">Reason</label>
+        <div class="">
+          <input class="form-control" type="text" placeholder="Reason" formControlName="reason" required />
+        </div>
+      </div>  
+
+      <div class="col-md-8">
+        <fieldset>
+          <legend>Reason Applicable For Process</legend>
+          <div class="row" *ngFor="let list of LateReportReasonCheckBox">
+            <div class="col-md-1">
+              <input id="DA{{list.id}}" class="form-control" type="checkbox" value="{{list.id}}"
+                [checked]="list.Selected" (change)="onServiceCheckboxChange(list,$event)" />
+            </div>
+            <div class="col-md-6">
+              <label for="DA{{list.id}}"> {{list.Name}}</label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="col-md-8">
+        <fieldset>
+          <legend>Door Delivery</legend>
+          <div class="row" *ngFor="let list of DeliveryCheckbox">
+            <div class="col-md-1">
+              <input id="DD{{list.id}}" class="form-control" type="checkbox" value="{{list.id}}"
+                [checked]="list.Selected" (change)="onDeliveryCheckboxChange(list,$event)" />
+            </div>
+            <div class="col-md-6">
+              <label for="DD{{list.id}}"> {{list.Name}}</label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+        <!-- <div class="col-md-6">
+          <fieldset formGroupName="reappforpro">
+            <legend tooltip="reappforpro">Reason Applicable For Process</legend>
+            <div class="row" *ngFor="let list of LateReportReasonCheckBox">
+              <div class="col-md-1">
+                <input id="DB{{list.id}}" class="form-control" type="checkbox" value="{{list.id}}"
+                  [checked]="list.Selected" formControlName="{{list.formControlName}}" />
+              </div>
+              <div class="col-md-11">
+                <label for="DB{{list.id}}"> {{list.Name}}</label>
+              </div>
+            </div>
+          </fieldset>
+        </div> -->
+
+
+
+        <!-- <div class="col-md-6">
+        <fieldset formGroupName="doordeliconfirm">
+          <legend tooltip="doordeliconfirm">Door Delivery Confirmation</legend>
+          <div class="row" *ngFor="let list of ConfirmationCheckBox">
+            <div class="col-md-1">
+              <input id="DA{{list.id}}" class="form-control" type="checkbox" value="{{list.id}}"
+                [checked]="list.Selected" formControlName="{{list.formControlName}}" />
+            </div>
+            <div class="col-md-11">
+              <label for="DA{{list.id}}"> {{list.Name}}</label>
+            </div>
+          </div>
+        </fieldset>
+      </div> -->
+        <!-- <div class="col-md-8">
+          <fieldset>
+            <legend>Door Delivery Confirmation</legend>
+            <div class="row" *ngFor="let list of ConfirmationCheckBox">
+              <div class="col-md-1">
+                <input id="CM{{list.id}}" class="form-control" type="checkbox" value="{{list.id}}" [checked]="list.Selected" (change)="onCheckboxChange(list,$event)" />
+              </div>
+              <div class="col-md-6">
+                <label for="CM{{list.id}}"> {{list.Name}}</label>
+              </div>
+            </div>
+          </fieldset>
+        </div> -->
+      
+
+    </div>
+
+    <div class="modal-footer">
+      <button type="reset" class="btn btn-raised shadow-z-2 btn-default" (click)="modalRef.hide()"
+        aria-label="Close">Close</button>
+      <button type="submit" class="btn btn-raised shadow-z-2 btn-success"
+        [disabled]="!LateReportReasonMasterForm.valid">Save changes</button>
+    </div>
+  </form>
+</ng-template>

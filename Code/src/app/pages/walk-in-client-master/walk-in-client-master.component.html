@@ -1,0 +1,324 @@
+<div class="row">
+  <div class="col-12">
+    <div id="kick-start" class="card">
+      <div class="card-header">
+        <h4 class="card-title">Walk-in Client Master</h4>
+      </div>
+      <div class="card-body">
+        <div class="card-block">
+          <div class="card-text">
+            <div class="row">
+              <div class="col-md-11">
+                <!-- Walk-in Client Master List -->
+              </div>
+              <div class="col-md-1 btnStyle">
+                <button class="btn btn-raised shadow-z-2 btn-info" (click)="ShowPopUp()">Add New</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="myclass">
+                <table class="table table-hover" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>State</th>
+                      <th>City</th>
+                      <th>Pincode</th>
+                      <th>Mobile</th>
+                      <th>CompanyName</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let client of rows">
+                      <td>{{client.name}}</td>
+                      <td>{{client.statename}}</td>
+                      <td>{{client.cityname}}</td>
+                      <td>{{client.pincode}}</td>
+                      <td>{{client.mobile}}</td>
+                      <td>{{client.companyname}}</td>
+                      <td>
+                        <button (click)="ShowData(client.id)" class="btn btn-raised shadow-z-2 btn-info">
+                          <i class="fa fa-edit"></i>
+                        </button>
+                        <button (click)="Deletewalkinclient(client.id)" class="btn btn-raised shadow-z-2 btn-danger">
+                          <i class="fa fa-trash "></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<ng-template #template>
+  <form [formGroup]="WalkInClientMasterForm" (ngSubmit)="SaveDetail(WalkInClientMasterForm)">
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">{{ Title }}</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="HidePoPup()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <ul class="nav nav-tabs" role="tablist">
+      <li class="nav-item" class="active">
+        <a class="nav-link active" href="#Client" role="tab" data-toggle="tab">Walk-In Client</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#insurance" role="tab" data-toggle="tab">Insurance Details</a>
+      </li>
+    </ul>
+
+
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="Client">
+        <div class="row">
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Name</label>
+              <div class="">
+                <input class="form-control" type="text" placeholder="Name" formControlName="name" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Contact Person & No</label>
+              <div class="">
+                <input class="form-control" (input)="Validator($event)" type="text" placeholder="Contact Person & No"
+                  formControlName="contactperno" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Address</label>
+              <div class="">
+                <input class="form-control" type="text" placeholder="Address" formControlName="address" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">State</label>
+              <div class="">
+                <select class="form-control" formControlName="stateid" (change)="onChange($event.target.value)">
+                  <option value="0">--Select--</option>
+                  <option *ngFor="let cont of States" value={{cont.id}}>
+                    {{cont.StateName}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Pin Code</label>
+              <div class="">
+                <input class="form-control" type="text" placeholder="Pin Code" formControlName="pincode" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class="control-label">City</label>
+              <div class="">
+                <select class="form-control" formControlName="cityid">
+                  <option value="0">--Select--</option>
+                  <option *ngFor="let cont of Citys" value={{cont.id}}>
+                    {{cont.cityName}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">STD Code</label>
+              <div class="">
+                <input class="form-control" (input)="Validator($event)" type="text" placeholder="STD Code"
+                  formControlName="STDcode" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Phone No</label>
+              <div class="">
+                <input class="form-control" (input)="Validator($event)" type="text" placeholder="Phone No"
+                  formControlName="phone" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Mobile No</label>
+              <div class="">
+                <input class="form-control" (input)="Validator($event)" type="text" placeholder="Mobile No"
+                  formControlName="mobile" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Email id</label>
+              <div class="">
+                <input class="form-control" (input)="Validator($event)" type="text" placeholder="Email id"
+                  formControlName="emailid" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="row" *ngFor="let list of AlertChechbox">
+              <div class="col-lg-2">
+                <input id="Alert{{list.id}}" class="form-control radio radio-inline" type="checkbox" value="{{list.id}}"
+                  [checked]="list.Selected" formControlName="{{list.formControlName}}" />
+              </div>
+              <div class="col-lg-6">
+                <label for="Alert{{list.id}}"> {{list.Name}}</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">PAN</label>
+              <div class="">
+                <input class="form-control" (input)="Validator($event)" type="text" placeholder="PAN"
+                  formControlName="pan" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <fieldset>
+              <legend>Delivery AS CNR</legend>
+              <div class="row" *ngFor="let list of DeliveryCheckboxesCNR">
+                <div class="col-md-1">
+                  <input id="DA{{list.id}}" class="form-control" type="checkbox" value="{{list.id}}"
+                    [checked]="list.Selected" (change)="onServiceCheckboxChange(list,$event)" />
+                </div>
+                <div class="col-md-11">
+                  <label for="DA{{list.id}}"> {{list.Name}}</label>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+
+          <div class="col-md-6">
+            <fieldset>
+              <legend>Delivery AS CNE</legend>
+              <div class="row" *ngFor="let list of DeliveryCheckboxesCNE">
+                <div class="col-md-1">
+                  <input id="DB{{list.id}}" class="form-control" type="checkbox" value="{{list.id}}"
+                    [checked]="list.Selected" (change)="onCheckboxChange(list,$event)" />
+                </div>
+                <div class="col-md-11">
+                  <label for="DB{{list.id}}"> {{list.Name}}</label>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class=" control-label">GSTIN</label>
+              <div class="">
+                <input class="form-control" type="text" placeholder="GSTIN" formControlName="gstIN" />
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div role="tabpanel" class="tab-pane " id="insurance">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class=" control-label">Company Name</label>
+              <div class="">
+                <input class="form-control" placeholder="Company Name" formControlName="companyname" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class=" control-label">Policy No</label>
+              <div class="">
+                <input class="form-control" (input)="Validator($event)" placeholder="Policy No"
+                  formControlName="policyno" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class=" control-label">Valid from Date</label>
+              <div class="">
+                <input class="form-control" type="date" placeholder="Valid from Date" formControlName="validfromdate" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class=" control-label">Valid to Date</label>
+              <div class="">
+                <input class="form-control" type="date" placeholder="Valid to Date" formControlName="validtodate" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class=" control-label">Insurance Amount</label>
+              <div class="">
+                <input class="form-control" placeholder="Insurance Amount" formControlName="insuranceamount" />
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="row" *ngFor="let list of InsuranceDetailsChechbox">
+              <div class="col-md-1">
+                <input id="InsuranceDetails{{list.id}}" class="form-control" type="checkbox" value="{{list.id}}"
+                  [checked]="list.Selected" formControlName="{{list.formControlName}}" />
+              </div>
+              <div class="col-md-10">
+                <label for="InsuranceDetails{{list.id}}"> {{list.Name}}</label>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="reset" class="btn btn-raised shadow-z-2 btn-default" (click)="modalRef.hide()"
+        aria-label="Close">Close</button>
+      <button type="submit" class="btn btn-raised shadow-z-2 btn-success"
+        [disabled]="!WalkInClientMasterForm.valid">Save
+        changes</button>
+    </div>
+  </form>
+</ng-template>

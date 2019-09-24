@@ -1,0 +1,46 @@
+export class ConsignmentModel{
+    id:number;
+    cndate:Date;
+    expectedDelivery:Date;
+    from:number;
+    to:number;
+    godownNo:number;
+    paymentType:string;
+    actualWeight:string;
+    consignee:number;
+    cnNo:number;
+    deliveryBranch:number;
+    virtualGoddownNo:number;
+    consignorDetails:string;
+    consignor:number;
+    agentName:number;
+    agentDetails:string;
+    bookingType:string;
+    deliveryType:string;
+    modeOfTransport:string;
+    invoiceNo:string;
+    invoiceValue:string;
+    consignorInvoice:string;
+    freightBasis:string;
+    ftl:string;
+    isCcAttached:boolean;
+    isCod:boolean;
+    chargeWeight:string;
+    freightRate:string;
+    privateMark:string;
+    insuredBy:string;
+    freight:string;
+    surcharge:string;
+    hamaliCharge:string;
+    localCartages:string;
+    doorDeliveryCharge:string;
+    statisticalCharges:string;
+    miscellaneousCharges:string;
+    godownCharges:string;
+    cod:string;
+    financeEffect:boolean;
+    packingtype:string;
+
+    godownName:string;
+    fromName:string;
+}

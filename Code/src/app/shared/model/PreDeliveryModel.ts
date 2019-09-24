@@ -1,0 +1,24 @@
+export class PreDeliveryModel{
+    id:number;
+    predeliveryNo:string;
+    predeliverydate:Date;
+    paymentmode:string;
+    deliveryparty:number
+    deliverypartydetails:string;
+    contractparty:number;
+    contractpartydetails:string;
+    CNno:string;
+    CNdate:Date;
+    bookingbranch:number;
+    consignoor:string;
+    item:string;
+    packingType:number;
+    godownname:number;
+    virtualgodownname:number;
+    deliveryarticle:number;
+    deliveryweight:number;
+    balancearticle:number;
+    balanceweight:number;
+    rollNo:number;
+    remark:string;
+}

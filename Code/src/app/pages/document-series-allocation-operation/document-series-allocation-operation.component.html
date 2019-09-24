@@ -1,0 +1,157 @@
+<div class="row">
+  <div class="col-12">
+    <div id="kick-start" class="card">
+      <div class="card-header">
+        <h4 class="card-title">Document Series Allocation</h4>
+      </div>
+      <div class="card-body">
+        <div class="card-block">
+          <div class="card-text">
+            <div class="row">
+              <div class="col-md-11">
+                <!-- RTO Master List -->
+              </div>
+              <div class="col-md-1 btnStyle">
+                <button class="btn btn-raised shadow-z-2 btn-info" (click)="ShowPopUp()">Add New</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="myclass">
+                <table class="table table-hover" cellspacing="0">
+                  <thead>
+                    <tr>
+
+                      <th>Date of Allocation</th>
+                      <th>Document Type</th>
+                      <th>Start Series No</th>
+                      <th>End Series No</th>
+                      <th>Count</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let client of rows">
+                      <td>{{client.dateofallocation | date: 'yyyy/MM/dd'}}</td>
+                      <td>{{client.documenettype}}</td>
+                      <td>{{client.startseriesNo}}</td>
+                      <td>{{client.endseriesNo}}</td>
+                      <td>{{client.count}}</td>
+                      <td>
+                        <button (click)="ShowData(client.id)" class="btn btn-raised shadow-z-2 btn-info">
+                          <i class="fa fa-edit"></i>
+                        </button>
+                        <button (click)="DeleteAllocation(client.id)" class="btn btn-raised shadow-z-2 btn-danger">
+                          <i class="fa fa-trash "></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #template>
+  <form [formGroup]="DocumentSeriesAllocationOperationForm"
+    (ngSubmit)="SaveDetail(DocumentSeriesAllocationOperationForm.value)">
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">{{Title}}</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="hidepopup()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+
+    <div class="modal-body">
+
+      <div class="row">
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">Date of Allocation<span class="text-danger">*</span></label>
+            <div class="">
+              <input class="form-control" type="date" placeholder="Generation Date"
+                formControlName="dateofallocation" />
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Branch<span class="text-danger">*</span></label>
+            <div class="">
+              <select class="form-control" formControlName="branch" required>
+                <option value="">--Select--</option>
+                <option *ngFor="let cont of branch" value={{cont.id}}>
+                  {{cont.branchName}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Document Type<span class="text-danger">*</span></label>
+            <div class="">
+              <select class="form-control" formControlName="documenettype" required>
+                <option value="">--Select--</option>
+                <option *ngFor="let cont of DocumentTypeCheckBox" value={{cont.Name}}>
+                  {{cont.Name}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">Start Series No<span class="text-danger">*</span></label>
+            <div class="">
+              <input class="form-control" (input)="Validator($event)" type="number" placeholder="Start Series No"
+                (blur)="onBlurMethod($event.target.value)" formControlName="startseriesNo" required />
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">End Series No<span class="text-danger">*</span></label>
+            <div class="">
+              <input class="form-control" (input)="Validator($event)" type="number" placeholder="End Series No"
+                (blur)="onBlurMethods($event.target.value)" formControlName="endseriesNo" required />
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">Count <span class="text-danger">*</span></label>
+            <div class="">
+              <input class="form-control" (input)="Validator($event)" type="number" placeholder="Count"
+                formControlName="count" disabled required />
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="modal-footer">
+      <button type="reset" class="btn btn-raised shadow-z-2 btn-default" (click)="modalRef.hide()"
+        aria-label="Close">Close</button>
+      <button type="submit" class="btn btn-raised shadow-z-2 btn-success"
+        [disabled]="!DocumentSeriesAllocationOperationForm.valid">Save changes</button>
+    </div>
+  </form>
+</ng-template>

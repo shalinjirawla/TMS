@@ -1,0 +1,207 @@
+<div class="row">
+  <div class="col-12">
+    <div id="kick-start" class="card">
+      <div class="card-header">
+        <h4 class="card-title">Truck Arrival</h4>
+      </div>
+      <div class="card-body">
+        <div class="card-block">
+          <div class="card-text">
+            <div class="row">
+              <div class="col-md-11">
+                <!-- Vendor Type Master List -->
+              </div>
+              <div class="col-md-1 btnStyle">
+                <button class="btn btn-raised shadow-z-2 btn-info" (click)="ShowPopUp()">Add New</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="myclass">
+                <table class="table table-hover" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Truck Arrival No</th>
+                      <th>Vehicle No</th>
+                      <th>Challan No</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let client of rows">
+                      <td>{{client.truckArrivalNo}}</td>
+                      <td>{{client.vehicleName}}</td>
+                      <td>{{client.challanNo}}</td>
+                      <td>
+                        <button (click)="ShowData(client.id)" class="btn btn-raised shadow-z-2 btn-info">
+                          <i class="fa fa-edit"></i>
+                        </button>
+                        <button (click)="DeleteTruckArrival(client.id)" class="btn btn-raised shadow-z-2 btn-danger">
+                          <i class="fa fa-trash "></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #template>
+  <form [formGroup]="TruckArrivalForm" (ngSubmit)="SaveDetail(TruckArrivalForm.valid)">
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">{{Title}}</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="hidepopup()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+
+      <div role="tabpanel" class="tab-pane active" id="Arrival">
+
+        <div class="row">
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Truck Arrival No</label>
+              <div class="">
+                <input class="form-control" (input)="Validator($event)" type="text" id="truckNo"
+                  placeholder="Truck Arrival No" formControlName="truckArrivalNo" disabled/>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Truck Arrival Date<span class="text-danger">*</span></label>
+              <div class="">
+                <input class="form-control" type="date" placeholder="Truck Arrival Date"
+                  formControlName="truckArrivalDate" required />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class="control-label">Vehicle No<span class="text-danger">*</span></label>
+              <div class="">
+                <select class="form-control" formControlName="vehicleNo" required>
+                  <option value="">--Select--</option>
+                  <option *ngFor="let cont of vehicleModel" value={{cont.id}}>
+                    {{cont.vehicleNo}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Challan No<span class="text-danger">*</span></label>
+              <div class="">
+                <input class="form-control" (input)="Validator($event)" type="text" placeholder="Challan No"
+                  formControlName="challanNo" required />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Challan Date<span class="text-danger">*</span></label>
+              <div class="">
+                <input class="form-control" type="date" placeholder="Challan Date" formControlName="challanDate"
+                  required />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class="control-label">Challan From<span class="text-danger">*</span></label>
+              <div class="">
+                <select class="form-control" formControlName="challanFrom" required>
+                  <option value="">--Select--</option>
+                  <option *ngFor="let cont of branchModel" value={{cont.id}}>
+                    {{cont.challan}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class="control-label">Challan To<span class="text-danger">*</span></label>
+              <div class="">
+                <select class="form-control" formControlName="challanTo" required>
+                  <option value="">--Select--</option>
+                  <option *ngFor="let cont of branchModel" value={{cont.id}}>
+                    {{cont.challan}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Scheduled Arrival Date<span class="text-danger">*</span></label>
+              <div class="">
+                <input class="form-control" type="date" placeholder="Scheduled Arrival Date"
+                  formControlName="scheduledArriDate" required />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class="control-label">Expected Unloading Time</label>
+              <div class="">
+                <select class="form-control" formControlName="expectedUnloadingTime">
+                  <option value="">--Select--</option>
+                  <option *ngFor="let cont of branchModel" value={{cont.id}}>
+                    {{cont.expectedUnderLoad}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Remark</label>
+              <div class="">
+                <input class="form-control" type="text" placeholder="Remark" formControlName="Remark" />
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <button type="reset" class="btn btn-raised shadow-z-2 btn-default" (click)="modalRef.hide()"
+        aria-label="Close">Close</button>
+      <button type="submit" class="btn btn-raised shadow-z-2 btn-success" [disabled]="!TruckArrivalForm.valid">Save
+        changes</button>
+    </div>
+  </form>
+</ng-template>

@@ -1,0 +1,35 @@
+export class ContractModel{
+    id:number;
+    name:string;
+    date:Date;
+    no:string;
+    branch:string;
+    clientname:string;
+    pono:string;
+    podate:Date;
+    validfromdate:Date;
+    validtodate:Date;
+    rateapplicableon:string;
+    //probusipermonth:string;
+    weight:string;
+    freight:string;
+    branchfrom:string;
+    branchto:string;
+    freightperKG:string;
+    statisticalcharges:string;
+    FOV:string;
+    hamaliperKG:string;
+    hamaniperArt:string;
+    localcharges:string;
+    doordeliverychargesKG:string;
+    doordeliverychargesart:string;
+    gicharges:string;
+    demurragedays:string;
+    demurragerate:string;
+    fileupload:string;
+
+    branchfromname:string;
+    branchtoname:string;
+    branchname:string;
+    clientnames:string;
+}

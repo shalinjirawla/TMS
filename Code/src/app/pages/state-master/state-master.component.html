@@ -1,0 +1,98 @@
+<div class="row">
+  <div class="col-12">
+    <div id="kick-start" class="card">
+      <div class="card-header">
+        <h4 class="card-title">State Master</h4>
+      </div>
+      <div class="card-body">
+        <div class="card-block">
+          <div class="card-text">
+            <div class="row">
+              <div class="col-md-11">
+                <!-- State Master List -->
+              </div>
+              <div class="col-md-1 btnStyle">
+                <button class="btn btn-raised shadow-z-2 btn-info" (click)="ShowPopUp()">Add New</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="myclass">
+                <table class="table table-hover" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>GstCode</th>
+                      <th>StateName</th>
+                      <th>Remark</th>
+                      <th>StateRtoCode</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let client of rows">
+                      <td>{{client.GSTCode}}</td>
+                      <td>{{client.StateName}}</td>
+                      <td>{{client.Remark}}</td>
+                      <td>{{client.StateRtoCode}}</td>
+                      <td>
+                        <button (click)="ShowData(client.id)" class="btn btn-raised shadow-z-2 btn-info">
+                          <i class="fa fa-edit"></i>
+                        </button>
+                        <button (click)="DeleteState(client.id)" class="btn btn-raised shadow-z-2 btn-danger">
+                          <i class="fa fa-trash "></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #template>
+  <form [formGroup]="StateMasterForm" (ngSubmit)="SaveDetail(StateMasterForm.value)">
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">{{Title}}</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="HidePopUp()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label class=" control-label">GstCode</label>
+        <div class="">
+          <input class="form-control" type="text" placeholder="GstCode (required)" formControlName="GstCode" (input)="Validator($event)"/>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class=" control-label">StateName</label>
+        <div class="">
+          <input class="form-control" type="text" placeholder="StateName" formControlName="StateName" required/>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class=" control-label">State-Rto-Code</label>
+        <div class="">
+          <input class="form-control" type="text" placeholder="StateRtoCode" formControlName="StateRtoCode" (input)="Validator($event)"/>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class=" control-label">Remark</label>
+        <div class="">
+          <input class="form-control" type="text" placeholder="Remark" formControlName="Remark"/>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="reset" class="btn btn-raised shadow-z-2 btn-default" (click)="modalRef.hide()" aria-label="Close">Close</button>
+      <button type="submit" class="btn btn-raised shadow-z-2 btn-success" [disabled]="!StateMasterForm.valid">Save changes</button>
+    </div>
+  </form>
+</ng-template>

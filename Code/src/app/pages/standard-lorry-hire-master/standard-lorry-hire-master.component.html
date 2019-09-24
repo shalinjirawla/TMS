@@ -1,0 +1,151 @@
+<div class="row">
+  <div class="col-12">
+    <div id="kick-start" class="card">
+      <div class="card-header">
+        <h4 class="card-title">Service Location Master</h4>
+      </div>
+      <div class="card-body">
+        <div class="card-block">
+          <div class="card-text">
+            <div class="row">
+              <div class="col-md-11">
+                <!-- Service Location Master List -->
+              </div>
+              <div class="col-md-1 btnStyle">
+                <button class="btn btn-raised shadow-z-2 btn-info" (click)="ShowPopUp()">Add New</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="myclass">
+                <table class="table table-hover" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Lorry Hire</th>
+                      <th>Vehicle Type</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let client of rows">
+
+                      <td>{{client.lorryhire}}</td>
+                      <td>{{client.vehicleTypename}}</td>
+                      <td>
+                        <button (click)="ShowData(client.id)" class="btn btn-raised shadow-z-2 btn-info">
+                          <i class="fa fa-edit"></i>
+                        </button>
+                        <button (click)="DeleteStandardLorryHire(client.id)"
+                          class="btn btn-raised shadow-z-2 btn-danger">
+                          <i class="fa fa-trash"></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<ng-template #template>
+  <form [formGroup]="StandardLorryHireMasterForm" (ngSubmit)="SaveDetail(StandardLorryHireMasterForm.valid)">
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">{{Title}}</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="HidePopUp()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class=" control-label">Date</label>
+            <div class="">
+              <input class="form-control" type="date" placeholder="Date" formControlName="date" required />
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="control-label">Vehicle Type</label>
+            <div class="">
+              <select class="form-control" formControlName="vehicleType">
+                <option value="0">--Select--</option>
+                <option *ngFor="let cont of vehicleType" value={{cont.id}}>
+                  {{cont.name}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class=" control-label">Vehicle Capacity In MT</label>
+            <div class="">
+              <input class="form-control" (input)="Validator($event)" type="text" placeholder="Vehicle Capacity In MT"
+                formControlName="vehiclecpacityMT" required />
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class=" control-label">From</label>
+            <div class="">
+              <select class="form-control" formControlName="from">
+                <option value="0">--Select--</option>
+                <option *ngFor="let cont of branch" value={{cont.id}}>
+                  {{cont.branchName}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class=" control-label">To</label>
+            <div class="">
+              <select class="form-control" formControlName="to">
+                <option value="0">--Select--</option>
+                <option *ngFor="let cont of branch" value={{cont.id}}>
+                  {{cont.branchName}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class=" control-label">Lorry Hire</label>
+            <div class="">
+              <input class="form-control" (input)="Validator($event)" type="text" placeholder="Lorry Hire"
+                formControlName="lorryhire" required />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="reset" class="btn btn-raised shadow-z-2 btn-default" (click)="modalRef.hide()"
+        aria-label="Close">Close</button>
+      <button type="submit" class="btn btn-raised shadow-z-2 btn-success"
+        [disabled]="!StandardLorryHireMasterForm.valid">Save changes</button>
+    </div>
+  </form>
+</ng-template>

@@ -1,0 +1,295 @@
+<div class="row">
+  <div class="col-12">
+    <div id="kick-start" class="card">
+      <div class="card-header">
+        <h4 class="card-title">Document Allocations Operations</h4>
+      </div>
+      <div class="card-body">
+        <div class="card-block">
+          <div class="card-text">
+            <div class="row">
+              <div class="col-md-11">
+                <!-- Documnet Allocations Operations List -->
+              </div>
+              <div class="col-md-1 btnStyle">
+                <button class="btn btn-raised shadow-z-2 btn-info" (click)="ShowPopUp()">Add New</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="myclass">
+                <table class="table table-hover" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Document Type</th>
+                      <th>Count</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let client of rows">
+                      <td>{{client.documenttype}}</td>
+                      <td>{{client.count}}</td>
+                      <td>
+                        <button (click)="ShowData(client.id)" class="btn btn-raised shadow-z-2 btn-info">
+                          <i class="fa fa-edit"></i>
+                        </button>
+                        <button (click)="DeleteDocument(client.id)" class="btn btn-raised shadow-z-2 btn-danger">
+                          <i class="fa fa-trash "></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #template>
+  <form [formGroup]="DocumentAllocationMasterForm" (ngSubmit)="SaveDetail(DocumentAllocationMasterForm.value)">
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">{{Title}}</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="hidepopup()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <ul class="nav nav-tabs" role="tablist">
+      <li class="nav-item" class="active">
+        <a class="nav-link active" href="#Series" role="tab" data-toggle="tab">Series Generation</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " href="#Printing" role="tab" data-toggle="tab">Printing of Stationary</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " href="#Document" role="tab" data-toggle="tab">Document Series Allocation</a>
+      </li>
+    </ul>
+
+
+    <div class="tab-content">
+
+      <div role="tabpanel" class="tab-pane active" id="Series">
+
+        <div class="row">
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Generation Date<span class="text-danger">*</span></label>
+              <div class="">
+                <input class="form-control" type="date" placeholder="Generation Date"
+                  formControlName="generationdate" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class="control-label">Document Type<span class="text-danger">*</span></label>
+              <div class="">
+                <select class="form-control" formControlName="documenttype" required>
+                  <option value="0">--Select--</option>
+                  <option *ngFor="let cont of DocumentTypeCheckBox" value={{cont.Name}}>
+                    {{cont.Name}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Start Series No<span class="text-danger">*</span></label>
+              <div class="">
+                <input class="form-control" (input)="Validator($event)" type="number" placeholder="Start Series No"
+                  (blur)="onBlurMethod($event.target.value)" formControlName="startseriesNo" required />
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">End Series No<span class="text-danger">*</span></label>
+              <div class="">
+                <input class="form-control" (input)="Validator($event)" type="number" placeholder="End Series No"
+                  (blur)="onBlurMethods($event.target.value)" formControlName="endseriesNo" required />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Count <span class="text-danger">*</span></label>
+              <div class="">
+                <input class="form-control" (input)="Validator($event)" type="number" placeholder="Count"
+                  formControlName="count" disabled required/>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div role="tabpanel" class="tab-pane" id="Printing">
+
+        <div class="row">
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Date of Printing </label>
+              <div class="">
+                <input class="form-control" type="date" placeholder="Date of Printing"
+                  formControlName="dateofprinting" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class="control-label">Document Type<span class="text-danger">*</span></label>
+              <div class="">
+                <select class="form-control" formControlName="documenttype1" required>
+                  <option value="0">--Select--</option>
+                  <option *ngFor="let cont of DocumentTypeCheckBox" value={{cont.Name}}>
+                    {{cont.Name}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Start Series No</label>
+              <div class="">
+                <input class="form-control" (input)="Validator($event)" type="number" placeholder="Start Series No"
+                  (blur)="onBlurMethod1($event.target.value)" formControlName="startseriesNo1" />
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">End Series No</label>
+              <div class="">
+                <input class="form-control" (input)="Validator($event)" type="number" placeholder="End Series No"
+                  (blur)="onBlurMethods1($event.target.value)" formControlName="endseriesNo1" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Count </label>
+              <div class="">
+                <input class="form-control" (input)="Validator($event)" type="number" placeholder="Count"
+                  formControlName="count1" disabled />
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div role="tabpanel" class="tab-pane" id="Document">
+
+        <div class="row">
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Date of Allocation</label>
+              <div class="">
+                <input class="form-control" type="date" placeholder="Date of Allocation"
+                  formControlName="dateofallocation" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class="control-label">Branch<span class="text-danger">*</span></label>
+              <div class="">
+                <select class="form-control" formControlName="branch" required>
+                  <option value="0">--Select--</option>
+                  <option *ngFor="let cont of branch" value={{cont.id}}>
+                    {{cont.branchName}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class="control-label">Document Type<span class="text-danger">*</span></label>
+              <div class="">
+                <select class="form-control" formControlName="documenettype2" required>
+                  <option value="0">--Select--</option>
+                  <option *ngFor="let cont of DocumentTypeCheckBox" value={{cont.Name}}>
+                    {{cont.Name}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Start Series No</label>
+              <div class="">
+                <input class="form-control" (input)="Validator($event)" type="text" placeholder="Start Series No"
+                  (blur)="onBlurMethod2($event.target.value)" formControlName="startseriesNo2" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">End Series No</label>
+              <div class="">
+                <input class="form-control" (input)="Validator($event)" type="text" placeholder="End Series No"
+                  (blur)="onBlurMethods2($event.target.value)" formControlName="endseriesNo2" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Count </label>
+              <div class="">
+                <input class="form-control" (input)="Validator($event)" type="number" placeholder="Count"
+                  formControlName="count2" disabled />
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="modal-footer">
+      <button type="reset" class="btn btn-raised shadow-z-2 btn-default" (click)="modalRef.hide()"
+        aria-label="Close">Close</button>
+      <button type="submit" class="btn btn-raised shadow-z-2 btn-success"
+        [disabled]="!DocumentAllocationMasterForm.valid">Save changes</button>
+    </div>
+  </form>
+</ng-template>

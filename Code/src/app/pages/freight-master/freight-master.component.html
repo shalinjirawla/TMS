@@ -1,0 +1,159 @@
+<div class="row">
+  <div class="col-12">
+    <div id="kick-start" class="card">
+      <div class="card-header">
+        <h4 class="card-title">Freight Master</h4>
+      </div>
+      <div class="card-body">
+        <div class="card-block">
+          <div class="card-text">
+            <div class="row">
+              <div class="col-md-11">
+                <!-- Freight Master List -->
+              </div>
+              <div class="col-md-1 btnStyle">
+                <button class="btn btn-raised shadow-z-2 btn-info" (click)="ShowPopUp()">Add New</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="myclass">
+                <table class="table table-hover" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Booking Type</th>
+                      <th>Transport Type</th>
+                      <th>From branch</th>
+                      <th>To branch</th>
+                      <th>Rate per KG</th>
+                      <th>Distance</th>
+                      <!-- <th>Transit Days</th> -->
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let client of rows">
+                      <td>{{client.bookingType}}</td>
+                      <td>{{client.transpotType}}</td>
+                      <td>{{client.frombracnhname}}</td>
+                      <td>{{client.tobranchname}}</td>
+                      <td>{{client.rateperKG}}</td>
+                      <td>{{client.distance}}</td>
+                      <!-- <td>{{client.transitdays}}</td> -->
+                      <td>
+                        <button (click)="ShowData(client.id)" class="btn btn-raised shadow-z-2 btn-info">
+                          <i class="fa fa-edit"></i>
+                        </button>
+                        <button (click)="DeleteFreight(client.id)" class="btn btn-raised shadow-z-2 btn-danger">
+                          <i class="fa fa-trash"></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #template>
+  <form [formGroup]="freightMasterForm" (ngSubmit)="SaveDetail(freightMasterForm.value)">
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">{{Title}}</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="hidepopup()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="control-label">Booking Type</label>
+            <div class="">
+              <select class="form-control" formControlName="bookingType">
+                <option value="0">--Select--</option>
+                <option *ngFor="let cont of BookingTypeChechbox" value={{cont.Name}}>
+                  {{cont.Name}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="control-label">Transport Type</label>
+            <div class="">
+              <select class="form-control" formControlName="transpotType">
+                <option value="0">--Select--</option>
+                <option *ngFor="let cont of TranspotTypeCheckBox" value={{cont.Name}}>
+                  {{cont.Name}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class=" control-label">From branch</label>
+            <div class="">
+              <select class="form-control" formControlName="frombranch">
+                <option value="0">--Select--</option>
+                <option *ngFor="let cont of Branches" value={{cont.id}}>
+                  {{cont.branchName}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class=" control-label">To branch</label>
+            <div class="">
+              <select class="form-control" formControlName="tobranch">
+                <option value="0">--Select--</option>
+                <option *ngFor="let cont of Branches" value={{cont.id}}>
+                  {{cont.branchName}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class=" control-label">Rate per KG</label>
+        <div class="">
+          <input class="form-control" (input)="Validator($event)" type="text" placeholder="Rate per KG"
+            formControlName="rateperKG" required />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class=" control-label">Distance</label>
+        <div class="">
+          <input class="form-control" (input)="Validator($event)" type="text" placeholder="Distance"
+            formControlName="distance" required />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class=" control-label">Transit Days</label>
+        <div class="">
+          <input class="form-control" (input)="Validator($event)" type="text" placeholder="Transit Days"
+            formControlName="transitdays" required />
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="reset" class="btn btn-raised shadow-z-2 btn-default" (click)="modalRef.hide()"
+        aria-label="Close">Close</button>
+      <button type="submit" class="btn btn-raised shadow-z-2 btn-success" [disabled]="!freightMasterForm.valid">Save
+        changes</button>
+    </div>
+  </form>
+</ng-template>

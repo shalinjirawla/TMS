@@ -1,0 +1,148 @@
+<div class="row">
+  <div class="col-12">
+    <div id="kick-start" class="card">
+      <div class="card-header">
+        <h4 class="card-title">Bank Master</h4>
+      </div>
+      <div class="card-body">
+        <div class="card-block">
+          <div class="card-text">
+            <div class="row">
+              <div class="col-md-10">
+                <!-- Bank Master List -->
+              </div>
+              <div class="col-md-2 btnStyle">
+                <button class="btn btn-raised shadow-z-2 btn-info float-right" (click)=" ShowPopUp()">Add New</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="myclass">
+                <table class="table table-hover" cellspacing="0" style="width: 100%">
+                  <thead>
+                    <tr>
+                      <th>Bank Name</th>
+                      <th>Branch Name</th>
+                      <th>IFSC Code</th>
+                      <th>Address</th>                     
+                      <th>Contact</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of rows">
+                        <td>{{item.Bank_Name}}</td>
+                        <td>{{item.Bank_Branch}}</td>
+                        <td>{{item.IFSC_code}}</td>
+                        <td>{{item.Address}}</td>                      
+                        <td>{{item.Contact}}</td>
+                        <td>
+                          <button (click)="GetEditBankMasterDetail(item.id)" class="btn btn-raised shadow-z-2 btn-info">
+                            <i class="fa fa-edit"></i>
+                          </button>
+                          <button (click)="DeleteBankMasterDetails(item.id)" class="btn btn-raised shadow-z-2 btn-danger">
+                            <i class="fa fa-trash "></i>
+                          </button>
+                        </td>
+                    </tr>
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #template>
+  <form [formGroup]="BankMasterForm" (ngSubmit)="SaveBankMasterDetails(BankMasterForm.value)">
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">{{Title}}</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="HidePopUp()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="col-md-12">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class=" control-label">Bank Name</label>
+              <div class="">
+                <input class="form-control" type="text" placeholder="Bank Name (required)" formControlName="Bank_Name"
+                  required />
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class=" control-label">Branch Name</label>
+              <div class="">
+                <input class="form-control" type="text" placeholder="Branch Name" formControlName="Bank_Branch" required />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class=" control-label">IFSC Code</label>
+              <div class="">
+                <input class="form-control" type="text" placeholder="IFSC Code" formControlName="IFSC_code" required />
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="control-label">State</label>
+              <div class="">
+                <select class="form-control" formControlName="state" (change)="onChange($event.target.value)">
+                  <option value="0">--Select--</option>
+                  <option *ngFor="let cont of States" value={{cont.id}}>
+                    {{cont.StateName}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="control-label">City</label>
+              <div class="">
+                <select class="form-control" formControlName="city" required>
+                  <option value="0">--Select--</option>
+                  <option *ngFor="let cont of cities" value={{cont.id}}>
+                    {{cont.cityName}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class=" control-label">Contact No.</label>
+              <div class="">
+                <input class="form-control" type="number" placeholder="Contact No." formControlName="Contact" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class=" control-label">Address</label>
+          <div class="">
+            <textarea class="form-control" placeholder="Address" formControlName="Address" required></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="reset" class="btn btn-raised shadow-z-2 btn-default" aria-label="Close" (click)="modalRef.hide()">Close</button>
+      <button type="submit" class="btn btn-raised shadow-z-2 btn-success" [disabled]="BankMasterForm.invalid">Save changes</button>
+    </div>
+  </form>
+</ng-template>

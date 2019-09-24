@@ -1,0 +1,24 @@
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "~datatables.net-bs4/css/dataTables.bootstrap4.css";
+
+.mycustomBTNclass{
+    margin-left: 4%;
+}
+.app-sidebar, .off-canvas-sidebar {
+    white-space: unset!important;
+}
+.app-sidebar .navigation li ul li a, .off-canvas-sidebar .navigation li ul li a{
+    padding: 8px 14px 8px 22px;
+}
+
+.app-sidebar .navigation li ul li ul li a, .off-canvas-sidebar .navigation li ul li ul li a {
+    padding: 8px 18px 8px 44px;
+}
+
+/* .app-sidebar .data .navigation li ul li ul li a, .off-canvas-sidebar .navigation li ul li ul li a {
+    padding: 8px 18px 8px 28px;
+} */
+
+.menu-content .data{
+    padding: 8px 18px 8px 28px;
+}

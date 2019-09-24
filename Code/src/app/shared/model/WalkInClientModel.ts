@@ -1,0 +1,28 @@
+export class WalkInClientModel{
+    id:number;
+    name:string;
+    contactperno:string;
+    address:string;
+    cityid:number;
+    pincode:string;
+    stateid:number;
+    STDcode:string;
+    phone:string;
+    mobile:string;
+    emailid:string;
+    emailalert:string;
+    mobilealert:string;
+    pan:string;
+    gstIN:string;
+    deliveryAgainstAsCnr:string;
+    deliveryAgainstAsCne:string;
+    companyname:string;
+    policyno:string;
+    validfromdate:Date;
+    validtodate:Date;
+    insuranceamount:string;
+    isMarineIsured:string;
+    isGodownIsured:string;
+    statename:string;
+    cityname:string;
+}

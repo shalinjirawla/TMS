@@ -1,0 +1,279 @@
+<div class="row">
+  <div class="col-12">
+    <div id="kick-start" class="card">
+      <div class="card-header">
+        <h4 class="card-title">Receipt Operations</h4>
+      </div>
+      <div class="card-body">
+        <div class="card-block">
+          <div class="card-text">
+            <div class="row">
+              <div class="col-md-11">
+                <!-- Receipt Operations List -->
+              </div>
+              <div class="col-md-1 btnStyle">
+                <button class="btn btn-raised shadow-z-2 btn-info" (click)="ShowPopUp()">Add New</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="myclass">
+                <table class="table table-hover" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>BMR No</th>
+                      <th>Cheque No</th>
+                      <th>Received Amount</th>
+                      <th>TDS</th>
+                      <th>Remark</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let client of rows">
+                      <td>{{client.BMRno}}</td>
+                      <td>{{client.Chequeno}}</td>
+                      <td>{{client.Receivedamount}}</td>
+                      <td>{{client.TDS}}</td>
+                      <td>{{client.remark}}</td>
+                      <td>
+                        <button (click)="ShowData(client.id)" class="btn btn-raised shadow-z-2 btn-info">
+                          <i class="fa fa-edit"></i>
+                        </button>
+                        <button (click)="DeleteReceipt(client.id)" class="btn btn-raised shadow-z-2 btn-danger">
+                          <i class="fa fa-trash "></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #template>
+  <form [formGroup]="ReceiptMasterForm" (ngSubmit)="SaveDetail(ReceiptMasterForm.value)">
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">{{Title}}</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="HidePopUp()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">BMR No</label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="BMR No" formControlName="BMRno"
+                (input)="Validator($event)" required />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">BMR Date</label>
+            <div class="">
+              <input class="form-control" type="date" placeholder="BMR Date" formControlName="BMRdate" required />
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Cash / Bank Ledger</label>
+            <div class="">
+              <select class="form-control" formControlName="Cash">
+                <option value="">--Select--</option>
+                <option *ngFor="let cont of FinanceEffectChechbox" value={{cont.Name}}>
+                  {{cont.Name}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" style="margin-left:1px;margin-right:1px;">
+
+        <fieldset class="row">
+          <legend tooltip="deliveryAgainstAsCne">Bank</legend>
+
+          <div class="panel-body">
+            <div class="form-row">
+              <div class="row">
+
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label class="control-label">Cheque No</label>
+                    <div class="">
+                      <input class="form-control" type="text" placeholder="Cheque No" formControlName="Chequeno"
+                        (input)="Validator($event)" required />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label class="control-label">Cheque Date</label>
+                    <div class="">
+                      <input class="form-control" type="date" placeholder="Cheque Date" formControlName="Chequedate" />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label class="control-label">Received Amount</label>
+                    <div class="">
+                      <input class="form-control" type="text" placeholder="Received Amount" (input)="Validator($event)"
+                        formControlName="Receivedamount" />
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label class="control-label">Bill No</label>
+                    <div class="">
+                      <input class="form-control" type="text" placeholder="Bill No" formControlName="Billno"
+                        (input)="Validator($event)" />
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label class="control-label">Bill Amount</label>
+                    <div class="">
+                      <input class="form-control" type="text" placeholder="Bill Amount" formControlName="Billamount"
+                        (input)="Validator($event)" />
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+
+        </fieldset>
+
+      </div>
+
+
+      <div class="row" style="margin-left:1px;margin-right:1px;">
+
+        <fieldset class="row">
+          <legend tooltip="deliveryAgainstAsCne">Difference</legend>
+
+          <div class="panel-body">
+            <div class="form-row">
+              <div class="row">
+
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label class="control-label">TDS</label>
+                    <div class="">
+                      <input class="form-control" type="text" placeholder="TDS" formControlName="TDS"
+                        (input)="Validator($event)" required />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label class="control-label">Freight Deduction</label>
+                    <div class="">
+                      <input class="form-control" type="text" placeholder="Freight Deduction"  (input)="Validator($event)"
+                        formControlName="FreightDeduction" />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label class="control-label">Etc...</label>
+                    <div class="">
+                      <input class="form-control" type="text" placeholder="Etc" formControlName="Etc" />
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+
+        </fieldset>
+
+      </div>
+
+
+
+      <div class="row">
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Remark</label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="Remark" formControlName="remark" />
+            </div>
+          </div>
+        </div>
+
+        <!-- <fieldset>
+          <legend>Finance Effect</legend>
+          <div class="row" *ngFor="let list of FinanceEffectChechbox" formGroupName="financeeffect">
+            <div class="col-md-2">
+              <input id="FB{{list.id}}" class="form-control radio radio-inline" type="checkbox" value="{{list.id}}"
+                [checked]="list.Selected" (chenge)="onCheckboxChangeBooking(list,$event)" />
+            </div>
+            <div class="col-md-8">
+              <label for="FB{{list.id}}"> {{list.Name}}</label>
+            </div>
+        </fieldset> -->
+
+        <div class="col-md-6">
+          <fieldset>
+            <legend>Finance Effect</legend>
+            <div class="row" *ngFor="let list of FinanceEffectChechbox">
+              <div class="col-md-1">
+                <input id="DA{{list.id}}" class="form-control" type="checkbox" value="{{list.id}}"
+                  [checked]="list.Selected" (change)="onServiceCheckboxChange(list,$event)" />
+              </div>
+              <div class="col-md-11">
+                <label for="DA{{list.id}}"> {{list.Name}}</label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <!-- <div class="col-md-6">
+          <fieldset>
+            <legend>Finance Effect</legend>
+            <div class="row" *ngFor="let list of FinanceEffectChechbox">
+              <div class="col-md-1">
+                <input id="FA{{list.id}}" class="form-control" type="checkbox" value="{{list.id}}"
+                  [checked]="list.Selected" (change)="onDefferentCheckboxChange(list,$event)" />
+              </div>
+              <div class="col-md-11">
+                <label for="FA{{list.id}}"> {{list.Name}}</label>
+              </div>
+            </div>
+          </fieldset>
+        </div> -->
+
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-raised shadow-z-2 btn-default" (click)="modalRef.hide()">Close</button>
+      <button type="submit" class="btn btn-raised shadow-z-2 btn-success" [disabled]="!ReceiptMasterForm.valid">Save
+        changes</button>
+    </div>
+  </form>
+</ng-template>

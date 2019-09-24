@@ -1,0 +1,197 @@
+<div class="row">
+  <div class="col-12">
+    <div id="kick-start" class="card">
+      <div class="card-header">
+        <h4 class="card-title">Region Master</h4>
+      </div>
+      <div class="card-body">
+        <div class="card-block">
+          <div class="card-text">
+            <div class="row">
+              <div class="col-md-11">
+                <!-- City Master List -->
+              </div>
+              <div class="col-md-1 btnStyle">
+                <button class="btn btn-raised shadow-z-2 btn-info" (click)="ShowPopUp()">Add New</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="myclass">
+                <table class="table table-hover" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>RegionName</th>
+                      <th>RegionCode</th>
+                      <th>EmailId</th>
+                      <th>MobileNo</th>
+                      <th>Pincode</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let client of Regions">
+                      <td>{{client.regionName}}</td>
+                      <td>{{client.regionCode}}</td>
+                      <td>{{client.emailId}}</td>
+                      <td>{{client.mobileNo}}</td>
+                      <td>{{client.pincode}}</td>
+                      <td>
+                        <button (click)="ShowData(client.id)" class="btn btn-raised shadow-z-2 btn-info">
+                          <i class="fa fa-edit"></i>
+                        </button>
+                        <button (click)="DeleteRegion(client.id)" class="btn btn-raised shadow-z-2 btn-danger">
+                          <i class="fa fa-trash "></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #template>
+  <form [formGroup]="RegionMasterForm" (ngSubmit)="SaveDetail(RegionMasterForm.value)">
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">{{Title}}</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="HidePopUp()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="control-label">RegionName</label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="RegionName" formControlName="regionName" required />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="control-label">RegionCode</label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="RegionCode" formControlName="regionCode" required />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="control-label">State</label>
+            <div class="">
+              <select class="form-control" formControlName="stateId" (change)="onChange($event.target.value)">
+                <option value="0">--Select--</option>
+                <option *ngFor="let cont of States" value={{cont.id}}>
+                  {{cont.StateName}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="control-label">City</label>
+            <div class="">
+              <select class="form-control" formControlName="cityId">
+                <option value="0">--Select--</option>
+                <option *ngFor="let cont of cities" value={{cont.id}}>
+                  {{cont.cityName}}
+                </option>
+                </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">PinCode</label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="PinCode" formControlName="pincode" />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Phone No</label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="PhoneNo" formControlName="phoneNo" />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Mobile No</label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="MobileNo" formControlName="mobileNo" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Cash Balance Limit</label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="CashBalanceLimit" formControlName="cashBalanceLimit" />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Bank Balance Limit</label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="BankBalanceLimit" formControlName="bankBalanceLimit" />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Default Cash Ledger</label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="defaultCashLedger" formControlName="defaultCashLedger" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="control-label">EmailId</label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="EmailId" formControlName="emailId" />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="control-label">Default Bank Legder</label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="DefaultBankLegder" formControlName="defaultBankLegder" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <textarea class="form-control" rows="3" formControlName="address" placeholder="Address"></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-raised shadow-z-2 btn-default" (click)="modalRef.hide()" >Close</button>
+      <button type="submit" class="btn btn-raised shadow-z-2 btn-success" [disabled]="!RegionMasterForm.valid">Save
+        changes</button>
+    </div>
+  </form>
+</ng-template>

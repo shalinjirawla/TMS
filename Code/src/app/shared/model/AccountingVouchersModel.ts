@@ -1,0 +1,30 @@
+export class accountingVouchersModel{
+    id:number;
+    requirementNo:string;
+    requirementDate:Date;
+    requirementType:string;
+    DRLedgerNameTo:number;
+    DRAmount:string;
+    DRLedgerNameFrom:number;
+    DRAmount1:string;
+    remark:string;
+    challanNo:string;
+    RENT:string;
+    SALARY:string;
+    ADMIN:string;
+    fileupload:string;
+    referenceNo:string;
+    // requirementNo1:string;
+    // requirementDate1:Date;
+    // requirementType1:string;
+    // DRLedgerNameTo1:number;
+    // DRLedgerNameFrom1:number;
+    // DRAmount2:string;
+    // remark1:string;
+    // referenceNo:string;
+    // challanNo1:string;
+    // RENT1:string;
+    // SALARY1:string;
+    // ADMIN1:string;
+    // fileupload1:string;
+}

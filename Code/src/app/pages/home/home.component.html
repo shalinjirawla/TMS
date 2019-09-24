@@ -1,0 +1,86 @@
+<div class="row">
+  <div class="col-12">
+    <div id="kick-start" class="card">
+      <div class="card-header">
+        <h4 class="card-title">Home Page</h4>
+      </div>
+      <div class="card-body">
+        <div class="card-block">
+          <div class="card-text">
+            Welcome to TMS
+            <button type="button" class="btn btn-primary" (click)="Displ()">
+              Show Toast
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button type="button" class="btn btn-primary" (click)="openModal(template)">Create template modal</button>
+
+
+  <ng-template #template>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Modal</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      This is a modal.
+    </div>
+    <div class="modal-footer">
+      This is a modal.
+    </div>
+  </ng-template>
+ 
+    
+  <!-- <form [form] (ngSubmit)="onSubmit()" >
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">
+            <h2 class="h2">Reactive Form</h2>
+          </div>
+      
+          <div class="card-body">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label for="Name" class="control-label">Name</label>
+                    <input type="text" name="fname" #fname="ngModel"  [(ngModel)]="fname"  required class="form-control" placeholder="Enter Name" required>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <label for="Name" class="control-label">Email</label>
+                  <input type="text" class="form-control" placeholder="Enter Email" required>
+                </div>
+              </div>
+              <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="Name" class="control-label">Gender</label><br />
+                     <label for="gender" class="label-control"><input name="gender" type="radio" value="Male" class="radio radio-inline" >Male</label>
+      
+                     <label for="gender" class="label-control"><input name="gender" type="radio" value="Female" class="radio radio-inline" >Female</label>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <label for="Name" class="control-label">Email</label>
+                    <input type="text" class="form-control" placeholder="Enter Name" required>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="pull-right">
+                    <input type="submit" style="color: white;" class="btn btn-info" name="submit" value="Submit">
+                  </div>
+                </div>
+            </div>
+          </div>
+          <div class="card-footer">
+          </div>
+        </div>
+      </div>
+      </form> -->

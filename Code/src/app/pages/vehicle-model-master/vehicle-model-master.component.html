@@ -1,0 +1,192 @@
+<div class="row">
+  <div class="col-12">
+    <div id="kick-start" class="card">
+      <div class="card-header">
+        <h4 class="card-title">Vehicle Type Master</h4>
+      </div>
+      <div class="card-body">
+        <div class="card-block">
+          <div class="card-text">
+            <div class="row">
+              <div class="col-md-11">
+                <!-- Vehicle Type Master List -->
+              </div>
+              <div class="col-md-1 btnStyle">
+                <button class="btn btn-raised shadow-z-2 btn-info" (click)="ShowPopUp()">Add New</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="myclass">
+                <table class="table table-hover" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let client of rows">
+                      <td>{{client.modelname}}</td>
+                      <td>
+                        <button (click)="ShowData(client.id)" class="btn btn-raised shadow-z-2 btn-info">
+                          <i class="fa fa-edit"></i>
+                        </button>
+                        <button (click)="DeleteVehicleType(client.id)" class="btn btn-raised shadow-z-2 btn-danger">
+                          <i class="fa fa-trash "></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #template>
+  <form [formGroup]="VehicleModelMasterForm" (ngSubmit)="SaveDetail(VehicleModelMasterForm.valid)">
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">{{ Title }}</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="hidepopup()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <div class="modal-body">
+      <div role="tabpanel" class="tab-pane " id="vehiclemodel">
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class=" control-label">Vehicle model name</label>
+              <div class="">
+                <input class="form-control" type="text" placeholder="Vehicle model name" formControlName="modelname"
+                  required />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="control-label">Manufacturer Name</label>
+              <div class="">
+                <select class="form-control" formControlName="manufacturername">
+                  <option value="0">--Select--</option>
+                  <option *ngFor="let cont of Vendors" value={{cont.id}}>
+                    {{cont.name}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+          <!-- <div class="col-md-6">
+            <div class="form-group">
+              <label class="control-label">Vehicle Weight in MT</label>
+              <div class="">
+                  <input class="form-control" type="text" (blur)="onBlurMethods(vehicleweightinMT,unladenweightinMT)" [(ngModel)]="vehicleweightinMT" placeholder="Vehicle Weight in MT"  formControlName="vehicleweightinMT"/>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="control-label">Unladen Weight in MT</label>
+              <div class="">
+                  <input class="form-control" type="text" (blur)="onBlurMethods(vehicleweightinMT,unladenweightinMT)" [(ngModel)]="unladenweightinMT"  placeholder="Unladen Weight in MT"  formControlName="unladenweightinMT"/>
+                </div>
+            </div>
+          </div> -->
+        
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="control-label">Vehicle Weight in MT</label>
+              <div class="">
+                  <input class="form-control" type="number"  (blur)="onBlurMethod($event.target.value)"  placeholder="Vehicle Weight in MT"  formControlName="vehicleweightinMT"/>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="control-label">Unladen Weight in MT</label>
+              <div class="">
+                  <input class="form-control" type="number" (blur)="onBlurMethods($event.target.value)"  placeholder="Unladen Weight in MT"  formControlName="unladenweightinMT"/>
+                </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+           <div class="col-md-6">
+            <div class="form-group">
+              <label class="control-label">Vehicle CapaCity</label>
+              <div class="">    
+                  <input class="form-control" type="text"  formControlName="vehiclecapacity" disabled/>
+                </div>
+            </div>
+          </div>
+
+
+          <!-- <div class="col-md-6">
+            <div class="form-group">
+              <label class="control-label">Vehicle CapaCity</label>
+              <div class="">
+                <select class="form-control" formControlName="vehiclecapacity">
+                  <option value="0">--Select--</option>
+                  <option *ngFor="let cont of cities" value={{cont.id}}>
+                    {{cont.cityName}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div> -->
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="control-label">Length</label>
+              <div class="">
+                <input class="form-control" type="text" placeholder="Length" formControlName="length" required />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="control-label">Width</label>
+              <div class="">
+                <input class="form-control" type="text" placeholder="Width" formControlName="width" required />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="control-label">Height</label>
+              <div class="">
+                <input class="form-control" type="text" placeholder="Height" formControlName="height" required />
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="reset" class="btn btn-raised shadow-z-2 btn-default" (click)="modalRef.hide()"
+        aria-label="Close">Close</button>
+      <button type="submit" class="btn btn-raised shadow-z-2 btn-success" [disabled]="!VehicleModelMasterForm.valid">Save
+        changes</button>
+    </div>
+  </form>
+</ng-template>

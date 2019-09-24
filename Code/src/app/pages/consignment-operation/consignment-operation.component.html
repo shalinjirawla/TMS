@@ -1,0 +1,591 @@
+<div class="row">
+  <div class="col-12">
+    <div id="kick-start" class="card">
+      <div class="card-header">
+        <h4 class="card-title">Consignment Operation</h4>
+      </div>
+      <div class="card-body">
+        <div class="card-block">
+          <div class="card-text">
+            <div class="row">
+              <div class="col-md-11">
+                <!-- Booking Master List -->
+              </div>
+              <div class="col-md-1 btnStyle">
+                <button class="btn btn-raised shadow-z-2 btn-info" (click)="ShowPopUp()">Add New</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="myclass">
+                <table class="table table-hover" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>CN No</th>
+                      <th>EDD</th>
+                      <th>From</th>
+                      <th>Goddown No</th>
+                      <th>Payment Type</th>
+                      <th>Actual Weight</th>
+                      <!-- <th>Consignee</th> -->
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let booking of rows;let i = index;">
+                      <td>{{booking.cnNo}}</td>
+                      <td>{{booking.expectedDelivery | date:"yyyy-MM-dd"}}</td>
+                      <td>{{booking.fromName}}</td>
+                      <td> {{booking.godownName }}</td>
+                      <td>{{booking.paymentType}}</td>
+                      <td>{{booking.actualWeight}}</td>
+                      <!-- <td>{{booking.clientName}}</td> -->
+
+                      <td>
+                        <button class="btn btn-raised shadow-z-2 btn-info" (click)="ShowData(booking.id)">
+                          <i class="fa fa-edit"></i>
+                        </button>
+                        <button class="btn btn-raised shadow-z-2 btn-danger" (click)="DeleteConsignment(booking.id)">
+                          <i class="fa fa-trash "></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #template>
+  <form [formGroup]="ConsignmentOperationForm" (ngSubmit)="SaveDetail(ConsignmentOperationForm.valid)">
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">{{Title}}</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="hidepopup()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+
+      <div class="row">
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">CN No</label>
+            <div class="">
+              <input class="form-control" (input)="Validator($event)" type="text" placeholder="CN No" formControlName="cnNo" required />
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">CN Date</label>
+            <div class="">
+              <input class="form-control" type="date" placeholder="CN Date" formControlName="cndate" />
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">Expected Delivery</label>
+            <div class="">
+              <input class="form-control" type="date" placeholder="Expected Delivery" formControlName="expectedDelivery"
+                required />
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">From </label>
+            <div class="">
+              <select class="form-control" formControlName="from">
+                <option value="">--Select--</option>
+                <option *ngFor="let cont of branchModel" value={{cont.id}}>
+                  {{cont.branchName}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">To </label>
+            <div class="">
+              <select class="form-control" formControlName="to">
+                <option value="">--Select--</option>
+                <option *ngFor="let cont of branchModel" value={{cont.id}}>
+                  {{cont.branchName}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Godown No </label>
+            <div class="">
+              <select class="form-control" formControlName="godownNo">
+                <option value="">--Select--</option>
+                <option *ngFor="let cont of godownModel" value={{cont.id}}>
+                  {{cont.godownCode}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Virtual Godown No</label>
+            <div class="">
+              <select class="form-control" formControlName="virtualGoddownNo">
+                <option value="">--Select--</option>
+                <option *ngFor="let cont of virtualgodownModel" value={{cont.id}}>
+                  {{cont.virtualGodownCode}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Consignor </label>
+            <div class="">
+              <select class="form-control" formControlName="consignor">
+                <option value="">--Select--</option>
+                <option *ngFor="let cont of regularclientModel" value={{cont.id}}>
+                  {{cont.clientCode}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">Consignor Details</label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="Consignor Details" formControlName="consignorDetails"
+                required />
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Consignee </label>
+            <div class="">
+              <select class="form-control" formControlName="consignee">
+                <option value="">--Select--</option>
+                <option *ngFor="let cont of regularclientModel" value={{cont.id}}>
+                  {{cont.gstIN}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Packing type</label>
+            <div class="">
+              <select class="form-control" formControlName="packingtype">
+                <option value="">--Select--</option>
+                <option *ngFor="let cont of packingBookingBox" value={{cont.name}}>
+                  {{cont.name}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Consignee Details</label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="Consignee Details"
+                formControlName="consignorDetails" />
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Agent Name</label>
+            <div class="">
+              <select class="form-control" formControlName="agentName">
+                <option value="">--Select--</option>
+                <option *ngFor="let cont of regularclientModel" value={{cont.id}}>
+                  {{cont.clientName}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Agent Details</label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="Consignee Details" formControlName="agentDetails" />
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Booking Type</label>
+            <div class="">
+              <select class="form-control" formControlName="bookingType">
+                <option value="">--Select--</option>
+                <option *ngFor="let cont of bookingTypeBox" value={{cont.name}}>
+                  {{cont.name}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Delivery Type</label>
+            <div class="">
+              <select class="form-control" formControlName="deliveryType">
+                <option value="">--Select--</option>
+                <option *ngFor="let cont of deliveryBox" value={{cont.name}}>
+                  {{cont.name}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Mode of Transport</label>
+            <div class="">
+              <select class="form-control" formControlName="modeOfTransport">
+                <option value="">--Select--</option>
+                <option *ngFor="let cont of modelOfTransportBox" value={{cont.name}}>
+                  {{cont.name}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Invoice No</label>
+            <div class="">
+              <input class="form-control" (input)="Validator($event)" type="text" placeholder="Consignee Details" formControlName="invoiceNo" />
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Invoice Value</label>
+            <div class="">
+              <input class="form-control" (input)="Validator($event)" type="text" placeholder="Invoice Value" formControlName="invoiceValue" />
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Consignor Invoice</label>
+            <div class="">
+              <input class="form-control" type="date" placeholder="Consignor Invoice"
+                formControlName="consignorInvoice" />
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Freight Basis</label>
+            <div class="">
+              <select class="form-control" formControlName="freightBasis">
+                <option value="">--Select--</option>
+                <option *ngFor="let cont of freight" value={{cont.name}}>
+                  {{cont.name}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">FTL</label>
+            <div class="">
+              <select class="form-control" formControlName="ftl">
+                <option value="">--Select--</option>
+                <option *ngFor="let cont of regularclientModel" value={{cont.id}}>
+                  {{cont.clientName}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="checkbox h-30">
+            <label class="control-label"> Is COD</label>
+            <div class="">
+              <input type="checkbox" formControlName="isCod" />
+            </div>
+          </div>
+        </div>
+
+        <!-- <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Freight Basis</label>
+            <div class="">
+              <ng-multiselect-dropdown [placeholder]="'Freight Basis'" [data]="freight" [settings]="dropdownSettings"
+                formControlName="freightBasis">
+              </ng-multiselect-dropdown>
+            </div>
+          </div>
+        </div> -->
+
+        <div class="col-md-4">
+          <div class="checkbox h-30">
+            <label class="control-label">Is Cc Attached</label>
+            <div class="">
+              <input type="checkbox" formControlName="isCcAttached" />
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Actual Weight</label>
+            <div class="">
+              <input class="form-control" (input)="Validator($event)" type="number" placeholder="Actual Weight" formControlName="actualWeight" />
+
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Charge Weight</label>
+            <div class="">
+              <input class="form-control" (input)="Validator($event)" type="number" placeholder="Charge Weight" formControlName="chargeWeight" />
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Freight Rate </label>
+            <div class="">
+              <input class="form-control" (input)="Validator($event)" type="text" placeholder="Freight Rate" formControlName="freightRate" />
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Private Mark </label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="Private Mark" formControlName="privateMark" />
+
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Payment Type</label>
+            <div class="">
+              <select class="form-control" formControlName="paymentType">
+                <option value="">--Select--</option>
+                <option *ngFor="let cont of PaymentBox" value={{cont.Name}}>
+                  {{cont.Name}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Insured by</label>
+            <div class="">
+              <select class="form-control" formControlName="insuredBy">
+                <option value="">--Select--</option>
+                <option *ngFor="let cont of insuredBox" value={{cont.name}}>
+                  {{cont.name}}
+                </option>
+              </select>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Freight </label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="Freight " formControlName="freight" />
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Surcharge </label>
+            <div class="">
+              <input class="form-control" (input)="Validator($event)" type="number" placeholder="Surcharge" formControlName="surcharge" />
+
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Hamali Charge </label>
+            <div class="">
+              <input class="form-control" (input)="Validator($event)" type="number" placeholder="Hamali Charge " formControlName="hamaliCharge" />
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Local Cartages </label>
+            <div class="">
+              <input class="form-control" (input)="Validator($event)" type="text" placeholder="Local Cartages" formControlName="localCartages" />
+
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Door Delivery Charge </label>
+            <div class="">
+              <input class="form-control" (input)="Validator($event)" type="number" placeholder="Door Delivery Charge"
+                formControlName="doorDeliveryCharge" />
+
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Statistical Charges </label>
+            <div class="">
+              <input class="form-control" (input)="Validator($event)" type="number" placeholder="Statistical Charges "
+                formControlName="statisticalCharges" />
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Miscellaneous Charges</label>
+            <div class="">
+              <input class="form-control" (input)="Validator($event)" type="number" placeholder="Miscellaneous Charges"
+                formControlName="miscellaneousCharges" />
+
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Godown Charges </label>
+            <div class="">
+              <input class="form-control" (input)="Validator($event)" type="number" placeholder="Godown Charges" formControlName="godownCharges" />
+
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">COD</label>
+            <div class="">
+              <input class="form-control" type="number" placeholder="Actual Weight" formControlName="cod" />
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <button type="reset" class="btn btn-raised shadow-z-2 btn-default" (click)="modalRef.hide()"
+        aria-label="Close">Close</button>
+      <button type="submit" class="btn btn-raised shadow-z-2 btn-success"
+        [disabled]="!ConsignmentOperationForm.valid">Save changes</button>
+    </div>
+  </form>
+</ng-template>

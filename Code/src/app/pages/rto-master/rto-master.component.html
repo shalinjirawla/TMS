@@ -1,0 +1,190 @@
+<div class="row">
+  <div class="col-12">
+    <div id="kick-start" class="card">
+      <div class="card-header">
+        <h4 class="card-title">RTO Master</h4>
+      </div>
+      <div class="card-body">
+        <div class="card-block">
+          <div class="card-text">
+            <div class="row">
+              <div class="col-md-11">
+                <!-- RTO Master List -->
+              </div>
+              <div class="col-md-1 btnStyle">
+                <button class="btn btn-raised shadow-z-2 btn-info" (click)="ShowPopUp()">Add New</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="myclass">
+                <table class="table table-hover" cellspacing="0">
+                  <thead>
+                    <tr>
+                      
+                      <th>RTO Code</th>
+                      <th>Name</th>
+                      <th>Address</th>
+                      <th>Pin Code</th>
+                      <th>STD Code</th>
+                      <th>Phone No</th>
+                      <th>Email Id</th>
+                      <th>Website</th>
+                     
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let client of rows">
+                      <td>{{client.rtoCode}}</td>
+                      <td>{{client.name}}</td>
+                      <td>{{client.address}}</td>
+                      <td>{{client.pinCode}}</td>
+                      <td>{{client.stdCode}}</td>
+                      <td>{{client.phoneNo}}</td>
+                      <td>{{client.emailId}}</td>
+                      <td>{{client.website}}</td>
+                    
+                      <td>
+                        <button (click)="ShowData(client.id)" class="btn btn-raised shadow-z-2 btn-info">
+                          <i class="fa fa-edit"></i>
+                        </button>
+                        <button (click)="DeleteRTOS(client.id)" class="btn btn-raised shadow-z-2 btn-danger">
+                          <i class="fa fa-trash "></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #template>
+  <form [formGroup]="RTOForm" (ngSubmit)="SaveRTO(RTOForm.value)">
+    <div class="modal-header">
+      <h4 class="modal-title pull-left"> {{ Title }} </h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="HidePopUp()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+       <div class="row"> 
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label">RTO Code</label>
+                <div class="">
+                  <input class="form-control" type="text" placeholder="RTO Code" formControlName="rtoCode" />
+                </div>
+              </div>
+         </div>
+         <div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label">Name</label>
+                <div class="">
+                  <input class="form-control" type="text" placeholder="Name" formControlName="name" />
+                </div>
+              </div>
+         </div>
+         <div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label">Address</label>
+                <div class="">
+                  <input class="form-control" type="text" placeholder="Address" formControlName="address" />
+                </div>
+              </div>
+         </div>
+      </div> 
+      <div class="row">
+          <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">City</label>
+                <div class="">
+                  <ng-multiselect-dropdown [placeholder]="'City'" [data]="AllCity" [settings]="citySetting" formControlName="city">
+                  </ng-multiselect-dropdown>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="control-label">Pin Code</label>
+                    <div class="">
+                      <input class="form-control" type="text" placeholder="Pin Code" formControlName="pinCode" />
+                    </div>
+                  </div>
+             </div>
+             <div class="col-md-4">
+             <div class="form-group">
+                <label class="control-label">State</label>
+                <div class="">
+                  <ng-multiselect-dropdown [placeholder]="'State'" [data]="AllState" [settings]="stateSetting" formControlName="state">
+                  </ng-multiselect-dropdown>
+                </div>
+              </div>
+            </div>
+      </div>
+       <div class="row">
+          <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">STD Code</label>
+                <div class="">
+                    <input class="form-control" type="text" placeholder="STD Code" formControlName="stdCode" />
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                  <label class="control-label">Phone No</label>
+                  <div class="">
+                      <input class="form-control" type="number" placeholder="Phone No" formControlName="phoneNo" />
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                  <div class="form-group">
+                    <label class="control-label">Email Id</label>
+                    <div class="">
+                        <input class="form-control" type="text" placeholder="Email Id" formControlName="emailId"/>
+                    </div>
+                  </div>
+                </div>
+      </div> 
+      <div class="row">
+          <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">Website</label>
+                <div class="">
+                    <input class="form-control" type="text" placeholder="Website" formControlName="website" />
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                  <label class="control-label">Remark</label>
+                  <div class="">
+                      <input class="form-control" type="text" placeholder="Remark" formControlName="remark" />
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label class="control-label">Mobile No</label>
+                  <div class="">
+                      <input class="form-control" type="number" placeholder="Phone No" formControlName="mobileNo" />
+                  </div>
+                </div>
+              </div>
+      </div>
+      <div class="modal-footer">
+        <button type="reset" class="btn btn-raised shadow-z-2 btn-default" (click)="HidePopUp()" aria-label="Close">Close</button>
+        <button type="submit" class="btn btn-raised shadow-z-2 btn-success" [disabled]="!RTOForm.valid">Save
+        </button>
+      </div>
+      </div>
+    </form>
+  </ng-template>
+

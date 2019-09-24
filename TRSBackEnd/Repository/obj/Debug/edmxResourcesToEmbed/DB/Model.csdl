@@ -1,0 +1,1029 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TRSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="TRSEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="BranchMasters" EntityType="TRSModel.BranchMaster" />
+    <EntitySet Name="CityMasters" EntityType="TRSModel.CityMaster" />
+    <EntitySet Name="GodownMasters" EntityType="TRSModel.GodownMaster" />
+    <EntitySet Name="RegionMasters" EntityType="TRSModel.RegionMaster" />
+    <EntitySet Name="RegularClientMasters" EntityType="TRSModel.RegularClientMaster" />
+    <EntitySet Name="StateMasters" EntityType="TRSModel.StateMaster" />
+    <EntitySet Name="VirtualGodownMasters" EntityType="TRSModel.VirtualGodownMaster" />
+    <AssociationSet Name="FK_BranchMaster_CityMaster" Association="TRSModel.FK_BranchMaster_CityMaster">
+      <End Role="CityMaster" EntitySet="CityMasters" />
+      <End Role="BranchMaster" EntitySet="BranchMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BranchMaster_StateMaster" Association="TRSModel.FK_BranchMaster_StateMaster">
+      <End Role="StateMaster" EntitySet="StateMasters" />
+      <End Role="BranchMaster" EntitySet="BranchMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GodownMaster_BranchMaster" Association="TRSModel.FK_GodownMaster_BranchMaster">
+      <End Role="BranchMaster" EntitySet="BranchMasters" />
+      <End Role="GodownMaster" EntitySet="GodownMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RegularClientMaster_BranchMaster" Association="TRSModel.FK_RegularClientMaster_BranchMaster">
+      <End Role="BranchMaster" EntitySet="BranchMasters" />
+      <End Role="RegularClientMaster" EntitySet="RegularClientMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VirtualGodownMaster_BranchMaster" Association="TRSModel.FK_VirtualGodownMaster_BranchMaster">
+      <End Role="BranchMaster" EntitySet="BranchMasters" />
+      <End Role="VirtualGodownMaster" EntitySet="VirtualGodownMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CityMaste__state__15502E78" Association="TRSModel.FK__CityMaste__state__15502E78">
+      <End Role="StateMaster" EntitySet="StateMasters" />
+      <End Role="CityMaster" EntitySet="CityMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GodownMaster_CityMaster" Association="TRSModel.FK_GodownMaster_CityMaster">
+      <End Role="CityMaster" EntitySet="CityMasters" />
+      <End Role="GodownMaster" EntitySet="GodownMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RegionMaster_CityMaster" Association="TRSModel.FK_RegionMaster_CityMaster">
+      <End Role="CityMaster" EntitySet="CityMasters" />
+      <End Role="RegionMaster" EntitySet="RegionMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RegularClientMaster_CityMaster" Association="TRSModel.FK_RegularClientMaster_CityMaster">
+      <End Role="CityMaster" EntitySet="CityMasters" />
+      <End Role="RegularClientMaster" EntitySet="RegularClientMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GodownMaster_StateMaster" Association="TRSModel.FK_GodownMaster_StateMaster">
+      <End Role="StateMaster" EntitySet="StateMasters" />
+      <End Role="GodownMaster" EntitySet="GodownMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VirtualGodownMaster_GodownMaster" Association="TRSModel.FK_VirtualGodownMaster_GodownMaster">
+      <End Role="GodownMaster" EntitySet="GodownMasters" />
+      <End Role="VirtualGodownMaster" EntitySet="VirtualGodownMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RegionMaster_StateMaster" Association="TRSModel.FK_RegionMaster_StateMaster">
+      <End Role="StateMaster" EntitySet="StateMasters" />
+      <End Role="RegionMaster" EntitySet="RegionMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RegularClientMaster_StateMaster" Association="TRSModel.FK_RegularClientMaster_StateMaster">
+      <End Role="StateMaster" EntitySet="StateMasters" />
+      <End Role="RegularClientMaster" EntitySet="RegularClientMasters" />
+    </AssociationSet>
+    <EntitySet Name="BookingMasters" EntityType="TRSModel.BookingMaster" />
+    <AssociationSet Name="FK_Booking_BranchMaster" Association="TRSModel.FK_Booking_BranchMaster">
+      <End Role="BranchMaster" EntitySet="BranchMasters" />
+      <End Role="BookingMaster" EntitySet="BookingMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Booking_BranchMaster1" Association="TRSModel.FK_Booking_BranchMaster1">
+      <End Role="BranchMaster" EntitySet="BranchMasters" />
+      <End Role="BookingMaster" EntitySet="BookingMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Booking_GodownMaster" Association="TRSModel.FK_Booking_GodownMaster">
+      <End Role="GodownMaster" EntitySet="GodownMasters" />
+      <End Role="BookingMaster" EntitySet="BookingMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Booking_RegularClientMaster" Association="TRSModel.FK_Booking_RegularClientMaster">
+      <End Role="RegularClientMaster" EntitySet="RegularClientMasters" />
+      <End Role="BookingMaster" EntitySet="BookingMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BookingMaster_BookingMaster" Association="TRSModel.FK_BookingMaster_BookingMaster">
+      <End Role="BookingMaster" EntitySet="BookingMasters" />
+      <End Role="BookingMaster1" EntitySet="BookingMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BookingMaster_BranchMaster" Association="TRSModel.FK_BookingMaster_BranchMaster">
+      <End Role="BranchMaster" EntitySet="BranchMasters" />
+      <End Role="BookingMaster" EntitySet="BookingMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BookingMaster_GodownMaster" Association="TRSModel.FK_BookingMaster_GodownMaster">
+      <End Role="GodownMaster" EntitySet="GodownMasters" />
+      <End Role="BookingMaster" EntitySet="BookingMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BookingMaster_RegularClientMaster" Association="TRSModel.FK_BookingMaster_RegularClientMaster">
+      <End Role="RegularClientMaster" EntitySet="RegularClientMasters" />
+      <End Role="BookingMaster" EntitySet="BookingMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BookingMaster_RegularClientMaster1" Association="TRSModel.FK_BookingMaster_RegularClientMaster1">
+      <End Role="RegularClientMaster" EntitySet="RegularClientMasters" />
+      <End Role="BookingMaster" EntitySet="BookingMasters" />
+    </AssociationSet>
+    <EntitySet Name="PackingMasters" EntityType="TRSModel.PackingMaster" />
+    <AssociationSet Name="FK_PackingMaster_BookingMaster" Association="TRSModel.FK_PackingMaster_BookingMaster">
+      <End Role="BookingMaster" EntitySet="BookingMasters" />
+      <End Role="PackingMaster" EntitySet="PackingMasters" />
+    </AssociationSet>
+    <EntitySet Name="RTOMasters" EntityType="TRSModel.RTOMaster" />
+    <AssociationSet Name="FK_RTOMaster_CityMaster" Association="TRSModel.FK_RTOMaster_CityMaster">
+      <End Role="CityMaster" EntitySet="CityMasters" />
+      <End Role="RTOMaster" EntitySet="RTOMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RTOMaster_StateMaster" Association="TRSModel.FK_RTOMaster_StateMaster">
+      <End Role="StateMaster" EntitySet="StateMasters" />
+      <End Role="RTOMaster" EntitySet="RTOMasters" />
+    </AssociationSet>
+    <EntitySet Name="AreaMasters" EntityType="TRSModel.AreaMaster" />
+    <AssociationSet Name="FK_AreaMaster_CityMaster" Association="TRSModel.FK_AreaMaster_CityMaster">
+      <End Role="CityMaster" EntitySet="CityMasters" />
+      <End Role="AreaMaster" EntitySet="AreaMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AreaMaster_RegionMaster" Association="TRSModel.FK_AreaMaster_RegionMaster">
+      <End Role="RegionMaster" EntitySet="RegionMasters" />
+      <End Role="AreaMaster" EntitySet="AreaMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AreaMaster_StateMaster" Association="TRSModel.FK_AreaMaster_StateMaster">
+      <End Role="StateMaster" EntitySet="StateMasters" />
+      <End Role="AreaMaster" EntitySet="AreaMasters" />
+    </AssociationSet>
+    <EntitySet Name="GodownOwnerDetailsMasters" EntityType="TRSModel.GodownOwnerDetailsMaster" />
+    <AssociationSet Name="FK_GodownOwnerDetailsMaster_BranchMaster" Association="TRSModel.FK_GodownOwnerDetailsMaster_BranchMaster">
+      <End Role="BranchMaster" EntitySet="BranchMasters" />
+      <End Role="GodownOwnerDetailsMaster" EntitySet="GodownOwnerDetailsMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GodownOwnerDetailsMaster_CityMaster" Association="TRSModel.FK_GodownOwnerDetailsMaster_CityMaster">
+      <End Role="CityMaster" EntitySet="CityMasters" />
+      <End Role="GodownOwnerDetailsMaster" EntitySet="GodownOwnerDetailsMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GodownOwnerDetailsMaster_GodownMaster" Association="TRSModel.FK_GodownOwnerDetailsMaster_GodownMaster">
+      <End Role="GodownMaster" EntitySet="GodownMasters" />
+      <End Role="GodownOwnerDetailsMaster" EntitySet="GodownOwnerDetailsMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GodownOwnerDetailsMaster_StateMaster" Association="TRSModel.FK_GodownOwnerDetailsMaster_StateMaster">
+      <End Role="StateMaster" EntitySet="StateMasters" />
+      <End Role="GodownOwnerDetailsMaster" EntitySet="GodownOwnerDetailsMasters" />
+    </AssociationSet>
+    <EntitySet Name="BankMasters" EntityType="TRSModel.BankMaster" />
+    <EntitySet Name="sysdiagrams" EntityType="TRSModel.sysdiagram" />
+    <AssociationSet Name="FK_BankMaster_BankMaster" Association="TRSModel.FK_BankMaster_BankMaster">
+      <End Role="StateMaster" EntitySet="StateMasters" />
+      <End Role="BankMaster" EntitySet="BankMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BankMaster_CityMaster" Association="TRSModel.FK_BankMaster_CityMaster">
+      <End Role="CityMaster" EntitySet="CityMasters" />
+      <End Role="BankMaster" EntitySet="BankMasters" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(TRSModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(TRSModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <AssociationSet Name="FK_BankMaster_BankMaster1" Association="TRSModel.FK_BankMaster_BankMaster1">
+      <End Role="StateMaster" EntitySet="StateMasters" />
+      <End Role="BankMaster" EntitySet="BankMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BankMaster_CityMaster1" Association="TRSModel.FK_BankMaster_CityMaster1">
+      <End Role="CityMaster" EntitySet="CityMasters" />
+      <End Role="BankMaster" EntitySet="BankMasters" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="BranchMaster">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="branchCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="branchName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="branchType" Type="Int32" />
+    <Property Name="deliveryAgainstAs" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="cityId" Type="Int32" Nullable="false" />
+    <Property Name="pincode" Type="Int32" />
+    <Property Name="stateId" Type="Int32" Nullable="false" />
+    <Property Name="gstNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="phoneNo" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="mobileNo" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="regionId" Type="Int32" Nullable="false" />
+    <Property Name="areaId" Type="Int32" />
+    <Property Name="servicesOffered" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="cn" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="mr" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="challan" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="freightBill" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="expectedUnderLoad" Type="Int32" />
+    <Property Name="expectedUnloadingAfterArrival" Type="Int32" />
+    <Property Name="maxAdvance" Type="Int32" />
+    <Property Name="defaultCashLedger" Type="Int32" />
+    <Property Name="defaultBankLedger" Type="Int32" />
+    <Property Name="remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" />
+    <NavigationProperty Name="CityMaster" Relationship="TRSModel.FK_BranchMaster_CityMaster" FromRole="BranchMaster" ToRole="CityMaster" />
+    <NavigationProperty Name="StateMaster" Relationship="TRSModel.FK_BranchMaster_StateMaster" FromRole="BranchMaster" ToRole="StateMaster" />
+    <NavigationProperty Name="GodownMasters" Relationship="TRSModel.FK_GodownMaster_BranchMaster" FromRole="BranchMaster" ToRole="GodownMaster" />
+    <NavigationProperty Name="RegularClientMasters" Relationship="TRSModel.FK_RegularClientMaster_BranchMaster" FromRole="BranchMaster" ToRole="RegularClientMaster" />
+    <NavigationProperty Name="VirtualGodownMasters" Relationship="TRSModel.FK_VirtualGodownMaster_BranchMaster" FromRole="BranchMaster" ToRole="VirtualGodownMaster" />
+    <NavigationProperty Name="BookingMasters" Relationship="TRSModel.FK_Booking_BranchMaster" FromRole="BranchMaster" ToRole="BookingMaster" />
+    <NavigationProperty Name="BookingMasters1" Relationship="TRSModel.FK_Booking_BranchMaster1" FromRole="BranchMaster" ToRole="BookingMaster" />
+    <NavigationProperty Name="BookingMasters2" Relationship="TRSModel.FK_BookingMaster_BranchMaster" FromRole="BranchMaster" ToRole="BookingMaster" />
+    <NavigationProperty Name="GodownOwnerDetailsMasters" Relationship="TRSModel.FK_GodownOwnerDetailsMaster_BranchMaster" FromRole="BranchMaster" ToRole="GodownOwnerDetailsMaster" />
+  </EntityType>
+  <EntityType Name="CityMaster">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="stateId" Type="Int32" Nullable="false" />
+    <Property Name="cityCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="cityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="stdCode" Type="Int32" />
+    <Property Name="IsActive" Type="Boolean" />
+    <NavigationProperty Name="BranchMasters" Relationship="TRSModel.FK_BranchMaster_CityMaster" FromRole="CityMaster" ToRole="BranchMaster" />
+    <NavigationProperty Name="StateMaster" Relationship="TRSModel.FK__CityMaste__state__15502E78" FromRole="CityMaster" ToRole="StateMaster" />
+    <NavigationProperty Name="GodownMasters" Relationship="TRSModel.FK_GodownMaster_CityMaster" FromRole="CityMaster" ToRole="GodownMaster" />
+    <NavigationProperty Name="RegionMasters" Relationship="TRSModel.FK_RegionMaster_CityMaster" FromRole="CityMaster" ToRole="RegionMaster" />
+    <NavigationProperty Name="RegularClientMasters" Relationship="TRSModel.FK_RegularClientMaster_CityMaster" FromRole="CityMaster" ToRole="RegularClientMaster" />
+    <NavigationProperty Name="RTOMasters" Relationship="TRSModel.FK_RTOMaster_CityMaster" FromRole="CityMaster" ToRole="RTOMaster" />
+    <NavigationProperty Name="AreaMasters" Relationship="TRSModel.FK_AreaMaster_CityMaster" FromRole="CityMaster" ToRole="AreaMaster" />
+    <NavigationProperty Name="GodownOwnerDetailsMasters" Relationship="TRSModel.FK_GodownOwnerDetailsMaster_CityMaster" FromRole="CityMaster" ToRole="GodownOwnerDetailsMaster" />
+    <NavigationProperty Name="BankMaster" Relationship="TRSModel.FK_BankMaster_CityMaster" FromRole="CityMaster" ToRole="BankMaster" />
+    <NavigationProperty Name="BankMasters" Relationship="TRSModel.FK_BankMaster_CityMaster1" FromRole="CityMaster" ToRole="BankMaster" />
+  </EntityType>
+  <EntityType Name="GodownMaster">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="godownCode" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="godownName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="branchId" Type="Int32" Nullable="false" />
+    <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="cityId" Type="Int32" Nullable="false" />
+    <Property Name="pincode" Type="Int32" />
+    <Property Name="stateId" Type="Int32" Nullable="false" />
+    <Property Name="phoneNo" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="mobileNo" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="storageCapacity" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" />
+    <NavigationProperty Name="BranchMaster" Relationship="TRSModel.FK_GodownMaster_BranchMaster" FromRole="GodownMaster" ToRole="BranchMaster" />
+    <NavigationProperty Name="CityMaster" Relationship="TRSModel.FK_GodownMaster_CityMaster" FromRole="GodownMaster" ToRole="CityMaster" />
+    <NavigationProperty Name="StateMaster" Relationship="TRSModel.FK_GodownMaster_StateMaster" FromRole="GodownMaster" ToRole="StateMaster" />
+    <NavigationProperty Name="VirtualGodownMasters" Relationship="TRSModel.FK_VirtualGodownMaster_GodownMaster" FromRole="GodownMaster" ToRole="VirtualGodownMaster" />
+    <NavigationProperty Name="BookingMasters" Relationship="TRSModel.FK_Booking_GodownMaster" FromRole="GodownMaster" ToRole="BookingMaster" />
+    <NavigationProperty Name="BookingMasters1" Relationship="TRSModel.FK_BookingMaster_GodownMaster" FromRole="GodownMaster" ToRole="BookingMaster" />
+    <NavigationProperty Name="GodownOwnerDetailsMasters" Relationship="TRSModel.FK_GodownOwnerDetailsMaster_GodownMaster" FromRole="GodownMaster" ToRole="GodownOwnerDetailsMaster" />
+  </EntityType>
+  <EntityType Name="RegionMaster">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="regionCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="regionName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="cityId" Type="Int32" Nullable="false" />
+    <Property Name="pincode" Type="Int32" />
+    <Property Name="stateId" Type="Int32" Nullable="false" />
+    <Property Name="phoneNo" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="mobileNo" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="emailId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="cashBalanceLimit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="bankBalanceLimit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="defaultCashLedger" Type="Int32" />
+    <Property Name="defaultBankLegder" Type="Int32" />
+    <Property Name="IsActive" Type="Boolean" />
+    <NavigationProperty Name="CityMaster" Relationship="TRSModel.FK_RegionMaster_CityMaster" FromRole="RegionMaster" ToRole="CityMaster" />
+    <NavigationProperty Name="StateMaster" Relationship="TRSModel.FK_RegionMaster_StateMaster" FromRole="RegionMaster" ToRole="StateMaster" />
+    <NavigationProperty Name="AreaMasters" Relationship="TRSModel.FK_AreaMaster_RegionMaster" FromRole="RegionMaster" ToRole="AreaMaster" />
+  </EntityType>
+  <EntityType Name="RegularClientMaster">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="branchId" Type="Int32" />
+    <Property Name="clientCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="clientName" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="clientGroupId" Type="Int32" />
+    <Property Name="pan" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="gstIN" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="cityId" Type="Int32" />
+    <Property Name="pinCode" Type="Int32" />
+    <Property Name="StateId" Type="Int32" />
+    <Property Name="phoneNo" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="mobileNo" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="emailAlert" Type="Boolean" />
+    <Property Name="smsAlert" Type="Boolean" />
+    <Property Name="deliveryAgainstAsCnr" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="deliveryAgainstAsCne" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="ledgerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="days" Type="Int32" />
+    <Property Name="amount" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="interest" Type="Int32" />
+    <Property Name="creditGraceDays" Type="Int32" />
+    <Property Name="bankId" Type="Int32" />
+    <Property Name="accountNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="chequeInTheNameOf" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="companyNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="policyNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="validFromDate" Type="DateTime" Precision="3" />
+    <Property Name="validToDate" Type="DateTime" Precision="3" />
+    <Property Name="insuranceAmount" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="isMarineInsured" Type="Boolean" />
+    <Property Name="isGodownInsured" Type="Boolean" />
+    <Property Name="paymentMode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="bookingType" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="deliveryType" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="multipleBillingBranches" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="BranchMaster" Relationship="TRSModel.FK_RegularClientMaster_BranchMaster" FromRole="RegularClientMaster" ToRole="BranchMaster" />
+    <NavigationProperty Name="CityMaster" Relationship="TRSModel.FK_RegularClientMaster_CityMaster" FromRole="RegularClientMaster" ToRole="CityMaster" />
+    <NavigationProperty Name="StateMaster" Relationship="TRSModel.FK_RegularClientMaster_StateMaster" FromRole="RegularClientMaster" ToRole="StateMaster" />
+    <Property Name="isActive" Type="Boolean" />
+    <NavigationProperty Name="BookingMasters" Relationship="TRSModel.FK_Booking_RegularClientMaster" FromRole="RegularClientMaster" ToRole="BookingMaster" />
+    <NavigationProperty Name="BookingMasters1" Relationship="TRSModel.FK_BookingMaster_RegularClientMaster" FromRole="RegularClientMaster" ToRole="BookingMaster" />
+    <NavigationProperty Name="BookingMasters2" Relationship="TRSModel.FK_BookingMaster_RegularClientMaster1" FromRole="RegularClientMaster" ToRole="BookingMaster" />
+  </EntityType>
+  <EntityType Name="StateMaster">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GSTCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="StateName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="StateRtoCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" />
+    <NavigationProperty Name="BranchMasters" Relationship="TRSModel.FK_BranchMaster_StateMaster" FromRole="StateMaster" ToRole="BranchMaster" />
+    <NavigationProperty Name="CityMasters" Relationship="TRSModel.FK__CityMaste__state__15502E78" FromRole="StateMaster" ToRole="CityMaster" />
+    <NavigationProperty Name="GodownMasters" Relationship="TRSModel.FK_GodownMaster_StateMaster" FromRole="StateMaster" ToRole="GodownMaster" />
+    <NavigationProperty Name="RegionMasters" Relationship="TRSModel.FK_RegionMaster_StateMaster" FromRole="StateMaster" ToRole="RegionMaster" />
+    <NavigationProperty Name="RegularClientMasters" Relationship="TRSModel.FK_RegularClientMaster_StateMaster" FromRole="StateMaster" ToRole="RegularClientMaster" />
+    <NavigationProperty Name="RTOMasters" Relationship="TRSModel.FK_RTOMaster_StateMaster" FromRole="StateMaster" ToRole="RTOMaster" />
+    <NavigationProperty Name="AreaMasters" Relationship="TRSModel.FK_AreaMaster_StateMaster" FromRole="StateMaster" ToRole="AreaMaster" />
+    <NavigationProperty Name="GodownOwnerDetailsMasters" Relationship="TRSModel.FK_GodownOwnerDetailsMaster_StateMaster" FromRole="StateMaster" ToRole="GodownOwnerDetailsMaster" />
+    <NavigationProperty Name="BankMaster" Relationship="TRSModel.FK_BankMaster_BankMaster" FromRole="StateMaster" ToRole="BankMaster" />
+    <NavigationProperty Name="BankMasters" Relationship="TRSModel.FK_BankMaster_BankMaster1" FromRole="StateMaster" ToRole="BankMaster" />
+  </EntityType>
+  <EntityType Name="VirtualGodownMaster">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="virtualGodownCode" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="branchId" Type="Int32" />
+    <Property Name="godownId" Type="Int32" />
+    <Property Name="storageCapacity" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="BranchMaster" Relationship="TRSModel.FK_VirtualGodownMaster_BranchMaster" FromRole="VirtualGodownMaster" ToRole="BranchMaster" />
+    <NavigationProperty Name="GodownMaster" Relationship="TRSModel.FK_VirtualGodownMaster_GodownMaster" FromRole="VirtualGodownMaster" ToRole="GodownMaster" />
+    <Property Name="isActive" Type="Boolean" />
+  </EntityType>
+  <Association Name="FK_BranchMaster_CityMaster">
+    <End Type="TRSModel.CityMaster" Role="CityMaster" Multiplicity="1" />
+    <End Type="TRSModel.BranchMaster" Role="BranchMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CityMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="BranchMaster">
+        <PropertyRef Name="cityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BranchMaster_StateMaster">
+    <End Type="TRSModel.StateMaster" Role="StateMaster" Multiplicity="1" />
+    <End Type="TRSModel.BranchMaster" Role="BranchMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StateMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="BranchMaster">
+        <PropertyRef Name="stateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GodownMaster_BranchMaster">
+    <End Type="TRSModel.BranchMaster" Role="BranchMaster" Multiplicity="1" />
+    <End Type="TRSModel.GodownMaster" Role="GodownMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BranchMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="GodownMaster">
+        <PropertyRef Name="branchId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RegularClientMaster_BranchMaster">
+    <End Type="TRSModel.BranchMaster" Role="BranchMaster" Multiplicity="0..1" />
+    <End Type="TRSModel.RegularClientMaster" Role="RegularClientMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BranchMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="RegularClientMaster">
+        <PropertyRef Name="branchId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VirtualGodownMaster_BranchMaster">
+    <End Type="TRSModel.BranchMaster" Role="BranchMaster" Multiplicity="0..1" />
+    <End Type="TRSModel.VirtualGodownMaster" Role="VirtualGodownMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BranchMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="VirtualGodownMaster">
+        <PropertyRef Name="branchId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CityMaste__state__15502E78">
+    <End Type="TRSModel.StateMaster" Role="StateMaster" Multiplicity="1" />
+    <End Type="TRSModel.CityMaster" Role="CityMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StateMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="CityMaster">
+        <PropertyRef Name="stateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GodownMaster_CityMaster">
+    <End Type="TRSModel.CityMaster" Role="CityMaster" Multiplicity="1" />
+    <End Type="TRSModel.GodownMaster" Role="GodownMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CityMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="GodownMaster">
+        <PropertyRef Name="cityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RegionMaster_CityMaster">
+    <End Type="TRSModel.CityMaster" Role="CityMaster" Multiplicity="1" />
+    <End Type="TRSModel.RegionMaster" Role="RegionMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CityMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="RegionMaster">
+        <PropertyRef Name="cityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RegularClientMaster_CityMaster">
+    <End Type="TRSModel.CityMaster" Role="CityMaster" Multiplicity="0..1" />
+    <End Type="TRSModel.RegularClientMaster" Role="RegularClientMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CityMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="RegularClientMaster">
+        <PropertyRef Name="cityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GodownMaster_StateMaster">
+    <End Type="TRSModel.StateMaster" Role="StateMaster" Multiplicity="1" />
+    <End Type="TRSModel.GodownMaster" Role="GodownMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StateMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="GodownMaster">
+        <PropertyRef Name="stateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VirtualGodownMaster_GodownMaster">
+    <End Type="TRSModel.GodownMaster" Role="GodownMaster" Multiplicity="0..1" />
+    <End Type="TRSModel.VirtualGodownMaster" Role="VirtualGodownMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GodownMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="VirtualGodownMaster">
+        <PropertyRef Name="godownId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RegionMaster_StateMaster">
+    <End Type="TRSModel.StateMaster" Role="StateMaster" Multiplicity="1" />
+    <End Type="TRSModel.RegionMaster" Role="RegionMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StateMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="RegionMaster">
+        <PropertyRef Name="stateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RegularClientMaster_StateMaster">
+    <End Type="TRSModel.StateMaster" Role="StateMaster" Multiplicity="0..1" />
+    <End Type="TRSModel.RegularClientMaster" Role="RegularClientMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StateMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="RegularClientMaster">
+        <PropertyRef Name="StateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="BookingMaster">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cn" Type="DateTime" Precision="0" />
+    <Property Name="expectedDelivery" Type="DateTime" Precision="0" />
+    <Property Name="from" Type="Int32" />
+    <Property Name="to" Type="Int32" />
+    <Property Name="godownNo" Type="Int32" />
+    <Property Name="paymentType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="actualWeight" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="consignee" Type="Int32" />
+    <Property Name="isActive" Type="Boolean" />
+    <Property Name="cnNo" Type="Int32" />
+    <Property Name="deliveryBranch" Type="Int32" />
+    <Property Name="virtualGoddownNo" Type="Int32" />
+    <Property Name="consignorDetails" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="consignor" Type="Int32" />
+    <Property Name="agentName" Type="Int32" />
+    <Property Name="agentDetails" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="bookingType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="deliveryType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="modeOfTransport" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="invoiceNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="invoiceValue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="consignorInvoice" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="freightBasis" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ftl" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="isCcAttached" Type="Boolean" />
+    <Property Name="isCod" Type="Boolean" />
+    <Property Name="chargeWeight" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="freightRate" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="privateMark" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="insuredBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="freight" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="surcharge" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="hamaliCharge" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="localCartages" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="doorDeliveryCharge" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="statisticalCharges" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="miscellaneousCharges" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="godownCharges" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="cod" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="financeEffect" Type="Boolean" />
+    <Property Name="riskCharge" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="branch" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="reserveReason" Type="Int32" />
+    <Property Name="cnFrom" Type="DateTime" Precision="0" />
+    <Property Name="cnTo" Type="DateTime" Precision="0" />
+    <Property Name="srtoNo" Type="Int32" />
+    <Property Name="lotNo" Type="Int32" />
+    <Property Name="rollNo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="meter" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="weightInKg" Type="Decimal" Precision="18" Scale="2" />
+    <NavigationProperty Name="BranchMaster" Relationship="TRSModel.FK_Booking_BranchMaster" FromRole="BookingMaster" ToRole="BranchMaster" />
+    <NavigationProperty Name="BranchMaster1" Relationship="TRSModel.FK_Booking_BranchMaster1" FromRole="BookingMaster" ToRole="BranchMaster" />
+    <NavigationProperty Name="GodownMaster" Relationship="TRSModel.FK_Booking_GodownMaster" FromRole="BookingMaster" ToRole="GodownMaster" />
+    <NavigationProperty Name="RegularClientMaster" Relationship="TRSModel.FK_Booking_RegularClientMaster" FromRole="BookingMaster" ToRole="RegularClientMaster" />
+    <NavigationProperty Name="BookingMaster1" Relationship="TRSModel.FK_BookingMaster_BookingMaster" FromRole="BookingMaster" ToRole="BookingMaster1" />
+    <NavigationProperty Name="BookingMaster2" Relationship="TRSModel.FK_BookingMaster_BookingMaster" FromRole="BookingMaster1" ToRole="BookingMaster" />
+    <NavigationProperty Name="BranchMaster2" Relationship="TRSModel.FK_BookingMaster_BranchMaster" FromRole="BookingMaster" ToRole="BranchMaster" />
+    <NavigationProperty Name="GodownMaster1" Relationship="TRSModel.FK_BookingMaster_GodownMaster" FromRole="BookingMaster" ToRole="GodownMaster" />
+    <NavigationProperty Name="RegularClientMaster1" Relationship="TRSModel.FK_BookingMaster_RegularClientMaster" FromRole="BookingMaster" ToRole="RegularClientMaster" />
+    <NavigationProperty Name="RegularClientMaster2" Relationship="TRSModel.FK_BookingMaster_RegularClientMaster1" FromRole="BookingMaster" ToRole="RegularClientMaster" />
+    <NavigationProperty Name="PackingMasters" Relationship="TRSModel.FK_PackingMaster_BookingMaster" FromRole="BookingMaster" ToRole="PackingMaster" />
+  </EntityType>
+  <Association Name="FK_Booking_BranchMaster">
+    <End Type="TRSModel.BranchMaster" Role="BranchMaster" Multiplicity="0..1" />
+    <End Type="TRSModel.BookingMaster" Role="BookingMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BranchMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="BookingMaster">
+        <PropertyRef Name="from" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Booking_BranchMaster1">
+    <End Type="TRSModel.BranchMaster" Role="BranchMaster" Multiplicity="0..1" />
+    <End Type="TRSModel.BookingMaster" Role="BookingMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BranchMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="BookingMaster">
+        <PropertyRef Name="to" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Booking_GodownMaster">
+    <End Type="TRSModel.GodownMaster" Role="GodownMaster" Multiplicity="0..1" />
+    <End Type="TRSModel.BookingMaster" Role="BookingMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GodownMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="BookingMaster">
+        <PropertyRef Name="godownNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Booking_RegularClientMaster">
+    <End Type="TRSModel.RegularClientMaster" Role="RegularClientMaster" Multiplicity="0..1" />
+    <End Type="TRSModel.BookingMaster" Role="BookingMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RegularClientMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="BookingMaster">
+        <PropertyRef Name="consignee" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BookingMaster_BookingMaster">
+    <End Type="TRSModel.BookingMaster" Role="BookingMaster" Multiplicity="1" />
+    <End Type="TRSModel.BookingMaster" Role="BookingMaster1" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="BookingMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="BookingMaster1">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BookingMaster_BranchMaster">
+    <End Type="TRSModel.BranchMaster" Role="BranchMaster" Multiplicity="0..1" />
+    <End Type="TRSModel.BookingMaster" Role="BookingMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BranchMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="BookingMaster">
+        <PropertyRef Name="deliveryBranch" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BookingMaster_GodownMaster">
+    <End Type="TRSModel.GodownMaster" Role="GodownMaster" Multiplicity="0..1" />
+    <End Type="TRSModel.BookingMaster" Role="BookingMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GodownMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="BookingMaster">
+        <PropertyRef Name="virtualGoddownNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BookingMaster_RegularClientMaster">
+    <End Type="TRSModel.RegularClientMaster" Role="RegularClientMaster" Multiplicity="0..1" />
+    <End Type="TRSModel.BookingMaster" Role="BookingMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RegularClientMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="BookingMaster">
+        <PropertyRef Name="consignor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BookingMaster_RegularClientMaster1">
+    <End Type="TRSModel.RegularClientMaster" Role="RegularClientMaster" Multiplicity="0..1" />
+    <End Type="TRSModel.BookingMaster" Role="BookingMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RegularClientMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="BookingMaster">
+        <PropertyRef Name="agentName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="PackingMaster">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="article" Type="Int32" />
+    <Property Name="item" Type="Int32" />
+    <Property Name="actualWeight" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="packingType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="bookingId" Type="Int32" />
+    <NavigationProperty Name="BookingMaster" Relationship="TRSModel.FK_PackingMaster_BookingMaster" FromRole="PackingMaster" ToRole="BookingMaster" />
+    <Property Name="isActive" Type="Boolean" />
+  </EntityType>
+  <Association Name="FK_PackingMaster_BookingMaster">
+    <End Type="TRSModel.BookingMaster" Role="BookingMaster" Multiplicity="0..1" />
+    <End Type="TRSModel.PackingMaster" Role="PackingMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BookingMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="PackingMaster">
+        <PropertyRef Name="bookingId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="RTOMaster">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="rtoCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="address" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="city" Type="Int32" />
+    <Property Name="pinCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="state" Type="Int32" />
+    <Property Name="stdCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="phoneNo" Type="Int32" />
+    <Property Name="emailId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="website" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="remark" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="isActive" Type="Boolean" />
+    <Property Name="mobileNo" Type="Int32" />
+    <NavigationProperty Name="CityMaster" Relationship="TRSModel.FK_RTOMaster_CityMaster" FromRole="RTOMaster" ToRole="CityMaster" />
+    <NavigationProperty Name="StateMaster" Relationship="TRSModel.FK_RTOMaster_StateMaster" FromRole="RTOMaster" ToRole="StateMaster" />
+  </EntityType>
+  <Association Name="FK_RTOMaster_CityMaster">
+    <End Type="TRSModel.CityMaster" Role="CityMaster" Multiplicity="0..1" />
+    <End Type="TRSModel.RTOMaster" Role="RTOMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CityMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="RTOMaster">
+        <PropertyRef Name="city" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RTOMaster_StateMaster">
+    <End Type="TRSModel.StateMaster" Role="StateMaster" Multiplicity="0..1" />
+    <End Type="TRSModel.RTOMaster" Role="RTOMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StateMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="RTOMaster">
+        <PropertyRef Name="state" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="AreaMaster">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="areaCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="areaName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="city" Type="Int32" />
+    <Property Name="pinCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="state" Type="Int32" />
+    <Property Name="stdCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="phoneNo" Type="Int32" />
+    <Property Name="mobileNo" Type="Int64" />
+    <Property Name="emailId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="region" Type="Int32" />
+    <Property Name="cashBalanceLimit" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="bankBalanceLimit" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="defaultCashLedger" Type="Int32" />
+    <Property Name="deafultBankLedger" Type="Int32" />
+    <Property Name="remark" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="isActive" Type="Boolean" />
+    <NavigationProperty Name="CityMaster" Relationship="TRSModel.FK_AreaMaster_CityMaster" FromRole="AreaMaster" ToRole="CityMaster" />
+    <NavigationProperty Name="RegionMaster" Relationship="TRSModel.FK_AreaMaster_RegionMaster" FromRole="AreaMaster" ToRole="RegionMaster" />
+    <NavigationProperty Name="StateMaster" Relationship="TRSModel.FK_AreaMaster_StateMaster" FromRole="AreaMaster" ToRole="StateMaster" />
+  </EntityType>
+  <Association Name="FK_AreaMaster_CityMaster">
+    <End Type="TRSModel.CityMaster" Role="CityMaster" Multiplicity="0..1" />
+    <End Type="TRSModel.AreaMaster" Role="AreaMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CityMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="AreaMaster">
+        <PropertyRef Name="city" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AreaMaster_RegionMaster">
+    <End Type="TRSModel.RegionMaster" Role="RegionMaster" Multiplicity="0..1" />
+    <End Type="TRSModel.AreaMaster" Role="AreaMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RegionMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="AreaMaster">
+        <PropertyRef Name="region" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AreaMaster_StateMaster">
+    <End Type="TRSModel.StateMaster" Role="StateMaster" Multiplicity="0..1" />
+    <End Type="TRSModel.AreaMaster" Role="AreaMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StateMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="AreaMaster">
+        <PropertyRef Name="state" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="GodownOwnerDetailsMaster">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="goddownOwnerCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="branch" Type="Int32" />
+    <Property Name="goddown" Type="Int32" />
+    <Property Name="ownerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="city" Type="Int32" />
+    <Property Name="pinCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="state" Type="Int32" />
+    <Property Name="stdCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="phoneNo" Type="Int32" />
+    <Property Name="mobileNo" Type="Int32" />
+    <Property Name="emailId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="sqft" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ratePerSqft" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="rentAmount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="gst" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="totalRent" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="tds" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="netRent" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="pan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="gstin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="bank" Type="Int32" />
+    <Property Name="ifsc" Type="Int32" />
+    <Property Name="a_cno" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="chequeInTheNameOf" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="nextVersionDate" Type="DateTime" Precision="0" />
+    <Property Name="holdPaymentInstruction" Type="Boolean" />
+    <Property Name="reamrk" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="isRented" Type="Boolean" />
+    <Property Name="rentPaymentType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="securityDeposit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="agreementStartDate" Type="DateTime" Precision="0" />
+    <Property Name="agreementEndDate" Type="DateTime" Precision="0" />
+    <Property Name="noticePeriodInDays" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="isActive" Type="Boolean" />
+    <NavigationProperty Name="BranchMaster" Relationship="TRSModel.FK_GodownOwnerDetailsMaster_BranchMaster" FromRole="GodownOwnerDetailsMaster" ToRole="BranchMaster" />
+    <NavigationProperty Name="CityMaster" Relationship="TRSModel.FK_GodownOwnerDetailsMaster_CityMaster" FromRole="GodownOwnerDetailsMaster" ToRole="CityMaster" />
+    <NavigationProperty Name="GodownMaster" Relationship="TRSModel.FK_GodownOwnerDetailsMaster_GodownMaster" FromRole="GodownOwnerDetailsMaster" ToRole="GodownMaster" />
+    <NavigationProperty Name="StateMaster" Relationship="TRSModel.FK_GodownOwnerDetailsMaster_StateMaster" FromRole="GodownOwnerDetailsMaster" ToRole="StateMaster" />
+  </EntityType>
+  <Association Name="FK_GodownOwnerDetailsMaster_BranchMaster">
+    <End Type="TRSModel.BranchMaster" Role="BranchMaster" Multiplicity="0..1" />
+    <End Type="TRSModel.GodownOwnerDetailsMaster" Role="GodownOwnerDetailsMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BranchMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="GodownOwnerDetailsMaster">
+        <PropertyRef Name="branch" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GodownOwnerDetailsMaster_CityMaster">
+    <End Type="TRSModel.CityMaster" Role="CityMaster" Multiplicity="0..1" />
+    <End Type="TRSModel.GodownOwnerDetailsMaster" Role="GodownOwnerDetailsMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CityMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="GodownOwnerDetailsMaster">
+        <PropertyRef Name="city" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GodownOwnerDetailsMaster_GodownMaster">
+    <End Type="TRSModel.GodownMaster" Role="GodownMaster" Multiplicity="0..1" />
+    <End Type="TRSModel.GodownOwnerDetailsMaster" Role="GodownOwnerDetailsMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GodownMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="GodownOwnerDetailsMaster">
+        <PropertyRef Name="goddown" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GodownOwnerDetailsMaster_StateMaster">
+    <End Type="TRSModel.StateMaster" Role="StateMaster" Multiplicity="0..1" />
+    <End Type="TRSModel.GodownOwnerDetailsMaster" Role="GodownOwnerDetailsMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StateMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="GodownOwnerDetailsMaster">
+        <PropertyRef Name="state" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="BankMaster">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Bank_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IFSC_code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Bank_Branch" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Contact" Type="Int32" />
+    <Property Name="state" Type="Int32" />
+    <Property Name="city" Type="Int32" />
+    <Property Name="DOC" Type="DateTime" Precision="3" />
+    <Property Name="DOM" Type="DateTime" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" />
+    <NavigationProperty Name="StateMaster" Relationship="TRSModel.FK_BankMaster_BankMaster1" FromRole="BankMaster" ToRole="StateMaster" />
+    <NavigationProperty Name="CityMaster1" Relationship="TRSModel.FK_BankMaster_CityMaster1" FromRole="BankMaster" ToRole="CityMaster" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_BankMaster_BankMaster">
+    <End Type="TRSModel.StateMaster" Role="StateMaster" Multiplicity="1" />
+    <End Type="TRSModel.BankMaster" Role="BankMaster" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="StateMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="BankMaster">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BankMaster_CityMaster">
+    <End Type="TRSModel.CityMaster" Role="CityMaster" Multiplicity="1" />
+    <End Type="TRSModel.BankMaster" Role="BankMaster" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="CityMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="BankMaster">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <Association Name="FK_BankMaster_BankMaster1">
+    <End Type="TRSModel.StateMaster" Role="StateMaster" Multiplicity="0..1" />
+    <End Type="TRSModel.BankMaster" Role="BankMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StateMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="BankMaster">
+        <PropertyRef Name="state" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BankMaster_CityMaster1">
+    <End Type="TRSModel.CityMaster" Role="CityMaster" Multiplicity="0..1" />
+    <End Type="TRSModel.BankMaster" Role="BankMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CityMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="BankMaster">
+        <PropertyRef Name="city" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

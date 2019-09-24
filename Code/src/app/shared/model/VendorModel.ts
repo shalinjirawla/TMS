@@ -1,0 +1,28 @@
+export class VendorModel{
+    id:number;
+    name:string;
+    vendorType:number;
+    address:string;
+    city:number;
+    pincode:string;
+    state:number;
+    STDcode:string;
+    phoneno:string;
+    mobileno:string;
+    emailid:string;
+    emailalert:boolean;
+    mobilealert:boolean;
+    PAN:string;
+    GSTIN:string;
+    referencename:string;
+    referphoneno:string;
+    refermobileno:string;
+    creditdays:string;
+    creditamount:string;
+    bankname:number;
+    bankbranch:number;
+    IFSC:number;
+    accountno:number;
+    chequename:string;
+    fileupload:string;
+}

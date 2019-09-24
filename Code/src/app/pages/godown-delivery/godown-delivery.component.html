@@ -1,0 +1,380 @@
+<div class="row">
+  <div class="col-12">
+    <div id="kick-start" class="card">
+      <div class="card-header">
+        <h4 class="card-title">Godown Delivery</h4>
+      </div>
+      <div class="card-body">
+        <div class="card-block">
+          <div class="card-text">
+            <div class="row">
+              <div class="col-md-11">
+                <!-- Vendor Type Master List -->
+              </div>
+              <div class="col-md-1 btnStyle">
+                <button class="btn btn-raised shadow-z-2 btn-info" (click)="ShowPopUp()">Add New</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="myclass">
+                <table class="table table-hover" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Gatepass No</th>
+                      <th>Gatepass Date</th>
+                      <th>Payment Mode</th>
+                      <th>Delivery Party</th>
+                      <th>Item</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let client of rows">
+                      <td>{{client.gatepassNo}}</td>
+                      <td>{{client.gatepassdate | date:"yyyy-MM-dd"}}</td>
+                      <td>{{client.paymentmode}}</td>
+                      <td>{{client.deliveryparty}}</td>
+                      <td>{{client.item}}</td>
+                      <td>
+                        <button (click)="ShowData(client.id)" class="btn btn-raised shadow-z-2 btn-info">
+                          <i class="fa fa-edit"></i>
+                        </button>
+                        <button (click)="DeleteGodownDelivery(client.id)" class="btn btn-raised shadow-z-2 btn-danger">
+                          <i class="fa fa-trash "></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #template>
+  <form [formGroup]="GodownDeliveryForm" (ngSubmit)="SaveDetail(GodownDeliveryForm.valid)">
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">{{Title}}</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="hidepopup()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+
+      <div class="row">
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">Gatepass No<span class="text-danger">*</span></label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="Gatepass No" formControlName="gatepassNo"
+                (input)="Validator($event)" required />
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">Gatepass Date<span class="text-danger">*</span></label>
+            <div class="">
+              <input class="form-control" type="date" placeholder="Gatepass Date" formControlName="gatepassdate"
+                required />
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Payment Mode<span class="text-danger">*</span></label>
+            <div class="">
+              <select class="form-control" formControlName="paymentmode" required>
+                <option value="">--Select--</option>
+                <option *ngFor="let cont of DropdownPaymentMode" value={{cont.Name}}>
+                  {{cont.Name}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Delivery Party<span class="text-danger">*</span></label>
+            <div class="">
+              <select class="form-control" formControlName="deliveryparty" required>
+                <option value="">--Select--</option>
+                <option *ngFor="let cont of regularModel" value={{cont.id}}>
+                  {{cont.clientName}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">Delivery Party Details<span class="text-danger">*</span></label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="Delivery Party Details"
+                formControlName="deliverypartydetails" required />
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Contract Party<span class="text-danger">*</span></label>
+            <div class="">
+              <select class="form-control" formControlName="contractparty" required>
+                <option value="">--Select--</option>
+                <option *ngFor="let cont of regularModel" value={{cont.id}}>
+                  {{cont.clientName}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">Contract Party Details<span class="text-danger">*</span></label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="Contract Party Details"
+                formControlName="contractpartydetails" required />
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row" style="margin-left:1px;margin-right:1px;">
+
+        <fieldset class="row">
+          <legend tooltip="deliveryAgainstAsCne">Enter CN Nos</legend>
+
+          <div class="panel-body">
+            <div class="form-row">
+              <div class="row">
+
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label class=" control-label">CN No</label>
+                    <div class="">
+                      <input class="form-control" type="text" placeholder="CN No" formControlName="CNno"
+                        (input)="Validator($event)" />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label class=" control-label">CN Date</label>
+                    <div class="">
+                      <input class="form-control" type="date" placeholder="CN Date" formControlName="CNdate" />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label class="control-label">Booking Branch</label>
+                    <div class="">
+                      <select class="form-control" formControlName="bookingbranch">
+                        <option value="0">--Select--</option>
+                        <option *ngFor="let cont of reserveModel" value={{cont.id}}>
+                          {{cont.branch}}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label class=" control-label">Consignor</label>
+                    <div class="">
+                      <input class="form-control" type="text" placeholder="Consignor" formControlName="consignor" />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label class=" control-label">Item</label>
+                    <div class="">
+                      <input class="form-control" type="text" placeholder="Item" formControlName="item" />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label class="control-label">Packing Type</label>
+                    <div class="">
+                      <select class="form-control" formControlName="packingType">
+                        <option value="">--Select--</option>
+                        <option *ngFor="let cont of packingtypeModel" value={{cont.id}}>
+                          {{cont.name}}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label class="control-label">Godown Name</label>
+                    <div class="">
+                      <select class="form-control" formControlName="godownname">
+                        <option value="">--Select--</option>
+                        <option *ngFor="let cont of godownModel" value={{cont.id}}>
+                          {{cont.godownName}}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label class="control-label">Virtual Godown Name</label>
+                    <div class="">
+                      <select class="form-control" formControlName="virtualgodownname">
+                        <option value="">--Select--</option>
+                        <option *ngFor="let cont of virtualgodownModel" value={{cont.id}}>
+                          {{cont.virtualGodownCode}}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label class=" control-label">Delivery Article</label>
+                    <div class="">
+                      <input class="form-control" type="text" placeholder="Delivery Article"
+                        formControlName="deliveryarticle" />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label class=" control-label">Delivery Weight</label>
+                    <div class="">
+                      <input class="form-control" type="text" placeholder="Delivery Weight"
+                        formControlName="deliveryweight" (input)="Validator($event)" />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label class=" control-label">Balance Article</label>
+                    <div class="">
+                      <input class="form-control" type="text" placeholder="Balance Article"
+                        formControlName="balancearticle" (input)="Validator($event)" />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label class=" control-label">Balance Weight</label>
+                    <div class="">
+                      <input class="form-control" type="text" placeholder="Balance Weight"
+                        formControlName="balanceweight" (input)="Validator($event)" />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label class=" control-label">Roll No</label>
+                    <div class="">
+                      <input class="form-control" type="text" placeholder="Roll No" formControlName="rollno"
+                        (input)="Validator($event)" />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label class=" control-label">Handed over to</label>
+                    <div class="">
+                      <input class="form-control" type="text" placeholder="Handed over to"
+                        formControlName="handedoverto" />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label class=" control-label">Contact No</label>
+                    <div class="">
+                      <input class="form-control" type="text" placeholder="Contact No" formControlName="contractNo"
+                        (input)="Validator($event)" />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label class=" control-label">Vehicle No</label>
+                    <div class="">
+                      <input class="form-control" type="text" placeholder="Vehicle No" formControlName="vehicleNo"
+                        (input)="Validator($event)" />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label class=" control-label">GUTKA No</label>
+                    <div class="">
+                      <input class="form-control" type="text" placeholder="GUTKA No" formControlName="GUTKANo" />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label class=" control-label">Remark</label>
+                    <div class="">
+                      <input class="form-control" type="text" placeholder="Remark" formControlName="remark" />
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+
+        </fieldset>
+
+      </div>
+
+
+    </div>
+    <div class="modal-footer">
+      <button type="reset" class="btn btn-raised shadow-z-2 btn-default" (click)="modalRef.hide()"
+        aria-label="Close">Close</button>
+      <button type="submit" class="btn btn-raised shadow-z-2 btn-success" [disabled]="!GodownDeliveryForm.valid">Save
+        changes</button>
+    </div>
+  </form>
+</ng-template>

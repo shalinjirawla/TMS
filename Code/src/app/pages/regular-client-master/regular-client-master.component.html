@@ -1,0 +1,582 @@
+<div class="row">
+  <div class="col-12">
+    <div id="kick-start" class="card">
+      <div class="card-header">
+        <h4 class="card-title">Regular Client Master</h4>
+      </div>
+      <div class="card-body">
+        <div class="card-block">
+          <div class="card-text">
+            <div class="row">
+              <div class="col-md-11">
+                <!-- Regular Client Master List -->
+              </div>
+              <div class="col-md-1 btnStyle">
+                <button class="btn btn-raised shadow-z-2 btn-info" (click)="ShowPopUp()">Add New</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="myclass">
+                <table class="table table-hover" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Client Name</th>
+                      <th>client Code</th>
+                      <th>Address</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let client of rows">
+                      <td>{{client.clientName}}</td>
+                      <td>{{client.clientCode}}</td>
+                      <td>{{client.address}}</td>
+                      <td>
+                        <button (click)="ShowData(client.id)" class="btn btn-raised shadow-z-2 btn-info">
+                          <i class="fa fa-edit"></i>
+                        </button>
+                        <button (click)="DeleteRegularClient(client.id)" class="btn btn-raised shadow-z-2 btn-danger">
+                          <i class="fa fa-trash "></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #template>
+  <form [formGroup]="RegularClientMasterForm" (ngSubmit)="SaveDetail(RegularClientMasterForm.value)">
+    <div class="modal-header">
+      <h4 class="modal-title pull-left"> {{ Title }} </h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="HidePopUp()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <ul class="nav nav-tabs" role="tablist">
+      <li class="nav-item" class="active">
+        <a class="nav-link active" href="#Client" role="tab" data-toggle="tab">Client Details</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " href="#payment" role="tab" data-toggle="tab">Payment Mode</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " href="#Other" role="tab" data-toggle="tab">Other Details</a>
+      </li>
+    </ul>
+    
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="Client">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="form-group">
+              <label class="control-label">ClientName</label>
+              <div class="">
+                <input class="form-control" type="text" (blur)="SetClientCode($event.target.value)"
+                  placeholder="clientName" formControlName="clientName" required />
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label class="control-label">Client Code</label>
+              <div class="">
+                <input class="form-control" type="text" disabled placeholder="Client Code" formControlName="clientCode"
+                  required />
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label class="control-label">Pan</label>
+              <div class="">
+                <input class="form-control" type="number" (input)="Validator($event)" placeholder="Pan"
+                  formControlName="pan" required />
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label class="control-label">GSTIN</label>
+              <div class="">
+                <input class="form-control" type="number" placeholder="GSTIN" formControlName="gstIN" required />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="form-group">
+              <label class="control-label">State</label>
+              <div class="">
+                <select class="form-control" formControlName="StateId" (change)="onChange($event.target.value)"
+                  required>
+                  <option value="0">--Select--</option>
+                  <option *ngFor="let cont of states" value={{cont.id}}>
+                    {{cont.StateName}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label class="control-label">City</label>
+              <div class="">
+                <select class="form-control" formControlName="cityId" required>
+                  <option value="0" selected>--Select--</option>
+                  <option *ngFor="let cont of cities" value={{cont.id}}>
+                    {{cont.cityName}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label class="control-label">PinCode</label>
+              <div class="">
+                <input class="form-control" type="number" (input)="Validator($event)" placeholder="PinCode"
+                  formControlName="pinCode" required />
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label class="control-label">Branch</label>
+              <div class="">
+                <select class="form-control" formControlName="branchId" required>
+                  <option value="0">--Select--</option>
+                  <option *ngFor="let cont of Branches" value={{cont.id}}>
+                    {{cont.branchName}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="control-label">Address</label>
+              <div class="">
+                <input class="form-control" type="text" placeholder="Address" formControlName="address" required />
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label class="control-label">PhoneNo</label>
+              <div class="">
+                <input class="form-control" type="number" placeholder="PhoneNo" formControlName="phoneNo" />
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label class="control-label">MobileNo</label>
+              <div class="">
+                <input class="form-control" type="number" placeholder="MobileNo" formControlName="mobileNo" required
+                  (input)="Validator($event)" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row" style="margin-left:1px;margin-right:1px;">
+          <fieldset class="row">
+            <legend tooltip="deliveryAgainstAsCne">Contact Info</legend>
+            <div formArrayName="RegularClient_Contact_info">
+              <div
+                *ngFor="let item of RegularClientMasterForm.controls.RegularClient_Contact_info.controls;let i=index">
+                <div class="panel-body" [formGroupName]="i">
+                  <div class="form-row">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="control-label">Department</label>
+                          <div class="">
+                            <input class="form-control" type="text" placeholder="Department"
+                              formControlName="Department" required />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="control-label">Mobile No. </label>
+                          <div class="">
+                            <input class="form-control" type="number" (input)="Validator($event)"
+                              placeholder="Mobile No. " formControlName="MobileNo" required />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="control-label">Email id </label>
+                          <div class="">
+                            <input class="form-control" type="email" placeholder="Email id " formControlName="EmailId"
+                              required />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <button class="btn btn-raised shadow-z-2 btn-info mt-2" (click)="removeClone(i)">
+                          <i class="fa fa-minus " aria-hidden="true"> Remove</i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <button type="button" class="btn btn-raised shadow-z-2 btn-info" (click)="addClone(i)">
+                <i class="fa fa-plus" aria-hidden="true">Add</i>
+              </button>
+            </div>
+          </fieldset>
+        </div>
+      </div>
+      <div role="tabpanel" class="tab-pane " id="payment">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="form-group">
+              <label class="control-label">Bank</label>
+              <div class="">
+                <select class="form-control" formControlName="bankId" (change)="onChangeBank($event.target.value)">
+                  <option value="0">--Select--</option>
+                  <option *ngFor="let bank of BankData" value="{{bank.id}}">{{bank.Bank_Name}}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label class="control-label">IFSC</label>
+              <div class="">
+                <select class="form-control" formControlName="ifsc" disabled>
+                  <option value="0">--Select--</option>
+                  <option *ngFor="let bank of BankData" value="{{bank.id}}">{{bank.IFSC_code}}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label class="control-label"> Account No.</label>
+              <div class="">
+                <input class="form-control" type="number" (input)="Validator($event)" placeholder="Account No"
+                  formControlName="accountNo" />
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label class="control-label">Cheque in the Name</label>
+              <div class="">
+                <input class="form-control" type="text" placeholder="Cheque in the Name"
+                  formControlName="chequeInTheNameOf" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="form-group">
+              <label class="control-label">Interest</label>
+              <div class="">
+                <input class="form-control" type="number" (input)="Validator($event)" placeholder="Interest"
+                  formControlName="interest" />
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label class="control-label">Credit Grace Days</label>
+              <div class="">
+                <input class="form-control" type="number" placeholder="Credit Grace Days" (input)="Validator($event)"
+                  formControlName="creditGraceDays" maxlength="6" />
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label class="control-label">Ledger Name</label>
+              <div class="">
+                <input class="form-control" type="text" placeholder="Ledger Name" formControlName="ledgerName" />
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+              <div class="form-group">
+                <label class="control-label">Branch master</label>
+                <div class="">
+                  <ng-multiselect-dropdown [placeholder]="'Branch master'" [data]="dropdownbranch"
+                    [settings]="branchSetting" formControlName="multipleBillingBranches">
+                  </ng-multiselect-dropdown>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="row" style="margin-left:1px;">
+          <fieldset>
+            <legend>Credit Limit</legend>
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="control-label" tooltip="Default Cash Ledger">Days</label>
+                  <div class="">
+                    <input class="form-control" type="number" (input)="Validator($event)" placeholder="Days"
+                      formControlName="days" />
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="control-label">Amount</label>
+                  <div class="">
+                    <input class="form-control" type="number" (input)="Validator($event)" placeholder="Amount"
+                      formControlName="amount" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+         <fieldset class="row" style="margin-left:8px;">
+            <legend>Booking Type</legend>
+            <div class="row" *ngFor="let list of BookingTypeChechbox" formGroupName="bookingType">
+              <div class="col-md-2">
+                <input id="BookingType{{list.id}}" class="form-control radio radio-inline" type="checkbox"
+                  value="{{list.id}}" [checked]="list.Selected" formControlName="{{list.formControlName}}" />
+              </div>
+              <div class="col-md-8">
+                <label for="BookingType{{list.id}}"> {{list.Name}}</label>
+              </div>
+            </div>
+          </fieldset> 
+          <!-- <fieldset>
+              <legend>Booking Type</legend>
+              <div class="row" *ngFor="let list of BookingTypeChechbox" formGroupName="bookingType">
+                  <div class="col-md-2">
+                    <input id="BookingType{{list.id}}" class="form-control radio radio-inline" type="checkbox"
+                      value="{{list.id}}" [checked]="list.Selected" (chenge)="onCheckboxChangeBooking(list,$event)" />
+                  </div>
+                  <div class="col-md-8">
+                    <label for="BookingType{{list.id}}"> {{list.Name}}</label>
+                  </div>
+          </fieldset> -->
+
+          <fieldset class="row" style="margin-left:5px;" formGroupName="deliveryType">
+            <legend>Delivery Type</legend>
+            <div class="row" *ngFor="let list of DeliveryTypeChechbox">
+              <div class="col-md-2">
+                <input id="DeliveryType{{list.id}}" class="form-control radio radio-inline" type="checkbox"
+                  value="{{list.id}}" [checked]="list.Selected" formControlName="{{list.formControlName}}" />
+              </div>
+              <div class="col-md-8">
+                <label for="DeliveryType{{list.id}}"> {{list.Name}}</label>
+              </div>
+            </div>
+          </fieldset>
+          <!-- <fieldset>
+            <legend>Delivery Type</legend>
+            <div class="row" *ngFor="let list of DeliveryTypeChechbox">
+                <div class="col-md-2">
+                    <input id="DeliveryType{{list.id}}" class="form-control radio radio-inline" type="checkbox"
+                    value="{{list.id}}" [checked]="list.Selected" (chenge)="onCheckboxChangeDelivery(list,$event)" />
+                </div>
+                <div class="col-md-8">
+                    <label for="DeliveryType{{list.id}}"> {{list.Name}}</label>
+                  </div>
+          </fieldset> -->
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <fieldset formGroupName="paymentMode">
+              <legend tooltip="deliveryAgainstAsCne">Payment Mode</legend>
+              <div class="row" *ngFor="let list of PaymentModeChechbox">
+                <div class="col-md-2">
+                  <input id="PM{{list.id}}" class="form-control" type="checkbox" value="{{list.id}}"
+                    [checked]="list.Selected" formControlName="{{list.formControlName}}" />
+                </div>
+                <div class="col-md-8">
+                  <label for="PM{{list.id}}"> {{list.Name}}</label>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+          <!-- <div class="col-md-3">
+            <fieldset>
+              <legend>Payment Mode</legend>
+              <div class="row" *ngFor="let list if PaymentModeChechbox">
+                <div class="col-md-2">
+                  <input id="PM{{list.id}}" class="form-control" type="checkbox" value="{{list.id}}"
+                  [checked]="list.Selected" (change)="onCheckboxChangePayment(list,$event)"/>
+                </div>
+                <div class="col-md-8">
+                  <label for="PM{{list.id}}">{{list.Name}}</label>
+                </div>
+              </div>
+            </fieldset>
+          </div> -->
+         
+          <div class="col-md-4">
+            <div class="row" *ngFor="let list of AlertChechbox" >
+              <div class="col-lg-2">
+                <input id="Alert{{list.id}}" class="form-control radio radio-inline" type="checkbox" value="{{list.id}}"
+                  [checked]="list.Selected" formControlName="{{list.formControlName}}" />
+              </div>
+              <div class="col-lg-6">
+                <label for="Alert{{list.id}}" > {{list.Name}}</label>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-5">
+              <div class="form-group">
+                <label class="control-label">Remark</label>
+                <div class="">
+                  <input class="form-control" type="text" placeholder="Remark" formControlName="remark" />
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+      <div role="tabpanel" class="tab-pane " id="Other">
+
+        <div class="row" style="margin-left:1px; margin-right:3px;">
+          <fieldset>
+            <legend> Insurance Details </legend>
+            <div class="row">
+              <div class="col-lg-4">
+                <div class="form-group">
+                  <label class="control-label">Company Name</label>
+                  <div class="">
+                    <input class="form-control" type="text" placeholder="Company Name" formControlName="companyNo" />
+                  </div>
+                </div>
+
+              </div>
+              <div class="col-lg-4">
+                <div class="form-group">
+                  <label class="control-label">Policy No.</label>
+                  <div class="">
+                    <input class="form-control" type="number" placeholder="Policy No." formControlName="policyNo" />
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-4">
+                <div class="form-group">
+                  <label class="control-label">Valid from Date</label>
+                  <div class="">
+                    <input class="form-control" type="date" placeholder="Valid from Date"
+                      formControlName="validFromDate" />
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="form-group">
+                  <label class="control-label">Valid to Date</label>
+                  <div class="">
+                    <input class="form-control" type="date" placeholder="Valid to Date" formControlName="validToDate" />
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="form-group">
+                  <label class="control-label"> Insurance Amount </label>
+                  <div class="">
+                    <input class="form-control" type="number" placeholder="Insurance Amount "
+                      formControlName="insuranceAmount" />
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="row" *ngFor="let list of InsuranceDetailsChechbox">
+                  <div class="col-md-1">
+                    <input id="InsuranceDetails{{list.id}}" class="form-control" type="checkbox" value="{{list.id}}"
+                      [checked]="list.Selected" formControlName="{{list.formControlName}}" />
+                  </div>
+                  <div class="col-md-10">
+                    <label for="InsuranceDetails{{list.id}}"> {{list.Name}}</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <fieldset formGroupName="deliveryAgainstAsCnr">
+              <legend tooltip="deliveryAgainstAsCnr">Delivery AS CNR</legend>
+              <div class="row" *ngFor="let list of DeliveryCheckboxesCNR">
+                <div class="col-md-1">
+                  <input id="DA{{list.id}}" class="form-control" type="checkbox" value="{{list.id}}"
+                    [checked]="list.Selected" formControlName="{{list.formControlName}}" />
+                </div>
+                <div class="col-md-11">
+                  <label for="DA{{list.id}}"> {{list.Name}}</label>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+          <!-- <div class="col-md-6">
+            <fieldset>
+              <legend>Delivery AS CNR</legend>
+                  <div class="row" *ngFor="let list of DeliveryCheckboxesCNR">
+                      <div class="col-md-1">
+                        <input id="DA{{list.id}}" class="form-control" type="checkbox" value="{{list.id}}"
+                        [checked]="list.Selected" (chenge)="onCheckboxChangeDeliveryCNR(list,$event)"/>
+                      </div>
+                      <div class="col-md-11">
+                        <label for="DA{{list.id}}">{{list.Name}}</label>
+                      </div>
+                  </div>
+            </fieldset>
+          </div> -->
+
+          <div class="col-md-6">
+            <fieldset formGroupName="deliveryAgainstAsCne">
+              <legend tooltip="deliveryAgainstAsCne">Delivery AS CNE</legend>
+              <div class="row" *ngFor="let list of DeliveryCheckboxesCNE">
+                <div class="col-md-1">
+                  <input id="DB{{list.id}}" class="form-control" type="checkbox" value="{{list.id}}"
+                    [checked]="list.Selected" formControlName="{{list.formControlName}}" />
+                </div>
+                <div class="col-md-11">
+                  <label for="DB{{list.id}}"> {{list.Name}}</label>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+
+          <!-- <div class="col-md-6">
+            <fieldset>
+              <legend>Delivery AS CNE</legend>
+              <div class="col-md-1">
+                <input id="DB{{list.id}}" class="form-control" type="checkbox" value="{{list.id}}"
+                [checked]="list.Selected" (chenge)="onCheckboxChangeDeliveryCNE(list,$event"/>
+              </div>
+              <div class="col-md-11">
+                <label for=DB{{list.id}}>{{list.Name}}</label>
+              </div>
+            </fieldset>
+          </div> -->
+        </div>
+        <div class="row"></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="reset" class="btn btn-raised shadow-z-2 btn-default" (click)="HidePopUp()"
+        aria-label="Close">Close</button>
+      <button type="submit" class="btn btn-raised shadow-z-2 btn-success"
+        [disabled]="!RegularClientMasterForm.valid">Save Changes
+      </button>
+    </div>
+  </form>
+</ng-template>

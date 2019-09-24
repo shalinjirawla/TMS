@@ -1,0 +1,305 @@
+<div class="row">
+  <div class="col-12">
+    <div id="kick-start" class="card">
+      <div class="card-header">
+        <h4 class="card-title">Branch Master</h4>
+      </div>
+      <div class="card-body">
+        <div class="card-block">
+          <div class="card-text">
+            <div class="row">
+              <div class="col-md-11">
+                <!-- Branch Master List -->
+              </div>
+              <div class="col-md-1 btnStyle">
+                <button class="btn btn-raised shadow-z-2 btn-info" (click)="ShowPopUp()">Add New</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="myclass">
+                <table class="table table-hover" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Branch Name</th>
+                      <th>Branch Code</th>
+                      <th>Phone No</th>
+                      <th>Remark</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let client of rows">
+                      <td>{{client.branchName}}</td>
+                      <td>{{client.branchCode}}</td>
+                      <td>{{client.phoneNo}}</td>
+                      <td>{{client.remark}}</td>
+                      <td>
+                        <button (click)="ShowData(client.id)" class="btn btn-raised shadow-z-2 btn-info">
+                          <i class="fa fa-edit"></i>
+                        </button>
+                        <button (click)="DeleteBranch(client.id)" class="btn btn-raised shadow-z-2 btn-danger">
+                          <i class="fa fa-trash "></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #template>
+  <form [formGroup]="BranchMasterForm" (ngSubmit)="SaveDetail(BranchMasterForm)">
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">{{ Title }}</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="HidePopUp()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">BranchName</label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="BranchName" formControlName="branchName" required/>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">BranchCode</label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="BranchCode" formControlName="branchCode" required/>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">BranchType</label>
+            <div class="row">
+              <div class="col-md-6">
+                <input id="ownRD" type="radio" formControlName="branchType" [value]="0">
+                <label for="ownRD">OWN</label>
+              </div>
+              <div class="col-md-6">
+                <input id="Agncy" type="radio" formControlName="branchType" [value]="1">
+                <label for="Agncy">Agency</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">State</label>
+            <div class="">
+              <select class="form-control" formControlName="stateId" (change)="onChange($event.target.value)">
+                <option value="0">--Select--</option>
+                <option *ngFor="let cont of states" value={{cont.id}}>
+                  {{cont.StateName}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">City</label>
+            <div class="">
+              <select class="form-control" formControlName="cityId">
+                <option value="0">--Select--</option>
+                <option *ngFor="let cont of cities" value={{cont.id}}>
+                  {{cont.cityName}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Area</label>
+            <div class="">
+              <select class="form-control" formControlName="areaId">
+                <option value="0">--Select--</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">CN</label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="CN" formControlName="cn" />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">MR</label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="MR" formControlName="mr" />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Challan</label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="challan" formControlName="challan" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Freight Bill</label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="Freight Bill" formControlName="freightBill" />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Expected-UnderLoad</label>
+            <div class="">
+              <input class="form-control" type="text" (input)="Validator($event)" placeholder="Expected UnderLoad %" formControlName="expectedUnderLoad"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label" tooltip="Expected Unloading After Arrival">Expected-Unloading</label>
+            <div class="">
+              <input class="form-control" type="text" (input)="Validator($event)" placeholder="Enter Minutes" formControlName="expectedUnloadingAfterArrival"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Max-Advance</label>
+            <div class="">
+              <input class="form-control" type="text" (input)="Validator($event)" placeholder="Max Advance" formControlName="maxAdvance"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label" tooltip="Default Cash Ledger">Default Cash</label>
+            <div class="">
+              <input class="form-control" type="text" (input)="Validator($event)" placeholder="Default Cash Ledger" formControlName="defaultCashLedger"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Default Bank Ledger</label>
+            <div class="">
+              <input class="form-control" type="text" (input)="Validator($event)" placeholder="Default Bank Legder" formControlName="defaultBankLedger"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <fieldset>
+            <legend>Delivery Against As</legend>
+            <div class="row" *ngFor="let list of DeliveryCheckboxes">
+              <div class="col-md-1">
+                <input id="DA{{list.id}}" class="form-control" type="checkbox" value="{{list.id}}" [checked]="list.Selected" (change)="onCheckboxChange(list,$event)"
+                />
+              </div>
+              <div class="col-md-11">
+                <label for="DA{{list.id}}"> {{list.Name}}</label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+        <div class="col-md-6">
+          <fieldset>
+            <legend>Default Bank Legder</legend>
+            <div class="row" *ngFor="let list of ServicesCheckboxes">
+              <div class="col-md-1">
+                <input id="DB{{list.id}}" class="form-control" type="checkbox" value="{{list.id}}" [checked]="list.Selected" (change)="onServiceCheckboxChange(list,$event)"
+                />
+              </div>
+              <div class="col-md-11">
+                <label for="DB{{list.id}}"> {{list.Name}}</label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">pincode</label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="pincode" (input)="Validator($event)" formControlName="pincode" maxlength="6"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">gstNo</label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="gstNo" formControlName="gstNo" />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">phoneNo</label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="Phone No" (input)="Validator($event)" formControlName="phoneNo" maxlength="10"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8">
+          <label class="control-label">Remark</label>
+          <div class="">
+            <input class="form-control" type="text" placeholder="Remark" formControlName="remark" />
+          </div>
+        </div>
+        <div class="col-md-4">
+          <label class="control-label">Mobile No</label>
+          <div class="">
+            <input class="form-control" type="text" placeholder="Mobile No" formControlName="mobileNo" (input)="Validator($event)" maxlength="10"
+            />
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <button type="reset" class="btn btn-raised shadow-z-2 btn-default" (click)="HidePopUp()" aria-label="Close">Close</button>
+      <button type="submit" class="btn btn-raised shadow-z-2 btn-success" [disabled]="!BranchMasterForm.valid">Save changes</button>
+    </div>
+  </form>
+</ng-template>

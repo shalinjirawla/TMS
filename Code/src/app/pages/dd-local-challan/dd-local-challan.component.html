@@ -1,0 +1,142 @@
+<div class="row">
+  <div class="col-12">
+    <div id="kick-start" class="card">
+      <div class="card-header">
+        <h4 class="card-title">DD Local Challan</h4>
+      </div>
+      <div class="card-body">
+        <div class="card-block">
+          <div class="card-text">
+            <div class="row">
+              <div class="col-md-11">
+                <!-- Packing Type Master List -->
+              </div>
+              <div class="col-md-1 btnStyle">
+                <button class="btn btn-raised shadow-z-2 btn-info" (click)="ShowPopUp()">Add New</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="myclass">
+                <table class="table table-hover" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Challan No</th>
+                      <th>Challan Date</th>
+                      <th>Pre Delivery No</th>
+                      <th>Hirecharges</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let client of rows">
+                      <td>{{client.DDlocalchallanNo }}</td>
+                      <td>{{client.DDlocalchallanDate | date:"yyyy-MM-dd"}}</td>
+                      <td>{{client.prideliveryNo}}</td>
+                      <td>{{client.Hirecharges}}</td>
+                      <td>
+                        <button (click)="ShowData(client.id)" class="btn btn-raised shadow-z-2 btn-info">
+                          <i class="fa fa-edit"></i>
+                        </button>
+                        <button (click)="DeleteDDLocalChallan(client.id)" class="btn btn-raised shadow-z-2 btn-danger">
+                          <i class="fa fa-trash "></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #template>
+  <form [formGroup]="DDLocalChallanForm" (ngSubmit)="SaveDetail(DDLocalChallanForm.valid)">
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">{{Title}}</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="hidepopup()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+
+      <div class="row">
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">DD Local Challan No</label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="DD Local Challan No"
+                formControlName="DDlocalchallanNo"  />
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">DD Local Challan Date</label>
+            <div class="">
+              <input class="form-control" type="date" placeholder="DD Local Challan Date"
+                formControlName="DDlocalchallanDate" />
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">Pre Delivery No</label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="Pre Delivery No" formControlName="prideliveryNo"
+                (input)="Validator($event)" />
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">Hirecharges</label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="Hirecharges" formControlName="Hirecharges"
+                (input)="Validator($event)" />
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Vehicle No</label>
+            <div class="">
+              <select class="form-control" formControlName="vehicleNo">
+                <option value="">--Select--</option>
+                <option *ngFor="let cont of vehicleModel" value={{cont.id}}>
+                  {{cont.vehicleNo}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">Remark </label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="Remark" formControlName="remark" />
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <button type="reset" class="btn btn-raised shadow-z-2 btn-default" (click)="modalRef.hide()"
+        aria-label="Close">Close</button>
+      <button type="submit" class="btn btn-raised shadow-z-2 btn-success" [disabled]="!DDLocalChallanForm.valid">Save
+        changes</button>
+    </div>
+  </form>
+</ng-template>

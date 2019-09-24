@@ -1,0 +1,179 @@
+<div class="row">
+  <div class="col-12">
+    <div id="kick-start" class="card">
+      <div class="card-header">
+        <h4 class="card-title">Local Vehicle Contract Master</h4>
+      </div>
+      <div class="card-body">
+        <div class="card-block">
+          <div class="card-text">
+            <div class="row">
+              <div class="col-md-11">
+                <!-- Local Vehicle Contract Master List -->
+              </div>
+              <div class="col-md-1 btnStyle">
+                <button class="btn btn-raised shadow-z-2 btn-info" (click)="ShowPopUp()">Add New</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="myclass">
+                <table class="table table-hover" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Branch</th>
+                      <th>Vehicle No</th>
+                      <th>Freight settlement</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let client of rows">
+                      <td>{{client.branchName}}</td>
+                      <td>{{client.vehicleName}}</td>
+                      <td>{{client.freightsettlement}}</td>
+                      <td>
+                        <button (click)="ShowData(client.id)" class="btn btn-raised shadow-z-2 btn-info">
+                          <i class="fa fa-edit"></i>
+                        </button>
+                        <button (click)="DeleteLocalVehicleContract(client.id)"
+                          class="btn btn-raised shadow-z-2 btn-danger">
+                          <i class="fa fa-trash "></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #template>
+  <form [formGroup]="LocalVehicleContractMasterForm" (ngSubmit)="SaveDetail(LocalVehicleContractMasterForm.valid)">
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">{{Title}}</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="hidepopup()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="control-label">Branch</label>
+            <div class="">
+              <select class="form-control" formControlName="branch">
+                <option value="0">--Select--</option>
+                <option *ngFor="let cont of branch" value={{cont.id}}>
+                  {{cont.branchName}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="control-label">Vehicle No</label>
+            <div class="">
+              <select class="form-control" formControlName="vehicleNo">
+                <option value="0">--Select--</option>
+                <option *ngFor="let cont of vehicle" value={{cont.id}}>
+                  {{cont.vehicleNo}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="control-label">Vendor Details</label>
+            <div class="">
+              <select class="form-control" formControlName="vendorDetail">
+                <option value="0">--Select--</option>
+                <option *ngFor="let cont of vendor" value={{cont.id}}>
+                  {{cont.name}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class=" control-label">From Date </label>
+            <div class="">
+              <input class="form-control" type="date" placeholder="Rate per KG" formControlName="fromdate" required />
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class=" control-label">To Date</label>
+            <div class="">
+              <input class="form-control" type="date" placeholder="To Date" formControlName="todate" required />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="control-label">Freight settlement</label>
+            <div class="">
+              <select class="form-control" formControlName="freightsettlement">
+                <option value="0">--Select--</option>
+                <option *ngFor="let cont of FreightSattlement" value={{cont.Name}}>
+                  {{cont.Name}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="control-label">Hire Basis</label>
+            <div class="">
+              <select class="form-control" formControlName="hirebasis">
+                <option value="0">--Select--</option>
+                <option *ngFor="let cont of hirechassis" value={{cont.Name}}>
+                  {{cont.Name}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class=" control-label">Hire Rate</label>
+            <div class="">
+              <input class="form-control" (input)="Validator($event)" type="text" placeholder="Hire Rate"
+                formControlName="hirerate" required />
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <button type="reset" class="btn btn-raised shadow-z-2 btn-default" (click)="modalRef.hide()"
+        aria-label="Close">Close</button>
+      <button type="submit" class="btn btn-raised shadow-z-2 btn-success"
+        [disabled]="!LocalVehicleContractMasterForm.valid">Save changes</button>
+    </div>
+  </form>
+</ng-template>

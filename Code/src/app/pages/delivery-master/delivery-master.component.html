@@ -1,0 +1,1116 @@
+<div class="row">
+  <div class="col-12">
+    <div id="kick-start" class="card">
+      <div class="card-header">
+        <h4 class="card-title">Delivery Operations</h4>
+      </div>
+      <div class="card-body">
+        <div class="card-block">
+          <div class="card-text">
+            <div class="row">
+              <div class="col-md-11">
+                <!-- Delivery Operations List -->
+              </div>
+              <div class="col-md-1 btnStyle">
+                <button class="btn btn-raised shadow-z-2 btn-info" (click)="ShowPopUp()">Add New</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="myclass">
+                <table class="table table-hover" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Gatepass No</th>
+                      <!-- <th>Gatepass Date</th> -->
+                      <th>Contract Party</th>
+                      <th>Payment Mode</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let client of rows">
+                      <td>{{client.gatepassNo}}</td>
+                      <td>{{client.contractpartydetails}}</td>
+                      <td>{{client.paymentmode}}</td>
+                      <td>
+                        <button (click)="ShowData(client.id)" class="btn btn-raised shadow-z-2 btn-info">
+                          <i class="fa fa-edit"></i>
+                        </button>
+                        <button (click)="DeleteDelivery(client.id)" class="btn btn-raised shadow-z-2 btn-danger">
+                          <i class="fa fa-trash"></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #template>
+  <form [formGroup]="DeliveryMasterForm" (ngSubmit)="SaveDetail(DeliveryMasterForm.valid)">
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">{{Title}}</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="HidePopup()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <ul class="nav nav-tabs" role="tablist">
+      <li class="nav-item" class="active">
+        <a class="nav-link active" href="#Godown" role="tab" data-toggle="tab">Godown Delivery</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#Door" role="tab" data-toggle="tab">Door Delivery</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#Bill" role="tab" data-toggle="tab">Bill</a>
+      </li>
+    </ul>
+
+    <div class="tab-content">
+
+      <div role="tabpanel" class="tab-pane active" id="Godown">
+
+        <div class="row">
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Gatepass No<span class="text-danger">*</span></label>
+              <div class="">
+                <input class="form-control" type="text" placeholder="Gatepass No" formControlName="gatepassNo"
+                  (input)="Validator($event)" required />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Gatepass Date<span class="text-danger">*</span></label>
+              <div class="">
+                <input class="form-control" type="date" placeholder="Gatepass Date" formControlName="gatepassdate"
+                  required />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class="control-label">Payment Mode<span class="text-danger">*</span></label>
+              <div class="">
+                <select class="form-control" formControlName="paymentmode" required>
+                  <option value="">--Select--</option>
+                  <option *ngFor="let cont of DropdownPaymentMode" value={{cont.Name}}>
+                    {{cont.Name}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class="control-label">Delivery Party<span class="text-danger">*</span></label>
+              <div class="">
+                <select class="form-control" formControlName="deliveryparty" required>
+                  <option value="">--Select--</option>
+                  <option *ngFor="let cont of regularModel" value={{cont.id}}>
+                    {{cont.clientName}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Delivery Party Details<span class="text-danger">*</span></label>
+              <div class="">
+                <input class="form-control" type="text" placeholder="Delivery Party Details"
+                  formControlName="deliverypartydetails" required />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class="control-label">Contract Party<span class="text-danger">*</span></label>
+              <div class="">
+                <select class="form-control" formControlName="contractparty" required>
+                  <option value="">--Select--</option>
+                  <option *ngFor="let cont of regularModel" value={{cont.id}}>
+                    {{cont.clientName}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Contract Party Details<span class="text-danger">*</span></label>
+              <div class="">
+                <input class="form-control" type="text" placeholder="Contract Party Details"
+                  formControlName="contractpartydetails" required />
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row" style="margin-left:1px;margin-right:1px;">
+
+          <fieldset class="row">
+            <legend tooltip="deliveryAgainstAsCne">Enter CN Nos</legend>
+
+            <div class="panel-body">
+              <div class="form-row">
+                <div class="row">
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class=" control-label">CN No</label>
+                      <div class="">
+                        <input class="form-control" type="text" placeholder="CN No" formControlName="CNno"
+                          (input)="Validator($event)" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class=" control-label">CN Date</label>
+                      <div class="">
+                        <input class="form-control" type="date" placeholder="CN Date" formControlName="CNdate" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class="control-label">Booking Branch</label>
+                      <div class="">
+                        <select class="form-control" formControlName="bookingbranch">
+                          <option value="0">--Select--</option>
+                          <option *ngFor="let cont of bookigModel" value={{cont.id}}>
+                            {{cont.branch}}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class=" control-label">Consignor</label>
+                      <div class="">
+                        <input class="form-control" type="text" placeholder="Consignor" formControlName="consignor" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class=" control-label">Item</label>
+                      <div class="">
+                        <input class="form-control" type="text" placeholder="Item" formControlName="item" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class="control-label">Packing Type</label>
+                      <div class="">
+                        <select class="form-control" formControlName="packingType">
+                          <option value="">--Select--</option>
+                          <option *ngFor="let cont of packingModel" value={{cont.id}}>
+                            {{cont.name}}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class="control-label">Godown Name</label>
+                      <div class="">
+                        <select class="form-control" formControlName="godownname">
+                          <option value="">--Select--</option>
+                          <option *ngFor="let cont of godownModel" value={{cont.id}}>
+                            {{cont.godownName}}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class="control-label">Virtual Godown Name</label>
+                      <div class="">
+                        <select class="form-control" formControlName="virtualgodownname">
+                          <option value="">--Select--</option>
+                          <option *ngFor="let cont of virtualgodownModel" value={{cont.id}}>
+                            {{cont.virtualGodownCode}}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class=" control-label">Delivery Article</label>
+                      <div class="">
+                        <input class="form-control" type="text" placeholder="Delivery Article"
+                          formControlName="deliveryarticle" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class=" control-label">Delivery Weight</label>
+                      <div class="">
+                        <input class="form-control" type="text" placeholder="Delivery Weight"
+                          formControlName="deliveryweight" (input)="Validator($event)" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class=" control-label">Balance Article</label>
+                      <div class="">
+                        <input class="form-control" type="text" placeholder="Balance Article"
+                          formControlName="balancearticle" (input)="Validator($event)" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class=" control-label">Balance Weight</label>
+                      <div class="">
+                        <input class="form-control" type="text" placeholder="Balance Weight"
+                          formControlName="balanceweight" (input)="Validator($event)" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class=" control-label">Roll No</label>
+                      <div class="">
+                        <input class="form-control" type="text" placeholder="Roll No" formControlName="rollno"
+                          (input)="Validator($event)" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class=" control-label">Handed over to</label>
+                      <div class="">
+                        <input class="form-control" type="text" placeholder="Handed over to"
+                          formControlName="handedoverto" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class=" control-label">Contact No</label>
+                      <div class="">
+                        <input class="form-control" type="text" placeholder="Contact No" formControlName="contractNo"
+                          (input)="Validator($event)" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class=" control-label">Vehicle No</label>
+                      <div class="">
+                        <input class="form-control" type="text" placeholder="Vehicle No" formControlName="vehicleNo"
+                          (input)="Validator($event)" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class=" control-label">GUTKA No</label>
+                      <div class="">
+                        <input class="form-control" type="text" placeholder="GUTKA No" formControlName="GUTKANo" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class=" control-label">Remark</label>
+                      <div class="">
+                        <input class="form-control" type="text" placeholder="Remark" formControlName="remark" />
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+
+          </fieldset>
+
+        </div>
+
+      </div>
+
+      <div role="tabpanel" class="tab-pane" id="Door">
+
+        <div class="row" style="margin-left:1px;margin-right:1px;">
+
+          <fieldset class="row">
+
+            <legend tooltip="deliveryAgainstAsCne">Pre Delivery</legend>
+            <div class="panel-body">
+              <div class="form-row">
+                <div class="row">
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class=" control-label">Pre Delivery No</label>
+                      <div class="">
+                        <input class="form-control" type="text" placeholder="Pre Delivery No"
+                          formControlName="predeliveryNo" (input)="Validator($event)" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class=" control-label">Pre Delivery Date</label>
+                      <div class="">
+                        <input class="form-control" type="date" placeholder="Pre Delivery Date"
+                          formControlName="predeliverydate" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class="control-label">Payment Mode</label>
+                      <div class="">
+                        <select class="form-control" formControlName="paymentmode1">
+                          <option value="">--Select--</option>
+                          <option *ngFor="let cont of DropdownPaymentMode" value={{cont.Name}}>
+                            {{cont.Name}}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class="control-label">Delivery Party</label>
+                      <div class="">
+                        <select class="form-control" formControlName="deliveryparty1">
+                          <option value="">--Select--</option>
+                          <option *ngFor="let cont of regularModel" value={{cont.id}}>
+                            {{cont.clientName}}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class=" control-label">Pre Delivery No</label>
+                      <div class="">
+                        <input class="form-control" type="text" placeholder="Delivery Party Details"
+                          formControlName="deliverypartydetails1" (input)="Validator($event)" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class="control-label">Contract Party</label>
+                      <div class="">
+                        <select class="form-control" formControlName="contractparty1">
+                          <option value="">--Select--</option>
+                          <option *ngFor="let cont of regularModel" value={{cont.id}}>
+                            {{cont.clientName}}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class=" control-label">Contract Party Details</label>
+                      <div class="">
+                        <input class="form-control" type="text" placeholder="Contract Party Details"
+                          formControlName="contractpartydetails1" />
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+          </fieldset>
+
+        </div>
+
+        <div class="row" style="margin-left:1px;margin-right:1px;">
+
+          <fieldset class="row">
+
+            <legend tooltip="deliveryAgainstAsCne">Enter CN Nos</legend>
+            <div class="panel-body">
+              <div class="form-row">
+                <div class="row">
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class=" control-label">CN No</label>
+                      <div class="">
+                        <input class="form-control" type="text" placeholder="CN No" formControlName="CNno1"
+                          (input)="Validator($event)" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class=" control-label">CN Date</label>
+                      <div class="">
+                        <input class="form-control" type="date" placeholder="CN Date" formControlName="CNdate1" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class="control-label">Booking Branch</label>
+                      <div class="">
+                        <select class="form-control" formControlName="bookingbranch1">
+                          <option value="">--Select--</option>
+                          <option *ngFor="let cont of bookigModel" value={{cont.id}}>
+                            {{cont.branch}}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class=" control-label">Consignor</label>
+                      <div class="">
+                        <input class="form-control" type="text" placeholder="Consignor" formControlName="consignoor1" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class=" control-label">Item</label>
+                      <div class="">
+                        <input class="form-control" type="text" placeholder="Item" formControlName="item1" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class="control-label">Packing Type</label>
+                      <div class="">
+                        <select class="form-control" formControlName="packingType1">
+                          <option value="">--Select--</option>
+                          <option *ngFor="let cont of packingModel" value={{cont.id}}>
+                            {{cont.name}}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class="control-label">Godown Name</label>
+                      <div class="">
+                        <select class="form-control" formControlName="godownname1">
+                          <option value="">--Select--</option>
+                          <option *ngFor="let cont of godownModel" value={{cont.id}}>
+                            {{cont.godownName}}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class="control-label">Virtual Godown Name</label>
+                      <div class="">
+                        <select class="form-control" formControlName="virtualgodownname1">
+                          <option value="">--Select--</option>
+                          <option *ngFor="let cont of virtualgodownModel" value={{cont.id}}>
+                            {{cont.virtualGodownCode}}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class=" control-label">Delivery Article</label>
+                      <div class="">
+                        <input class="form-control" type="text" placeholder="Delivery Article"
+                          formControlName="deliveryarticle1" (input)="Validator($event)" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class=" control-label">Delivery Weight</label>
+                      <div class="">
+                        <input class="form-control" type="text" placeholder="Delivery Weight"
+                          formControlName="deliveryweight1" (input)="Validator($event)" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class=" control-label">Balance Article</label>
+                      <div class="">
+                        <input class="form-control" type="text" placeholder="Balance Article"
+                          formControlName="balancearticle1" (input)="Validator($event)" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class=" control-label">Balance Weight</label>
+                      <div class="">
+                        <input class="form-control" type="text" placeholder="Balance Weight"
+                          formControlName="deliveryweight1" (input)="Validator($event)" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class=" control-label">Roll No</label>
+                      <div class="">
+                        <input class="form-control" type="text" placeholder="Roll No" formControlName="rollNo1"
+                          (input)="Validator($event)" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class=" control-label">Remark</label>
+                      <div class="">
+                        <input class="form-control" type="text" placeholder="Remark" formControlName="remark2" />
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+          </fieldset>
+
+        </div>
+
+
+        <div class="row" style="margin-left:1px;margin-right:1px;">
+
+          <fieldset class="row">
+
+            <legend tooltip="deliveryAgainstAsCne">DD Local Challan</legend>
+            <div class="panel-body">
+              <div class="form-row">
+                <div class="row">
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class=" control-label">DD Local Challan No</label>
+                      <div class="">
+                        <input class="form-control" type="text" placeholder="DD Local Challan No"
+                          formControlName="DDlocalchallanNo" (input)="Validator($event)" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class=" control-label">DD Local Challan Date</label>
+                      <div class="">
+                        <input class="form-control" type="date" placeholder="DD Local Challan Date"
+                          formControlName="DDlocalchallanDate" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class=" control-label">Pre Delivery No</label>
+                      <div class="">
+                        <input class="form-control" type="text" placeholder="Pre Delivery No"
+                          formControlName="prideliveryNo1" (input)="Validator($event)" />
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class=" control-label">Hirecharges</label>
+                      <div class="">
+                        <input class="form-control" type="text" placeholder="Hirecharges" formControlName="Hirecharges"
+                          (input)="Validator($event)" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class=" control-label">Vehicle No</label>
+                      <div class="">
+                        <input class="form-control" type="text" placeholder="Vehicle No" formControlName="vehicleNo1"
+                          (input)="Validator($event)" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class=" control-label">Remark </label>
+                      <div class="">
+                        <input class="form-control" type="text" placeholder="Remark" formControlName="remark1" />
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+          </fieldset>
+
+        </div>
+
+        <div class="row" style="margin-left:1px;margin-right:1px;">
+
+          <fieldset class="row">
+
+            <legend tooltip="deliveryAgainstAsCne">Door Delivery Confirmation</legend>
+            <div class="panel-body">
+              <div class="form-row">
+                <div class="row">
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class=" control-label">Door Delivery No</label>
+                      <div class="">
+                        <input class="form-control" type="text" placeholder="Door Delivery No"
+                          formControlName="doordeliveryNo" (input)="Validator($event)" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class=" control-label">CN No</label>
+                      <div class="">
+                        <input class="form-control" type="text" placeholder="CN No" formControlName="CNno2"
+                          (input)="Validator($event)" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class=" control-label">CN Date</label>
+                      <div class="">
+                        <input class="form-control" type="date" placeholder="CN Date" formControlName="CNdate2" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class="control-label">Booking Branch</label>
+                      <div class="">
+                        <select class="form-control" formControlName="bookingbranch2">
+                          <option value="">--Select--</option>
+                          <option *ngFor="let cont of bookigModel" value={{cont.id}}>
+                            {{cont.branch}}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class=" control-label">Consignor</label>
+                      <div class="">
+                        <input class="form-control" type="text" placeholder="Consignor " formControlName="consignor2" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class=" control-label">Item</label>
+                      <div class="">
+                        <input class="form-control" type="text" placeholder="Item" formControlName="item2" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class=" control-label">Delivery Article </label>
+                      <div class="">
+                        <input class="form-control" type="text" placeholder="Delivery Article"
+                          formControlName="deliveryarticle2" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class=" control-label">Delivery Weight </label>
+                      <div class="">
+                        <input class="form-control" type="text" placeholder="Delivery Weight"
+                          formControlName="deliveryweight2" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class=" control-label">Undelivered Article</label>
+                      <div class="">
+                        <input class="form-control" type="text" placeholder="Undelivered Article"
+                          formControlName="undeliveredarticle" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class=" control-label">Undelivered Weight</label>
+                      <div class="">
+                        <input class="form-control" type="text" placeholder="Undelivered Weight"
+                          formControlName="undeliveredweight" (input)="Validator($event)" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class=" control-label">Balance Article</label>
+                      <div class="">
+                        <input class="form-control" type="text" placeholder="Balance Article"
+                          formControlName="balancearticle2" (input)="Validator($event)" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class=" control-label">Balance Weight</label>
+                      <div class="">
+                        <input class="form-control" type="text" placeholder="Balance Weight"
+                          formControlName="balanceweight2" (input)="Validator($event)" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class=" control-label">Roll No</label>
+                      <div class="">
+                        <input class="form-control" type="text" placeholder="Roll No" formControlName="rollno2"
+                          (input)="Validator($event)" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class=" control-label">Remark </label>
+                      <div class="">
+                        <input class="form-control" type="text" placeholder="Remark " formControlName="remark3" />
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+          </fieldset>
+
+        </div>
+
+      </div>
+
+      <div role="tabpanel" class="tab-pane" id="Bill">
+
+        <div class="row">
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Bill No</label>
+              <div class="">
+                <input class="form-control" type="text" placeholder="Bill No" formControlName="billNo"
+                  (input)="Validator($event)" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Bill Date</label>
+              <div class="">
+                <input class="form-control" type="date" placeholder="Bill Date" formControlName="billdate" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">CN No</label>
+              <div class="">
+                <input class="form-control" type="text" placeholder="CN No" formControlName="CNno3"
+                  (input)="Validator($event)" />
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">CN Date</label>
+              <div class="">
+                <input class="form-control" type="date" placeholder="CN Date" formControlName="CNdate3" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class="control-label">Booking Branch</label>
+              <div class="">
+                <select class="form-control" formControlName="bookingbranch3">
+                  <option value="">--Select--</option>
+                  <option *ngFor="let cont of bookigModel" value={{cont.id}}>
+                    {{cont.branch}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Delivery Branch</label>
+              <div class="">
+                <input class="form-control" type="text" placeholder="Delivery Branch"
+                  formControlName="deliverybranch1" />
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Article</label>
+              <div class="">
+                <input class="form-control" type="text" placeholder="Article" formControlName="article" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Actual Weight</label>
+              <div class="">
+                <input class="form-control" type="text" placeholder="Actual Weight" formControlName="actualweight"
+                  (input)="Validator($event)" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Charge Weight</label>
+              <div class="">
+                <input class="form-control" type="text" placeholder="Charge Weight" formControlName="chargeweight"
+                  (input)="Validator($event)" />
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Freight Details</label>
+              <div class="">
+                <input class="form-control" type="text" placeholder="Freight Details"
+                  formControlName="freightdetails" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="checkbox h-30">
+              <label class="control-label">Payment Mode</label>
+              <div class="">
+                <input type="checkbox" formControlName="paymentmode2" />
+
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="row" style="margin-left:1px;margin-right:1px;">
+
+          <fieldset class="row">
+
+            <legend tooltip="deliveryAgainstAsCne">Bank</legend>
+            <div class="panel-body">
+              <div class="form-row">
+                <div class="row">
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class=" control-label">Cheque No</label>
+                      <div class="">
+                        <input class="form-control" type="text" placeholder="Cheque No" formControlName="chequeNo"
+                          (input)="Validator($event)" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class=" control-label">Cheque Date</label>
+                      <div class="">
+                        <input class="form-control" type="date" placeholder="Cheque Date"
+                          formControlName="chequedate" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class=" control-label">Amount</label>
+                      <div class="">
+                        <input class="form-control" type="text" placeholder="Amount" formControlName="amount1"
+                          (input)="Validator($event)" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class=" control-label">Remark</label>
+                      <div class="">
+                        <input class="form-control" type="text" placeholder="Remark" formControlName="remark4" />
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+          </fieldset>
+
+        </div>
+
+        <div class="row" style="margin-left:1px;margin-right:1px;">
+
+          <fieldset class="row">
+
+            <legend tooltip="deliveryAgainstAsCne">Cash</legend>
+            <div class="panel-body">
+              <div class="form-row">
+                <div class="row">
+
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label class=" control-label">Amount</label>
+                      <div class="">
+                        <input class="form-control" type="text" placeholder="Amount" formControlName="amount"
+                          (input)="Validator($event)" />
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+          </fieldset>
+
+        </div>
+
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <button type="reset" class="btn btn-raised shadow-z-2 btn-default" (click)="modalRef.hide()"
+        aria-label="Close">Close</button>
+      <button type="submit" class="btn btn-raised shadow-z-2 btn-success" [disabled]="!DeliveryMasterForm.valid">Save
+        changes</button>
+    </div>
+  </form>
+</ng-template>

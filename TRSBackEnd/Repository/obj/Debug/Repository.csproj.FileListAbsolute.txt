@@ -1,0 +1,79 @@
+E:\Haresh\TRSBackEnd\Repository\bin\Debug\Repository.dll.config
+E:\Haresh\TRSBackEnd\Repository\bin\Debug\Repository.dll
+E:\Haresh\TRSBackEnd\Repository\bin\Debug\Repository.pdb
+E:\Haresh\TRSBackEnd\Repository\bin\Debug\EntityFramework.dll
+E:\Haresh\TRSBackEnd\Repository\bin\Debug\EntityFramework.SqlServer.dll
+E:\Haresh\TRSBackEnd\Repository\bin\Debug\System.ValueTuple.dll
+E:\Haresh\TRSBackEnd\Repository\bin\Debug\EntityFramework.xml
+E:\Haresh\TRSBackEnd\Repository\bin\Debug\EntityFramework.SqlServer.xml
+E:\Haresh\TRSBackEnd\Repository\bin\Debug\System.ValueTuple.xml
+E:\Haresh\TRSBackEnd\Repository\obj\Debug\Repository.csprojAssemblyReference.cache
+E:\Haresh\TRSBackEnd\Repository\obj\Debug\Repository.csproj.CoreCompileInputs.cache
+E:\Haresh\TRSBackEnd\Repository\obj\Debug\Repository.csproj.CopyComplete
+E:\Haresh\TRSBackEnd\Repository\obj\Debug\Repository.dll
+E:\Haresh\TRSBackEnd\Repository\obj\Debug\Repository.pdb
+E:\Naufil\Project\TRS\TRSBackEnd\Repository\bin\Debug\Repository.dll.config
+E:\Naufil\Project\TRS\TRSBackEnd\Repository\bin\Debug\Repository.dll
+E:\Naufil\Project\TRS\TRSBackEnd\Repository\bin\Debug\Repository.pdb
+E:\Naufil\Project\TRS\TRSBackEnd\Repository\bin\Debug\EntityFramework.dll
+E:\Naufil\Project\TRS\TRSBackEnd\Repository\bin\Debug\EntityFramework.SqlServer.dll
+E:\Naufil\Project\TRS\TRSBackEnd\Repository\bin\Debug\System.ValueTuple.dll
+E:\Naufil\Project\TRS\TRSBackEnd\Repository\bin\Debug\EntityFramework.xml
+E:\Naufil\Project\TRS\TRSBackEnd\Repository\bin\Debug\EntityFramework.SqlServer.xml
+E:\Naufil\Project\TRS\TRSBackEnd\Repository\bin\Debug\System.ValueTuple.xml
+E:\Naufil\Project\TRS\TRSBackEnd\Repository\obj\Debug\Repository.csprojAssemblyReference.cache
+E:\Naufil\Project\TRS\TRSBackEnd\Repository\obj\Debug\Repository.csproj.CoreCompileInputs.cache
+E:\Naufil\Project\TRS\TRSBackEnd\Repository\obj\Debug\Repository.csproj.CopyComplete
+E:\Naufil\Project\TRS\TRSBackEnd\Repository\obj\Debug\Repository.dll
+E:\Naufil\Project\TRS\TRSBackEnd\Repository\obj\Debug\Repository.pdb
+D:\Dhruv\Project\TRS\Code\trs\TRSBackEnd\Repository\bin\Debug\Repository.dll.config
+D:\Dhruv\Project\TRS\Code\trs\TRSBackEnd\Repository\bin\Debug\Repository.dll
+D:\Dhruv\Project\TRS\Code\trs\TRSBackEnd\Repository\bin\Debug\Repository.pdb
+D:\Dhruv\Project\TRS\Code\trs\TRSBackEnd\Repository\bin\Debug\EntityFramework.dll
+D:\Dhruv\Project\TRS\Code\trs\TRSBackEnd\Repository\bin\Debug\EntityFramework.SqlServer.dll
+D:\Dhruv\Project\TRS\Code\trs\TRSBackEnd\Repository\bin\Debug\System.ValueTuple.dll
+D:\Dhruv\Project\TRS\Code\trs\TRSBackEnd\Repository\bin\Debug\EntityFramework.xml
+D:\Dhruv\Project\TRS\Code\trs\TRSBackEnd\Repository\bin\Debug\EntityFramework.SqlServer.xml
+D:\Dhruv\Project\TRS\Code\trs\TRSBackEnd\Repository\bin\Debug\System.ValueTuple.xml
+D:\Dhruv\Project\TRS\Code\trs\TRSBackEnd\Repository\obj\Debug\Repository.csproj.CoreCompileInputs.cache
+D:\Dhruv\Project\TRS\Code\trs\TRSBackEnd\Repository\obj\Debug\Repository.csproj.CopyComplete
+D:\Dhruv\Project\TRS\Code\trs\TRSBackEnd\Repository\obj\Debug\Repository.dll
+D:\Dhruv\Project\TRS\Code\trs\TRSBackEnd\Repository\obj\Debug\Repository.pdb
+D:\Dhruv\Project\TRS\Code\trs\TRSBackEnd\Repository\obj\Debug\Repository.csprojAssemblyReference.cache
+E:\TRS\TRSBackEnd - 1\Repository\bin\Debug\Repository.dll.config
+E:\TRS\TRSBackEnd - 1\Repository\bin\Debug\Repository.dll
+E:\TRS\TRSBackEnd - 1\Repository\bin\Debug\Repository.pdb
+E:\TRS\TRSBackEnd - 1\Repository\bin\Debug\EntityFramework.dll
+E:\TRS\TRSBackEnd - 1\Repository\bin\Debug\EntityFramework.SqlServer.dll
+E:\TRS\TRSBackEnd - 1\Repository\bin\Debug\System.ValueTuple.dll
+E:\TRS\TRSBackEnd - 1\Repository\bin\Debug\EntityFramework.xml
+E:\TRS\TRSBackEnd - 1\Repository\bin\Debug\EntityFramework.SqlServer.xml
+E:\TRS\TRSBackEnd - 1\Repository\bin\Debug\System.ValueTuple.xml
+E:\TRS\TRSBackEnd - 1\Repository\obj\Debug\Repository.csprojAssemblyReference.cache
+E:\TRS\TRSBackEnd - 1\Repository\obj\Debug\Repository.csproj.CoreCompileInputs.cache
+E:\TRS\TRSBackEnd - 1\Repository\obj\Debug\Repository.csproj.CopyComplete
+E:\TRS\TRSBackEnd - 1\Repository\obj\Debug\Repository.dll
+E:\TRS\TRSBackEnd - 1\Repository\obj\Debug\Repository.pdb
+E:\TRS\TRSBackEnd\Repository\bin\Debug\Repository.dll.config
+E:\TRS\TRSBackEnd\Repository\bin\Debug\Repository.dll
+E:\TRS\TRSBackEnd\Repository\bin\Debug\Repository.pdb
+E:\TRS\TRSBackEnd\Repository\bin\Debug\EntityFramework.dll
+E:\TRS\TRSBackEnd\Repository\bin\Debug\EntityFramework.SqlServer.dll
+E:\TRS\TRSBackEnd\Repository\bin\Debug\System.ValueTuple.dll
+E:\TRS\TRSBackEnd\Repository\bin\Debug\EntityFramework.xml
+E:\TRS\TRSBackEnd\Repository\bin\Debug\EntityFramework.SqlServer.xml
+E:\TRS\TRSBackEnd\Repository\bin\Debug\System.ValueTuple.xml
+E:\TRS\TRSBackEnd\Repository\obj\Debug\Repository.csprojAssemblyReference.cache
+E:\TRS\TRSBackEnd\Repository\obj\Debug\Repository.csproj.CoreCompileInputs.cache
+E:\TRS\TRSBackEnd\Repository\obj\Debug\Repository.csproj.CopyComplete
+E:\TRS\TRSBackEnd\Repository\obj\Debug\Repository.dll
+E:\TRS\TRSBackEnd\Repository\obj\Debug\Repository.pdb
+E:\TRS\TRSBackEnd\Repository\bin\Debug\Newtonsoft.Json.dll
+E:\TRS\TRSBackEnd\Repository\bin\Debug\System.Net.Http.Formatting.dll
+E:\TRS\TRSBackEnd\Repository\bin\Debug\System.Web.Cors.dll
+E:\TRS\TRSBackEnd\Repository\bin\Debug\System.Web.Http.dll
+E:\TRS\TRSBackEnd\Repository\bin\Debug\Newtonsoft.Json.xml
+E:\TRS\TRSBackEnd\Repository\bin\Debug\System.Net.Http.Formatting.xml
+E:\TRS\TRSBackEnd\Repository\bin\Debug\System.Web.Http.xml
+E:\TRS\TRSBackEnd\Repository\bin\Debug\System.Web.Http.Cors.dll
+E:\TRS\TRSBackEnd\Repository\bin\Debug\System.Web.Http.Cors.xml

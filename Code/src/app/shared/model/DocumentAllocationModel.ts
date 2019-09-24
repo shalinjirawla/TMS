@@ -1,0 +1,19 @@
+export class DocumentAllocationModel{
+    id:number;
+    generationdate:Date;
+    documenttype:string;
+    startseriesNo:string;
+    endseriesNo:string;
+    count:string;
+    dateofprinting:Date;
+    documenttype1:string;
+    startseriesNo1:string;
+    endseriesNo1:string;
+    count1:string;
+    dateofallocation:Date;
+    branch:number;
+    documenettype2:string;
+    startseriesNo2:string;
+    endseriesNo2:string;
+    count2:string;
+}

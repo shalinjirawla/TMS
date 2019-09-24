@@ -1,0 +1,719 @@
+<div class="row">
+  <div class="col-12">
+    <div id="kick-start" class="card">
+      <div class="card-header">
+        <h4 class="card-title">Booking Master</h4>
+      </div>
+      <div class="card-body">
+        <div class="card-block">
+          <div class="card-text">
+            <div class="row">
+              <div class="col-md-11">
+                <!-- Booking Master List -->
+              </div>
+              <div class="col-md-1 btnStyle">
+                <button class="btn btn-raised shadow-z-2 btn-info" (click)="ShowPopUp()">Add New</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="myclass">
+                <table class="table table-hover" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>CN</th>
+                      <th>EDD</th>
+                      <th>Goddown No</th>
+                      <th>Payment Type</th>
+                      <th>Actual Weight</th>
+                      <th>Consignee</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let booking of rows;let i = index;">
+                      <td>{{booking.cn | date:"yyyy-MM-dd"}}</td>
+                      <td>{{booking.expectedDelivery | date:"yyyy-MM-dd"}}</td>
+
+                      <td> {{booking.godownName }}</td>
+                      <td>{{booking.paymentType}}</td>
+                      <td>{{booking.actualWeight}}</td>
+                      <td>{{booking.clientName}}</td>
+
+                      <td>
+                        <button class="btn btn-raised shadow-z-2 btn-info" (click)="ShowData(booking.id)">
+                          <i class="fa fa-edit"></i>
+                        </button>
+                        <button class="btn btn-raised shadow-z-2 btn-danger" (click)="DeleteBookings(booking.id)">
+                          <i class="fa fa-trash "></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #template>
+  <form [formGroup]="BookingMasterForm" (ngSubmit)="SaveBooking(BookingMasterForm)">
+
+
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">{{ title }}</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="HidePopUp()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <ul class="nav nav-tabs" role="tablist">
+      <li class="nav-item" class="active">
+        <a class="nav-link active" href="#profile" role="tab" data-toggle="tab">Booking</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#buzz" role="tab" data-toggle="tab">Reserve CN</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#references" role="tab" data-toggle="tab">Upload Packing Slip</a>
+      </li>
+    </ul>
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="profile">
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">CN</label>
+                <div class="">
+                  <input class="form-control" type="date" placeholder="CN" formControlName="cn" />
+                  <div *ngIf="BookingMasterForm.controls['cn'].errors && !BookingMasterForm.controls['cn'].pristine"
+                    class="error-msg">
+                    <div [hidden]="!BookingMasterForm.controls['cn'].errors.required">CN is required.</div>
+                    <div [hidden]="!BookingMasterForm.controls['cn'].errors.patternInvalid">CN is invalid.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">EDD</label>
+                <div class="">
+                  <input class="form-control" type="date" placeholder="Expected Delivery Date"
+                    formControlName="expectedDelivery" required />
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">From</label>
+                <div class="">
+                  <ng-multiselect-dropdown [placeholder]="'From'" [data]="from" [settings]="branchSetting"
+                    formControlName="from" required>
+                  </ng-multiselect-dropdown>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">To</label>
+                <div class="">
+                  <ng-multiselect-dropdown [placeholder]="'To'" [data]="all" [settings]="branchSetting"
+                    formControlName="to" required>
+                  </ng-multiselect-dropdown>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">Goddown No</label>
+                <div class="">
+                  <ng-multiselect-dropdown [placeholder]="'Goddown No'" [data]="AllGoddowns" [settings]="godownSetting"
+                    formControlName="godownNo">
+                  </ng-multiselect-dropdown>
+                  <div
+                    *ngIf="BookingMasterForm.controls['godownNo'].errors && !BookingMasterForm.controls['godownNo'].pristine"
+                    class="error-msg">
+                    <div [hidden]="!BookingMasterForm.controls['godownNo'].errors.required">Goddown No is required.
+                    </div>
+                    <div [hidden]="!BookingMasterForm.controls['godownNo'].errors.patternInvalid">Goddown No is invalid.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">Payment Type</label>
+                <div class="">
+                  <select class="form-control" formControlName="paymentType">
+                    <option value="0">--Select--</option>
+                    <option *ngFor="let cont of PaymentBox" value={{cont.Name}}>
+                      {{cont.Name}}
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">Actual Weight</label>
+                <div class="">
+                  <input class="form-control" type="number" placeholder="Actual Weight"
+                    formControlName="actualWeight" />
+
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">Consignee</label>
+                <div class="">
+                  <ng-multiselect-dropdown [placeholder]="'Consignee'" [data]="AllConsignee"
+                    [settings]="consigneeSetting" formControlName="consignee">
+                  </ng-multiselect-dropdown>
+
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">Delivery Branch</label>
+                <div class="">
+                  <ng-multiselect-dropdown [placeholder]="'Delivery Branch'" [data]="deliveryBranch"
+                    [settings]="deliverySetting" formControlName="deliveryBranch">
+                  </ng-multiselect-dropdown>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">Agent Name</label>
+                <div class="">
+                  <ng-multiselect-dropdown [placeholder]="'Agent Name'" [data]="AgentName" [settings]="agentSetting"
+                    formControlName="agentName">
+                  </ng-multiselect-dropdown>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">Agent Details</label>
+                <div class="">
+                  <input class="form-control" type="text" placeholder="Agent Details" formControlName="agentDetails" />
+
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">Consignor</label>
+                <div class="">
+                  <ng-multiselect-dropdown [placeholder]="'Consignor'" [data]="Consignor" [settings]="consigorSetting"
+                    formControlName="consignor">
+                  </ng-multiselect-dropdown>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">Consignee Details</label>
+                <div class="">
+                  <input class="form-control" type="text" placeholder="Consignee Details"
+                    formControlName="consignorDetails" />
+
+                </div>
+              </div>
+
+            </div>
+            <div class="col-md-4">
+              <div class="checkbox h-30">
+                <label class="control-label">Is Cc Attached</label>
+                <div class="">
+                  <input type="checkbox" formControlName="isCcAttached" />
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">Virtual Godown No</label>
+                <div class="">
+                  <ng-multiselect-dropdown [placeholder]="'Virtual Godown No'" [data]="virtualGodownno"
+                    [settings]="GodownNoSetting" formControlName="virtualGoddownNo">
+                  </ng-multiselect-dropdown>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">
+                  Invoice No</label>
+                <div class="">
+                  <input class="form-control" type="number" placeholder=" Invoice No" formControlName="invoiceNo" />
+
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">Invoice Value</label>
+                <div class="">
+                  <input class="form-control" type="text" placeholder="Invoice Value" formControlName="invoiceValue" />
+
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">Charge Weight</label>
+                <div class="">
+                  <input class="form-control" type="number" placeholder="Charge Weight"
+                    formControlName="chargeWeight" />
+
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">Freight Rate </label>
+                <div class="">
+                  <input class="form-control" type="text" placeholder="Freight Rate" formControlName="freightRate" />
+
+                </div>
+
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">Private Mark </label>
+                <div class="">
+                  <input class="form-control" type="text" placeholder="Private Mark" formControlName="privateMark" />
+
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">Surcharge </label>
+                <div class="">
+                  <input class="form-control" type="number" placeholder="Surcharge" formControlName="surcharge" />
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">Hamali Charge </label>
+                <div class="">
+                  <input class="form-control" type="number" placeholder="Hamali Charge "
+                    formControlName="hamaliCharge" />
+
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">Consignor Details </label>
+                <div class="">
+                  <input class="form-control" type="text" placeholder="Consignor Details "
+                    formControlName="consignorDetails" />
+                  <div
+                    *ngIf="BookingMasterForm.controls['consignorDetails'].errors && !BookingMasterForm.controls['consignorDetails'].pristine"
+                    class="error-msg">
+                    <div [hidden]="!BookingMasterForm.controls['consignorDetails'].errors.required">Consignee Details is
+                      required.</div>
+                    <div [hidden]="!BookingMasterForm.controls['consignorDetails'].errors.patternInvalid">Consignee
+                      Details is invalid.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">Local Cartages </label>
+                <div class="">
+                  <input class="form-control" type="text" placeholder="Local Cartages"
+                    formControlName="localCartages" />
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">Door Delivery Charge </label>
+                <div class="">
+                  <input class="form-control" type="number" placeholder="Door Delivery Charge"
+                    formControlName="doorDeliveryCharge" />
+
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">Statistical Charges </label>
+                <div class="">
+                  <input class="form-control" type="number" placeholder="Statistical Charges "
+                    formControlName="statisticalCharges" />
+
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">Miscellaneous Charges </label>
+                <div class="">
+                  <input class="form-control" type="number" placeholder="Miscellaneous Charges"
+                    formControlName="miscellaneousCharges" />
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">Godown Charges </label>
+                <div class="">
+                  <input class="form-control" type="number" placeholder="Godown Charges"
+                    formControlName="godownCharges" />
+
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">COD</label>
+                <div class="">
+                  <input class="form-control" type="number" placeholder="Actual Weight" formControlName="cod" />
+
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">Consignor Invoice</label>
+                <div class="">
+                  <input class="form-control" type="date" placeholder="Consignor Invoice"
+                    formControlName="consignorInvoice" />
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">FTL</label>
+                <div class="">
+                  <select class="form-control" formControlName="ftl">
+                    <option value="0">--Select--</option>
+                    <option *ngFor="let cont of AllConsignee" value={{cont.id}}>
+                      {{cont.clientName}}
+                    </option>
+                  </select>
+
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">CN NO </label>
+                <div class="">
+                  <input class="form-control" type="text" placeholder="CN NO" formControlName="cnNo" />
+
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">Booking Type</label>
+                <div class="">
+                  <ng-multiselect-dropdown [placeholder]="'Booking Type'" [data]="bookingTypeBox"
+                    [settings]="dropdownSettings" formControlName="bookingType">
+                  </ng-multiselect-dropdown>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">Freight Basis</label>
+                <div class="">
+                  <ng-multiselect-dropdown [placeholder]="'Freight Basis'" [data]="freight"
+                    [settings]="dropdownSettings" formControlName="freightBasis">
+                  </ng-multiselect-dropdown>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">Insured by</label>
+                <div class="">
+                  <select class="form-control" formControlName="insuredBy">
+                    <option value="0">--Select--</option>
+                    <option *ngFor="let cont of insuredBox" value={{cont.name}}>
+                      {{cont.name}}
+                    </option>
+                  </select>
+
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">Delivery Type</label>
+                <div class="">
+                  <!-- <select class="form-control" formControlName="deliveryType">
+                  <option value="0">--Select--</option>
+                  <option *ngFor="let cont of deliveryBox" value={{cont.name}}>
+                    {{cont.name}}
+                  </option>
+                </select> -->
+                  <ng-multiselect-dropdown [placeholder]="'Delivery Type'" [data]="deliveryBox"
+                    [settings]="dropdownSettings" formControlName="deliveryType">
+                  </ng-multiselect-dropdown>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">Mode of Transport</label>
+                <div class="">
+                  <ng-multiselect-dropdown [placeholder]="'Mode of Transport'" [data]="modelOfTransportBox"
+                    [settings]="dropdownSettings" formControlName="modeOfTransport">
+                  </ng-multiselect-dropdown>
+
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="checkbox h-30">
+                <label class="control-label">Is Cod</label>
+                <div class="">
+                  <input type="checkbox" formControlName="isCod" />
+
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">Freight</label>
+                <div class="">
+                  <input type="text" formControlName="freight" class="form-control">
+                  <div
+                    *ngIf="BookingMasterForm.controls['freight'].errors && !BookingMasterForm.controls['freight'].pristine"
+                    class="error-msg">
+                    <div [hidden]="!BookingMasterForm.controls['freight'].errors.required">freight is required.</div>
+                    <div [hidden]="!BookingMasterForm.controls['freight'].errors.patternInvalid">freight is invalid.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">FOV / Risk Charge</label>
+                <div class="">
+                  <input type="text" class="form-control" formControlName="riskCharge">
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-5">
+              <fieldset>
+                <legend tooltip="deliveryAgainstAsCne">SingleCn</legend>
+                <div formArrayName="singleCn">
+                  <div *ngFor="let item of BookingMasterForm.controls.singleCn.controls;let i=index">
+                    <div class="panel-body" [formGroupName]="i">
+                      <!-- <div class="form-group">
+                            <label class="control-label">Article</label>
+                          
+                              <input type="text"  class="form-control" formControlName="article">
+                              <label class="control-label">Article</label>
+                         
+                                <input type="text"  class="form-control" formControlName="article">
+              
+              
+                         
+            
+                           
+                          </div>
+                          <div class="form-group">
+                             
+                            </div> -->
+                      <div class="form-row">
+                        <div class="col">
+                          <label class="control-label">Article</label>
+                          <input type="number" class="form-control" placeholder="Article" formControlName="article">
+                        </div>
+                        <div class="col">
+                          <label class="control-label">Packing Type</label>
+                          <ng-multiselect-dropdown [placeholder]="'Packing Type'" [data]="packingBookingBox"
+                            [settings]="dropdownSettings" formControlName="packingType">
+                          </ng-multiselect-dropdown>
+                        </div>
+                        <!-- <div class="col">
+                          <label class="control-label">Item</label>
+                          <input type="text" class="form-control" placeholder="Last name">
+                        </div> -->
+                        <div class="col">
+                          <label class="control-label">Actual Weight</label>
+                          <input type="number" class="form-control" placeholder="Actual Weight"
+                            formControlName="actualWeight1">
+                        </div>
+                      </div>
+                    </div>
+                    <button class="btn btn-raised shadow-z-2 btn-info mt-2" (click)="removeClone(i)">
+                      <i class="fa fa-minus " aria-hidden="true"> Remove</i>
+                    </button>
+                  </div>
+                  <button type="button" class="btn btn-raised shadow-z-2 btn-info" (click)="addClone(i)">
+                    <i class="fa fa-plus" aria-hidden="true">Add</i>
+                  </button>
+
+                </div>
+              </fieldset>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+
+
+
+
+      <!-- Second tab -->
+      <div role="tabpanel" class="tab-pane fade" id="buzz">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class="control-label">Branch</label>
+              <div class="">
+                <input class="form-control" type="text" placeholder="Branch" formControlName="branch" />
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <!-- <div class="form-group">
+              <label class="control-label">From</label>
+              <div class="">
+                <ng-multiselect-dropdown [placeholder]="'Reserve Reason'" [data]="from" [settings]="branchSetting"
+                  formControlName="from" >
+                </ng-multiselect-dropdown>
+              </div>
+            </div> -->
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class="control-label">CN from</label>
+              <div class="">
+                <input class="form-control" type="date" placeholder="CN from" formControlName="cnFrom" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class="control-label">CN to</label>
+              <div class="">
+                <input class="form-control" type="date" placeholder="CN to" formControlName="cnTo" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Third tab -->
+      <div role="tabpanel" class="tab-pane fade " id="references">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class="control-label">Roll No</label>
+              <div class="">
+                <input class="form-control" type="text" placeholder="Roll No" formControlName="rollNo" />
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class="control-label">SRTO NO</label>
+              <div class="">
+                <input class="form-control" type="number" placeholder="SRTO NO" formControlName="srtoNo" />
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class="control-label">LOT NO</label>
+              <div class="">
+                <input class="form-control" type="number" placeholder="LOT NO" formControlName="lotNo" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class="control-label">METER</label>
+              <div class="">
+                <input class="form-control" type="number" placeholder="METER" formControlName="meter" />
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class="control-label">WEIGHT IN KG</label>
+              <div class="">
+                <input class="form-control" type="number" placeholder="WEIGHT IN KG" formControlName="weightInKg" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="reset" class="btn btn-raised shadow-z-2 btn-default" (click)="HidePopUp()"
+        aria-label="Close">Close</button>
+      <button type="submit" class="btn btn-raised shadow-z-2 btn-success" [disabled]="BookingMasterForm.invalid">Save
+        changes
+      </button>
+    </div>
+  </form>
+</ng-template>

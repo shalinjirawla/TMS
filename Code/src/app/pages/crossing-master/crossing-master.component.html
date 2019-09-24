@@ -1,0 +1,156 @@
+
+<div class="row">
+  <div class="col-12">
+    <div id="kick-start" class="card">
+      <div class="card-header">
+        <h4 class="card-title">Crossing Master</h4>
+      </div>
+      <div class="card-body">
+        <div class="card-block">
+          <div class="card-text">
+            <div class="row">
+              <div class="col-md-11">
+                <!-- Crossing Master List -->
+              </div>
+              <div class="col-md-1 btnStyle">
+                <button class="btn btn-raised shadow-z-2 btn-info" (click)="ShowPopUp()">Add New</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="myclass">
+                <table class="table table-hover" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Booking Type</th>
+                      <th>Transport Type</th>
+                      <th>From branch</th>
+                      <th>To branch</th>
+                      <th>Hire per KG</th>
+                      <th>Hamali per KG</th>
+                      <!-- <th>Total Crossing pe KG</th> -->
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let client of rows">
+                      <td>{{client.bookingType}}</td>
+                      <td>{{client.transpotType}}</td>
+                      <td>{{client.frombracnhname}}</td>
+                      <td>{{client.tobranchname}}</td>
+                      <td>{{client.hireperKG}}</td>
+                      <td>{{client.hamaliperKG}}</td>
+                      <!-- <td>{{client.totalcrossingperKG}}</td> -->
+                      <td>
+                        <button (click)="ShowData(client.id)" class="btn btn-raised shadow-z-2 btn-info">
+                          <i class="fa fa-edit"></i>
+                        </button>
+                        <button (click)="DeleteCrossing(client.id)" class="btn btn-raised shadow-z-2 btn-danger">
+                          <i class="fa fa-trash"></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+ <ng-template #template>
+  <form [formGroup]="CrossingMasterForm" (ngSubmit)="SaveDetail(CrossingMasterForm.value)">
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">{{Title}}</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="HidePopup()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="control-label">Booking Type</label>
+            <div class="">
+              <select class="form-control" formControlName="bookingType">
+                <option value="0">--Select--</option>
+                <option *ngFor="let cont of BookingTypeChechbox" value={{cont.Name}}>
+                  {{cont.Name}}
+                </option>
+              </select>
+            </div>
+          </div>
+          </div>
+          <div class="col-md-6">
+              <div class="form-group">
+                <label class="control-label">Transport Type</label>
+                <div class="">
+                  <select class="form-control" formControlName="transpotType">
+                    <option value="0">--Select--</option>
+                    <option *ngFor="let cont of TranspotTypeCheckBox" value={{cont.Name}}>
+                      {{cont.Name}}
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                      <label class=" control-label">From branch</label>
+                      <div class="">
+                        <select class="form-control" formControlName="frombranch">
+                          <option value="0">--Select--</option>
+                          <option *ngFor="let cont of Branches" value={{cont.id}}>
+                            {{cont.branchName}}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6"> 
+                    <div class="form-group">
+                      <label class=" control-label">To branch</label>
+                      <div class="">
+                        <select class="form-control" formControlName="tobranch">
+                          <option value="0">--Select--</option>
+                          <option *ngFor="let cont of Branches" value={{cont.id}}>
+                            {{cont.branchName}}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                  </div> 
+                </div>
+      <div class="form-group">
+        <label class=" control-label">Hire per KG</label>
+        <div class="">
+          <input class="form-control"  (input)="Validator($event)" type="text" placeholder="Hire per KG" formControlName="hireperKG" required/>
+        </div>
+      </div>
+
+      <div class="form-group">
+          <label class=" control-label">Hamali per KG</label>
+          <div class="">
+            <input class="form-control"  (input)="Validator($event)" type="text" placeholder="Hamali per KG" formControlName="hamaliperKG" required/>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label class=" control-label">Total Crossing per KG</label>
+          <div class="">
+            <input class="form-control"  (input)="Validator($event)" type="text" placeholder="Total Crossing per KG" formControlName="totalcrossingperKG" required/>
+          </div>
+        </div>
+    </div> 
+    <div class="modal-footer">
+      <button type="reset" class="btn btn-raised shadow-z-2 btn-default" (click)="modalRef.hide()" aria-label="Close">Close</button>
+      <button type="submit" class="btn btn-raised shadow-z-2 btn-success" [disabled]="!CrossingMasterForm.valid">Save changes</button>
+    </div>
+  </form>
+</ng-template>

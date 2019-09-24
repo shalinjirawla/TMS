@@ -1,0 +1,43 @@
+export class TruckUnloadingModel{
+    id:number;
+    truckUnloadingNo:string;
+    truckUnloadingDate:Date;
+    vehicleNo:number;
+    truckArrivalNo:number;
+    truckArrivalDate:Date;
+    challanNo:string;
+    CNNo:string;
+    CNDate:Date;
+    bookingBranch:number;
+    deliveryLocation:string;
+    article:string;
+    loadedArticle:string;
+    loadedWeight:string;
+    receivedArticle:string;
+    receivedWeight:string;
+    godown:number;
+    virtualGodown:number;
+    receivedCondition:string;
+    damageLeakageArticle:string;
+    damageLeakageWeight:string;
+    damageLeakageValue:string;
+    DDbySame:boolean;
+    rollno:string;
+    vehicleArrivalDate:Date;
+    vehicleExpectedUploadDate:Date;
+    vehicleActualUploadDate:Date;
+    remark1:string;
+    GRNo:string;
+    consignor:string;
+    consignee:string;
+    packingType:number;
+    commodity:number;
+    ArticleRollNo:string;
+    meter:string;
+    weight:string;
+    sortNo:string;
+    lotNo:string;
+    remark2:string;
+
+    vehicleNoName:string;
+}

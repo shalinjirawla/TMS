@@ -1,0 +1,35 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+    <span class="h3 textcolor"><br />
+      TRS
+      <hr>
+    </span>
+    <br />
+    <form [formGroup]="UserMasterForm"  autocomplete="off" (ngSubmit)="GetLogin(UserMasterForm.value)">      
+     <div style="padding-left: 70px">
+      <div class="user-input-wrp">
+        <br />     
+        <input type="text" formControlName="UserName"  autocomplete="off" class="inputText" required />
+        
+        <span class="floating-label textcolor"> User Name</span>
+      </div>
+      <div class="user-input-wrp " >
+        <br />     
+        <input type="password" formControlName="Password" autocomplete="off" class="inputText" required />
+        <span class="floating-label textcolor"> Passsword</span>
+      </div>
+    </div><br />
+      <input type="submit" [disabled]="!UserMasterForm.valid"  class="fadeIn fourth" value="{{Title}}"><br />
+      <label class="text-center text-danger">{{ErrorMessage}}</label>
+      <div id="formFooter">
+        <a class="underlineHover" href="#">Forgot Password?</a>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+export class BillModel{
+    id:number;
+    billNo:string;
+    billdate:Date;
+    CNno:string;
+    CNdate:Date;
+    bookingbranch:number;
+    deliverybranch:string;
+    article:string;
+    actualweight:number;
+    chargeweight:number;
+    freightdetails:number;
+    paymentmode:boolean;
+    amount:string;
+    chequeNo:number;
+    chequedate:Date;
+    amount1:number;
+    remark4:string;
+    bookingbranchName:string;
+}

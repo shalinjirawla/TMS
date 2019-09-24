@@ -1,0 +1,43 @@
+.btnStyle{
+margin-left: -2%;
+}
+.myclass{
+    width: 100%;
+}
+
+input[type='checkbox']{
+    width: 30px;
+}
+fieldset{
+    display: block;
+    -webkit-margin-start: 2px;
+    -webkit-margin-end: 2px;
+    -webkit-padding-before: 0.35em;
+    -webkit-padding-start: 0.75em;
+    -webkit-padding-end: 0.75em;
+    -webkit-padding-after: 0.625em;
+    min-width: -webkit-min-content;
+    border-width: 2px;
+    border-style: groove;
+    border-color: threedface;
+    border-image: initial;
+    color: #75787d;
+    width:46rem;
+}
+legend {
+    width: unset!important;
+    max-width: 100%;
+    padding: 0;
+    margin-bottom: .5rem;
+    font-size: 1.1rem;
+    line-height: inherit;
+    color: inherit;
+    white-space: normal;
+    color: #75787d;
+}
+fieldset label{
+    padding-top: 9px;
+}
+.col-xs-6{
+    width:10rem;
+}

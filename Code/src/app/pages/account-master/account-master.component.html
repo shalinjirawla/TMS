@@ -1,0 +1,373 @@
+<div class="row">
+  <div class="col-12">
+    <div id="kick-start" class="card">
+      <div class="card-header">
+        <h4 class="card-title">Account Finance</h4>
+      </div>
+      <div class="card-body">
+        <div class="card-block">
+          <div class="card-text">
+            <div class="row">
+              <div class="col-md-11">
+                <!-- Account Finance List -->
+              </div>
+              <div class="col-md-1 btnStyle">
+                <button class="btn btn-raised shadow-z-2 btn-info" (click)="ShowPopUp()">Add New</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="myclass">
+                <table class="table table-hover" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Ledger Name</th>
+                      <th>Nature</th>
+                      <th>GSTIN</th>
+                      <th>Opening Balance</th>
+                      <th>Cost Centre Name</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let client of rows">
+                      <td>{{client.ledgergroupname}}</td>
+                      <td>{{client.nature}}</td>
+                      <td>{{client.GSTIN}}</td>
+                      <td>{{client.openingamount}}</td>
+                      <td>{{client.costcentrename}}</td>
+                      <td>
+                        <button (click)="ShowData(client.id)" class="btn btn-raised shadow-z-2 btn-info">
+                          <i class="fa fa-edit"></i>
+                        </button>
+                        <button (click)="DeleteAccount(client.id)" class="btn btn-raised shadow-z-2 btn-danger">
+                          <i class="fa fa-trash "></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<ng-template #template>
+  <form [formGroup]="AccountMasterForm" (ngSubmit)="SaveDetail(AccountMasterForm.valid)">
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">{{Title}}</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="hidepopup()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <ul class="nav nav-tabs" role="tablist">
+      <li class="nav-item" class="active">
+        <a class="nav-link active" href="#LedgerGroup" role="tab" data-toggle="tab">Ledger Group</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#Ledger" role="tab" data-toggle="tab">Ledger</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#Cost" role="tab" data-toggle="tab">Cost Centre</a>
+      </li>
+    </ul>
+
+    <div class="tab-content">
+
+      <div role="tabpanel" class="tab-pane active" id="LedgerGroup">
+
+        <div class="row">
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class=" control-label">Ledger Group Name<span class="text-danger">*</span></label>
+              <div class="">
+                <input class="form-control" type="text" placeholder="Ledger Group Name"
+                  formControlName="ledgergroupname" required/>
+              </div>
+            </div>
+          </div>
+
+          <!-- <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Contact Person & No</label>
+              <div class="">
+                <input class="form-control" (input)="Validator($event)" type="text" placeholder="Contact Person & No"
+                  formControlName="contactperno" />
+              </div>
+            </div>
+          </div> -->
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class=" control-label">Nature<span class="text-danger">*</span></label>
+              <div class="">
+                <select class="form-control" formControlName="nature" required>
+                  <option value="">--Select--</option>
+                  <option *ngFor="let cont of Nature" value={{cont.Name}}>
+                    {{cont.Name}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div role="tabpanel" class="tab-pane" id="Ledger">
+
+        <div class="row">
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Ledger Name</label>
+              <div class="">
+                <input class="form-control" type="text" placeholder="Ledger Name" formControlName="ledgername" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">PAN</label>
+              <div class="">
+                <input class="form-control" (input)="Validator($event)" type="text" placeholder="PAN"
+                  formControlName="PAN" />
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">GSTIN</label>
+              <div class="">
+                <input class="form-control" type="text" placeholder="GSTIN" formControlName="GSTIN" />
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Account No</label>
+              <div class="">
+                <input class="form-control" (input)="Validator($event)" type="text" placeholder="Account No"
+                  formControlName="accountno" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Address</label>
+              <div class="">
+                <input class="form-control" type="text" placeholder="Address " formControlName="address" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">State</label>
+              <div class="">
+                <select class="form-control" formControlName="state" (change)="onChange($event.target.value)">
+                  <option value="">--Select--</option>
+                  <option *ngFor="let cont of staeModel" value={{cont.id}}>
+                    {{cont.StateName}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class="control-label">City</label>
+              <div class="">
+                <select class="form-control" formControlName="city">
+                  <option value="">--Select--</option>
+                  <option *ngFor="let cont of cities" value={{cont.id}}>
+                    {{cont.cityName}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Pin code</label>
+              <div class="">
+                <input class="form-control" (input)="Validator($event)" type="text" placeholder="Pin code"
+                  formControlName="pincode" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">STD Code</label>
+              <div class="">
+                <input class="form-control" (input)="Validator($event)" type="text" placeholder="STD Code"
+                  formControlName="STDcode" />
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Phone No</label>
+              <div class="">
+                <input class="form-control" (input)="Validator($event)" type="text" placeholder="Phone No"
+                  formControlName="phoneno" />
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Mobile No</label>
+              <div class="">
+                <input class="form-control" (input)="Validator($event)" type="text" placeholder="Mobile No"
+                  formControlName="mobileno" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Email id</label>
+              <div class="">
+                <input class="form-control" type="text" placeholder="Email id" formControlName="emailid" />
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-md-4">
+            <div class="row" *ngFor="let list of AlertChechbox">
+              <div class="col-lg-2">
+                <input id="Alert{{list.id}}" class="form-control radio radio-inline" type="checkbox" value="{{list.id}}"
+                  [checked]="list.Selected" formControlName="{{list.formControlName}}" />
+              </div>
+              <div class="col-lg-6">
+                <label for="Alert{{list.id}}"> {{list.Name}}</label>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class="control-label">Opening Balance</label>
+              <div class="">
+                <select class="form-control" formControlName="openingbalance">
+                  <option value="">--Select--</option>
+                  <option *ngFor="let cont of openingbalance" value={{cont.Name}}>
+                    {{cont.Name}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Opening Balance Amount </label>
+              <div class="">
+                <input class="form-control" (input)="Validator($event)" type="text"
+                  placeholder="Opening Balance Amount " formControlName="openingamount" />
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class="control-label">Applicable Locations</label>
+              <div class="">
+                <select class="form-control" formControlName="applicablelocation">
+                  <option value="">--Select--</option>
+                  <option *ngFor="let cont of applicablelocation" value={{cont.Name}}>
+                    {{cont.Name}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Remark </label>
+              <div class="">
+                <input class="form-control" type="text" placeholder="Remark  " formControlName="remark" />
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div role="tabpanel" class="tab-pane" id="Cost">
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">Cost Centre Name</label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="Cost Centre Name"
+                formControlName="costcentrename" />
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">Remark</label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="Remark"
+                formControlName="remark1" />
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="modal-footer">
+      <button type="reset" class="btn btn-raised shadow-z-2 btn-default" (click)="modalRef.hide()"
+        aria-label="Close">Close</button>
+      <button type="submit" class="btn btn-raised shadow-z-2 btn-success" [disabled]="!AccountMasterForm.valid">Save
+        changes</button>
+    </div>
+  </form>
+</ng-template>

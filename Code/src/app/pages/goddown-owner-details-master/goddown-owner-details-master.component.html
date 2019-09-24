@@ -1,0 +1,367 @@
+<div class="row">
+  <div class="col-lg-12">
+    <div id="kick-start" class="card">
+      <div class="card-header">
+        <h4 class="card-title">Godown Owner Details</h4>
+      </div>
+      <div class="card-body">
+        <div class="card-block">
+          <div class="card-text">
+            <div class="row">
+              <div class="col-md-11">
+                <!-- Godown Owner Details List -->
+              </div>
+              <div class="col-md-1 btnStyle">
+                <button class="btn btn-raised shadow-z-2 btn-info float-right" (click)="ShowPopUp()">Add New</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-12 table-resposive" style="padding:0px">
+                <table class="table table-hover" cellspacing="0">
+                  <thead>
+                    <tr>
+
+                      <th>Owner Name</th>
+                      <th>Address</th>
+                      <th>Email Id</th>
+                      <th>phoneNo</th>
+                      <th>Pin Code</th>
+                      <th>Mobile No</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let client of rows">
+
+                      <td>{{client.ownerName}}</td>
+                      <td>{{client.address}}</td>
+                      <td>{{client.emailId}}</td>
+                      <td>{{client.phoneNo}}</td>
+                      <td>{{client.pinCode}}</td>
+                      <td>{{client.mobileNo}}</td>
+                      <td>
+                        <button (click)="GetEditDetails(client.id)" class="btn btn-raised shadow-z-2 btn-info">
+                          <i class="fa fa-edit"></i>
+                        </button>
+
+                        <button (click)="DeleteGoddownOwnerDetails(client.id)" class="btn btn-raised shadow-z-2 btn-danger">
+                          <i class="fa fa-trash "></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #template>
+  <form [formGroup]="GodwonOwnerDetailsForm" (ngSubmit)="SaveDetail(GodwonOwnerDetailsForm.value)">
+    <div class="modal-header">
+      <h4 class="modal-title pull-left"> {{ Title }} </h4>
+      <button type="reset" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Godown Owner Code</label>
+            <input type="number" class="form-control" formControlName="goddownOwnerCode" required>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Branch</label>
+            <div class="">
+              <select class="form-control" formControlName="branch">
+                <option value="0" selected>------Select Branch--------</option>
+                <option *ngFor="let cont of Branches" value={{cont.id}}>
+                  {{cont.branchName}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Godown</label>
+            <div class="">
+              <select class="form-control" formControlName="goddown">
+                <option value="0">--------Select Goddown--------</option>
+                <option *ngFor="let cont of Godowns" value={{cont.id}}>
+                  {{cont.godownName}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Owner Name</label>
+            <input type="text" class="form-control" formControlName="ownerName" required>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Address</label>
+            <textarea class="form-control" formControlName="address" required></textarea>
+
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">State</label>
+            <div class="">
+              <select class="form-control" formControlName="state" (change)="onChange($event.target.value)">
+                <option value="0">-------Select State----------</option>
+                <option *ngFor="let cont of States" value={{cont.id}}>
+                  {{cont.StateName}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">City</label>
+            <div class="">
+              <select class="form-control" formControlName="city">
+                <option value="0">---------Select City----------</option>
+                <option *ngFor="let cont of cities" value={{cont.id}}>
+                  {{cont.cityName}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Pin code</label>
+            <input type="number" class="form-control" formControlName="pinCode" required>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">STD Code</label>
+            <input type="number" class="form-control" formControlName="stdCode">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Phone No.</label>
+            <input type="number" class="form-control" formControlName="phoneNo">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Mobile No.</label>
+            <input type="number" class="form-control" formControlName="mobileNo" required>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Email ID </label>
+            <input type="text" class="form-control" formControlName="emailId" required>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">SQFT</label>
+            <input type="number" id="sqft" class="form-control" formControlName="sqft" (blur)="SetSQFTValues($event.target.value)">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Rate per SQFT</label>
+            <input type="number" id="Rate_per_SQFT" class="form-control" formControlName="ratePerSqft" (blur)="SetRate_per_SQFT($event.target.value)">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Rent Amount </label>
+            <input type="text" class="form-control" formControlName="rentAmount" disabled>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">GST </label>
+            <input type="number" class="form-control" (blur)="SetGSTValues($event.target.value)" formControlName="gst">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">PAN </label>
+            <input type="text" class="form-control" formControlName="pan" required>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">GSTIN </label>
+            <input type="number" class="form-control" formControlName="gstin" required>
+          </div>
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Total Rent </label>
+            <div class="">
+              <input type="text" class="form-control" formControlName="totalRent" disabled>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">TDS </label>
+            <div class="">
+              <input type="text" class="form-control" formControlName="tds" disabled>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Net Rent </label>
+            <input type="number" class="form-control" formControlName="netRent" disabled>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Bank </label>
+            <div class="">
+              <select class="form-control" formControlName="bank" (change)="OnBankChange($event.target.value)">
+                <option value="0">--------Select Bank--------</option>
+                <option *ngFor="let cont of Bank" value={{cont.id}}>
+                  {{cont.Bank_Name}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">IFSC</label>
+            <div class="">
+              <input type="text" class="form-control" formControlName="ifsc" disabled>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">A/c No. </label>
+            <input type="number" class="form-control" formControlName="a_cno" required>
+          </div>
+        </div>
+
+
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Cheque in the Name of </label>
+            <input type="text" class="form-control" formControlName="chequeInTheNameOf">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Next revision date</label>
+            <input class="form-control" type="date" placeholder="Expected Delivery Date" formControlName="nextVersionDate" />
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group"><br />
+            <label class="control-label"> <input type="checkbox" class="checkbox" formControlName="holdPaymentInstruction">&nbsp;Stop/
+              Hold Payment Instruction </label>
+
+          </div>
+        </div>
+
+
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Remark </label>
+            <input type="text" class="form-control" formControlName="reamrk">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group"><br />
+            <label class="control-label"> <input type="checkbox" class="checkbox" formControlName="isRented">&nbsp;Is
+              Rented</label>
+
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Rent Payment Type </label><br />
+            <label class="control-label">
+              <input name="rentPaymentType" type="radio" formControlName="rentPaymentType" value="PRE" class="radio radio-inline">&nbsp;PRE
+            </label>
+            <label class="control-label">
+              <input type="radio" name="rentPaymentType" formControlName="rentPaymentType" value="POST" class="radio radio-inline">&nbsp;POST
+            </label>
+
+          </div>
+        </div>
+
+
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Security Deposit </label>
+            <input type="text" class="form-control" formControlName="securityDeposit">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Agreement Start Date </label>
+            <input class="form-control" type="date" placeholder="Agreement Start Date  Delivery Date" formControlName="agreementStartDate" />
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Agreement End Date </label>
+            <input class="form-control" type="date" placeholder="Agreement End Date  Delivery Date" formControlName="agreementEndDate" />
+          </div>
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Notice Period in Days </label>
+            <input type="number" class="form-control" formControlName="noticePeriodInDays">
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="reset" class="btn btn-raised shadow-z-2 btn-default" (click)="modalRef.hide()" aria-label="Close">Close</button>
+      <button type="submit" [disabled]="!GodwonOwnerDetailsForm.valid" class="btn btn-raised shadow-z-2 btn-success">Save
+        changes</button>
+    </div>
+  </form>
+</ng-template>

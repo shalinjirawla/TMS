@@ -1,0 +1,530 @@
+<div class="row">
+  <div class="col-12">
+    <div id="kick-start" class="card">
+      <div class="card-header">
+        <h4 class="card-title">Outward Operations</h4>
+      </div>
+      <div class="card-body">
+        <div class="card-block">
+          <div class="card-text">
+            <div class="row">
+              <div class="col-md-11">
+                <!-- Outward Operations List -->
+              </div>
+              <div class="col-md-1 btnStyle">
+                <button class="btn btn-raised shadow-z-2 btn-info" (click)="ShowPopUp()">Add New</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="myclass">
+                <table class="table table-hover" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>From Branch</th>
+                      <th>Vehicle No</th>
+                      <th>Challan No</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let client of rows">
+                      <td>{{client.frombranchname}}</td>
+                      <td>{{client.vehicleName}}</td>
+                      <td>{{client.challanNo}}</td>
+                      <td>
+                        <button (click)="ShowData(client.id)" class="btn btn-raised shadow-z-2 btn-info">
+                          <i class="fa fa-edit"></i>
+                        </button>
+                        <button (click)="DeleteOutward(client.id)" class="btn btn-raised shadow-z-2 btn-danger">
+                          <i class="fa fa-trash "></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<ng-template #template>
+  <form [formGroup]="outwardMasterForm" (ngSubmit)="SaveDetail(outwardMasterForm.valid)">
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">{{Title}}</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="hidepopup()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+
+      <div class="row">
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">Challan Date<span class="text-danger">*</span></label>
+            <div class="">
+              <input class="form-control" type="date" placeholder="Vehicle No" formControlName="challandate" required/>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Vehicle No<span class="text-danger">*</span></label>
+            <div class="">
+              <select class="form-control" formControlName="vehicleNo" required>
+                <option value="">--Select--</option>
+                <option *ngFor="let cont of vehicleMasterModels" value={{cont.id}}>
+                  {{cont.vehicleNo}}
+                </option>
+              </select>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">Vehicle Capacity in MT</label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="Vehicle Capacity in MT"
+              (input)="Validator($event)"  formControlName="vehiclecapacityMT"  />
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Challan type<span class="text-danger">*</span></label>
+            <div class="">
+              <select class="form-control" formControlName="challantype" required>
+                <option value="">--Select--</option>
+                <option *ngFor="let cont of ChallanType" value={{cont.Name}}>
+                  {{cont.Name}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">Challan No<span class="text-danger">*</span></label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="Challan No" formControlName="challanNo"
+              (input)="Validator($event)" required/>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">From Branch<span class="text-danger">*</span></label>
+            <div class="">
+              <select class="form-control" formControlName="frombranch" required>
+                <option value="">--Select--</option>
+                <option *ngFor="let cont of branchMasterModel" value={{cont.id}}>
+                  {{cont.branchName}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">To Branch<span class="text-danger">*</span></label>
+            <div class="">
+              <select class="form-control" formControlName="tobranch" required>
+                <option value="">--Select--</option>
+                <option *ngFor="let cont of branchMasterModel" value={{cont.id}}>
+                  {{cont.branchName}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">Broker Loading SlipNo</label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="Broker Loading Slip No"
+                formControlName="brokerloadingslipno" (input)="Validator($event)" />
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Broker Name</label>
+            <div class="">
+              <select class="form-control" formControlName="brokername">
+                <option value="">--Select--</option>
+                <option *ngFor="let cont of venderMasterModel" value={{cont.id}}>
+                  {{cont.name}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Driver Name</label>
+            <div class="">
+              <select class="form-control" formControlName="drivername">
+                <option value="">--Select--</option>
+                <option *ngFor="let cont of driverMasterModel" value={{cont.id}}>
+                  {{cont.name}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Driver Licence No</label>
+            <div class="">
+              <select class="form-control" formControlName="driverlicenceNo">
+                <option value="">--Select--</option>
+                <option *ngFor="let cont of driverMasterModel" value={{cont.id}}>
+                  {{cont.drivinglicenceNo}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Driver Mobile No</label>
+            <div class="">
+              <select class="form-control" formControlName="drivermobileNo">
+                <option value="">--Select--</option>
+                <option *ngFor="let cont of driverMasterModel" value={{cont.id}}>
+                  {{cont.mobileno}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">CN No</label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="CN No" formControlName="CNno"
+              (input)="Validator($event)" />
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">CNdate</label>
+            <div class="">
+              <input class="form-control" type="date" placeholder="CNdate" formControlName="CNdate" />
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Booking Branch</label>
+            <div class="">
+              <select class="form-control" formControlName="bookingbranch">
+                <option value="">--Select--</option>
+                <option *ngFor="let cont of bookingMasterModel" value={{cont.id}}>
+                  {{cont.branch}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">Delivery Location</label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="Delivery Location"
+                formControlName="deliverylocation" />
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">Delivery Type</label>
+            <div class="">
+              <input class="form-control" type="text" (input)="Validator($event)" placeholder="Delivery Type" formControlName="deliverytype" />
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">Balance Packages</label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="Balance Packages"
+              (input)="Validator($event)" formControlName="balancepackeges" />
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">Balance Weight</label>
+            <div class="">
+              <input class="form-control" type="text" (input)="Validator($event)" placeholder="Balance Weight" formControlName="balanceweight" />
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">Loaded Packages</label>
+            <div class="">
+              <input class="form-control" type="text" (input)="Validator($event)" placeholder="Loaded Packages" formControlName="loadedpackages" />
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">Loaded Weight </label>
+            <div class="">
+              <input class="form-control" type="text" (input)="Validator($event)" placeholder="Loaded Weight " formControlName="loadedweight" />
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class=" control-label">Roll No</label>
+            <div class="">
+              <input class="form-control" type="text" (input)="Validator($event)" placeholder="Roll No" formControlName="rollno" />
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row" style="margin-left:1px;margin-right:1px;">
+
+        <fieldset class="row">
+          <legend tooltip="deliveryAgainstAsCne">Hire Details</legend>
+
+          <div class="panel-body">
+            <div class="form-row">
+              <div class="row">
+
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label class="control-label">Truck Hire Charges</label>
+                    <div class="">
+                      <input class="form-control" type="number" placeholder="Truck Hire Charges" (blur)="truckhirechareges($event.target.value)"
+                        formControlName="truckhirechareges" (input)="Validator($event)"/>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label class="control-label">Other Charges</label>
+                    <div class="">
+                      <input class="form-control" type="number" (input)="Validator($event)" placeholder="Other Charges"(blur)="othercharges($event.target.value)"
+                        (input)="Validator($event)" formControlName="othercharges"/>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label class="control-label">TDS%</label>
+                    <div class="">
+                      <input class="form-control" type="number" placeholder="TDS%" formControlName="TDS" (blur)="TDS($event.target.value)"
+                        (input)="Validator($event)"/>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label class="control-label">TDS Amount</label>
+                    <div class="">
+                      <input class="form-control" type="number" placeholder="TDS Amount" formControlName="TDSamount"
+                        (input)="Validator($event)" disabled/>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label class="control-label">Total Truck Hire</label>
+                    <div class="">
+                      <input class="form-control" type="number" placeholder="Total Truck Hire"
+                        formControlName="totaltruckhire" (input)="Validator($event)" disabled/>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+
+        </fieldset>
+
+      </div>
+      
+      <div class="row">
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Advance</label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="Advance" formControlName="advence"
+                (input)="Validator($event)" />
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Advance Payable At</label>
+            <div class="">
+              <select class="form-control" formControlName="advencepayableAt">
+                <option value="">--Select--</option>
+                <option *ngFor="let cont of branchMasterModel" value={{cont.id}}>
+                  {{cont.branchName}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Balance Payable At</label>
+            <div class="">
+              <select class="form-control" formControlName="balancepayableAt">
+                <option value="">--Select--</option>
+                <option *ngFor="let cont of branchMasterModel" value={{cont.id}}>
+                  {{cont.branchName}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">RC</label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="RC" formControlName="RC" (input)="Validator($event)"
+               />
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">PAN </label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="PAN" formControlName="PAN"
+                (input)="Validator($event)" />
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Transit Days</label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="Transit Days" formControlName="TransitDays"
+                (input)="Validator($event)" />
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="filePicker">Driving Licence Attachment</label><br>
+            <input #file type="file" accept='image/*' (change)="preview(file.files,$event)" />
+            <br><br>
+            <img [src]="imgURL" height="200" *ngIf="imgURL">
+            <br>
+            <br>
+            <!-- <button type="button" (click)="downloadFile(imgURL)" class="btn btn-raised shadow-z-2 btn-default"
+              aria-label="Close">
+              <i class="fa fa-download" aria-hidden="true"></i>Download</button> -->
+            <br>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="filePicker">Loading Slip Attachment</label><br>
+            <input #file1 type="file" accept='image/*' (change)="previews(file1.files,$event)" />
+            <br><br>
+            <img [src]="imgURL1" height="200" *ngIf="imgURL1">
+            <br>
+            <br>
+            <!-- <button type="button" (click)="downloadFile(imgURL)" class="btn btn-raised shadow-z-2 btn-default"
+              aria-label="Close">
+              <i class="fa fa-download" aria-hidden="true"></i>Download</button> -->
+            <br>
+          </div>
+        </div>
+        
+      </div>
+
+
+
+
+    </div>
+    <div class="modal-footer">
+      <button type="reset" class="btn btn-raised shadow-z-2 btn-default" (click)="modalRef.hide()"
+        aria-label="Close">Close</button>
+      <button type="submit" class="btn btn-raised shadow-z-2 btn-success" [disabled]="!outwardMasterForm.valid">Save
+        changes</button>
+    </div>
+  </form>
+</ng-template>

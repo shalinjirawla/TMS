@@ -1,0 +1,30 @@
+export class BranchRateModel {
+    Id: number;
+    General: string;
+    Commodity: string;
+    MinimumChargeWeightin: string;
+    StatisticChargesinRS: any;
+    CFTFactorinKG: any;
+    FOVin: any;
+    HamaliperArticleinRS: any;
+    MinimumHamaliinRS: any;
+    Surcharges: string;
+    CoverCharges: any;
+    MiscCharges: any;
+    GodownCharges: any;
+    CODCharges: any;
+    DemurrageExemptDays: any;
+    DemurrageRate: any;
+    GICharges: any;
+    DoorDeliveryCharges: any;
+    FirstNoticeDays: string;
+    SecondNoticeDays: string;
+    FinalNoticeDays: string;
+    Discount: string;
+    BranchRateParameter: string;
+    OtherBranchCommodity: string;
+    DOC: any;
+    DOM: any;
+    IsActive: any;
+    NetTotal: any;
+}

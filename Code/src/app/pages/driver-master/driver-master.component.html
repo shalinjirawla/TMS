@@ -1,0 +1,465 @@
+<div class="row">
+  <div class="col-12">
+    <div id="kick-start" class="card">
+      <div class="card-header">
+        <h4 class="card-title">Driver Master</h4>
+      </div>
+      <div class="card-body">
+        <div class="card-block">
+          <div class="card-text">
+            <div class="row">
+              <div class="col-md-11">
+                <!-- Driver Master List -->
+              </div>
+              <div class="col-md-1 btnStyle">
+                <button class="btn btn-raised shadow-z-2 btn-info" (click)="ShowPopUp()">Add New</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="myclass">
+                <table class="table table-hover" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Driver Category</th>
+                      <th>DOB</th>
+                      <th>Religion</th>
+                      <th>Qualification</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let client of rows">
+                      <td>{{client.name}}</td>
+                      <td>{{client.drivercategory}}</td>
+                      <td>{{client.DOB | date: 'yyyy/MM/dd'}}</td>
+                      <td>{{client.Religion}}</td>
+                      <td>{{client.qualification}}</td>
+                      <td>
+                        <button (click)="ShowData(client.id)" class="btn btn-raised shadow-z-2 btn-info">
+                          <i class="fa fa-edit"></i>
+                        </button>
+                        <button (click)="DeleteDriver(client.id)" class="btn btn-raised shadow-z-2 btn-danger">
+                          <i class="fa fa-trash "></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #template>
+  <form [formGroup]="DriverMasterForm" (ngSubmit)="SaveDetail(DriverMasterForm.Value)">
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">{{Title}}</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="hidepopup()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <ul class="nav nav-tabs" role="tablist">
+      <li class="nav-item" class="active">
+        <a class="nav-link active" href="#driver" role="tab" data-toggle="tab">Driver/ Cleaner Master</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " href="#insurance" role="tab" data-toggle="tab">Driver Insurance Details</a>
+      </li>
+    </ul>
+
+    <div class="tab-content">
+
+      <div role="tabpanel" class="tab-pane active" id="driver">
+
+        <div class="row">
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Name<span class="text-danger">*</span></label>
+              <div class="">
+                <input class="form-control" type="text" placeholder="Name" formControlName="name" required />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Driver Category<span class="text-danger">*</span></label>
+              <div class="">
+                <select class="form-control" formControlName="drivercategory" required>
+                  <option value="">--Select--</option>
+                  <option *ngFor="let cont of DriverCategoryCheckBox" value={{cont.Name}}>
+                    {{cont.Name}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="checkbox h-30">
+              <label class="control-label">Is Reliable<span class="text-danger">*</span></label>
+              <div class="">
+                <input type="checkbox" formControlName="isreliable" required />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class="control-label">DOB<span class="text-danger">*</span></label>
+              <div class="">
+                <input class="form-control" type="date" placeholder="DOB" formControlName="DOB" required />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Religion<span class="text-danger">*</span></label>
+              <div class="">
+                <input class="form-control" type="text" placeholder="Religion" formControlName="Religion" required />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Qualification<span class="text-danger">*</span></label>
+              <div class="">
+                <input class="form-control" type="text" placeholder="Qualification" formControlName="qualification"
+                  required />
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Marital Status</label>
+              <div class="">
+                <input class="form-control" type="text" placeholder="Marital Status" formControlName="maritalstatus" />
+              </div>
+            </div>
+          </div>
+          <!-- <div class="col-md-4">
+                <div class="form-group">
+                  <label class="control-label">Marital Status</label>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <input id="ownRD" type="radio" formControlName="branchType" [value]="0">
+                      <label for="ownRD">OWN</label>
+                    </div>
+                    <div class="col-md-6">
+                      <input id="Agncy" type="radio" formControlName="branchType" [value]="1">
+                      <label for="Agncy">Agency</label>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Driving Licence Category</label>
+              <div class="">
+                <select class="form-control" formControlName="drivinglicencecategory">
+                  <option value="">--Select--</option>
+                  <option *ngFor="let cont of DriverLicenceCategoryCheckBox" value={{cont.Name}}>
+                    {{cont.Name}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Driving Licence No</label>
+              <div class="">
+                <input class="form-control" (input)="Validator($event)" type="text" placeholder="Driving Licence No"
+                  formControlName="drivinglicenceNo" />
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Driving Licence Issue</label>
+              <div class="">
+                <input class="form-control" (input)="Validator($event)" type="text" placeholder="Driving Licence Issue"
+                  formControlName="drivLiceIssueAuthoLoca" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Driving Licence ExpiryDate</label>
+              <div class="">
+                <input class="form-control" type="date" placeholder="Driving Licence Expiry Date"
+                  formControlName="drivLiceExDate" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Blood Group</label>
+              <div class="">
+                <input class="form-control" type="text" placeholder="Blood Group" formControlName="bloodgroup" />
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Address</label>
+              <div class="">
+                <input class="form-control" type="text" placeholder="Address" formControlName="Address" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">State</label>
+              <div class="">
+                <select class="form-control" formControlName="state" (change)="onChange($event.target.value)">
+                  <option value="">--Select--</option>
+                  <option *ngFor="let cont of States" value={{cont.id}}>
+                    {{cont.StateName}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">City</label>
+              <div class="">
+                <select class="form-control" formControlName="city">
+                  <option value="">--Select--</option>
+                  <option *ngFor="let cont of Cities" value={{cont.id}}>
+                    {{cont.cityName}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">STD Code</label>
+              <div class="">
+                <input class="form-control" (input)="Validator($event)" type="text" placeholder="STD Code"
+                  formControlName="STDcode" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Phone No</label>
+              <div class="">
+                <input class="form-control" (input)="Validator($event)" type="text" placeholder="Phone No"
+                  formControlName="phoneno" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Mobile No</label>
+              <div class="">
+                <input class="form-control" (input)="Validator($event)" type="text" placeholder="Mobile No"
+                  formControlName="mobileno" />
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Reference Name</label>
+              <div class="">
+                <input class="form-control" type="text" placeholder="Reference Name" formControlName="referencename" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Reference Address</label>
+              <div class="">
+                <input class="form-control" type="text" placeholder="Reference Address"
+                  formControlName="referenceaddress" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Reference City</label>
+              <div class="">
+                <select class="form-control" formControlName="referencecity">
+                  <option value="">--Select--</option>
+                  <option *ngFor="let cont of Cities" value={{cont.id}}>
+                    {{cont.cityName}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Reference Pin code</label>
+              <div class="">
+                <input class="form-control" (input)="Validator($event)" type="text" placeholder="Reference Pin code"
+                  formControlName="referencepincode" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Reference Phone No</label>
+              <div class="">
+                <input class="form-control" (input)="Validator($event)" type="text" placeholder="Reference Phone No"
+                  formControlName="referencephoneno" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Reference Mobile No</label>
+              <div class="">
+                <input class="form-control" (input)="Validator($event)" type="text" placeholder="Reference Mobile No"
+                  formControlName="referencemobileno" />
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div role="tabpanel" class="tab-pane" id="insurance">
+        <div class="row">
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Policy No</label>
+              <div class="">
+                <input class="form-control" (input)="Validator($event)" type="text" placeholder="Policy No"
+                  formControlName="policyno" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Insurance Company</label>
+              <div class="">
+                <input class="form-control" type="text" placeholder="Insurance Company"
+                  formControlName="insurancecompany" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Insurance Value</label>
+              <div class="">
+                <input class="form-control" (input)="Validator($event)" type="text" placeholder="Insurance Value"
+                  formControlName="insurancevalue" />
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Nomination</label>
+              <div class="">
+                <input class="form-control" type="text" placeholder="Nomination" formControlName="nomination" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Insurance expiry date</label>
+              <div class="">
+                <input class="form-control" type="date" placeholder="Insurance expiry date"
+                  formControlName="insuranceexpirydate" />
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="filePicker">File Upload</label><br>
+              <input #file type="file" accept='image/*' (change)="preview(file.files,$event)" />
+              <br><br>
+              <img [src]="imgURL" height="200" *ngIf="imgURL">
+              <br>
+              <br>
+              <button type="button" (click)="downloadFile(imgURL)" class="btn btn-raised shadow-z-2 btn-default"
+                aria-label="Close">
+                <i class="fa fa-download" aria-hidden="true"></i>Download</button>
+              <br>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <button type="reset" class="btn btn-raised shadow-z-2 btn-default" (click)="modalRef.hide()"
+        aria-label="Close">Close</button>
+      <button type="submit" class="btn btn-raised shadow-z-2 btn-success" [disabled]="!DriverMasterForm.valid">Save
+        changes</button>
+    </div>
+  </form>
+</ng-template>

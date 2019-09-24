@@ -1,0 +1,183 @@
+<div class="row">
+  <div class="col-12">
+    <div id="kick-start" class="card">
+      <div class="card-header">
+        <h4 class="card-title">Godown Master</h4>
+      </div>
+      <div class="card-body">
+        <div class="card-block">
+          <div class="card-text">
+            <div class="row">
+              <div class="col-md-11">
+                <!-- Godown Master List -->
+              </div>
+              <div class="col-md-1 btnStyle">
+                <button class="btn btn-raised shadow-z-2 btn-info" (click)="ShowPopUp()">Add New</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="myclass">
+                <table class="table table-hover" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Godown Name</th>
+                      <th>Godown Code</th>
+                      <th>Storage Capacity</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let client of rows">
+                      <td>{{client.godownName}}</td>
+                      <td>{{client.godownCode}}</td>
+                      <td>{{client.storageCapacity}}</td>
+                      <td>
+                        <button (click)="ShowData(client.id)" class="btn btn-raised shadow-z-2 btn-info">
+                          <i class="fa fa-edit"></i>
+                        </button>
+                        <button (click)="DeleteGodown(client.id)" class="btn btn-raised shadow-z-2 btn-danger">
+                          <i class="fa fa-trash "></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #template>
+  <form [formGroup]="GodwonMasterForm" (ngSubmit)="SaveDetail(GodwonMasterForm.value)">
+    <div class="modal-header">
+      <h4 class="modal-title pull-left"> {{ Title }} </h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="HidePopUp()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="control-label">Godown Name</label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="Godown Name" formControlName="godownName" required/>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="control-label">Godown Code</label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="Godown Code" formControlName="godownCode" required/>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">State</label>
+            <div class="">
+              <select class="form-control" formControlName="stateId" (change)="onChange($event.target.value)">
+                <option value="0">--Select--</option>
+                <option *ngFor="let cont of states" value={{cont.id}}>
+                  {{cont.StateName}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">City</label>
+            <div class="">
+              <select class="form-control" formControlName="cityId">
+                <option value="0">--Select--</option>
+                <option *ngFor="let cont of cities" value={{cont.id}}>
+                  {{cont.cityName}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Branch</label>
+            <div class="">
+              <select class="form-control" formControlName="branchId">
+                <option value="0">--Select--</option>
+                <option *ngFor="let cont of Branches" value={{cont.id}}>
+                  {{cont.branchName}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">PinCode</label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="PinCode" (input)="Validator($event)" formControlName="pincode" />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Phone No</label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="PhoneNo" maxlength="10" (input)="Validator($event)" formControlName="phoneNo"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Mobile No</label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="MobileNo" (input)="Validator($event)" formControlName="mobileNo" maxlength="10"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="control-label">Storage Capacity</label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="Storage Capacity" (input)="Validator($event)" formControlName="storageCapacity"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="control-label">remark</label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="remark" formControlName="remark" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <textarea class="form-control" rows="3" formControlName="address" placeholder="Address"></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="reset" class="btn btn-raised shadow-z-2 btn-default" (click)="HidePopUp()" aria-label="Close">Close</button>
+      <button type="submit" class="btn btn-raised shadow-z-2 btn-success" [disabled]="!GodwonMasterForm.valid">Save changes</button>
+    </div>
+  </form>
+</ng-template>

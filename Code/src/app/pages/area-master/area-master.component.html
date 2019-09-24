@@ -1,0 +1,224 @@
+<div class="row">
+  <div class="col-12">
+    <div id="kick-start" class="card">
+      <div class="card-header">
+        <h4 class="card-title">Area Master</h4>
+      </div>
+      <div class="card-body">
+        <div class="card-block">
+          <div class="card-text">
+            <div class="row">
+              <div class="col-md-11">
+                <!-- AreaMaster List -->
+              </div>
+              <div class="col-md-1 btnStyle">
+                <button class="btn btn-raised shadow-z-2 btn-info" (click)="ShowPopUp()">Add New</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="myclass">
+                <table class="table table-hover" cellspacing="0">
+                  <thead>
+                  <tr>
+                      
+                      <th>Area Name</th>
+                       <th>Address</th>
+                       <th>Email Id</th>
+                       <th>Area Code</th>
+                       <th>City Name</th>
+                       <th>Pin Code</th>
+                       <th>Mobile No</th>
+                       <th>Region</th>     
+                       <th>Cash Balance Limit</th>                  
+                    </tr> 
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let client of rows">
+                      <td>{{client.areaName}}</td>
+                      <td>{{client.address}}</td> 
+                      <td>{{client.emailId}}</td>
+                      <td>{{client.areaCode}}</td>  
+                      <td>{{client.cityName}}</td>
+                      <td>{{client.pinCode}}</td>  
+                      <td>{{client.mobileNo}}</td>  
+                      <td>{{client.region}}</td>  
+                      <td>{{client.cashBalanceLimit}}</td>  
+
+                      <td>
+                        <button (click)="GetArea(client.id)" class="btn btn-raised shadow-z-2 btn-info">
+                          <i class="fa fa-edit"></i>
+                        </button>
+                        <button (click)="DeleteArea(client.id)" class="btn btn-raised shadow-z-2 btn-danger">
+                          <i class="fa fa-trash "></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #template>
+  <form [formGroup]="AreaForm" (ngSubmit)="SaveArea(AreaForm.value)" >
+    <div class="modal-header">
+      <h4 class="modal-title pull-left"> {{ Title }} </h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="HidePopUp()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Area Code</label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="Area Code" formControlName="areaCode" />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Area Name</label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="Area Name" formControlName="areaName" />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Remark</label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="Remark" formControlName="remark" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Address</label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="Address"  formControlName="address" />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">City</label>
+            <div class="">
+              <ng-multiselect-dropdown [placeholder]="'City'" [data]="AllCity" [settings]="citySetting" formControlName="city">
+              </ng-multiselect-dropdown>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Pin Code</label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="Pin Code" formControlName="pinCode" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">State</label>
+            <div class="">
+              <ng-multiselect-dropdown [placeholder]="'State'" [data]="AllState" [settings]="stateSetting"
+                formControlName="state">
+              </ng-multiselect-dropdown>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">STD Code</label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="STD Code" formControlName="stdCode" />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Phone No</label>
+            <div class="">
+              <input class="form-control" type="number" placeholder="Phone No" formControlName="phoneNo" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Email Id</label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="Email Id" formControlName="emailId" [ngClass]="{ 'is-invalid': submitted && AreaForm.controls.emailId.errors }" />
+              <div *ngIf="submitted && AreaForm.controls.emailId.errors" class="invalid-feedback">
+                  <div *ngIf="AreaForm.controls.emailId.errors.required">Email Id is required</div>
+                  <div *ngIf="AreaForm.controls.emailId.errors.pattern?.requiredPattern">Email id is not valid</div>
+               
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Mobile No</label>
+            <div class="">
+              <input   class="form-control" type="number" [ngClass]="{ 'is-invalid': submitted && AreaForm.controls.mobileNo.errors }" placeholder="Mobile No" formControlName="mobileNo" />
+              <div *ngIf="submitted && AreaForm.controls.mobileNo.errors" class="invalid-feedback">
+                <div *ngIf="AreaForm.controls.mobileNo.errors.required">Mobile number is required</div>
+                <div *ngIf="AreaForm.controls.mobileNo.errors.pattern?.requiredPattern">Mobile number must be 10 digits.</div>
+              </div>
+            </div>
+           
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Region</label>
+            <div class="">
+              <ng-multiselect-dropdown [placeholder]="'Region'" [data]="regionAll" [settings]="regionSetting"
+                formControlName="region" >
+              </ng-multiselect-dropdown>
+             
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Cash Balance Limit</label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="Cash Balance Limit" formControlName="cashBalanceLimit" />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Bank Balance Limit</label>
+            <div class="">
+              <input class="form-control" type="text" placeholder="Bank Balance Limit" formControlName="bankBalanceLimit" />
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      <div class="modal-footer">
+          <button type="reset" class="btn btn-raised shadow-z-2 btn-default" (click)="HidePopUp()" aria-label="Close">Close</button>
+          <button type="submit"  class="btn btn-raised shadow-z-2 btn-success" >Save
+          </button>
+        </div>
+    </div>
+
+  </form>
+</ng-template>

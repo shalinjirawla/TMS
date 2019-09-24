@@ -1,0 +1,189 @@
+<div class="row">
+  <div class="col-12">
+    <div id="Registration-start" class="card">
+      <div class="card-header">
+        <h4 class="card-title">Registration Details</h4>
+      </div>
+      <div class="card-body">
+        <div class="card-block">
+          <div class="card-text">
+            <div class="row">
+              <div class="col-md-10">
+                <!-- User Registration List -->
+              </div>
+              <div class="col-md-2 btnStyle">
+                <button (click)="ShowPopUp()" class="btn btn-raised shadow-z-2 btn-info float-right">Add New</button>
+              </div>
+            </div>
+            <div class="">    
+              <div class="">        
+                <table class="table table-hover" cellspacing="0" style="width: 100%">
+                  <thead>
+                    <tr>
+                      <th>First Name</th>
+                      <th>Last Name</th>
+                      <th>Gender</th>
+                      <th>Email</th>
+                      <th>Mobile</th>
+                      <th>Type</th>
+                      <th>UserName</th>                      
+                      <th>Delete</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let item of SM">
+                    <td>
+                      {{item.FirstName}}
+                    </td>
+                    <td>
+                      {{item.LastName}}
+                    </td>
+                    <td>
+                      {{item.Gender}}
+                    </td>
+                    <td>
+                      {{item.EmailId}}
+                    </td>
+                    <td>
+                      {{item.Mobile}}
+                    </td>
+                    <td>
+                      {{item.UserType}}
+                    </td>
+                    <td>
+                      {{item.UserName}}
+                    </td>
+                  <!--  <td>
+                      <button (click)="ShowData(item.Id)" class="btn btn-raised shadow-z-2 btn-info">
+                        <i class="fa fa-edit"></i>
+                      </button>
+                    </td>-->
+                     <td>
+                      <button (click)="DeleteUser(item.Id)" class="btn btn-raised shadow-z-2 btn-danger">
+                        <i class="fa fa-trash "></i>
+                      </button> 
+                    </td>
+                  </tr>             
+
+                  </tbody>
+                </table> 
+              </div>              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #template>
+  <form [formGroup]="UserRegistrationForm" (ngSubmit)="SaveDetail(UserRegistrationForm.value)">
+    <div class="modal-header">
+      <h4 class="text-center">Registration</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="col-md-12">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class=" control-label">First Name</label>
+              <div class="">
+                <input class="form-control" type="text" placeholder="First Name (required)" formControlName="FirstName"
+                  required />
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class=" control-label">Last Name</label>
+              <div class="">
+                <input class="form-control" type="text" placeholder="Last Name" formControlName="LastName" required />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class=" control-label">User Name</label>
+              <div class="">
+                <input class="form-control" type="text" placeholder="User Name" formControlName="UserName" required />
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="control-label">Password</label>
+              <div class="">
+                <input class="form-control" type="password" placeholder="Password" formControlName="Password"
+                  required />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="control-label">Email Id</label>
+              <input class="form-control" type="email" placeholder="Email Id" formControlName="EmailId" required />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class=" control-label">Mobile No.</label>
+              <div class="">
+                <input class="form-control" type="number" placeholder="Mobile No."
+                formControlName="Mobile" required />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="control-label">User Type : </label>
+              <label class="control-label">
+                <input name="UserType" type="radio" formControlName="UserType" value="Admin"
+                  class="radio radio-inline" required>&nbsp;Admin
+              </label>
+              <label class="control-label">
+                <input type="radio" name="UserType" formControlName="UserType" value="User"
+                  class="radio radio-inline" required>&nbsp;User
+              </label>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class=" control-label">Gender : </label>
+              <label class="control-label">
+                <input name="Gender" type="radio" formControlName="Gender" value="Male"
+                  class="radio radio-inline" required>&nbsp;Male
+              </label>
+              <label class="control-label">
+                <input type="radio" name="Gender" formControlName="Gender" value="Female"
+                  class="radio radio-inline" required>&nbsp;Female
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class=" control-label">Address</label>
+          <div class="">
+            <textarea class="form-control" placeholder="Address" formControlName="Address" required></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="reset" class="btn btn-raised shadow-z-2 btn-default" (click)="modalRef.hide()"
+        aria-label="Close">Close</button>
+      <button type="submit" class="btn btn-raised shadow-z-2 btn-success" [disabled]="!UserRegistrationForm.valid">Save
+        changes</button>
+    </div>
+  </form>
+</ng-template>

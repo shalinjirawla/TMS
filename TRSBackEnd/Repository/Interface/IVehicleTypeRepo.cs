@@ -1,0 +1,18 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Repository.Model;
+
+namespace Repository.Interface
+{
+    public interface IVehicleTypeRepo
+    {
+        List<VehicleTypeModel> GetVehicleTypeModels();
+        bool SaveVehicleType(VehicleTypeModel model);
+        VehicleTypeModel GetVehicleType(int id);
+        bool UpdateVehicleType(VehicleTypeModel model);
+        bool DeleteVehicleType(int id);
+    }
+}

@@ -1,0 +1,437 @@
+<div class="row">
+  <div class="col-12">
+    <div id="kick-start" class="card">
+      <div class="card-header">
+        <h4 class="card-title">Contract Master</h4>
+      </div>
+      <div class="card-body">
+        <div class="card-block">
+          <div class="card-text">
+            <div class="row">
+              <div class="col-md-11">
+                <!-- Contract Master List -->
+              </div>
+              <div class="col-md-1 btnStyle">
+                <button class="btn btn-raised shadow-z-2 btn-info" (click)="ShowPopUp()">Add New</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="myclass">
+                <table class="table table-hover" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>No</th>
+                      <!-- <th>Date</th> -->
+                      <th>Branch</th>
+                      <th>Client Name</th>
+                      <th>PO No</th>
+                      <!-- <th>PO Date</th> -->
+                      <!-- <th>Valid Form Date</th> -->
+                      <!-- <th>Valid To Date</th> -->
+                      <!-- <th>Rate Applicable On</th> -->
+                      <!-- <th>ProBussPer Month</th> -->
+                      <th>Weight</th>
+                      <th>Freight</th>
+                      <!-- <th>Branch From</th> -->
+                      <!-- <th>Branch To</th> -->
+                      <!-- <th>FreightPerKG</th> -->
+                      <!-- <th>Statistical Charges</th> -->
+                      <!-- <th>FOV %</th> -->
+                      <!-- <th>HamaliPerKG</th> -->
+                      <!-- <th>HamaniPerKG</th> -->
+                      <!-- <th>Local Charges</th> -->
+                      <!-- <th>Door Delivery Charges</th> -->
+                      <!-- <th>Door Delivery Charges Rs/Kg</th> -->
+                      <!-- <th>Door Delivery Charges Rs/Art</th> -->
+                      <th>GI Charges</th>
+                      <!-- <th>Demurrage Days</th> -->
+                      <!-- <th>Demurrage Rate</th> -->
+                      <!-- <th></th> -->
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let client of rows">
+                      <td>{{client.name}}</td>
+                      <td>{{client.no}}</td>
+                      <!-- <td>{{client.date}}</td> -->
+                      <td>{{client.branchname}}</td>
+                      <td>{{client.clientnames}}</td>
+                      <td>{{client.pono}}</td>
+                      <!-- <td>{{client.podate}}</td> -->
+                      <td>{{client.weight}}</td>
+                      <td>{{client.freight}}</td>
+                      <!-- <td>{{client.FOV}}</td> -->
+                      <td>{{client.gicharges}}</td>
+                      <!-- <td>{{client.transitdays}}</td> -->
+                      <td>
+                        <button (click)="ShowData(client.id)" class="btn btn-raised shadow-z-2 btn-info">
+                          <i class="fa fa-edit"></i>
+                        </button>
+                        <button (click)="DeleteContract(client.id)" class="btn btn-raised shadow-z-2 btn-danger">
+                          <i class="fa fa-trash"></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<ng-template #template>
+  <form [formGroup]="ContractMasterForm" (ngSubmit)="SaveDetail(ContractMasterForm.valid)">
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">{{Title}}</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="HidePoPup()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <ul class="nav nav-tabs" role="tablist">
+      <li class="nav-item" class="active">
+        <a class="nav-link active" href="#general" role="tab" data-toggle="tab">General</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " href="#promised" role="tab" data-toggle="tab">Promised Business Per Month</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " href="#unit" role="tab" data-toggle="tab">Unit of Measurement</a>
+      </li>
+
+    </ul>
+
+
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="general">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="form-group">
+              <label class=" control-label">Name</label>
+              <div class="">
+                <input class="form-control" type="text" placeholder="Name" formControlName="name" />
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label class=" control-label">No</label>
+              <div class="">
+                <input class="form-control" (input)="Validator($event)" type="text" placeholder="No"
+                  formControlName="no" />
+              </div>
+            </div>
+          </div>
+
+
+
+          <!-- <div class="form-group">
+                        <label class="control-label">Date</label>
+                        <div class="">
+                          <input class="form-control" type="date" placeholder="Date" formControlName="date" />
+                        </div>
+                      </div> -->
+          <div class="col-md-3">
+            <div class="form-group">
+              <label class=" control-label">Date</label>
+              <div class="">
+                <input class="form-control" type="date" placeholder="Date" formControlName="date" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="form-group">
+              <label class="control-label">Branch</label>
+              <div class="">
+                <select class="form-control" formControlName="branch">
+                  <option value="0">--Select--</option>
+                  <option *ngFor="let cont of Branches" value={{cont.id}}>
+                    {{cont.branchName}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <!-- <div class="form-group">
+                          <label class="control-label">Client Name</label>
+                          <div class="">
+                            <ng-multiselect-dropdown [placeholder]="'Agent Name'" [data]="AgentName" [settings]="agentSetting" formControlName="agentName">
+                            </ng-multiselect-dropdown>
+                          </div>
+                        </div> -->
+
+            <div class="form-group">
+              <label class="control-label">Client Name</label>
+              <div class="">
+                <select class="form-control" formControlName="clientname">
+                  <option value="0">--Select--</option>
+                  <option *ngFor="let cont of RegularClient" value={{cont.id}}>
+                    {{cont.clientName}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="form-group">
+              <label class=" control-label">PO No</label>
+              <div class="">
+                <input class="form-control" (input)="Validator($event)" type="text" placeholder="Po No"
+                  formControlName="pono" />
+              </div>
+            </div>
+          </div>
+
+          <!-- <div class="col-md-3">
+                      <div class="form-group">
+                          <label class=" control-label">PO Date</label>
+                          <div class="">
+                            <input class="form-control" type="text" placeholder="PO Date" formControlName="podate" />
+                          </div>
+                        </div>
+                  </div> -->
+          <div class="col-md-3">
+            <div class="form-group">
+              <label class="control-label">PO Date</label>
+              <div class="">
+                <input class="form-control" type="date" placeholder="Po date" formControlName="podate" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="form-group">
+              <label class=" control-label">Valid from Date</label>
+              <div class="">
+                <input class="form-control" type="date" placeholder="Valid from Date" formControlName="validfromdate" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class=" control-label">Valid To Date</label>
+              <div class="">
+                <input class="form-control" type="date" placeholder="Valid To Date" formControlName="validtodate" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="control-label">Rate applicable on</label>
+              <div class="">
+                <select class="form-control" formControlName="rateapplicableon">
+                  <option value="0">--Select--</option>
+                  <option *ngFor="let cont of LoadDefaultDeliveryTypeCheckBox" value={{cont.name}}>
+                    {{cont.name}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div role="tabpanel" class="tab-pane " id="promised">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class=" control-label">Weight</label>
+              <div class="">
+                <input class="form-control" (input)="Validator($event)" placeholder="Weight" formControlName="weight" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class=" control-label">Freight</label>
+              <div class="">
+                <input class="form-control" (input)="Validator($event)" placeholder="Freight"
+                  formControlName="freight" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div role="tabpanel" class="tab-pane " id="unit">
+        <div class="row" style="margin-left:1px; margin-right:3px;">
+          <div class="col-md-3">
+            <div class="form-group">
+              <label class="control-label">Branch From</label>
+              <div class="">
+                <select class="form-control" formControlName="branchfrom">
+                  <option value="0">--Select--</option>
+                  <option *ngFor="let cont of Branches" value={{cont.id}}>
+                    {{cont.branchName}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="form-group">
+              <label class="control-label">Branch To</label>
+              <div class="">
+                <select class="form-control" formControlName="branchto">
+                  <option value="0">--Select--</option>
+                  <option *ngFor="let cont of Branches" value={{cont.id}}>
+                    {{cont.branchName}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="form-group">
+              <label class=" control-label">Freight Per KG</label>
+              <div class="">
+                <input class="form-control" (input)="Validator($event)" placeholder="Freight  Per KG"
+                  formControlName="freightperKG" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="form-group">
+              <label class=" control-label">Statistical Charges</label>
+              <div class="">
+                <input class="form-control" (input)="Validator($event)" placeholder="Statistical Charges"
+                  formControlName="statisticalcharges" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="form-group">
+              <label class=" control-label">FOV %</label>
+              <div class="">
+                <input class="form-control" (input)="Validator($event)" placeholder="FOV" formControlName="FOV" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="form-group">
+              <label class=" control-label">Hamali Per Kg</label>
+              <div class="">
+                <input class="form-control" (input)="Validator($event)" placeholder="Hamali Per Kg"
+                  formControlName="hamaliperKG" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="form-group">
+              <label class=" control-label">Hamali Per Art</label>
+              <div class="">
+                <input class="form-control" (input)="Validator($event)" placeholder="Hamali Per Art"
+                  formControlName="hamaniperArt" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="form-group">
+              <label class=" control-label">Local Charges</label>
+              <div class="">
+                <input class="form-control" (input)="Validator($event)" type="text" placeholder="Local Charges"
+                  formControlName="localcharges" required />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class=" control-label">Door Delivery Charges</label>
+              <div class="">
+                <input class="form-control" (input)="Validator($event)" type="text" placeholder="Door Delivery Charges"
+                  formControlName="doordeliverychargesKG" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class=" control-label">Door Delivery Charges Rs/Art</label>
+              <div class="">
+                <input class="form-control" (input)="Validator($event)" type="text"
+                  placeholder="Door Delivery Charges Rs/Art" formControlName="doordeliverychargesart" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">GI Charges</label>
+              <div class="">
+                <input class="form-control" (input)="Validator($event)" type="text" placeholder="GI Charges"
+                  formControlName="gicharges" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Demurrage Days</label>
+              <div class="">
+                <input class="form-control" (input)="Validator($event)" type="text" placeholder="Demurrage Days"
+                  formControlName="demurragedays" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class=" control-label">Demurrage Rate</label>
+              <div class="">
+                <input class="form-control" (input)="Validator($event)" type="text" placeholder="Demurrage Rate"
+                  formControlName="demurragerate" />
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="filePicker">File Upload</label><br>
+              <!-- <input type="file" id="filePicker" (change)="handleFileSelect($event)"> -->
+              <input #file type="file" accept='image/*' (change)="preview(file.files,$event)" />
+              <br><br>
+              <img [src]="imgURL" height="200" *ngIf="imgURL">
+              <br>
+              <br>
+              <!-- <a ng-href="#" ng-click="downloadFile()">Download</a> -->
+              <button type="button" (click)="downloadFile(imgURL)" class="btn btn-raised shadow-z-2 btn-default" aria-label="Close">
+                  <i class="fa fa-download" aria-hidden="true"></i>Download</button>
+              <br>
+              <!-- <h1>Base64</h1>
+              <textarea id="base64textarea" placeholder="Base64 will appear here" cols="50"
+                rows="15">{{base64textString}}</textarea> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="reset" class="btn btn-raised shadow-z-2 btn-default" (click)="modalRef.hide()"
+        aria-label="Close">Close</button>
+      <button type="submit" class="btn btn-raised shadow-z-2 btn-success" [disabled]="!ContractMasterForm.valid">Save
+        changes</button>
+    </div>
+  </form>
+</ng-template>

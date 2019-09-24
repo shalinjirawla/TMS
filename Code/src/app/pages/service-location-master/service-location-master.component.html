@@ -1,0 +1,196 @@
+<div class="row">
+  <div class="col-12">
+    <div id="kick-start" class="card">
+      <div class="card-header">
+        <h4 class="card-title">Service Location Master</h4>
+      </div>
+      <div class="card-body">
+        <div class="card-block">
+          <div class="card-text">
+            <div class="row">
+              <div class="col-md-11">
+                <!-- Service Location Master List -->
+              </div>
+              <div class="col-md-1 btnStyle">
+                <button class="btn btn-raised shadow-z-2 btn-info" (click)="ShowPopUp()">Add New</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="myclass">
+                <table class="table table-hover" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Code</th>
+                      <th>Name</th>
+                      <!-- <th>Default Delivery Type</th> -->
+                      <th>Controlling Branch</th>
+                      <th>Delivery At</th>
+                      <!-- <th>Distance from Branch</th> -->
+                      <!-- <th>Is Topay Booking Allowed</th> -->
+                      <!-- <th>Vehicle Type</th> -->
+                      <!-- <th>Pickup Charges</th> -->
+                      <th>DD Charges</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let client of rows">
+                      <td>{{client.servicelocationcode}}</td>
+                      <td>{{client.servicelocationname}}</td>
+                      <!-- <td>{{client.defaultdeliverytype}}</td> -->
+                      <td>{{client.controllingbranchname}}</td>
+                      <td>{{client.deliveryatname}}</td>
+                      <!-- <td>{{client.istodaybooking}}</td> -->
+                      <!-- <td>{{client.pickupcharges}}</td> -->
+                      <td>{{client.DDCharges}}</td>
+                      <td>
+                        <button (click)="ShowData(client.Id)" class="btn btn-raised shadow-z-2 btn-info">
+                          <i class="fa fa-edit"></i>
+                        </button>
+                        <button (click)="DeleteServiceLocation(client.Id)" class="btn btn-raised shadow-z-2 btn-danger">
+                          <i class="fa fa-trash"></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<ng-template #template>
+    <form [formGroup]="ServiceLocationMasterForm" (ngSubmit)="SaveDetail(ServiceLocationMasterForm.valid)">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">{{Title}}</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="HidePopUp()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      
+      <div class="modal-body">
+        <!-- <input type="hidden" formControlName="id" value="0"> -->
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+                <label class=" control-label">Service Location Code</label>
+                <div class="">
+                  <input class="form-control"  (input)="Validator($event)" type="text" placeholder="Service Location Code" formControlName="servicelocationcode" required/>
+                </div>
+              </div>     
+          </div>
+  
+          <div class="col-md-6">
+            <div class="form-group">
+                <label class=" control-label">Service Location Name</label>
+                <div class="">
+                  <input class="form-control" type="text" placeholder="Service Location Code" formControlName="servicelocationname" required/>
+                </div>
+              </div>     
+          </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-6"> 
+                <div class="form-group">
+                  <label class="control-label">Default Delivery Type</label>
+                  <div class="">
+                    <select class="form-control" formControlName="defaultdeliverytype">
+                      <option value="0">--Select--</option>
+                      <option *ngFor="let cont of DefaultDeliveryTypeCheckbox" value={{cont.Name}}>
+                        {{cont.Name}}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="col-md-6">
+                  <div class="form-group">
+                    <label class=" control-label">Controlling Branch</label>
+                    <div class="">
+                      <select class="form-control" formControlName="controllingbranch">
+                        <option value="0">--Select--</option>
+                        <option *ngFor="let cont of Branches" value={{cont.id}}>
+                          {{cont.branchName}}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                </div>   
+        </div>   
+
+        <div class="row">
+            <div class="col-md-6"> 
+                <div class="form-group">
+                  <label class=" control-label">Delivery At</label>
+                  <div class="">
+                    <select class="form-control" formControlName="deliveryat">
+                      <option value="0">--Select--</option>
+                      <option *ngFor="let cont of Branches" value={{cont.id}}>
+                        {{cont.branchName}}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div> 
+
+              <div class="col-md-4">
+                <div class="checkbox h-30">
+                  <label class="control-label">Is Topay Booking</label>
+                  <div class="">
+                    <input type="checkbox" formControlName="istodaybooking" />
+                  </div>
+                </div>
+              </div>
+        </div>   
+  
+        <!-- <div class="form-group">
+          <label class=" control-label">Distance from Branch</label>
+          <div class="">
+            <input class="form-control"  (input)="Validator($event)" type="text" placeholder="Distance from Branch" formControlName="distancefrombranch" required/>
+          </div>
+        </div> -->
+       
+          <div class="form-group">
+              <label class=" control-label">Distance from Branch</label>
+              <div class="">
+                <input class="form-control"  (input)="Validator($event)" type="text" placeholder="Distance from Branch" formControlName="distancefrombranch" required/>
+              </div>
+          </div>
+       
+        <!-- <div class="form-group">
+            <label class=" control-label">Is Topay Booking Allowed</label>
+            <div class="">
+              <input class="form-control"  (input)="Validator($event)" type="text" placeholder="Is Topay Booking" formControlName="istodaybooking" required/>
+            </div>
+        </div> -->
+          
+          <div class="form-group">
+            <label class=" control-label">Pickup Charges</label>
+            <div class="">
+              <input class="form-control"  (input)="Validator($event)" type="text" placeholder="Pickup Charges" formControlName="pickupcharges" required/>
+            </div>
+          </div>
+  
+          <div class="form-group">
+              <label class=" control-label">DD Charges</label>
+              <div class="">
+                <input class="form-control"  (input)="Validator($event)" type="text" placeholder="DD Charges" formControlName="DDCharges" required/>
+              </div>
+          </div>
+          
+      </div> 
+  
+      <div class="modal-footer">
+        <button type="reset" class="btn btn-raised shadow-z-2 btn-default" (click)="modalRef.hide()" aria-label="Close">Close</button>
+        <button type="submit" class="btn btn-raised shadow-z-2 btn-success" [disabled]="!ServiceLocationMasterForm.valid">Save changes</button>
+      </div>
+    </form>
+  </ng-template> 

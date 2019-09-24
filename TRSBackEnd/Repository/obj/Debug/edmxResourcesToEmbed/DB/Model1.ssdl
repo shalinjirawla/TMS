@@ -1,0 +1,3661 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TRSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AccountMaster">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ledgergroupname" Type="nvarchar" MaxLength="50" />
+    <Property Name="nature" Type="nvarchar" MaxLength="50" />
+    <Property Name="ledgername" Type="nvarchar" MaxLength="50" />
+    <Property Name="PAN" Type="nvarchar" MaxLength="50" />
+    <Property Name="GSTIN" Type="nvarchar" MaxLength="50" />
+    <Property Name="accountno" Type="nvarchar" MaxLength="50" />
+    <Property Name="address" Type="nvarchar" MaxLength="50" />
+    <Property Name="city" Type="int" />
+    <Property Name="pincode" Type="nvarchar" MaxLength="50" />
+    <Property Name="state" Type="int" />
+    <Property Name="STDcode" Type="nvarchar" MaxLength="50" />
+    <Property Name="phoneno" Type="nvarchar" MaxLength="50" />
+    <Property Name="mobileno" Type="nvarchar" MaxLength="50" />
+    <Property Name="emailid" Type="nvarchar" MaxLength="50" />
+    <Property Name="emailalert" Type="bit" />
+    <Property Name="mobilealert" Type="bit" />
+    <Property Name="openingbalance" Type="nvarchar" MaxLength="50" />
+    <Property Name="openingamount" Type="nvarchar" MaxLength="50" />
+    <Property Name="applicablelocation" Type="nvarchar" MaxLength="50" />
+    <Property Name="remark" Type="nvarchar" MaxLength="50" />
+    <Property Name="costcentrename" Type="nvarchar" MaxLength="50" />
+    <Property Name="remark1" Type="nvarchar" MaxLength="50" />
+    <Property Name="isActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="AreaMaster">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="areaCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="areaName" Type="nvarchar" MaxLength="50" />
+    <Property Name="address" Type="nvarchar" MaxLength="50" />
+    <Property Name="city" Type="int" />
+    <Property Name="pinCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="state" Type="int" />
+    <Property Name="stdCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="phoneNo" Type="int" />
+    <Property Name="mobileNo" Type="bigint" />
+    <Property Name="emailId" Type="nvarchar" MaxLength="50" />
+    <Property Name="region" Type="int" />
+    <Property Name="cashBalanceLimit" Type="nvarchar" MaxLength="100" />
+    <Property Name="bankBalanceLimit" Type="nvarchar" MaxLength="100" />
+    <Property Name="defaultCashLedger" Type="int" />
+    <Property Name="deafultBankLedger" Type="int" />
+    <Property Name="remark" Type="nvarchar" MaxLength="50" />
+    <Property Name="isActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="BankMaster">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Bank_Name" Type="varchar" MaxLength="50" />
+    <Property Name="IFSC_code" Type="nvarchar" MaxLength="50" />
+    <Property Name="Bank_Branch" Type="varchar" MaxLength="50" />
+    <Property Name="Address" Type="nvarchar" MaxLength="50" />
+    <Property Name="Contact" Type="nchar" MaxLength="12" />
+    <Property Name="state" Type="int" Nullable="false" />
+    <Property Name="city" Type="int" Nullable="false" />
+    <Property Name="DOC" Type="datetime" />
+    <Property Name="DOM" Type="datetime" />
+    <Property Name="IsActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="Bill">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="billNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="billdate" Type="date" />
+    <Property Name="CNno" Type="nvarchar" MaxLength="50" />
+    <Property Name="CNdate" Type="date" />
+    <Property Name="bookingbranch" Type="int" />
+    <Property Name="deliverybranch" Type="nvarchar" MaxLength="50" />
+    <Property Name="article" Type="nvarchar" MaxLength="50" />
+    <Property Name="actualweight" Type="float" />
+    <Property Name="chargeweight" Type="float" />
+    <Property Name="freightdetails" Type="nvarchar" MaxLength="50" />
+    <Property Name="paymentmode" Type="bit" />
+    <Property Name="amount" Type="nvarchar" MaxLength="50" />
+    <Property Name="chequeNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="chequedate" Type="date" />
+    <Property Name="amount1" Type="nvarchar" MaxLength="50" />
+    <Property Name="remark4" Type="nvarchar" MaxLength="50" />
+    <Property Name="isActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="BookingMaster">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cn" Type="date" />
+    <Property Name="expectedDelivery" Type="date" />
+    <Property Name="from" Type="int" />
+    <Property Name="to" Type="int" />
+    <Property Name="godownNo" Type="int" />
+    <Property Name="paymentType" Type="nvarchar" MaxLength="50" />
+    <Property Name="actualWeight" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="consignee" Type="int" />
+    <Property Name="isActive" Type="bit" />
+    <Property Name="cnNo" Type="int" />
+    <Property Name="deliveryBranch" Type="int" />
+    <Property Name="virtualGoddownNo" Type="int" />
+    <Property Name="consignorDetails" Type="nvarchar" MaxLength="50" />
+    <Property Name="consignor" Type="int" />
+    <Property Name="agentName" Type="int" />
+    <Property Name="agentDetails" Type="nvarchar" MaxLength="50" />
+    <Property Name="bookingType" Type="nvarchar" MaxLength="50" />
+    <Property Name="deliveryType" Type="nvarchar" MaxLength="50" />
+    <Property Name="modeOfTransport" Type="nvarchar" MaxLength="50" />
+    <Property Name="invoiceNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="invoiceValue" Type="nvarchar" MaxLength="50" />
+    <Property Name="consignorInvoice" Type="nvarchar" MaxLength="50" />
+    <Property Name="freightBasis" Type="nvarchar" MaxLength="50" />
+    <Property Name="ftl" Type="nvarchar" MaxLength="50" />
+    <Property Name="isCcAttached" Type="bit" />
+    <Property Name="isCod" Type="bit" />
+    <Property Name="chargeWeight" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="freightRate" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="privateMark" Type="nvarchar" MaxLength="50" />
+    <Property Name="insuredBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="freight" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="surcharge" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="hamaliCharge" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="localCartages" Type="nvarchar" MaxLength="50" />
+    <Property Name="doorDeliveryCharge" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="statisticalCharges" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="miscellaneousCharges" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="godownCharges" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="cod" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="financeEffect" Type="bit" />
+    <Property Name="riskCharge" Type="nvarchar" MaxLength="50" />
+    <Property Name="branch" Type="nvarchar" MaxLength="50" />
+    <Property Name="reserveReason" Type="int" />
+    <Property Name="cnFrom" Type="date" />
+    <Property Name="cnTo" Type="date" />
+    <Property Name="srtoNo" Type="int" />
+    <Property Name="lotNo" Type="int" />
+    <Property Name="rollNo" Type="nchar" MaxLength="10" />
+    <Property Name="meter" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="weightInKg" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="BranchMaster">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="branchCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="branchName" Type="nvarchar" MaxLength="50" />
+    <Property Name="branchType" Type="int" />
+    <Property Name="deliveryAgainstAs" Type="varchar" MaxLength="50" />
+    <Property Name="cityId" Type="int" Nullable="false" />
+    <Property Name="pincode" Type="int" />
+    <Property Name="stateId" Type="int" Nullable="false" />
+    <Property Name="gstNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="phoneNo" Type="nvarchar" MaxLength="12" />
+    <Property Name="mobileNo" Type="nvarchar" MaxLength="12" />
+    <Property Name="regionId" Type="int" Nullable="false" />
+    <Property Name="areaId" Type="int" />
+    <Property Name="servicesOffered" Type="varchar" MaxLength="50" />
+    <Property Name="cn" Type="nvarchar" MaxLength="50" />
+    <Property Name="mr" Type="nvarchar" MaxLength="50" />
+    <Property Name="challan" Type="nvarchar" MaxLength="25" />
+    <Property Name="freightBill" Type="nvarchar" MaxLength="25" />
+    <Property Name="expectedUnderLoad" Type="int" />
+    <Property Name="expectedUnloadingAfterArrival" Type="int" />
+    <Property Name="maxAdvance" Type="int" />
+    <Property Name="defaultCashLedger" Type="int" />
+    <Property Name="defaultBankLedger" Type="int" />
+    <Property Name="remark" Type="text" />
+    <Property Name="IsActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="BranchRate">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="General" Type="nvarchar" MaxLength="50" />
+    <Property Name="Commodity" Type="nvarchar" MaxLength="100" />
+    <Property Name="MinimumChargeWeightin" Type="nvarchar" MaxLength="50" />
+    <Property Name="StatisticChargesinRS" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="CFTFactorinKG" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="FOVin" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="HamaliperArticleinRS" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="MinimumHamaliinRS" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Surcharges" Type="nvarchar" MaxLength="50" />
+    <Property Name="CoverCharges" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="MiscCharges" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="GodownCharges" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="CODCharges" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="DemurrageExemptDays" Type="nvarchar" MaxLength="50" />
+    <Property Name="DemurrageRate" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="GICharges" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="DoorDeliveryCharges" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="FirstNoticeDays" Type="nvarchar" MaxLength="50" />
+    <Property Name="SecondNoticeDays" Type="nvarchar" MaxLength="50" />
+    <Property Name="FinalNoticeDays" Type="nvarchar" MaxLength="50" />
+    <Property Name="NetTotal" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Discount" Type="nvarchar" MaxLength="50" />
+    <Property Name="BranchRateParameter" Type="nvarchar" MaxLength="50" />
+    <Property Name="OtherBranchCommodity" Type="nvarchar" MaxLength="50" />
+    <Property Name="DOC" Type="datetime" />
+    <Property Name="DOM" Type="datetime" />
+    <Property Name="IsActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="CityMaster">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="stateId" Type="int" Nullable="false" />
+    <Property Name="cityCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="cityName" Type="nvarchar" MaxLength="50" />
+    <Property Name="remark" Type="text" />
+    <Property Name="stdCode" Type="int" />
+    <Property Name="IsActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="CommodityMaster">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="commodityType" Type="int" Nullable="false" />
+    <Property Name="IsRestricted" Type="bit" Nullable="false" />
+    <Property Name="IsPerishable" Type="bit" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CommodityTypeMaster">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="isActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ConsignmentOperation">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cndate" Type="date" />
+    <Property Name="expectedDelivery" Type="date" />
+    <Property Name="from" Type="int" />
+    <Property Name="to" Type="int" />
+    <Property Name="godownNo" Type="int" />
+    <Property Name="paymentType" Type="nvarchar" MaxLength="50" />
+    <Property Name="actualWeight" Type="float" />
+    <Property Name="consignee" Type="int" />
+    <Property Name="isActive" Type="bit" />
+    <Property Name="cnNo" Type="int" />
+    <Property Name="deliveryBranch" Type="int" />
+    <Property Name="virtualGoddownNo" Type="int" />
+    <Property Name="consignorDetails" Type="nvarchar" MaxLength="50" />
+    <Property Name="consignor" Type="int" />
+    <Property Name="agentName" Type="int" />
+    <Property Name="agentDetails" Type="nvarchar" MaxLength="50" />
+    <Property Name="bookingType" Type="nvarchar" MaxLength="50" />
+    <Property Name="deliveryType" Type="nvarchar" MaxLength="50" />
+    <Property Name="modeOfTransport" Type="nvarchar" MaxLength="50" />
+    <Property Name="invoiceNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="invoiceValue" Type="nvarchar" MaxLength="50" />
+    <Property Name="consignorInvoice" Type="date" />
+    <Property Name="freightBasis" Type="nvarchar" MaxLength="50" />
+    <Property Name="ftl" Type="int" />
+    <Property Name="isCcAttached" Type="bit" />
+    <Property Name="isCod" Type="bit" />
+    <Property Name="chargeWeight" Type="float" />
+    <Property Name="freightRate" Type="float" />
+    <Property Name="privateMark" Type="nvarchar" MaxLength="50" />
+    <Property Name="insuredBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="freight" Type="float" />
+    <Property Name="surcharge" Type="float" />
+    <Property Name="hamaliCharge" Type="float" />
+    <Property Name="localCartages" Type="nvarchar" MaxLength="50" />
+    <Property Name="doorDeliveryCharge" Type="float" />
+    <Property Name="statisticalCharges" Type="float" />
+    <Property Name="miscellaneousCharges" Type="float" />
+    <Property Name="godownCharges" Type="float" />
+    <Property Name="cod" Type="float" />
+    <Property Name="financeEffect" Type="bit" />
+    <Property Name="packingtype" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="ContractMaster">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="no" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="name" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="date" Type="datetime" Nullable="false" />
+    <Property Name="branch" Type="int" Nullable="false" />
+    <Property Name="clientname" Type="int" Nullable="false" />
+    <Property Name="pono" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="podate" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="validfromdate" Type="datetime" Nullable="false" />
+    <Property Name="validtodate" Type="datetime" Nullable="false" />
+    <Property Name="rateapplicableon" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="weight" Type="float" Nullable="false" />
+    <Property Name="freight" Type="float" Nullable="false" />
+    <Property Name="branchfrom" Type="int" Nullable="false" />
+    <Property Name="branchto" Type="int" Nullable="false" />
+    <Property Name="freightperKG" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="statisticalcharges" Type="float" Nullable="false" />
+    <Property Name="FOV" Type="float" Nullable="false" />
+    <Property Name="hamaliperKG" Type="float" Nullable="false" />
+    <Property Name="hamaniperArt" Type="float" Nullable="false" />
+    <Property Name="localcharges" Type="float" Nullable="false" />
+    <Property Name="doordeliverychargesKG" Type="float" Nullable="false" />
+    <Property Name="doordeliverychargesart" Type="float" Nullable="false" />
+    <Property Name="gicharges" Type="float" Nullable="false" />
+    <Property Name="demurragedays" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="demurragerate" Type="float" Nullable="false" />
+    <Property Name="fileupload" Type="varchar(max)" Nullable="false" />
+    <Property Name="isActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CostCentre">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="costcentrename" Type="nvarchar" MaxLength="50" />
+    <Property Name="remark" Type="nvarchar" MaxLength="50" />
+    <Property Name="isActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="CrossingMaster">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="bookingType" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="transpotType" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="frombranch" Type="int" Nullable="false" />
+    <Property Name="tobranch" Type="int" Nullable="false" />
+    <Property Name="hireperKG" Type="float" Nullable="false" />
+    <Property Name="hamaliperKG" Type="float" Nullable="false" />
+    <Property Name="totalcrossingperKG" Type="float" Nullable="false" />
+    <Property Name="isActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DDLocalChallan">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DDlocalchallanNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="DDlocalchallanDate" Type="date" />
+    <Property Name="prideliveryNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="Hirecharges" Type="float" />
+    <Property Name="vehicleNo" Type="int" />
+    <Property Name="remark" Type="nvarchar" MaxLength="50" />
+    <Property Name="isActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="DeliveryMaster">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="gatepassNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="gatepassdate" Type="date" />
+    <Property Name="paymentmode" Type="nvarchar" MaxLength="50" />
+    <Property Name="deliveryparty" Type="int" />
+    <Property Name="deliverypartydetails" Type="nvarchar" MaxLength="50" />
+    <Property Name="contractparty" Type="int" />
+    <Property Name="contractpartydetails" Type="nvarchar" MaxLength="50" />
+    <Property Name="CNno" Type="nvarchar" MaxLength="50" />
+    <Property Name="CNdate" Type="date" />
+    <Property Name="bookingbranch" Type="int" />
+    <Property Name="consignor" Type="nvarchar" MaxLength="50" />
+    <Property Name="item" Type="nvarchar" MaxLength="50" />
+    <Property Name="packingType" Type="int" />
+    <Property Name="godownname" Type="int" />
+    <Property Name="virtualgodownname" Type="int" />
+    <Property Name="deliveryarticle" Type="float" />
+    <Property Name="deliveryweight" Type="float" />
+    <Property Name="balancearticle" Type="float" />
+    <Property Name="balanceweight" Type="float" />
+    <Property Name="rollno" Type="nvarchar" MaxLength="50" />
+    <Property Name="handedoverto" Type="nvarchar" MaxLength="50" />
+    <Property Name="contractNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="vehicleNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="GUTKANo" Type="nvarchar" MaxLength="50" />
+    <Property Name="remark" Type="nvarchar" MaxLength="50" />
+    <Property Name="predeliveryNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="predeliverydate" Type="date" />
+    <Property Name="paymentmode1" Type="nvarchar" MaxLength="50" />
+    <Property Name="deliveryparty1" Type="int" />
+    <Property Name="deliverypartydetails1" Type="nvarchar" MaxLength="50" />
+    <Property Name="contractparty1" Type="int" />
+    <Property Name="contractpartydetails1" Type="nvarchar" MaxLength="50" />
+    <Property Name="CNno1" Type="nvarchar" MaxLength="50" />
+    <Property Name="CNdate1" Type="date" />
+    <Property Name="bookingbranch1" Type="int" />
+    <Property Name="consignoor1" Type="nvarchar" MaxLength="50" />
+    <Property Name="item1" Type="nvarchar" MaxLength="50" />
+    <Property Name="packingType1" Type="int" />
+    <Property Name="godownname1" Type="int" />
+    <Property Name="virtualgodownname1" Type="int" />
+    <Property Name="deliveryarticle1" Type="float" />
+    <Property Name="deliveryweight1" Type="float" />
+    <Property Name="balancearticle1" Type="float" />
+    <Property Name="balanceweight1" Type="float" />
+    <Property Name="rollNo1" Type="nvarchar" MaxLength="50" />
+    <Property Name="remark1" Type="nvarchar" MaxLength="50" />
+    <Property Name="DDlocalchallanNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="DDlocalchallanDate" Type="date" />
+    <Property Name="prideliveryNo1" Type="nvarchar" MaxLength="50" />
+    <Property Name="Hirecharges" Type="float" />
+    <Property Name="vehicleNo1" Type="nvarchar" MaxLength="50" />
+    <Property Name="remark2" Type="nvarchar" MaxLength="50" />
+    <Property Name="doordeliveryNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="CNno2" Type="nvarchar" MaxLength="50" />
+    <Property Name="CNdate2" Type="nvarchar" MaxLength="50" />
+    <Property Name="bookingbranch2" Type="int" />
+    <Property Name="consignor2" Type="nvarchar" MaxLength="50" />
+    <Property Name="item2" Type="nvarchar" MaxLength="50" />
+    <Property Name="deliveryarticle2" Type="float" />
+    <Property Name="deliveryweight2" Type="float" />
+    <Property Name="undeliveredarticle" Type="float" />
+    <Property Name="undeliveredweight" Type="float" />
+    <Property Name="balancearticle2" Type="float" />
+    <Property Name="balanceweight2" Type="float" />
+    <Property Name="rollno2" Type="nvarchar" MaxLength="50" />
+    <Property Name="remark3" Type="nvarchar" MaxLength="50" />
+    <Property Name="billNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="billdate" Type="date" />
+    <Property Name="CNno3" Type="nvarchar" MaxLength="50" />
+    <Property Name="CNdate3" Type="date" />
+    <Property Name="bookingbranch3" Type="int" />
+    <Property Name="deliverybranch1" Type="nvarchar" MaxLength="50" />
+    <Property Name="article" Type="nvarchar" MaxLength="50" />
+    <Property Name="actualweight" Type="float" />
+    <Property Name="chargeweight" Type="float" />
+    <Property Name="freightdetails" Type="nvarchar" MaxLength="50" />
+    <Property Name="paymentmode2" Type="bit" />
+    <Property Name="amount" Type="nvarchar" MaxLength="50" />
+    <Property Name="chequeNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="chequedate" Type="date" />
+    <Property Name="amount1" Type="nvarchar" MaxLength="50" />
+    <Property Name="remark4" Type="nvarchar" MaxLength="50" />
+    <Property Name="isActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="DepartmentMaster">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="isActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DocumentAllocationMaster">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="generationdate" Type="date" Nullable="false" />
+    <Property Name="documenttype" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="startseriesNo" Type="float" Nullable="false" />
+    <Property Name="endseriesNo" Type="float" Nullable="false" />
+    <Property Name="count" Type="float" Nullable="false" />
+    <Property Name="dateofprinting" Type="date" Nullable="false" />
+    <Property Name="documenttype1" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="startseriesNo1" Type="float" Nullable="false" />
+    <Property Name="endseriesNo1" Type="float" Nullable="false" />
+    <Property Name="count1" Type="float" Nullable="false" />
+    <Property Name="dateofallocation" Type="date" Nullable="false" />
+    <Property Name="branch" Type="int" Nullable="false" />
+    <Property Name="documenettype2" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="startseriesNo2" Type="float" Nullable="false" />
+    <Property Name="endseriesNo2" Type="float" Nullable="false" />
+    <Property Name="count2" Type="float" Nullable="false" />
+    <Property Name="isActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DocumentSeriesAllocation">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="dateofallocation" Type="date" />
+    <Property Name="branch" Type="int" />
+    <Property Name="documenettype" Type="nvarchar" MaxLength="50" />
+    <Property Name="startseriesNo" Type="float" />
+    <Property Name="endseriesNo" Type="float" />
+    <Property Name="count" Type="float" />
+    <Property Name="isActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="DoorDeliveryConfirm">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="doordeliveryNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="predeliveryNo" Type="int" />
+    <Property Name="CNno" Type="nvarchar" MaxLength="50" />
+    <Property Name="CNdate" Type="date" />
+    <Property Name="bookingbranch" Type="int" />
+    <Property Name="consignor" Type="nvarchar" MaxLength="50" />
+    <Property Name="item" Type="nvarchar" MaxLength="50" />
+    <Property Name="deliveryarticle" Type="float" />
+    <Property Name="deliveryweight" Type="float" />
+    <Property Name="undeliveredarticle" Type="float" />
+    <Property Name="undeliveredweight" Type="float" />
+    <Property Name="balancearticle" Type="float" />
+    <Property Name="balanceweight" Type="float" />
+    <Property Name="rollno" Type="nvarchar" MaxLength="50" />
+    <Property Name="remark" Type="nvarchar" MaxLength="50" />
+    <Property Name="isActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="DriverMaster">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" />
+    <Property Name="drivercategory" Type="nvarchar" MaxLength="50" />
+    <Property Name="isreliable" Type="bit" />
+    <Property Name="DOB" Type="date" />
+    <Property Name="Religion" Type="nvarchar" MaxLength="50" />
+    <Property Name="qualification" Type="nvarchar" MaxLength="50" />
+    <Property Name="maritalstatus" Type="nvarchar" MaxLength="50" />
+    <Property Name="drivinglicencecategory" Type="nvarchar" MaxLength="50" />
+    <Property Name="drivinglicenceNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="drivLiceIssueAuthoLoca" Type="nvarchar" MaxLength="50" />
+    <Property Name="drivLiceExDate" Type="date" />
+    <Property Name="bloodgroup" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address" Type="nvarchar" MaxLength="50" />
+    <Property Name="state" Type="int" />
+    <Property Name="city" Type="int" />
+    <Property Name="STDcode" Type="nvarchar" MaxLength="50" />
+    <Property Name="phoneno" Type="nvarchar" MaxLength="50" />
+    <Property Name="mobileno" Type="nvarchar" MaxLength="50" />
+    <Property Name="referencename" Type="nvarchar" MaxLength="50" />
+    <Property Name="referenceaddress" Type="nvarchar" MaxLength="50" />
+    <Property Name="referencecity" Type="int" />
+    <Property Name="referencepincode" Type="nvarchar" MaxLength="50" />
+    <Property Name="referencephoneno" Type="nvarchar" MaxLength="50" />
+    <Property Name="referencemobileno" Type="nvarchar" MaxLength="50" />
+    <Property Name="policyno" Type="nvarchar" MaxLength="50" />
+    <Property Name="insurancecompany" Type="nvarchar" MaxLength="50" />
+    <Property Name="insurancevalue" Type="nvarchar" MaxLength="50" />
+    <Property Name="nomination" Type="nvarchar" MaxLength="50" />
+    <Property Name="insuranceexpirydate" Type="date" />
+    <Property Name="fileupload" Type="nvarchar(max)" />
+    <Property Name="isActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="FreightMaster">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="bookingType" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="transpotType" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="frombranch" Type="int" Nullable="false" />
+    <Property Name="tobranch" Type="int" Nullable="false" />
+    <Property Name="rateperKG" Type="float" Nullable="false" />
+    <Property Name="distance" Type="float" Nullable="false" />
+    <Property Name="transitdays" Type="float" Nullable="false" />
+    <Property Name="isActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GodownDelivery">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="gatepassNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="gatepassdate" Type="date" />
+    <Property Name="paymentmode" Type="nvarchar" MaxLength="50" />
+    <Property Name="deliveryparty" Type="int" />
+    <Property Name="deliverypartydetails" Type="nvarchar" MaxLength="50" />
+    <Property Name="contractparty" Type="int" />
+    <Property Name="contractpartydetails" Type="nvarchar" MaxLength="50" />
+    <Property Name="CNno" Type="nvarchar" MaxLength="50" />
+    <Property Name="CNdate" Type="date" />
+    <Property Name="bookingbranch" Type="int" />
+    <Property Name="consignor" Type="nvarchar" MaxLength="50" />
+    <Property Name="item" Type="nvarchar" MaxLength="50" />
+    <Property Name="packingType" Type="int" />
+    <Property Name="godownname" Type="int" />
+    <Property Name="virtualgodownname" Type="int" />
+    <Property Name="deliveryarticle" Type="float" />
+    <Property Name="deliveryweight" Type="float" />
+    <Property Name="balancearticle" Type="float" />
+    <Property Name="balanceweight" Type="float" />
+    <Property Name="rollno" Type="nvarchar" MaxLength="50" />
+    <Property Name="handedoverto" Type="nvarchar" MaxLength="50" />
+    <Property Name="contractNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="vehicleNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="GUTKANo" Type="nvarchar" MaxLength="50" />
+    <Property Name="remark" Type="nvarchar" MaxLength="50" />
+    <Property Name="isActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="GodownMaster">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="godownCode" Type="varchar" MaxLength="15" />
+    <Property Name="godownName" Type="nvarchar" MaxLength="50" />
+    <Property Name="branchId" Type="int" Nullable="false" />
+    <Property Name="address" Type="text" />
+    <Property Name="cityId" Type="int" Nullable="false" />
+    <Property Name="pincode" Type="int" />
+    <Property Name="stateId" Type="int" Nullable="false" />
+    <Property Name="phoneNo" Type="nvarchar" MaxLength="12" />
+    <Property Name="mobileNo" Type="nvarchar" MaxLength="12" />
+    <Property Name="storageCapacity" Type="nvarchar" MaxLength="12" />
+    <Property Name="remark" Type="text" />
+    <Property Name="IsActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="GodownOwnerDetailsMaster">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="goddownOwnerCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="branch" Type="int" />
+    <Property Name="goddown" Type="int" />
+    <Property Name="ownerName" Type="nvarchar" MaxLength="50" />
+    <Property Name="address" Type="nvarchar" MaxLength="100" />
+    <Property Name="city" Type="int" />
+    <Property Name="pinCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="state" Type="int" />
+    <Property Name="stdCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="phoneNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="mobileNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="emailId" Type="nvarchar" MaxLength="50" />
+    <Property Name="sqft" Type="nvarchar" MaxLength="50" />
+    <Property Name="ratePerSqft" Type="nvarchar" MaxLength="100" />
+    <Property Name="rentAmount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="gst" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="totalRent" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="tds" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="netRent" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="pan" Type="nvarchar" MaxLength="50" />
+    <Property Name="gstin" Type="nvarchar" MaxLength="50" />
+    <Property Name="bank" Type="int" />
+    <Property Name="ifsc" Type="nvarchar" MaxLength="50" />
+    <Property Name="a_cno" Type="nvarchar" MaxLength="100" />
+    <Property Name="chequeInTheNameOf" Type="nvarchar" MaxLength="100" />
+    <Property Name="nextVersionDate" Type="date" />
+    <Property Name="holdPaymentInstruction" Type="bit" />
+    <Property Name="reamrk" Type="nvarchar" MaxLength="50" />
+    <Property Name="isRented" Type="bit" />
+    <Property Name="rentPaymentType" Type="nvarchar" MaxLength="50" />
+    <Property Name="securityDeposit" Type="nvarchar" MaxLength="50" />
+    <Property Name="agreementStartDate" Type="date" />
+    <Property Name="agreementEndDate" Type="date" />
+    <Property Name="noticePeriodInDays" Type="nvarchar" MaxLength="50" />
+    <Property Name="isActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="InwardMaster">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="truckArrivalNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="truckArrivalDate" Type="date" />
+    <Property Name="vehicleNo" Type="int" />
+    <Property Name="challanNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="challanDate" Type="date" />
+    <Property Name="challanFrom" Type="int" />
+    <Property Name="challanTo" Type="int" />
+    <Property Name="scheduledArriDate" Type="date" />
+    <Property Name="expectedUnloadingTime" Type="int" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="50" />
+    <Property Name="truckUnloadingNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="truckUnloadingDate" Type="date" />
+    <Property Name="vehicleNo1" Type="int" />
+    <Property Name="truckArrivalNo1" Type="nvarchar" MaxLength="50" />
+    <Property Name="truckArrivalDate1" Type="date" />
+    <Property Name="challanNo1" Type="nvarchar" MaxLength="50" />
+    <Property Name="CNNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="CNDate" Type="date" />
+    <Property Name="bookingBranch" Type="int" />
+    <Property Name="deliveryLocation" Type="nvarchar" MaxLength="50" />
+    <Property Name="article" Type="nvarchar" MaxLength="50" />
+    <Property Name="loadedArticle" Type="nvarchar" MaxLength="50" />
+    <Property Name="loadedWeight" Type="float" />
+    <Property Name="receivedArticle" Type="nvarchar" MaxLength="50" />
+    <Property Name="receivedWeight" Type="float" />
+    <Property Name="godown" Type="int" />
+    <Property Name="virtualGodown" Type="int" />
+    <Property Name="receivedCondition" Type="nvarchar" MaxLength="50" />
+    <Property Name="damageLeakageArticle" Type="nvarchar" MaxLength="50" />
+    <Property Name="damageLeakageWeight" Type="float" />
+    <Property Name="damageLeakageValue" Type="nvarchar" MaxLength="50" />
+    <Property Name="DDbySame" Type="bit" />
+    <Property Name="rollno" Type="nvarchar" MaxLength="50" />
+    <Property Name="vehicleArrivalDate" Type="date" />
+    <Property Name="vehicleExpectedUploadDate" Type="date" />
+    <Property Name="vehicleActualUploadDate" Type="date" />
+    <Property Name="remark1" Type="nvarchar" MaxLength="50" />
+    <Property Name="GRNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="consignor" Type="nvarchar" MaxLength="50" />
+    <Property Name="consignee" Type="nvarchar" MaxLength="50" />
+    <Property Name="packingType" Type="int" />
+    <Property Name="commodity" Type="int" />
+    <Property Name="ArticleRollNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="meter" Type="float" />
+    <Property Name="weight" Type="float" />
+    <Property Name="sortNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="lotNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="remark2" Type="nvarchar" MaxLength="50" />
+    <Property Name="isActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="LateReportReasonMaster">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="reason" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="reappforpro" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="doordelivery" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="isActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Ledger">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ledgername" Type="nvarchar" MaxLength="50" />
+    <Property Name="PAN" Type="nvarchar" MaxLength="50" />
+    <Property Name="GSTIN" Type="nvarchar" MaxLength="50" />
+    <Property Name="accountno" Type="nvarchar" MaxLength="50" />
+    <Property Name="address" Type="nvarchar" MaxLength="50" />
+    <Property Name="city" Type="int" />
+    <Property Name="pincode" Type="nvarchar" MaxLength="50" />
+    <Property Name="state" Type="int" />
+    <Property Name="STDcode" Type="nvarchar" MaxLength="50" />
+    <Property Name="phoneno" Type="nvarchar" MaxLength="50" />
+    <Property Name="mobileno" Type="nvarchar" MaxLength="50" />
+    <Property Name="emailid" Type="nvarchar" MaxLength="50" />
+    <Property Name="emailalert" Type="bit" />
+    <Property Name="mobilealert" Type="bit" />
+    <Property Name="openingbalance" Type="nvarchar" MaxLength="50" />
+    <Property Name="openingamount" Type="nvarchar" MaxLength="50" />
+    <Property Name="applicablelocation" Type="nvarchar" MaxLength="50" />
+    <Property Name="remark" Type="nvarchar" MaxLength="50" />
+    <Property Name="isActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="LedgerGroupFinance">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ledgergroupname" Type="nvarchar" MaxLength="50" />
+    <Property Name="nature" Type="nvarchar" MaxLength="50" />
+    <Property Name="isActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="LocalVehicleContractMaster">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="branch" Type="int" Nullable="false" />
+    <Property Name="vehicleNo" Type="int" Nullable="false" />
+    <Property Name="vendorDetail" Type="int" Nullable="false" />
+    <Property Name="fromdate" Type="date" Nullable="false" />
+    <Property Name="todate" Type="date" Nullable="false" />
+    <Property Name="freightsettlement" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="hirebasis" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="hirerate" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OutwardMaster">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="challandate" Type="date" Nullable="false" />
+    <Property Name="vehicleNo" Type="int" Nullable="false" />
+    <Property Name="vehiclecapacityMT" Type="float" Nullable="false" />
+    <Property Name="challantype" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="challanNo" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="frombranch" Type="int" Nullable="false" />
+    <Property Name="tobranch" Type="int" Nullable="false" />
+    <Property Name="brokerloadingslipno" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="brokername" Type="int" Nullable="false" />
+    <Property Name="drivername" Type="int" Nullable="false" />
+    <Property Name="driverlicenceNo" Type="int" Nullable="false" />
+    <Property Name="drivermobileNo" Type="int" Nullable="false" />
+    <Property Name="CNno" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CNdate" Type="date" Nullable="false" />
+    <Property Name="bookingbranch" Type="int" Nullable="false" />
+    <Property Name="deliverylocation" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="deliverytype" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="balancepackeges" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="balanceweight" Type="float" Nullable="false" />
+    <Property Name="loadedpackages" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="loadedweight" Type="float" Nullable="false" />
+    <Property Name="rollno" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="truckhirechareges" Type="float" Nullable="false" />
+    <Property Name="othercharges" Type="float" Nullable="false" />
+    <Property Name="TDS" Type="float" Nullable="false" />
+    <Property Name="TDSamount" Type="float" Nullable="false" />
+    <Property Name="totaltruckhire" Type="float" Nullable="false" />
+    <Property Name="advence" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="advencepayableAt" Type="int" Nullable="false" />
+    <Property Name="balancepayableAt" Type="int" Nullable="false" />
+    <Property Name="RC" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="PAN" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="drivinglicenceAttach" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="loadinglicenceAttach" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="TransitDays" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="isActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PackingMaster">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="article" Type="int" />
+    <Property Name="item" Type="int" />
+    <Property Name="actualWeight" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="packingType" Type="nvarchar" MaxLength="50" />
+    <Property Name="bookingId" Type="int" />
+    <Property Name="isActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="PackingTypeMaster">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PreDelivery">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="predeliveryNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="predeliverydate" Type="date" />
+    <Property Name="paymentmode" Type="nvarchar" MaxLength="50" />
+    <Property Name="deliveryparty" Type="int" />
+    <Property Name="deliverypartydetails" Type="nvarchar" MaxLength="50" />
+    <Property Name="contractparty" Type="int" />
+    <Property Name="contractpartydetails" Type="nvarchar" MaxLength="50" />
+    <Property Name="CNno" Type="nvarchar" MaxLength="50" />
+    <Property Name="CNdate" Type="date" />
+    <Property Name="bookingbranch" Type="int" />
+    <Property Name="consignoor" Type="nvarchar" MaxLength="50" />
+    <Property Name="item" Type="nvarchar" MaxLength="50" />
+    <Property Name="packingType" Type="int" />
+    <Property Name="godownname" Type="int" />
+    <Property Name="virtualgodownname" Type="int" />
+    <Property Name="deliveryarticle" Type="float" />
+    <Property Name="deliveryweight" Type="float" />
+    <Property Name="balancearticle" Type="float" />
+    <Property Name="balanceweight" Type="float" />
+    <Property Name="rollNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="remark" Type="nvarchar" MaxLength="50" />
+    <Property Name="isActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="PrintingStationary">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="dateofprinting" Type="date" />
+    <Property Name="documenttype" Type="nvarchar" MaxLength="50" />
+    <Property Name="startseriesNo" Type="float" />
+    <Property Name="endseriesNo" Type="float" />
+    <Property Name="count" Type="float" />
+    <Property Name="isActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="ReceiptMaster">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BMRno" Type="nvarchar" MaxLength="50" />
+    <Property Name="BMRdate" Type="date" />
+    <Property Name="Cash" Type="nvarchar" MaxLength="50" />
+    <Property Name="Chequeno" Type="nvarchar" MaxLength="50" />
+    <Property Name="Chequedate" Type="date" />
+    <Property Name="Receivedamount" Type="nvarchar" MaxLength="50" />
+    <Property Name="Billno" Type="nvarchar" MaxLength="50" />
+    <Property Name="Billamount" Type="nvarchar" MaxLength="50" />
+    <Property Name="TDS" Type="nvarchar" MaxLength="50" />
+    <Property Name="FreightDeduction" Type="nvarchar" MaxLength="50" />
+    <Property Name="Etc" Type="nvarchar" MaxLength="50" />
+    <Property Name="remark" Type="nvarchar" MaxLength="50" />
+    <Property Name="financeeffect" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="RegionMaster">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="regionCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="regionName" Type="nvarchar" MaxLength="50" />
+    <Property Name="address" Type="text" />
+    <Property Name="cityId" Type="int" Nullable="false" />
+    <Property Name="pincode" Type="int" />
+    <Property Name="stateId" Type="int" Nullable="false" />
+    <Property Name="phoneNo" Type="nvarchar" MaxLength="12" />
+    <Property Name="mobileNo" Type="nvarchar" MaxLength="12" />
+    <Property Name="emailId" Type="nvarchar" MaxLength="50" />
+    <Property Name="cashBalanceLimit" Type="nvarchar" MaxLength="50" />
+    <Property Name="bankBalanceLimit" Type="nvarchar" MaxLength="50" />
+    <Property Name="defaultCashLedger" Type="int" />
+    <Property Name="defaultBankLegder" Type="int" />
+    <Property Name="IsActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="RegularClient_Contact_info">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="client_id" Type="int" />
+    <Property Name="Department" Type="nvarchar" MaxLength="50" />
+    <Property Name="MobileNo" Type="nvarchar" MaxLength="12" />
+    <Property Name="EmailId" Type="nvarchar" MaxLength="50" />
+    <Property Name="DOC" Type="date" />
+    <Property Name="DOM" Type="date" />
+    <Property Name="IsActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="RegularClientMaster">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="branchId" Type="int" />
+    <Property Name="clientCode" Type="nvarchar" MaxLength="20" />
+    <Property Name="clientName" Type="nvarchar" MaxLength="25" />
+    <Property Name="clientGroupId" Type="int" />
+    <Property Name="pan" Type="nvarchar" MaxLength="15" />
+    <Property Name="gstIN" Type="nvarchar" MaxLength="15" />
+    <Property Name="address" Type="text" />
+    <Property Name="cityId" Type="int" />
+    <Property Name="pinCode" Type="int" />
+    <Property Name="StateId" Type="int" />
+    <Property Name="phoneNo" Type="nvarchar" MaxLength="12" />
+    <Property Name="mobileNo" Type="nvarchar" MaxLength="12" />
+    <Property Name="emailAlert" Type="bit" />
+    <Property Name="smsAlert" Type="bit" />
+    <Property Name="deliveryAgainstAsCnr" Type="nvarchar" MaxLength="50" />
+    <Property Name="deliveryAgainstAsCne" Type="nvarchar" MaxLength="50" />
+    <Property Name="ledgerName" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreditLimit" Type="nvarchar" MaxLength="50" />
+    <Property Name="days" Type="int" />
+    <Property Name="amount" Type="nvarchar" MaxLength="15" />
+    <Property Name="interest" Type="int" />
+    <Property Name="creditGraceDays" Type="int" />
+    <Property Name="bankId" Type="int" />
+    <Property Name="ifsc" Type="nvarchar" MaxLength="50" />
+    <Property Name="accountNo" Type="nvarchar" MaxLength="20" />
+    <Property Name="chequeInTheNameOf" Type="nvarchar" MaxLength="50" />
+    <Property Name="companyNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="policyNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="validFromDate" Type="datetime" />
+    <Property Name="validToDate" Type="datetime" />
+    <Property Name="insuranceAmount" Type="nvarchar" MaxLength="20" />
+    <Property Name="isMarineInsured" Type="bit" />
+    <Property Name="isGodownInsured" Type="bit" />
+    <Property Name="paymentMode" Type="nvarchar" MaxLength="20" />
+    <Property Name="bookingType" Type="nvarchar" MaxLength="10" />
+    <Property Name="deliveryType" Type="nvarchar" MaxLength="10" />
+    <Property Name="multipleBillingBranches" Type="nvarchar" MaxLength="20" />
+    <Property Name="remark" Type="text" />
+    <Property Name="isActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="Requirement">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="requirementNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="requirementDate" Type="date" />
+    <Property Name="requirementType" Type="nvarchar" MaxLength="50" />
+    <Property Name="DRLedgerNameTo" Type="int" />
+    <Property Name="DRAmount" Type="nvarchar" MaxLength="50" />
+    <Property Name="DRLedgerNameFrom" Type="int" />
+    <Property Name="DRAmount1" Type="nvarchar" MaxLength="50" />
+    <Property Name="remark" Type="nvarchar" MaxLength="50" />
+    <Property Name="referenceNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="challanNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="RENT" Type="nvarchar" MaxLength="50" />
+    <Property Name="SALARY" Type="nvarchar" MaxLength="50" />
+    <Property Name="ADMIN" Type="nvarchar" MaxLength="50" />
+    <Property Name="fileupload" Type="nvarchar(max)" />
+    <Property Name="isActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="ReserveBooking">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="branch" Type="int" />
+    <Property Name="Consignor" Type="int" />
+    <Property Name="CNfrom" Type="nvarchar" MaxLength="50" />
+    <Property Name="CNto" Type="nvarchar" MaxLength="50" />
+    <Property Name="isActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="RTOMaster">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="rtoCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" />
+    <Property Name="address" Type="nvarchar" MaxLength="150" />
+    <Property Name="city" Type="int" />
+    <Property Name="pinCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="state" Type="int" />
+    <Property Name="stdCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="phoneNo" Type="int" />
+    <Property Name="emailId" Type="nvarchar" MaxLength="50" />
+    <Property Name="website" Type="nvarchar" MaxLength="50" />
+    <Property Name="remark" Type="nvarchar" MaxLength="50" />
+    <Property Name="isActive" Type="bit" />
+    <Property Name="mobileNo" Type="int" />
+  </EntityType>
+  <EntityType Name="SeriesGeneration">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="generationdate" Type="date" />
+    <Property Name="documenttype" Type="nvarchar" MaxLength="50" />
+    <Property Name="startseriesNo" Type="float" />
+    <Property Name="endseriesNo" Type="float" />
+    <Property Name="count" Type="float" />
+    <Property Name="isActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="ServiceLocationMaster">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="servicelocationcode" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="servicelocationname" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="defaultdeliverytype" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="controllingbranch" Type="int" Nullable="false" />
+    <Property Name="deliveryat" Type="int" Nullable="false" />
+    <Property Name="distancefrombranch" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="istodaybooking" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="pickupcharges" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DDCharges" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="isActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="StandardLorryHireMaster">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="date" Type="date" Nullable="false" />
+    <Property Name="vehicleType" Type="int" Nullable="false" />
+    <Property Name="vehiclecpacityMT" Type="float" Nullable="false" />
+    <Property Name="from" Type="int" Nullable="false" />
+    <Property Name="to" Type="int" Nullable="false" />
+    <Property Name="lorryhire" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="isActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="StateMaster">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GSTCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="StateName" Type="nvarchar" MaxLength="50" />
+    <Property Name="StateRtoCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="Remark" Type="text" />
+    <Property Name="IsActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="TruckArrival">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="truckArrivalNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="truckArrivalDate" Type="date" />
+    <Property Name="vehicleNo" Type="int" />
+    <Property Name="challanNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="challanDate" Type="date" />
+    <Property Name="challanFrom" Type="int" />
+    <Property Name="challanTo" Type="int" />
+    <Property Name="scheduledArriDate" Type="date" />
+    <Property Name="expectedUnloadingTime" Type="int" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="50" />
+    <Property Name="isActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="TruckUnloading">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="truckUnloadingNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="truckUnloadingDate" Type="date" />
+    <Property Name="vehicleNo" Type="int" />
+    <Property Name="truckArrivalNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="truckArrivalDate" Type="date" />
+    <Property Name="challanNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="CNNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="CNDate" Type="date" />
+    <Property Name="bookingBranch" Type="int" />
+    <Property Name="deliveryLocation" Type="nvarchar" MaxLength="50" />
+    <Property Name="article" Type="nvarchar" MaxLength="50" />
+    <Property Name="loadedArticle" Type="nvarchar" MaxLength="50" />
+    <Property Name="loadedWeight" Type="float" />
+    <Property Name="receivedArticle" Type="nvarchar" MaxLength="50" />
+    <Property Name="receivedWeight" Type="float" />
+    <Property Name="godown" Type="int" />
+    <Property Name="virtualGodown" Type="int" />
+    <Property Name="receivedCondition" Type="nvarchar" MaxLength="50" />
+    <Property Name="damageLeakageArticle" Type="nvarchar" MaxLength="50" />
+    <Property Name="damageLeakageWeight" Type="float" />
+    <Property Name="damageLeakageValue" Type="nvarchar" MaxLength="50" />
+    <Property Name="DDbySame" Type="bit" />
+    <Property Name="rollno" Type="nvarchar" MaxLength="50" />
+    <Property Name="vehicleArrivalDate" Type="date" />
+    <Property Name="vehicleExpectedUploadDate" Type="date" />
+    <Property Name="vehicleActualUploadDate" Type="date" />
+    <Property Name="remark1" Type="nvarchar" MaxLength="50" />
+    <Property Name="GRNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="consignor" Type="nvarchar" MaxLength="50" />
+    <Property Name="consignee" Type="nvarchar" MaxLength="50" />
+    <Property Name="packingType" Type="int" />
+    <Property Name="commodity" Type="int" />
+    <Property Name="ArticleRollNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="meter" Type="float" />
+    <Property Name="weight" Type="float" />
+    <Property Name="sortNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="lotNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="remark2" Type="nvarchar" MaxLength="50" />
+    <Property Name="isActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="UploadPackingSlip">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cnNo" Type="int" />
+    <Property Name="rollNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="srtoNo" Type="int" />
+    <Property Name="lotNo" Type="int" />
+    <Property Name="meter" Type="float" />
+    <Property Name="weightInKg" Type="float" />
+    <Property Name="isActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="UserMaster">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" />
+    <Property Name="Address" Type="nvarchar" MaxLength="50" />
+    <Property Name="Gender" Type="varchar" MaxLength="50" />
+    <Property Name="UserType" Type="nvarchar" MaxLength="50" />
+    <Property Name="EmailId" Type="nvarchar" MaxLength="50" />
+    <Property Name="Mobile" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" />
+    <Property Name="DOC" Type="datetime" />
+    <Property Name="DOM" Type="datetime" />
+    <Property Name="IsActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="VehicleMaster">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="vehiclecategory" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="vehicleNo" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="vehicleType" Type="int" Nullable="false" />
+    <Property Name="manufacturer" Type="int" Nullable="false" />
+    <Property Name="vehiclemodel" Type="int" Nullable="false" />
+    <Property Name="yearofmanufacturing" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="GPSID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="drivername" Type="int" Nullable="false" />
+    <Property Name="ownerdetails" Type="int" Nullable="false" />
+    <Property Name="chassisNo" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="engineNo" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="trollychassisNo" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="fueltankCapacity" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="vehicleweightinMT" Type="float" Nullable="false" />
+    <Property Name="unladenweightinMT" Type="float" Nullable="false" />
+    <Property Name="vehicleCapacity" Type="float" Nullable="false" />
+    <Property Name="wheelbaseinMM" Type="float" Nullable="false" />
+    <Property Name="lengthinFt" Type="float" Nullable="false" />
+    <Property Name="widthinft" Type="float" Nullable="false" />
+    <Property Name="heightinft" Type="float" Nullable="false" />
+    <Property Name="powerinCC" Type="float" Nullable="false" />
+    <Property Name="paintCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="paintColour" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ignitionkey" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="doorkeycode" Type="float" Nullable="false" />
+    <Property Name="bankfanainstuName" Type="int" Nullable="false" />
+    <Property Name="loanaccountNo" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="fileUpload" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="wheelsize" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="tyresize" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="psi" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="registrationDate" Type="date" Nullable="false" />
+    <Property Name="fitnessDate" Type="date" Nullable="false" />
+    <Property Name="permitfromdate" Type="date" Nullable="false" />
+    <Property Name="insurancefromdate" Type="date" Nullable="false" />
+    <Property Name="isActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VehicleModelMaster">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="modelname" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="manufacturername" Type="int" Nullable="false" />
+    <Property Name="vehicleweightinMT" Type="float" Nullable="false" />
+    <Property Name="unladenweightinMT" Type="float" Nullable="false" />
+    <Property Name="vehiclecapacity" Type="float" Nullable="false" />
+    <Property Name="length" Type="float" Nullable="false" />
+    <Property Name="width" Type="float" Nullable="false" />
+    <Property Name="height" Type="float" Nullable="false" />
+    <Property Name="isActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VehicleTypeMaster">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VendorMaster">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="vendorType" Type="int" Nullable="false" />
+    <Property Name="address" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="city" Type="int" Nullable="false" />
+    <Property Name="pincode" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="state" Type="int" Nullable="false" />
+    <Property Name="STDcode" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="phoneno" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="mobileno" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="emailid" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="emailalert" Type="bit" Nullable="false" />
+    <Property Name="mobilealert" Type="bit" Nullable="false" />
+    <Property Name="PAN" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="GSTIN" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="referencename" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="referphoneno" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="refermobileno" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="creditdays" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="creditamount" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="bankname" Type="int" Nullable="false" />
+    <Property Name="bankbranch" Type="int" Nullable="false" />
+    <Property Name="IFSC" Type="int" Nullable="false" />
+    <Property Name="accountno" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="chequename" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="fileupload" Type="varchar(max)" Nullable="false" />
+    <Property Name="isActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VendorTypeMaster">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="isActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VirtualGodownMaster">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="virtualGodownCode" Type="varchar" MaxLength="25" />
+    <Property Name="branchId" Type="int" />
+    <Property Name="godownId" Type="int" />
+    <Property Name="storageCapacity" Type="nvarchar" MaxLength="15" />
+    <Property Name="remark" Type="text" />
+    <Property Name="isActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="Walk-inClientMaster">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="contactperno" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="address" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="cityid" Type="int" Nullable="false" />
+    <Property Name="pincode" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="stateid" Type="int" Nullable="false" />
+    <Property Name="STDcode" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="phone" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="mobile" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="emailid" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="emailalert" Type="bit" Nullable="false" />
+    <Property Name="mobilealert" Type="bit" Nullable="false" />
+    <Property Name="pan" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="gstIN" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="deliveryAgainstAsCnr" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="deliveryAgainstAsCne" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="companyname" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="policyno" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="validfromdate" Type="datetime" Nullable="false" />
+    <Property Name="validtodate" Type="datetime" Nullable="false" />
+    <Property Name="insuranceamount" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="isMarineIsured" Type="bit" Nullable="false" />
+    <Property Name="isGodownIsured" Type="bit" Nullable="false" />
+    <Property Name="isActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__CityMaste__state__15502E78">
+    <End Role="StateMaster" Type="Self.StateMaster" Multiplicity="1" />
+    <End Role="CityMaster" Type="Self.CityMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StateMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="CityMaster">
+        <PropertyRef Name="stateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AccountMaster_CityMaster">
+    <End Role="CityMaster" Type="Self.CityMaster" Multiplicity="0..1" />
+    <End Role="AccountMaster" Type="Self.AccountMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CityMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="AccountMaster">
+        <PropertyRef Name="city" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AccountMaster_StateMaster">
+    <End Role="StateMaster" Type="Self.StateMaster" Multiplicity="0..1" />
+    <End Role="AccountMaster" Type="Self.AccountMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StateMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="AccountMaster">
+        <PropertyRef Name="state" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AreaMaster_CityMaster">
+    <End Role="CityMaster" Type="Self.CityMaster" Multiplicity="0..1" />
+    <End Role="AreaMaster" Type="Self.AreaMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CityMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="AreaMaster">
+        <PropertyRef Name="city" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AreaMaster_RegionMaster">
+    <End Role="RegionMaster" Type="Self.RegionMaster" Multiplicity="0..1" />
+    <End Role="AreaMaster" Type="Self.AreaMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RegionMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="AreaMaster">
+        <PropertyRef Name="region" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AreaMaster_StateMaster">
+    <End Role="StateMaster" Type="Self.StateMaster" Multiplicity="0..1" />
+    <End Role="AreaMaster" Type="Self.AreaMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StateMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="AreaMaster">
+        <PropertyRef Name="state" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BankMaster_CityMaster1">
+    <End Role="CityMaster" Type="Self.CityMaster" Multiplicity="1" />
+    <End Role="BankMaster" Type="Self.BankMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CityMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="BankMaster">
+        <PropertyRef Name="city" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BankMaster_StateMaster">
+    <End Role="StateMaster" Type="Self.StateMaster" Multiplicity="1" />
+    <End Role="BankMaster" Type="Self.BankMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StateMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="BankMaster">
+        <PropertyRef Name="state" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Bill_BranchMaster">
+    <End Role="BranchMaster" Type="Self.BranchMaster" Multiplicity="0..1" />
+    <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BranchMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Bill">
+        <PropertyRef Name="bookingbranch" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Booking_BranchMaster">
+    <End Role="BranchMaster" Type="Self.BranchMaster" Multiplicity="0..1" />
+    <End Role="BookingMaster" Type="Self.BookingMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BranchMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="BookingMaster">
+        <PropertyRef Name="from" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Booking_BranchMaster1">
+    <End Role="BranchMaster" Type="Self.BranchMaster" Multiplicity="0..1" />
+    <End Role="BookingMaster" Type="Self.BookingMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BranchMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="BookingMaster">
+        <PropertyRef Name="to" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Booking_GodownMaster">
+    <End Role="GodownMaster" Type="Self.GodownMaster" Multiplicity="0..1" />
+    <End Role="BookingMaster" Type="Self.BookingMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GodownMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="BookingMaster">
+        <PropertyRef Name="godownNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Booking_RegularClientMaster">
+    <End Role="RegularClientMaster" Type="Self.RegularClientMaster" Multiplicity="0..1" />
+    <End Role="BookingMaster" Type="Self.BookingMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RegularClientMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="BookingMaster">
+        <PropertyRef Name="consignee" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BookingMaster_BookingMaster">
+    <End Role="BookingMaster" Type="Self.BookingMaster" Multiplicity="1" />
+    <End Role="BookingMaster1" Type="Self.BookingMaster" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="BookingMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="BookingMaster1">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BookingMaster_BranchMaster">
+    <End Role="BranchMaster" Type="Self.BranchMaster" Multiplicity="0..1" />
+    <End Role="BookingMaster" Type="Self.BookingMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BranchMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="BookingMaster">
+        <PropertyRef Name="deliveryBranch" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BookingMaster_GodownMaster">
+    <End Role="GodownMaster" Type="Self.GodownMaster" Multiplicity="0..1" />
+    <End Role="BookingMaster" Type="Self.BookingMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GodownMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="BookingMaster">
+        <PropertyRef Name="virtualGoddownNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BookingMaster_RegularClientMaster">
+    <End Role="RegularClientMaster" Type="Self.RegularClientMaster" Multiplicity="0..1" />
+    <End Role="BookingMaster" Type="Self.BookingMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RegularClientMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="BookingMaster">
+        <PropertyRef Name="consignor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BookingMaster_RegularClientMaster1">
+    <End Role="RegularClientMaster" Type="Self.RegularClientMaster" Multiplicity="0..1" />
+    <End Role="BookingMaster" Type="Self.BookingMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RegularClientMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="BookingMaster">
+        <PropertyRef Name="agentName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BranchMaster_CityMaster">
+    <End Role="CityMaster" Type="Self.CityMaster" Multiplicity="1" />
+    <End Role="BranchMaster" Type="Self.BranchMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CityMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="BranchMaster">
+        <PropertyRef Name="cityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BranchMaster_StateMaster">
+    <End Role="StateMaster" Type="Self.StateMaster" Multiplicity="1" />
+    <End Role="BranchMaster" Type="Self.BranchMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StateMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="BranchMaster">
+        <PropertyRef Name="stateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CommodityMaster_CommodityTypeMaster">
+    <End Role="CommodityTypeMaster" Type="Self.CommodityTypeMaster" Multiplicity="1" />
+    <End Role="CommodityMaster" Type="Self.CommodityMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CommodityTypeMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="CommodityMaster">
+        <PropertyRef Name="commodityType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ConsignmentOperation_BranchMaster">
+    <End Role="BranchMaster" Type="Self.BranchMaster" Multiplicity="0..1" />
+    <End Role="ConsignmentOperation" Type="Self.ConsignmentOperation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BranchMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ConsignmentOperation">
+        <PropertyRef Name="from" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ConsignmentOperation_BranchMaster1">
+    <End Role="BranchMaster" Type="Self.BranchMaster" Multiplicity="0..1" />
+    <End Role="ConsignmentOperation" Type="Self.ConsignmentOperation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BranchMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ConsignmentOperation">
+        <PropertyRef Name="to" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ConsignmentOperation_BranchMaster2">
+    <End Role="BranchMaster" Type="Self.BranchMaster" Multiplicity="0..1" />
+    <End Role="ConsignmentOperation" Type="Self.ConsignmentOperation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BranchMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ConsignmentOperation">
+        <PropertyRef Name="deliveryBranch" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ConsignmentOperation_GodownMaster">
+    <End Role="GodownMaster" Type="Self.GodownMaster" Multiplicity="0..1" />
+    <End Role="ConsignmentOperation" Type="Self.ConsignmentOperation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GodownMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ConsignmentOperation">
+        <PropertyRef Name="godownNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ConsignmentOperation_RegularClientMaster">
+    <End Role="RegularClientMaster" Type="Self.RegularClientMaster" Multiplicity="0..1" />
+    <End Role="ConsignmentOperation" Type="Self.ConsignmentOperation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RegularClientMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ConsignmentOperation">
+        <PropertyRef Name="consignor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ConsignmentOperation_RegularClientMaster1">
+    <End Role="RegularClientMaster" Type="Self.RegularClientMaster" Multiplicity="0..1" />
+    <End Role="ConsignmentOperation" Type="Self.ConsignmentOperation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RegularClientMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ConsignmentOperation">
+        <PropertyRef Name="consignee" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ConsignmentOperation_RegularClientMaster2">
+    <End Role="RegularClientMaster" Type="Self.RegularClientMaster" Multiplicity="0..1" />
+    <End Role="ConsignmentOperation" Type="Self.ConsignmentOperation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RegularClientMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ConsignmentOperation">
+        <PropertyRef Name="agentName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ConsignmentOperation_RegularClientMaster3">
+    <End Role="RegularClientMaster" Type="Self.RegularClientMaster" Multiplicity="0..1" />
+    <End Role="ConsignmentOperation" Type="Self.ConsignmentOperation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RegularClientMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ConsignmentOperation">
+        <PropertyRef Name="ftl" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ConsignmentOperation_VirtualGodownMaster">
+    <End Role="VirtualGodownMaster" Type="Self.VirtualGodownMaster" Multiplicity="0..1" />
+    <End Role="ConsignmentOperation" Type="Self.ConsignmentOperation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VirtualGodownMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ConsignmentOperation">
+        <PropertyRef Name="virtualGoddownNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CrossingMaster_BranchMaster">
+    <End Role="BranchMaster" Type="Self.BranchMaster" Multiplicity="1" />
+    <End Role="CrossingMaster" Type="Self.CrossingMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BranchMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="CrossingMaster">
+        <PropertyRef Name="frombranch" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CrossingMaster_BranchMaster1">
+    <End Role="BranchMaster" Type="Self.BranchMaster" Multiplicity="1" />
+    <End Role="CrossingMaster" Type="Self.CrossingMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BranchMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="CrossingMaster">
+        <PropertyRef Name="tobranch" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DDLocalChallan_VehicleMaster">
+    <End Role="VehicleMaster" Type="Self.VehicleMaster" Multiplicity="0..1" />
+    <End Role="DDLocalChallan" Type="Self.DDLocalChallan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VehicleMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="DDLocalChallan">
+        <PropertyRef Name="vehicleNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DeliveryMaster_BookingMaster">
+    <End Role="BookingMaster" Type="Self.BookingMaster" Multiplicity="0..1" />
+    <End Role="DeliveryMaster" Type="Self.DeliveryMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BookingMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="DeliveryMaster">
+        <PropertyRef Name="bookingbranch" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DeliveryMaster_BookingMaster1">
+    <End Role="BookingMaster" Type="Self.BookingMaster" Multiplicity="0..1" />
+    <End Role="DeliveryMaster" Type="Self.DeliveryMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BookingMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="DeliveryMaster">
+        <PropertyRef Name="bookingbranch1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DeliveryMaster_BookingMaster2">
+    <End Role="BookingMaster" Type="Self.BookingMaster" Multiplicity="0..1" />
+    <End Role="DeliveryMaster" Type="Self.DeliveryMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BookingMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="DeliveryMaster">
+        <PropertyRef Name="bookingbranch2" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DeliveryMaster_BookingMaster3">
+    <End Role="BookingMaster" Type="Self.BookingMaster" Multiplicity="0..1" />
+    <End Role="DeliveryMaster" Type="Self.DeliveryMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BookingMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="DeliveryMaster">
+        <PropertyRef Name="bookingbranch3" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DeliveryMaster_GodownMaster">
+    <End Role="GodownMaster" Type="Self.GodownMaster" Multiplicity="0..1" />
+    <End Role="DeliveryMaster" Type="Self.DeliveryMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GodownMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="DeliveryMaster">
+        <PropertyRef Name="godownname" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DeliveryMaster_GodownMaster1">
+    <End Role="GodownMaster" Type="Self.GodownMaster" Multiplicity="0..1" />
+    <End Role="DeliveryMaster" Type="Self.DeliveryMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GodownMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="DeliveryMaster">
+        <PropertyRef Name="godownname1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DeliveryMaster_PackingTypeMaster1">
+    <End Role="PackingTypeMaster" Type="Self.PackingTypeMaster" Multiplicity="0..1" />
+    <End Role="DeliveryMaster" Type="Self.DeliveryMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PackingTypeMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="DeliveryMaster">
+        <PropertyRef Name="packingType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DeliveryMaster_PackingTypeMaster2">
+    <End Role="PackingTypeMaster" Type="Self.PackingTypeMaster" Multiplicity="0..1" />
+    <End Role="DeliveryMaster" Type="Self.DeliveryMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PackingTypeMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="DeliveryMaster">
+        <PropertyRef Name="packingType1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DeliveryMaster_RegularClientMaster">
+    <End Role="RegularClientMaster" Type="Self.RegularClientMaster" Multiplicity="0..1" />
+    <End Role="DeliveryMaster" Type="Self.DeliveryMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RegularClientMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="DeliveryMaster">
+        <PropertyRef Name="deliveryparty" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DeliveryMaster_RegularClientMaster1">
+    <End Role="RegularClientMaster" Type="Self.RegularClientMaster" Multiplicity="0..1" />
+    <End Role="DeliveryMaster" Type="Self.DeliveryMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RegularClientMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="DeliveryMaster">
+        <PropertyRef Name="contractparty" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DeliveryMaster_RegularClientMaster2">
+    <End Role="RegularClientMaster" Type="Self.RegularClientMaster" Multiplicity="0..1" />
+    <End Role="DeliveryMaster" Type="Self.DeliveryMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RegularClientMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="DeliveryMaster">
+        <PropertyRef Name="deliveryparty1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DeliveryMaster_RegularClientMaster3">
+    <End Role="RegularClientMaster" Type="Self.RegularClientMaster" Multiplicity="0..1" />
+    <End Role="DeliveryMaster" Type="Self.DeliveryMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RegularClientMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="DeliveryMaster">
+        <PropertyRef Name="contractparty1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DeliveryMaster_VirtualGodownMaster">
+    <End Role="VirtualGodownMaster" Type="Self.VirtualGodownMaster" Multiplicity="0..1" />
+    <End Role="DeliveryMaster" Type="Self.DeliveryMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VirtualGodownMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="DeliveryMaster">
+        <PropertyRef Name="virtualgodownname" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DeliveryMaster_VirtualGodownMaster1">
+    <End Role="VirtualGodownMaster" Type="Self.VirtualGodownMaster" Multiplicity="0..1" />
+    <End Role="DeliveryMaster" Type="Self.DeliveryMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VirtualGodownMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="DeliveryMaster">
+        <PropertyRef Name="virtualgodownname1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DocumentAllocationMaster_BranchMaster">
+    <End Role="BranchMaster" Type="Self.BranchMaster" Multiplicity="1" />
+    <End Role="DocumentAllocationMaster" Type="Self.DocumentAllocationMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BranchMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="DocumentAllocationMaster">
+        <PropertyRef Name="branch" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DocumentSeriesAllocation_BranchMaster">
+    <End Role="BranchMaster" Type="Self.BranchMaster" Multiplicity="0..1" />
+    <End Role="DocumentSeriesAllocation" Type="Self.DocumentSeriesAllocation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BranchMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="DocumentSeriesAllocation">
+        <PropertyRef Name="branch" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DoorDeliveryConfirm_PreDelivery">
+    <End Role="PreDelivery" Type="Self.PreDelivery" Multiplicity="0..1" />
+    <End Role="DoorDeliveryConfirm" Type="Self.DoorDeliveryConfirm" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PreDelivery">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="DoorDeliveryConfirm">
+        <PropertyRef Name="predeliveryNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DoorDeliveryConfirm_ReserveBooking">
+    <End Role="ReserveBooking" Type="Self.ReserveBooking" Multiplicity="0..1" />
+    <End Role="DoorDeliveryConfirm" Type="Self.DoorDeliveryConfirm" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ReserveBooking">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="DoorDeliveryConfirm">
+        <PropertyRef Name="bookingbranch" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DriverMaster_CityMaster">
+    <End Role="CityMaster" Type="Self.CityMaster" Multiplicity="0..1" />
+    <End Role="DriverMaster" Type="Self.DriverMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CityMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="DriverMaster">
+        <PropertyRef Name="city" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DriverMaster_CityMaster1">
+    <End Role="CityMaster" Type="Self.CityMaster" Multiplicity="0..1" />
+    <End Role="DriverMaster" Type="Self.DriverMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CityMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="DriverMaster">
+        <PropertyRef Name="referencecity" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DriverMaster_StateMaster">
+    <End Role="StateMaster" Type="Self.StateMaster" Multiplicity="0..1" />
+    <End Role="DriverMaster" Type="Self.DriverMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StateMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="DriverMaster">
+        <PropertyRef Name="state" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FreightMaster_BranchMaster">
+    <End Role="BranchMaster" Type="Self.BranchMaster" Multiplicity="1" />
+    <End Role="FreightMaster" Type="Self.FreightMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BranchMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="FreightMaster">
+        <PropertyRef Name="tobranch" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FreightMaster_FreightMaster">
+    <End Role="BranchMaster" Type="Self.BranchMaster" Multiplicity="1" />
+    <End Role="FreightMaster" Type="Self.FreightMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BranchMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="FreightMaster">
+        <PropertyRef Name="frombranch" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GodownDelivery_GodownMaster">
+    <End Role="GodownMaster" Type="Self.GodownMaster" Multiplicity="0..1" />
+    <End Role="GodownDelivery" Type="Self.GodownDelivery" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GodownMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="GodownDelivery">
+        <PropertyRef Name="godownname" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GodownDelivery_PackingTypeMaster">
+    <End Role="PackingTypeMaster" Type="Self.PackingTypeMaster" Multiplicity="0..1" />
+    <End Role="GodownDelivery" Type="Self.GodownDelivery" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PackingTypeMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="GodownDelivery">
+        <PropertyRef Name="packingType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GodownDelivery_RegularClientMaster">
+    <End Role="RegularClientMaster" Type="Self.RegularClientMaster" Multiplicity="0..1" />
+    <End Role="GodownDelivery" Type="Self.GodownDelivery" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RegularClientMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="GodownDelivery">
+        <PropertyRef Name="deliveryparty" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GodownDelivery_RegularClientMaster1">
+    <End Role="RegularClientMaster" Type="Self.RegularClientMaster" Multiplicity="0..1" />
+    <End Role="GodownDelivery" Type="Self.GodownDelivery" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RegularClientMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="GodownDelivery">
+        <PropertyRef Name="contractparty" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GodownDelivery_ReserveBooking">
+    <End Role="ReserveBooking" Type="Self.ReserveBooking" Multiplicity="0..1" />
+    <End Role="GodownDelivery" Type="Self.GodownDelivery" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ReserveBooking">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="GodownDelivery">
+        <PropertyRef Name="bookingbranch" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GodownDelivery_VirtualGodownMaster">
+    <End Role="VirtualGodownMaster" Type="Self.VirtualGodownMaster" Multiplicity="0..1" />
+    <End Role="GodownDelivery" Type="Self.GodownDelivery" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VirtualGodownMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="GodownDelivery">
+        <PropertyRef Name="virtualgodownname" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GodownMaster_BranchMaster">
+    <End Role="BranchMaster" Type="Self.BranchMaster" Multiplicity="1" />
+    <End Role="GodownMaster" Type="Self.GodownMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BranchMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="GodownMaster">
+        <PropertyRef Name="branchId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GodownMaster_CityMaster">
+    <End Role="CityMaster" Type="Self.CityMaster" Multiplicity="1" />
+    <End Role="GodownMaster" Type="Self.GodownMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CityMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="GodownMaster">
+        <PropertyRef Name="cityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GodownMaster_StateMaster">
+    <End Role="StateMaster" Type="Self.StateMaster" Multiplicity="1" />
+    <End Role="GodownMaster" Type="Self.GodownMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StateMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="GodownMaster">
+        <PropertyRef Name="stateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GodownOwnerDetailsMaster_BranchMaster">
+    <End Role="BranchMaster" Type="Self.BranchMaster" Multiplicity="0..1" />
+    <End Role="GodownOwnerDetailsMaster" Type="Self.GodownOwnerDetailsMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BranchMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="GodownOwnerDetailsMaster">
+        <PropertyRef Name="branch" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GodownOwnerDetailsMaster_CityMaster">
+    <End Role="CityMaster" Type="Self.CityMaster" Multiplicity="0..1" />
+    <End Role="GodownOwnerDetailsMaster" Type="Self.GodownOwnerDetailsMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CityMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="GodownOwnerDetailsMaster">
+        <PropertyRef Name="city" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GodownOwnerDetailsMaster_GodownMaster">
+    <End Role="GodownMaster" Type="Self.GodownMaster" Multiplicity="0..1" />
+    <End Role="GodownOwnerDetailsMaster" Type="Self.GodownOwnerDetailsMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GodownMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="GodownOwnerDetailsMaster">
+        <PropertyRef Name="goddown" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GodownOwnerDetailsMaster_StateMaster">
+    <End Role="StateMaster" Type="Self.StateMaster" Multiplicity="0..1" />
+    <End Role="GodownOwnerDetailsMaster" Type="Self.GodownOwnerDetailsMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StateMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="GodownOwnerDetailsMaster">
+        <PropertyRef Name="state" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InwardMaster_BookingMaster">
+    <End Role="BookingMaster" Type="Self.BookingMaster" Multiplicity="0..1" />
+    <End Role="InwardMaster" Type="Self.InwardMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BookingMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="InwardMaster">
+        <PropertyRef Name="bookingBranch" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InwardMaster_BranchMaster">
+    <End Role="BranchMaster" Type="Self.BranchMaster" Multiplicity="0..1" />
+    <End Role="InwardMaster" Type="Self.InwardMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BranchMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="InwardMaster">
+        <PropertyRef Name="challanFrom" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InwardMaster_BranchMaster1">
+    <End Role="BranchMaster" Type="Self.BranchMaster" Multiplicity="0..1" />
+    <End Role="InwardMaster" Type="Self.InwardMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BranchMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="InwardMaster">
+        <PropertyRef Name="challanTo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InwardMaster_BranchMaster2">
+    <End Role="BranchMaster" Type="Self.BranchMaster" Multiplicity="0..1" />
+    <End Role="InwardMaster" Type="Self.InwardMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BranchMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="InwardMaster">
+        <PropertyRef Name="expectedUnloadingTime" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InwardMaster_CommodityMaster">
+    <End Role="CommodityMaster" Type="Self.CommodityMaster" Multiplicity="0..1" />
+    <End Role="InwardMaster" Type="Self.InwardMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CommodityMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="InwardMaster">
+        <PropertyRef Name="commodity" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InwardMaster_GodownMaster">
+    <End Role="GodownMaster" Type="Self.GodownMaster" Multiplicity="0..1" />
+    <End Role="InwardMaster" Type="Self.InwardMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GodownMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="InwardMaster">
+        <PropertyRef Name="godown" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InwardMaster_PackingTypeMaster">
+    <End Role="PackingTypeMaster" Type="Self.PackingTypeMaster" Multiplicity="0..1" />
+    <End Role="InwardMaster" Type="Self.InwardMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PackingTypeMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="InwardMaster">
+        <PropertyRef Name="packingType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InwardMaster_VehicleMaster">
+    <End Role="VehicleMaster" Type="Self.VehicleMaster" Multiplicity="0..1" />
+    <End Role="InwardMaster" Type="Self.InwardMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VehicleMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="InwardMaster">
+        <PropertyRef Name="vehicleNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InwardMaster_VehicleMaster1">
+    <End Role="VehicleMaster" Type="Self.VehicleMaster" Multiplicity="0..1" />
+    <End Role="InwardMaster" Type="Self.InwardMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VehicleMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="InwardMaster">
+        <PropertyRef Name="vehicleNo1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InwardMaster_VirtualGodownMaster">
+    <End Role="VirtualGodownMaster" Type="Self.VirtualGodownMaster" Multiplicity="0..1" />
+    <End Role="InwardMaster" Type="Self.InwardMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VirtualGodownMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="InwardMaster">
+        <PropertyRef Name="virtualGodown" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ledger_CityMaster">
+    <End Role="CityMaster" Type="Self.CityMaster" Multiplicity="0..1" />
+    <End Role="Ledger" Type="Self.Ledger" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CityMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Ledger">
+        <PropertyRef Name="city" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ledger_StateMaster">
+    <End Role="StateMaster" Type="Self.StateMaster" Multiplicity="0..1" />
+    <End Role="Ledger" Type="Self.Ledger" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StateMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Ledger">
+        <PropertyRef Name="state" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LocalVehicleContractMaster_BranchMaster">
+    <End Role="BranchMaster" Type="Self.BranchMaster" Multiplicity="1" />
+    <End Role="LocalVehicleContractMaster" Type="Self.LocalVehicleContractMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BranchMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="LocalVehicleContractMaster">
+        <PropertyRef Name="branch" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LocalVehicleContractMaster_VehicleMaster">
+    <End Role="VehicleMaster" Type="Self.VehicleMaster" Multiplicity="1" />
+    <End Role="LocalVehicleContractMaster" Type="Self.LocalVehicleContractMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VehicleMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="LocalVehicleContractMaster">
+        <PropertyRef Name="vehicleNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LocalVehicleContractMaster_VendorMaster">
+    <End Role="VendorMaster" Type="Self.VendorMaster" Multiplicity="1" />
+    <End Role="LocalVehicleContractMaster" Type="Self.LocalVehicleContractMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VendorMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="LocalVehicleContractMaster">
+        <PropertyRef Name="vendorDetail" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OutwardMaster_BookingMaster">
+    <End Role="BookingMaster" Type="Self.BookingMaster" Multiplicity="1" />
+    <End Role="OutwardMaster" Type="Self.OutwardMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BookingMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="OutwardMaster">
+        <PropertyRef Name="bookingbranch" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OutwardMaster_BranchMaster3">
+    <End Role="BranchMaster" Type="Self.BranchMaster" Multiplicity="1" />
+    <End Role="OutwardMaster" Type="Self.OutwardMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BranchMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="OutwardMaster">
+        <PropertyRef Name="frombranch" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OutwardMaster_BranchMaster4">
+    <End Role="BranchMaster" Type="Self.BranchMaster" Multiplicity="1" />
+    <End Role="OutwardMaster" Type="Self.OutwardMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BranchMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="OutwardMaster">
+        <PropertyRef Name="tobranch" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OutwardMaster_BranchMaster5">
+    <End Role="BranchMaster" Type="Self.BranchMaster" Multiplicity="1" />
+    <End Role="OutwardMaster" Type="Self.OutwardMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BranchMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="OutwardMaster">
+        <PropertyRef Name="advencepayableAt" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OutwardMaster_BranchMaster6">
+    <End Role="BranchMaster" Type="Self.BranchMaster" Multiplicity="1" />
+    <End Role="OutwardMaster" Type="Self.OutwardMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BranchMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="OutwardMaster">
+        <PropertyRef Name="balancepayableAt" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OutwardMaster_DriverMaster">
+    <End Role="DriverMaster" Type="Self.DriverMaster" Multiplicity="1" />
+    <End Role="OutwardMaster" Type="Self.OutwardMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DriverMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="OutwardMaster">
+        <PropertyRef Name="drivername" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OutwardMaster_DriverMaster1">
+    <End Role="DriverMaster" Type="Self.DriverMaster" Multiplicity="1" />
+    <End Role="OutwardMaster" Type="Self.OutwardMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DriverMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="OutwardMaster">
+        <PropertyRef Name="driverlicenceNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OutwardMaster_DriverMaster2">
+    <End Role="DriverMaster" Type="Self.DriverMaster" Multiplicity="1" />
+    <End Role="OutwardMaster" Type="Self.OutwardMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DriverMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="OutwardMaster">
+        <PropertyRef Name="drivermobileNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OutwardMaster_VehicleMaster">
+    <End Role="VehicleMaster" Type="Self.VehicleMaster" Multiplicity="1" />
+    <End Role="OutwardMaster" Type="Self.OutwardMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VehicleMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="OutwardMaster">
+        <PropertyRef Name="vehicleNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OutwardMaster_VendorMaster">
+    <End Role="VendorMaster" Type="Self.VendorMaster" Multiplicity="1" />
+    <End Role="OutwardMaster" Type="Self.OutwardMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VendorMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="OutwardMaster">
+        <PropertyRef Name="brokername" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PackingMaster_BookingMaster">
+    <End Role="BookingMaster" Type="Self.BookingMaster" Multiplicity="0..1" />
+    <End Role="PackingMaster" Type="Self.PackingMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BookingMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="PackingMaster">
+        <PropertyRef Name="bookingId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PreDelivery_GodownMaster">
+    <End Role="GodownMaster" Type="Self.GodownMaster" Multiplicity="0..1" />
+    <End Role="PreDelivery" Type="Self.PreDelivery" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GodownMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="PreDelivery">
+        <PropertyRef Name="godownname" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PreDelivery_PackingTypeMaster1">
+    <End Role="PackingTypeMaster" Type="Self.PackingTypeMaster" Multiplicity="0..1" />
+    <End Role="PreDelivery" Type="Self.PreDelivery" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PackingTypeMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="PreDelivery">
+        <PropertyRef Name="packingType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PreDelivery_RegularClientMaster">
+    <End Role="RegularClientMaster" Type="Self.RegularClientMaster" Multiplicity="0..1" />
+    <End Role="PreDelivery" Type="Self.PreDelivery" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RegularClientMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="PreDelivery">
+        <PropertyRef Name="deliveryparty" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PreDelivery_RegularClientMaster1">
+    <End Role="RegularClientMaster" Type="Self.RegularClientMaster" Multiplicity="0..1" />
+    <End Role="PreDelivery" Type="Self.PreDelivery" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RegularClientMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="PreDelivery">
+        <PropertyRef Name="contractparty" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PreDelivery_ReserveBooking">
+    <End Role="ReserveBooking" Type="Self.ReserveBooking" Multiplicity="0..1" />
+    <End Role="PreDelivery" Type="Self.PreDelivery" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ReserveBooking">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="PreDelivery">
+        <PropertyRef Name="bookingbranch" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PreDelivery_VirtualGodownMaster">
+    <End Role="VirtualGodownMaster" Type="Self.VirtualGodownMaster" Multiplicity="0..1" />
+    <End Role="PreDelivery" Type="Self.PreDelivery" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VirtualGodownMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="PreDelivery">
+        <PropertyRef Name="virtualgodownname" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RegionMaster_CityMaster">
+    <End Role="CityMaster" Type="Self.CityMaster" Multiplicity="1" />
+    <End Role="RegionMaster" Type="Self.RegionMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CityMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="RegionMaster">
+        <PropertyRef Name="cityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RegionMaster_StateMaster">
+    <End Role="StateMaster" Type="Self.StateMaster" Multiplicity="1" />
+    <End Role="RegionMaster" Type="Self.RegionMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StateMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="RegionMaster">
+        <PropertyRef Name="stateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RegularClient_Contact_info_RegularClientMaster">
+    <End Role="RegularClientMaster" Type="Self.RegularClientMaster" Multiplicity="0..1" />
+    <End Role="RegularClient_Contact_info" Type="Self.RegularClient_Contact_info" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RegularClientMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="RegularClient_Contact_info">
+        <PropertyRef Name="client_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RegularClientMaster_BranchMaster">
+    <End Role="BranchMaster" Type="Self.BranchMaster" Multiplicity="0..1" />
+    <End Role="RegularClientMaster" Type="Self.RegularClientMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BranchMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="RegularClientMaster">
+        <PropertyRef Name="branchId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RegularClientMaster_CityMaster">
+    <End Role="CityMaster" Type="Self.CityMaster" Multiplicity="0..1" />
+    <End Role="RegularClientMaster" Type="Self.RegularClientMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CityMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="RegularClientMaster">
+        <PropertyRef Name="cityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RegularClientMaster_StateMaster">
+    <End Role="StateMaster" Type="Self.StateMaster" Multiplicity="0..1" />
+    <End Role="RegularClientMaster" Type="Self.RegularClientMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StateMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="RegularClientMaster">
+        <PropertyRef Name="StateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Requirement_Ledger">
+    <End Role="Ledger" Type="Self.Ledger" Multiplicity="0..1" />
+    <End Role="Requirement" Type="Self.Requirement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ledger">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Requirement">
+        <PropertyRef Name="DRLedgerNameTo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Requirement_Ledger1">
+    <End Role="Ledger" Type="Self.Ledger" Multiplicity="0..1" />
+    <End Role="Requirement" Type="Self.Requirement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ledger">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Requirement">
+        <PropertyRef Name="DRLedgerNameFrom" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReserveBooking_RegularClientMaster">
+    <End Role="RegularClientMaster" Type="Self.RegularClientMaster" Multiplicity="0..1" />
+    <End Role="ReserveBooking" Type="Self.ReserveBooking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RegularClientMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ReserveBooking">
+        <PropertyRef Name="Consignor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RTOMaster_CityMaster">
+    <End Role="CityMaster" Type="Self.CityMaster" Multiplicity="0..1" />
+    <End Role="RTOMaster" Type="Self.RTOMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CityMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="RTOMaster">
+        <PropertyRef Name="city" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RTOMaster_StateMaster">
+    <End Role="StateMaster" Type="Self.StateMaster" Multiplicity="0..1" />
+    <End Role="RTOMaster" Type="Self.RTOMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StateMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="RTOMaster">
+        <PropertyRef Name="state" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ServiceLocationMaster_BranchMaster">
+    <End Role="BranchMaster" Type="Self.BranchMaster" Multiplicity="1" />
+    <End Role="ServiceLocationMaster" Type="Self.ServiceLocationMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BranchMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ServiceLocationMaster">
+        <PropertyRef Name="controllingbranch" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ServiceLocationMaster_BranchMaster1">
+    <End Role="BranchMaster" Type="Self.BranchMaster" Multiplicity="1" />
+    <End Role="ServiceLocationMaster" Type="Self.ServiceLocationMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BranchMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ServiceLocationMaster">
+        <PropertyRef Name="deliveryat" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StandardLorryHireMaster_BranchMaster">
+    <End Role="VehicleTypeMaster" Type="Self.VehicleTypeMaster" Multiplicity="1" />
+    <End Role="StandardLorryHireMaster" Type="Self.StandardLorryHireMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VehicleTypeMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="StandardLorryHireMaster">
+        <PropertyRef Name="vehicleType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StandardLorryHireMaster_BranchMaster1">
+    <End Role="BranchMaster" Type="Self.BranchMaster" Multiplicity="1" />
+    <End Role="StandardLorryHireMaster" Type="Self.StandardLorryHireMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BranchMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="StandardLorryHireMaster">
+        <PropertyRef Name="to" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StandardLorryHireMaster_VehicleTypeMaster">
+    <End Role="VehicleTypeMaster" Type="Self.VehicleTypeMaster" Multiplicity="1" />
+    <End Role="StandardLorryHireMaster" Type="Self.StandardLorryHireMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VehicleTypeMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="StandardLorryHireMaster">
+        <PropertyRef Name="vehicleType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TruckArrival_BranchMaster">
+    <End Role="BranchMaster" Type="Self.BranchMaster" Multiplicity="0..1" />
+    <End Role="TruckArrival" Type="Self.TruckArrival" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BranchMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="TruckArrival">
+        <PropertyRef Name="challanFrom" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TruckArrival_BranchMaster1">
+    <End Role="BranchMaster" Type="Self.BranchMaster" Multiplicity="0..1" />
+    <End Role="TruckArrival" Type="Self.TruckArrival" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BranchMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="TruckArrival">
+        <PropertyRef Name="challanTo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TruckArrival_BranchMaster2">
+    <End Role="BranchMaster" Type="Self.BranchMaster" Multiplicity="0..1" />
+    <End Role="TruckArrival" Type="Self.TruckArrival" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BranchMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="TruckArrival">
+        <PropertyRef Name="expectedUnloadingTime" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TruckArrival_VehicleMaster">
+    <End Role="VehicleMaster" Type="Self.VehicleMaster" Multiplicity="0..1" />
+    <End Role="TruckArrival" Type="Self.TruckArrival" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VehicleMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="TruckArrival">
+        <PropertyRef Name="vehicleNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TruckUnloading_BookingMaster">
+    <End Role="BookingMaster" Type="Self.BookingMaster" Multiplicity="0..1" />
+    <End Role="TruckUnloading" Type="Self.TruckUnloading" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BookingMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="TruckUnloading">
+        <PropertyRef Name="bookingBranch" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TruckUnloading_CommodityMaster">
+    <End Role="CommodityMaster" Type="Self.CommodityMaster" Multiplicity="0..1" />
+    <End Role="TruckUnloading" Type="Self.TruckUnloading" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CommodityMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="TruckUnloading">
+        <PropertyRef Name="commodity" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TruckUnloading_GodownMaster">
+    <End Role="GodownMaster" Type="Self.GodownMaster" Multiplicity="0..1" />
+    <End Role="TruckUnloading" Type="Self.TruckUnloading" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GodownMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="TruckUnloading">
+        <PropertyRef Name="godown" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TruckUnloading_PackingTypeMaster">
+    <End Role="PackingTypeMaster" Type="Self.PackingTypeMaster" Multiplicity="0..1" />
+    <End Role="TruckUnloading" Type="Self.TruckUnloading" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PackingTypeMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="TruckUnloading">
+        <PropertyRef Name="packingType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TruckUnloading_VehicleMaster">
+    <End Role="VehicleMaster" Type="Self.VehicleMaster" Multiplicity="0..1" />
+    <End Role="TruckUnloading" Type="Self.TruckUnloading" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VehicleMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="TruckUnloading">
+        <PropertyRef Name="vehicleNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TruckUnloading_VirtualGodownMaster">
+    <End Role="VirtualGodownMaster" Type="Self.VirtualGodownMaster" Multiplicity="0..1" />
+    <End Role="TruckUnloading" Type="Self.TruckUnloading" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VirtualGodownMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="TruckUnloading">
+        <PropertyRef Name="virtualGodown" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VehicleMaster_DriverMaster">
+    <End Role="DriverMaster" Type="Self.DriverMaster" Multiplicity="1" />
+    <End Role="VehicleMaster" Type="Self.VehicleMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DriverMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="VehicleMaster">
+        <PropertyRef Name="drivername" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VehicleMaster_VehicleModelMaster">
+    <End Role="VehicleModelMaster" Type="Self.VehicleModelMaster" Multiplicity="1" />
+    <End Role="VehicleMaster" Type="Self.VehicleMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VehicleModelMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="VehicleMaster">
+        <PropertyRef Name="vehiclemodel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VehicleMaster_VehicleTypeMaster">
+    <End Role="VehicleTypeMaster" Type="Self.VehicleTypeMaster" Multiplicity="1" />
+    <End Role="VehicleMaster" Type="Self.VehicleMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VehicleTypeMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="VehicleMaster">
+        <PropertyRef Name="vehicleType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VehicleMaster_VendorMaster">
+    <End Role="VendorMaster" Type="Self.VendorMaster" Multiplicity="1" />
+    <End Role="VehicleMaster" Type="Self.VehicleMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VendorMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="VehicleMaster">
+        <PropertyRef Name="manufacturer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VehicleMaster_VendorMaster1">
+    <End Role="VendorMaster" Type="Self.VendorMaster" Multiplicity="1" />
+    <End Role="VehicleMaster" Type="Self.VehicleMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VendorMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="VehicleMaster">
+        <PropertyRef Name="ownerdetails" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VehicleModelMaster_VendorMaster">
+    <End Role="VendorMaster" Type="Self.VendorMaster" Multiplicity="1" />
+    <End Role="VehicleModelMaster" Type="Self.VehicleModelMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VendorMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="VehicleModelMaster">
+        <PropertyRef Name="manufacturername" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VendorMaster_BankMaster">
+    <End Role="BankMaster" Type="Self.BankMaster" Multiplicity="1" />
+    <End Role="VendorMaster" Type="Self.VendorMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BankMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="VendorMaster">
+        <PropertyRef Name="bankname" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VendorMaster_BankMaster1">
+    <End Role="BankMaster" Type="Self.BankMaster" Multiplicity="1" />
+    <End Role="VendorMaster" Type="Self.VendorMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BankMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="VendorMaster">
+        <PropertyRef Name="bankbranch" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VendorMaster_BankMaster2">
+    <End Role="BankMaster" Type="Self.BankMaster" Multiplicity="1" />
+    <End Role="VendorMaster" Type="Self.VendorMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BankMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="VendorMaster">
+        <PropertyRef Name="IFSC" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VendorMaster_CityMaster">
+    <End Role="CityMaster" Type="Self.CityMaster" Multiplicity="1" />
+    <End Role="VendorMaster" Type="Self.VendorMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CityMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="VendorMaster">
+        <PropertyRef Name="city" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VendorMaster_StateMaster">
+    <End Role="StateMaster" Type="Self.StateMaster" Multiplicity="1" />
+    <End Role="VendorMaster" Type="Self.VendorMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StateMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="VendorMaster">
+        <PropertyRef Name="state" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VendorMaster_VendorMaster1">
+    <End Role="VendorTypeMaster" Type="Self.VendorTypeMaster" Multiplicity="1" />
+    <End Role="VendorMaster" Type="Self.VendorMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VendorTypeMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="VendorMaster">
+        <PropertyRef Name="vendorType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VirtualGodownMaster_BranchMaster">
+    <End Role="BranchMaster" Type="Self.BranchMaster" Multiplicity="0..1" />
+    <End Role="VirtualGodownMaster" Type="Self.VirtualGodownMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BranchMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="VirtualGodownMaster">
+        <PropertyRef Name="branchId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VirtualGodownMaster_GodownMaster">
+    <End Role="GodownMaster" Type="Self.GodownMaster" Multiplicity="0..1" />
+    <End Role="VirtualGodownMaster" Type="Self.VirtualGodownMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GodownMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="VirtualGodownMaster">
+        <PropertyRef Name="godownId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Walk-inClientMaster_CityMaster1">
+    <End Role="CityMaster" Type="Self.CityMaster" Multiplicity="1" />
+    <End Role="Walk-inClientMaster" Type="Self.Walk-inClientMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CityMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Walk-inClientMaster">
+        <PropertyRef Name="cityid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Walk-inClientMaster_StateMaster1">
+    <End Role="StateMaster" Type="Self.StateMaster" Multiplicity="1" />
+    <End Role="Walk-inClientMaster" Type="Self.Walk-inClientMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StateMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Walk-inClientMaster">
+        <PropertyRef Name="stateid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TRSModelStoreContainer">
+    <EntitySet Name="AccountMaster" EntityType="Self.AccountMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AreaMaster" EntityType="Self.AreaMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BankMaster" EntityType="Self.BankMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Bill" EntityType="Self.Bill" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BookingMaster" EntityType="Self.BookingMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BranchMaster" EntityType="Self.BranchMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BranchRate" EntityType="Self.BranchRate" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CityMaster" EntityType="Self.CityMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CommodityMaster" EntityType="Self.CommodityMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CommodityTypeMaster" EntityType="Self.CommodityTypeMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ConsignmentOperation" EntityType="Self.ConsignmentOperation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ContractMaster" EntityType="Self.ContractMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CostCentre" EntityType="Self.CostCentre" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CrossingMaster" EntityType="Self.CrossingMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DDLocalChallan" EntityType="Self.DDLocalChallan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DeliveryMaster" EntityType="Self.DeliveryMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DepartmentMaster" EntityType="Self.DepartmentMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DocumentAllocationMaster" EntityType="Self.DocumentAllocationMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DocumentSeriesAllocation" EntityType="Self.DocumentSeriesAllocation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DoorDeliveryConfirm" EntityType="Self.DoorDeliveryConfirm" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DriverMaster" EntityType="Self.DriverMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FreightMaster" EntityType="Self.FreightMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GodownDelivery" EntityType="Self.GodownDelivery" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GodownMaster" EntityType="Self.GodownMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GodownOwnerDetailsMaster" EntityType="Self.GodownOwnerDetailsMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="InwardMaster" EntityType="Self.InwardMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LateReportReasonMaster" EntityType="Self.LateReportReasonMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ledger" EntityType="Self.Ledger" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LedgerGroupFinance" EntityType="Self.LedgerGroupFinance" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LocalVehicleContractMaster" EntityType="Self.LocalVehicleContractMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OutwardMaster" EntityType="Self.OutwardMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PackingMaster" EntityType="Self.PackingMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PackingTypeMaster" EntityType="Self.PackingTypeMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PreDelivery" EntityType="Self.PreDelivery" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PrintingStationary" EntityType="Self.PrintingStationary" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ReceiptMaster" EntityType="Self.ReceiptMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RegionMaster" EntityType="Self.RegionMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RegularClient_Contact_info" EntityType="Self.RegularClient_Contact_info" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RegularClientMaster" EntityType="Self.RegularClientMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Requirement" EntityType="Self.Requirement" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ReserveBooking" EntityType="Self.ReserveBooking" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RTOMaster" EntityType="Self.RTOMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SeriesGeneration" EntityType="Self.SeriesGeneration" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ServiceLocationMaster" EntityType="Self.ServiceLocationMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StandardLorryHireMaster" EntityType="Self.StandardLorryHireMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StateMaster" EntityType="Self.StateMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TruckArrival" EntityType="Self.TruckArrival" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TruckUnloading" EntityType="Self.TruckUnloading" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UploadPackingSlip" EntityType="Self.UploadPackingSlip" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserMaster" EntityType="Self.UserMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VehicleMaster" EntityType="Self.VehicleMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VehicleModelMaster" EntityType="Self.VehicleModelMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VehicleTypeMaster" EntityType="Self.VehicleTypeMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VendorMaster" EntityType="Self.VendorMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VendorTypeMaster" EntityType="Self.VendorTypeMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VirtualGodownMaster" EntityType="Self.VirtualGodownMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Walk-inClientMaster" EntityType="Self.Walk-inClientMaster" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__CityMaste__state__15502E78" Association="Self.FK__CityMaste__state__15502E78">
+      <End Role="StateMaster" EntitySet="StateMaster" />
+      <End Role="CityMaster" EntitySet="CityMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AccountMaster_CityMaster" Association="Self.FK_AccountMaster_CityMaster">
+      <End Role="CityMaster" EntitySet="CityMaster" />
+      <End Role="AccountMaster" EntitySet="AccountMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AccountMaster_StateMaster" Association="Self.FK_AccountMaster_StateMaster">
+      <End Role="StateMaster" EntitySet="StateMaster" />
+      <End Role="AccountMaster" EntitySet="AccountMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AreaMaster_CityMaster" Association="Self.FK_AreaMaster_CityMaster">
+      <End Role="CityMaster" EntitySet="CityMaster" />
+      <End Role="AreaMaster" EntitySet="AreaMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AreaMaster_RegionMaster" Association="Self.FK_AreaMaster_RegionMaster">
+      <End Role="RegionMaster" EntitySet="RegionMaster" />
+      <End Role="AreaMaster" EntitySet="AreaMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AreaMaster_StateMaster" Association="Self.FK_AreaMaster_StateMaster">
+      <End Role="StateMaster" EntitySet="StateMaster" />
+      <End Role="AreaMaster" EntitySet="AreaMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BankMaster_CityMaster1" Association="Self.FK_BankMaster_CityMaster1">
+      <End Role="CityMaster" EntitySet="CityMaster" />
+      <End Role="BankMaster" EntitySet="BankMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BankMaster_StateMaster" Association="Self.FK_BankMaster_StateMaster">
+      <End Role="StateMaster" EntitySet="StateMaster" />
+      <End Role="BankMaster" EntitySet="BankMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Bill_BranchMaster" Association="Self.FK_Bill_BranchMaster">
+      <End Role="BranchMaster" EntitySet="BranchMaster" />
+      <End Role="Bill" EntitySet="Bill" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Booking_BranchMaster" Association="Self.FK_Booking_BranchMaster">
+      <End Role="BranchMaster" EntitySet="BranchMaster" />
+      <End Role="BookingMaster" EntitySet="BookingMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Booking_BranchMaster1" Association="Self.FK_Booking_BranchMaster1">
+      <End Role="BranchMaster" EntitySet="BranchMaster" />
+      <End Role="BookingMaster" EntitySet="BookingMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Booking_GodownMaster" Association="Self.FK_Booking_GodownMaster">
+      <End Role="GodownMaster" EntitySet="GodownMaster" />
+      <End Role="BookingMaster" EntitySet="BookingMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Booking_RegularClientMaster" Association="Self.FK_Booking_RegularClientMaster">
+      <End Role="RegularClientMaster" EntitySet="RegularClientMaster" />
+      <End Role="BookingMaster" EntitySet="BookingMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BookingMaster_BookingMaster" Association="Self.FK_BookingMaster_BookingMaster">
+      <End Role="BookingMaster" EntitySet="BookingMaster" />
+      <End Role="BookingMaster1" EntitySet="BookingMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BookingMaster_BranchMaster" Association="Self.FK_BookingMaster_BranchMaster">
+      <End Role="BranchMaster" EntitySet="BranchMaster" />
+      <End Role="BookingMaster" EntitySet="BookingMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BookingMaster_GodownMaster" Association="Self.FK_BookingMaster_GodownMaster">
+      <End Role="GodownMaster" EntitySet="GodownMaster" />
+      <End Role="BookingMaster" EntitySet="BookingMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BookingMaster_RegularClientMaster" Association="Self.FK_BookingMaster_RegularClientMaster">
+      <End Role="RegularClientMaster" EntitySet="RegularClientMaster" />
+      <End Role="BookingMaster" EntitySet="BookingMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BookingMaster_RegularClientMaster1" Association="Self.FK_BookingMaster_RegularClientMaster1">
+      <End Role="RegularClientMaster" EntitySet="RegularClientMaster" />
+      <End Role="BookingMaster" EntitySet="BookingMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BranchMaster_CityMaster" Association="Self.FK_BranchMaster_CityMaster">
+      <End Role="CityMaster" EntitySet="CityMaster" />
+      <End Role="BranchMaster" EntitySet="BranchMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BranchMaster_StateMaster" Association="Self.FK_BranchMaster_StateMaster">
+      <End Role="StateMaster" EntitySet="StateMaster" />
+      <End Role="BranchMaster" EntitySet="BranchMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CommodityMaster_CommodityTypeMaster" Association="Self.FK_CommodityMaster_CommodityTypeMaster">
+      <End Role="CommodityTypeMaster" EntitySet="CommodityTypeMaster" />
+      <End Role="CommodityMaster" EntitySet="CommodityMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ConsignmentOperation_BranchMaster" Association="Self.FK_ConsignmentOperation_BranchMaster">
+      <End Role="BranchMaster" EntitySet="BranchMaster" />
+      <End Role="ConsignmentOperation" EntitySet="ConsignmentOperation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ConsignmentOperation_BranchMaster1" Association="Self.FK_ConsignmentOperation_BranchMaster1">
+      <End Role="BranchMaster" EntitySet="BranchMaster" />
+      <End Role="ConsignmentOperation" EntitySet="ConsignmentOperation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ConsignmentOperation_BranchMaster2" Association="Self.FK_ConsignmentOperation_BranchMaster2">
+      <End Role="BranchMaster" EntitySet="BranchMaster" />
+      <End Role="ConsignmentOperation" EntitySet="ConsignmentOperation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ConsignmentOperation_GodownMaster" Association="Self.FK_ConsignmentOperation_GodownMaster">
+      <End Role="GodownMaster" EntitySet="GodownMaster" />
+      <End Role="ConsignmentOperation" EntitySet="ConsignmentOperation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ConsignmentOperation_RegularClientMaster" Association="Self.FK_ConsignmentOperation_RegularClientMaster">
+      <End Role="RegularClientMaster" EntitySet="RegularClientMaster" />
+      <End Role="ConsignmentOperation" EntitySet="ConsignmentOperation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ConsignmentOperation_RegularClientMaster1" Association="Self.FK_ConsignmentOperation_RegularClientMaster1">
+      <End Role="RegularClientMaster" EntitySet="RegularClientMaster" />
+      <End Role="ConsignmentOperation" EntitySet="ConsignmentOperation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ConsignmentOperation_RegularClientMaster2" Association="Self.FK_ConsignmentOperation_RegularClientMaster2">
+      <End Role="RegularClientMaster" EntitySet="RegularClientMaster" />
+      <End Role="ConsignmentOperation" EntitySet="ConsignmentOperation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ConsignmentOperation_RegularClientMaster3" Association="Self.FK_ConsignmentOperation_RegularClientMaster3">
+      <End Role="RegularClientMaster" EntitySet="RegularClientMaster" />
+      <End Role="ConsignmentOperation" EntitySet="ConsignmentOperation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ConsignmentOperation_VirtualGodownMaster" Association="Self.FK_ConsignmentOperation_VirtualGodownMaster">
+      <End Role="VirtualGodownMaster" EntitySet="VirtualGodownMaster" />
+      <End Role="ConsignmentOperation" EntitySet="ConsignmentOperation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CrossingMaster_BranchMaster" Association="Self.FK_CrossingMaster_BranchMaster">
+      <End Role="BranchMaster" EntitySet="BranchMaster" />
+      <End Role="CrossingMaster" EntitySet="CrossingMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CrossingMaster_BranchMaster1" Association="Self.FK_CrossingMaster_BranchMaster1">
+      <End Role="BranchMaster" EntitySet="BranchMaster" />
+      <End Role="CrossingMaster" EntitySet="CrossingMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DDLocalChallan_VehicleMaster" Association="Self.FK_DDLocalChallan_VehicleMaster">
+      <End Role="VehicleMaster" EntitySet="VehicleMaster" />
+      <End Role="DDLocalChallan" EntitySet="DDLocalChallan" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DeliveryMaster_BookingMaster" Association="Self.FK_DeliveryMaster_BookingMaster">
+      <End Role="BookingMaster" EntitySet="BookingMaster" />
+      <End Role="DeliveryMaster" EntitySet="DeliveryMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DeliveryMaster_BookingMaster1" Association="Self.FK_DeliveryMaster_BookingMaster1">
+      <End Role="BookingMaster" EntitySet="BookingMaster" />
+      <End Role="DeliveryMaster" EntitySet="DeliveryMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DeliveryMaster_BookingMaster2" Association="Self.FK_DeliveryMaster_BookingMaster2">
+      <End Role="BookingMaster" EntitySet="BookingMaster" />
+      <End Role="DeliveryMaster" EntitySet="DeliveryMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DeliveryMaster_BookingMaster3" Association="Self.FK_DeliveryMaster_BookingMaster3">
+      <End Role="BookingMaster" EntitySet="BookingMaster" />
+      <End Role="DeliveryMaster" EntitySet="DeliveryMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DeliveryMaster_GodownMaster" Association="Self.FK_DeliveryMaster_GodownMaster">
+      <End Role="GodownMaster" EntitySet="GodownMaster" />
+      <End Role="DeliveryMaster" EntitySet="DeliveryMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DeliveryMaster_GodownMaster1" Association="Self.FK_DeliveryMaster_GodownMaster1">
+      <End Role="GodownMaster" EntitySet="GodownMaster" />
+      <End Role="DeliveryMaster" EntitySet="DeliveryMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DeliveryMaster_PackingTypeMaster1" Association="Self.FK_DeliveryMaster_PackingTypeMaster1">
+      <End Role="PackingTypeMaster" EntitySet="PackingTypeMaster" />
+      <End Role="DeliveryMaster" EntitySet="DeliveryMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DeliveryMaster_PackingTypeMaster2" Association="Self.FK_DeliveryMaster_PackingTypeMaster2">
+      <End Role="PackingTypeMaster" EntitySet="PackingTypeMaster" />
+      <End Role="DeliveryMaster" EntitySet="DeliveryMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DeliveryMaster_RegularClientMaster" Association="Self.FK_DeliveryMaster_RegularClientMaster">
+      <End Role="RegularClientMaster" EntitySet="RegularClientMaster" />
+      <End Role="DeliveryMaster" EntitySet="DeliveryMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DeliveryMaster_RegularClientMaster1" Association="Self.FK_DeliveryMaster_RegularClientMaster1">
+      <End Role="RegularClientMaster" EntitySet="RegularClientMaster" />
+      <End Role="DeliveryMaster" EntitySet="DeliveryMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DeliveryMaster_RegularClientMaster2" Association="Self.FK_DeliveryMaster_RegularClientMaster2">
+      <End Role="RegularClientMaster" EntitySet="RegularClientMaster" />
+      <End Role="DeliveryMaster" EntitySet="DeliveryMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DeliveryMaster_RegularClientMaster3" Association="Self.FK_DeliveryMaster_RegularClientMaster3">
+      <End Role="RegularClientMaster" EntitySet="RegularClientMaster" />
+      <End Role="DeliveryMaster" EntitySet="DeliveryMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DeliveryMaster_VirtualGodownMaster" Association="Self.FK_DeliveryMaster_VirtualGodownMaster">
+      <End Role="VirtualGodownMaster" EntitySet="VirtualGodownMaster" />
+      <End Role="DeliveryMaster" EntitySet="DeliveryMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DeliveryMaster_VirtualGodownMaster1" Association="Self.FK_DeliveryMaster_VirtualGodownMaster1">
+      <End Role="VirtualGodownMaster" EntitySet="VirtualGodownMaster" />
+      <End Role="DeliveryMaster" EntitySet="DeliveryMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DocumentAllocationMaster_BranchMaster" Association="Self.FK_DocumentAllocationMaster_BranchMaster">
+      <End Role="BranchMaster" EntitySet="BranchMaster" />
+      <End Role="DocumentAllocationMaster" EntitySet="DocumentAllocationMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DocumentSeriesAllocation_BranchMaster" Association="Self.FK_DocumentSeriesAllocation_BranchMaster">
+      <End Role="BranchMaster" EntitySet="BranchMaster" />
+      <End Role="DocumentSeriesAllocation" EntitySet="DocumentSeriesAllocation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DoorDeliveryConfirm_PreDelivery" Association="Self.FK_DoorDeliveryConfirm_PreDelivery">
+      <End Role="PreDelivery" EntitySet="PreDelivery" />
+      <End Role="DoorDeliveryConfirm" EntitySet="DoorDeliveryConfirm" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DoorDeliveryConfirm_ReserveBooking" Association="Self.FK_DoorDeliveryConfirm_ReserveBooking">
+      <End Role="ReserveBooking" EntitySet="ReserveBooking" />
+      <End Role="DoorDeliveryConfirm" EntitySet="DoorDeliveryConfirm" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DriverMaster_CityMaster" Association="Self.FK_DriverMaster_CityMaster">
+      <End Role="CityMaster" EntitySet="CityMaster" />
+      <End Role="DriverMaster" EntitySet="DriverMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DriverMaster_CityMaster1" Association="Self.FK_DriverMaster_CityMaster1">
+      <End Role="CityMaster" EntitySet="CityMaster" />
+      <End Role="DriverMaster" EntitySet="DriverMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DriverMaster_StateMaster" Association="Self.FK_DriverMaster_StateMaster">
+      <End Role="StateMaster" EntitySet="StateMaster" />
+      <End Role="DriverMaster" EntitySet="DriverMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FreightMaster_BranchMaster" Association="Self.FK_FreightMaster_BranchMaster">
+      <End Role="BranchMaster" EntitySet="BranchMaster" />
+      <End Role="FreightMaster" EntitySet="FreightMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FreightMaster_FreightMaster" Association="Self.FK_FreightMaster_FreightMaster">
+      <End Role="BranchMaster" EntitySet="BranchMaster" />
+      <End Role="FreightMaster" EntitySet="FreightMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GodownDelivery_GodownMaster" Association="Self.FK_GodownDelivery_GodownMaster">
+      <End Role="GodownMaster" EntitySet="GodownMaster" />
+      <End Role="GodownDelivery" EntitySet="GodownDelivery" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GodownDelivery_PackingTypeMaster" Association="Self.FK_GodownDelivery_PackingTypeMaster">
+      <End Role="PackingTypeMaster" EntitySet="PackingTypeMaster" />
+      <End Role="GodownDelivery" EntitySet="GodownDelivery" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GodownDelivery_RegularClientMaster" Association="Self.FK_GodownDelivery_RegularClientMaster">
+      <End Role="RegularClientMaster" EntitySet="RegularClientMaster" />
+      <End Role="GodownDelivery" EntitySet="GodownDelivery" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GodownDelivery_RegularClientMaster1" Association="Self.FK_GodownDelivery_RegularClientMaster1">
+      <End Role="RegularClientMaster" EntitySet="RegularClientMaster" />
+      <End Role="GodownDelivery" EntitySet="GodownDelivery" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GodownDelivery_ReserveBooking" Association="Self.FK_GodownDelivery_ReserveBooking">
+      <End Role="ReserveBooking" EntitySet="ReserveBooking" />
+      <End Role="GodownDelivery" EntitySet="GodownDelivery" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GodownDelivery_VirtualGodownMaster" Association="Self.FK_GodownDelivery_VirtualGodownMaster">
+      <End Role="VirtualGodownMaster" EntitySet="VirtualGodownMaster" />
+      <End Role="GodownDelivery" EntitySet="GodownDelivery" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GodownMaster_BranchMaster" Association="Self.FK_GodownMaster_BranchMaster">
+      <End Role="BranchMaster" EntitySet="BranchMaster" />
+      <End Role="GodownMaster" EntitySet="GodownMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GodownMaster_CityMaster" Association="Self.FK_GodownMaster_CityMaster">
+      <End Role="CityMaster" EntitySet="CityMaster" />
+      <End Role="GodownMaster" EntitySet="GodownMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GodownMaster_StateMaster" Association="Self.FK_GodownMaster_StateMaster">
+      <End Role="StateMaster" EntitySet="StateMaster" />
+      <End Role="GodownMaster" EntitySet="GodownMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GodownOwnerDetailsMaster_BranchMaster" Association="Self.FK_GodownOwnerDetailsMaster_BranchMaster">
+      <End Role="BranchMaster" EntitySet="BranchMaster" />
+      <End Role="GodownOwnerDetailsMaster" EntitySet="GodownOwnerDetailsMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GodownOwnerDetailsMaster_CityMaster" Association="Self.FK_GodownOwnerDetailsMaster_CityMaster">
+      <End Role="CityMaster" EntitySet="CityMaster" />
+      <End Role="GodownOwnerDetailsMaster" EntitySet="GodownOwnerDetailsMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GodownOwnerDetailsMaster_GodownMaster" Association="Self.FK_GodownOwnerDetailsMaster_GodownMaster">
+      <End Role="GodownMaster" EntitySet="GodownMaster" />
+      <End Role="GodownOwnerDetailsMaster" EntitySet="GodownOwnerDetailsMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GodownOwnerDetailsMaster_StateMaster" Association="Self.FK_GodownOwnerDetailsMaster_StateMaster">
+      <End Role="StateMaster" EntitySet="StateMaster" />
+      <End Role="GodownOwnerDetailsMaster" EntitySet="GodownOwnerDetailsMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InwardMaster_BookingMaster" Association="Self.FK_InwardMaster_BookingMaster">
+      <End Role="BookingMaster" EntitySet="BookingMaster" />
+      <End Role="InwardMaster" EntitySet="InwardMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InwardMaster_BranchMaster" Association="Self.FK_InwardMaster_BranchMaster">
+      <End Role="BranchMaster" EntitySet="BranchMaster" />
+      <End Role="InwardMaster" EntitySet="InwardMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InwardMaster_BranchMaster1" Association="Self.FK_InwardMaster_BranchMaster1">
+      <End Role="BranchMaster" EntitySet="BranchMaster" />
+      <End Role="InwardMaster" EntitySet="InwardMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InwardMaster_BranchMaster2" Association="Self.FK_InwardMaster_BranchMaster2">
+      <End Role="BranchMaster" EntitySet="BranchMaster" />
+      <End Role="InwardMaster" EntitySet="InwardMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InwardMaster_CommodityMaster" Association="Self.FK_InwardMaster_CommodityMaster">
+      <End Role="CommodityMaster" EntitySet="CommodityMaster" />
+      <End Role="InwardMaster" EntitySet="InwardMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InwardMaster_GodownMaster" Association="Self.FK_InwardMaster_GodownMaster">
+      <End Role="GodownMaster" EntitySet="GodownMaster" />
+      <End Role="InwardMaster" EntitySet="InwardMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InwardMaster_PackingTypeMaster" Association="Self.FK_InwardMaster_PackingTypeMaster">
+      <End Role="PackingTypeMaster" EntitySet="PackingTypeMaster" />
+      <End Role="InwardMaster" EntitySet="InwardMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InwardMaster_VehicleMaster" Association="Self.FK_InwardMaster_VehicleMaster">
+      <End Role="VehicleMaster" EntitySet="VehicleMaster" />
+      <End Role="InwardMaster" EntitySet="InwardMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InwardMaster_VehicleMaster1" Association="Self.FK_InwardMaster_VehicleMaster1">
+      <End Role="VehicleMaster" EntitySet="VehicleMaster" />
+      <End Role="InwardMaster" EntitySet="InwardMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InwardMaster_VirtualGodownMaster" Association="Self.FK_InwardMaster_VirtualGodownMaster">
+      <End Role="VirtualGodownMaster" EntitySet="VirtualGodownMaster" />
+      <End Role="InwardMaster" EntitySet="InwardMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ledger_CityMaster" Association="Self.FK_Ledger_CityMaster">
+      <End Role="CityMaster" EntitySet="CityMaster" />
+      <End Role="Ledger" EntitySet="Ledger" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ledger_StateMaster" Association="Self.FK_Ledger_StateMaster">
+      <End Role="StateMaster" EntitySet="StateMaster" />
+      <End Role="Ledger" EntitySet="Ledger" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LocalVehicleContractMaster_BranchMaster" Association="Self.FK_LocalVehicleContractMaster_BranchMaster">
+      <End Role="BranchMaster" EntitySet="BranchMaster" />
+      <End Role="LocalVehicleContractMaster" EntitySet="LocalVehicleContractMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LocalVehicleContractMaster_VehicleMaster" Association="Self.FK_LocalVehicleContractMaster_VehicleMaster">
+      <End Role="VehicleMaster" EntitySet="VehicleMaster" />
+      <End Role="LocalVehicleContractMaster" EntitySet="LocalVehicleContractMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LocalVehicleContractMaster_VendorMaster" Association="Self.FK_LocalVehicleContractMaster_VendorMaster">
+      <End Role="VendorMaster" EntitySet="VendorMaster" />
+      <End Role="LocalVehicleContractMaster" EntitySet="LocalVehicleContractMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OutwardMaster_BookingMaster" Association="Self.FK_OutwardMaster_BookingMaster">
+      <End Role="BookingMaster" EntitySet="BookingMaster" />
+      <End Role="OutwardMaster" EntitySet="OutwardMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OutwardMaster_BranchMaster3" Association="Self.FK_OutwardMaster_BranchMaster3">
+      <End Role="BranchMaster" EntitySet="BranchMaster" />
+      <End Role="OutwardMaster" EntitySet="OutwardMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OutwardMaster_BranchMaster4" Association="Self.FK_OutwardMaster_BranchMaster4">
+      <End Role="BranchMaster" EntitySet="BranchMaster" />
+      <End Role="OutwardMaster" EntitySet="OutwardMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OutwardMaster_BranchMaster5" Association="Self.FK_OutwardMaster_BranchMaster5">
+      <End Role="BranchMaster" EntitySet="BranchMaster" />
+      <End Role="OutwardMaster" EntitySet="OutwardMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OutwardMaster_BranchMaster6" Association="Self.FK_OutwardMaster_BranchMaster6">
+      <End Role="BranchMaster" EntitySet="BranchMaster" />
+      <End Role="OutwardMaster" EntitySet="OutwardMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OutwardMaster_DriverMaster" Association="Self.FK_OutwardMaster_DriverMaster">
+      <End Role="DriverMaster" EntitySet="DriverMaster" />
+      <End Role="OutwardMaster" EntitySet="OutwardMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OutwardMaster_DriverMaster1" Association="Self.FK_OutwardMaster_DriverMaster1">
+      <End Role="DriverMaster" EntitySet="DriverMaster" />
+      <End Role="OutwardMaster" EntitySet="OutwardMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OutwardMaster_DriverMaster2" Association="Self.FK_OutwardMaster_DriverMaster2">
+      <End Role="DriverMaster" EntitySet="DriverMaster" />
+      <End Role="OutwardMaster" EntitySet="OutwardMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OutwardMaster_VehicleMaster" Association="Self.FK_OutwardMaster_VehicleMaster">
+      <End Role="VehicleMaster" EntitySet="VehicleMaster" />
+      <End Role="OutwardMaster" EntitySet="OutwardMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OutwardMaster_VendorMaster" Association="Self.FK_OutwardMaster_VendorMaster">
+      <End Role="VendorMaster" EntitySet="VendorMaster" />
+      <End Role="OutwardMaster" EntitySet="OutwardMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PackingMaster_BookingMaster" Association="Self.FK_PackingMaster_BookingMaster">
+      <End Role="BookingMaster" EntitySet="BookingMaster" />
+      <End Role="PackingMaster" EntitySet="PackingMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PreDelivery_GodownMaster" Association="Self.FK_PreDelivery_GodownMaster">
+      <End Role="GodownMaster" EntitySet="GodownMaster" />
+      <End Role="PreDelivery" EntitySet="PreDelivery" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PreDelivery_PackingTypeMaster1" Association="Self.FK_PreDelivery_PackingTypeMaster1">
+      <End Role="PackingTypeMaster" EntitySet="PackingTypeMaster" />
+      <End Role="PreDelivery" EntitySet="PreDelivery" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PreDelivery_RegularClientMaster" Association="Self.FK_PreDelivery_RegularClientMaster">
+      <End Role="RegularClientMaster" EntitySet="RegularClientMaster" />
+      <End Role="PreDelivery" EntitySet="PreDelivery" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PreDelivery_RegularClientMaster1" Association="Self.FK_PreDelivery_RegularClientMaster1">
+      <End Role="RegularClientMaster" EntitySet="RegularClientMaster" />
+      <End Role="PreDelivery" EntitySet="PreDelivery" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PreDelivery_ReserveBooking" Association="Self.FK_PreDelivery_ReserveBooking">
+      <End Role="ReserveBooking" EntitySet="ReserveBooking" />
+      <End Role="PreDelivery" EntitySet="PreDelivery" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PreDelivery_VirtualGodownMaster" Association="Self.FK_PreDelivery_VirtualGodownMaster">
+      <End Role="VirtualGodownMaster" EntitySet="VirtualGodownMaster" />
+      <End Role="PreDelivery" EntitySet="PreDelivery" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RegionMaster_CityMaster" Association="Self.FK_RegionMaster_CityMaster">
+      <End Role="CityMaster" EntitySet="CityMaster" />
+      <End Role="RegionMaster" EntitySet="RegionMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RegionMaster_StateMaster" Association="Self.FK_RegionMaster_StateMaster">
+      <End Role="StateMaster" EntitySet="StateMaster" />
+      <End Role="RegionMaster" EntitySet="RegionMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RegularClient_Contact_info_RegularClientMaster" Association="Self.FK_RegularClient_Contact_info_RegularClientMaster">
+      <End Role="RegularClientMaster" EntitySet="RegularClientMaster" />
+      <End Role="RegularClient_Contact_info" EntitySet="RegularClient_Contact_info" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RegularClientMaster_BranchMaster" Association="Self.FK_RegularClientMaster_BranchMaster">
+      <End Role="BranchMaster" EntitySet="BranchMaster" />
+      <End Role="RegularClientMaster" EntitySet="RegularClientMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RegularClientMaster_CityMaster" Association="Self.FK_RegularClientMaster_CityMaster">
+      <End Role="CityMaster" EntitySet="CityMaster" />
+      <End Role="RegularClientMaster" EntitySet="RegularClientMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RegularClientMaster_StateMaster" Association="Self.FK_RegularClientMaster_StateMaster">
+      <End Role="StateMaster" EntitySet="StateMaster" />
+      <End Role="RegularClientMaster" EntitySet="RegularClientMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Requirement_Ledger" Association="Self.FK_Requirement_Ledger">
+      <End Role="Ledger" EntitySet="Ledger" />
+      <End Role="Requirement" EntitySet="Requirement" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Requirement_Ledger1" Association="Self.FK_Requirement_Ledger1">
+      <End Role="Ledger" EntitySet="Ledger" />
+      <End Role="Requirement" EntitySet="Requirement" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReserveBooking_RegularClientMaster" Association="Self.FK_ReserveBooking_RegularClientMaster">
+      <End Role="RegularClientMaster" EntitySet="RegularClientMaster" />
+      <End Role="ReserveBooking" EntitySet="ReserveBooking" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RTOMaster_CityMaster" Association="Self.FK_RTOMaster_CityMaster">
+      <End Role="CityMaster" EntitySet="CityMaster" />
+      <End Role="RTOMaster" EntitySet="RTOMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RTOMaster_StateMaster" Association="Self.FK_RTOMaster_StateMaster">
+      <End Role="StateMaster" EntitySet="StateMaster" />
+      <End Role="RTOMaster" EntitySet="RTOMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ServiceLocationMaster_BranchMaster" Association="Self.FK_ServiceLocationMaster_BranchMaster">
+      <End Role="BranchMaster" EntitySet="BranchMaster" />
+      <End Role="ServiceLocationMaster" EntitySet="ServiceLocationMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ServiceLocationMaster_BranchMaster1" Association="Self.FK_ServiceLocationMaster_BranchMaster1">
+      <End Role="BranchMaster" EntitySet="BranchMaster" />
+      <End Role="ServiceLocationMaster" EntitySet="ServiceLocationMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StandardLorryHireMaster_BranchMaster" Association="Self.FK_StandardLorryHireMaster_BranchMaster">
+      <End Role="VehicleTypeMaster" EntitySet="VehicleTypeMaster" />
+      <End Role="StandardLorryHireMaster" EntitySet="StandardLorryHireMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StandardLorryHireMaster_BranchMaster1" Association="Self.FK_StandardLorryHireMaster_BranchMaster1">
+      <End Role="BranchMaster" EntitySet="BranchMaster" />
+      <End Role="StandardLorryHireMaster" EntitySet="StandardLorryHireMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StandardLorryHireMaster_VehicleTypeMaster" Association="Self.FK_StandardLorryHireMaster_VehicleTypeMaster">
+      <End Role="VehicleTypeMaster" EntitySet="VehicleTypeMaster" />
+      <End Role="StandardLorryHireMaster" EntitySet="StandardLorryHireMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TruckArrival_BranchMaster" Association="Self.FK_TruckArrival_BranchMaster">
+      <End Role="BranchMaster" EntitySet="BranchMaster" />
+      <End Role="TruckArrival" EntitySet="TruckArrival" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TruckArrival_BranchMaster1" Association="Self.FK_TruckArrival_BranchMaster1">
+      <End Role="BranchMaster" EntitySet="BranchMaster" />
+      <End Role="TruckArrival" EntitySet="TruckArrival" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TruckArrival_BranchMaster2" Association="Self.FK_TruckArrival_BranchMaster2">
+      <End Role="BranchMaster" EntitySet="BranchMaster" />
+      <End Role="TruckArrival" EntitySet="TruckArrival" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TruckArrival_VehicleMaster" Association="Self.FK_TruckArrival_VehicleMaster">
+      <End Role="VehicleMaster" EntitySet="VehicleMaster" />
+      <End Role="TruckArrival" EntitySet="TruckArrival" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TruckUnloading_BookingMaster" Association="Self.FK_TruckUnloading_BookingMaster">
+      <End Role="BookingMaster" EntitySet="BookingMaster" />
+      <End Role="TruckUnloading" EntitySet="TruckUnloading" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TruckUnloading_CommodityMaster" Association="Self.FK_TruckUnloading_CommodityMaster">
+      <End Role="CommodityMaster" EntitySet="CommodityMaster" />
+      <End Role="TruckUnloading" EntitySet="TruckUnloading" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TruckUnloading_GodownMaster" Association="Self.FK_TruckUnloading_GodownMaster">
+      <End Role="GodownMaster" EntitySet="GodownMaster" />
+      <End Role="TruckUnloading" EntitySet="TruckUnloading" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TruckUnloading_PackingTypeMaster" Association="Self.FK_TruckUnloading_PackingTypeMaster">
+      <End Role="PackingTypeMaster" EntitySet="PackingTypeMaster" />
+      <End Role="TruckUnloading" EntitySet="TruckUnloading" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TruckUnloading_VehicleMaster" Association="Self.FK_TruckUnloading_VehicleMaster">
+      <End Role="VehicleMaster" EntitySet="VehicleMaster" />
+      <End Role="TruckUnloading" EntitySet="TruckUnloading" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TruckUnloading_VirtualGodownMaster" Association="Self.FK_TruckUnloading_VirtualGodownMaster">
+      <End Role="VirtualGodownMaster" EntitySet="VirtualGodownMaster" />
+      <End Role="TruckUnloading" EntitySet="TruckUnloading" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VehicleMaster_DriverMaster" Association="Self.FK_VehicleMaster_DriverMaster">
+      <End Role="DriverMaster" EntitySet="DriverMaster" />
+      <End Role="VehicleMaster" EntitySet="VehicleMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VehicleMaster_VehicleModelMaster" Association="Self.FK_VehicleMaster_VehicleModelMaster">
+      <End Role="VehicleModelMaster" EntitySet="VehicleModelMaster" />
+      <End Role="VehicleMaster" EntitySet="VehicleMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VehicleMaster_VehicleTypeMaster" Association="Self.FK_VehicleMaster_VehicleTypeMaster">
+      <End Role="VehicleTypeMaster" EntitySet="VehicleTypeMaster" />
+      <End Role="VehicleMaster" EntitySet="VehicleMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VehicleMaster_VendorMaster" Association="Self.FK_VehicleMaster_VendorMaster">
+      <End Role="VendorMaster" EntitySet="VendorMaster" />
+      <End Role="VehicleMaster" EntitySet="VehicleMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VehicleMaster_VendorMaster1" Association="Self.FK_VehicleMaster_VendorMaster1">
+      <End Role="VendorMaster" EntitySet="VendorMaster" />
+      <End Role="VehicleMaster" EntitySet="VehicleMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VehicleModelMaster_VendorMaster" Association="Self.FK_VehicleModelMaster_VendorMaster">
+      <End Role="VendorMaster" EntitySet="VendorMaster" />
+      <End Role="VehicleModelMaster" EntitySet="VehicleModelMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VendorMaster_BankMaster" Association="Self.FK_VendorMaster_BankMaster">
+      <End Role="BankMaster" EntitySet="BankMaster" />
+      <End Role="VendorMaster" EntitySet="VendorMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VendorMaster_BankMaster1" Association="Self.FK_VendorMaster_BankMaster1">
+      <End Role="BankMaster" EntitySet="BankMaster" />
+      <End Role="VendorMaster" EntitySet="VendorMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VendorMaster_BankMaster2" Association="Self.FK_VendorMaster_BankMaster2">
+      <End Role="BankMaster" EntitySet="BankMaster" />
+      <End Role="VendorMaster" EntitySet="VendorMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VendorMaster_CityMaster" Association="Self.FK_VendorMaster_CityMaster">
+      <End Role="CityMaster" EntitySet="CityMaster" />
+      <End Role="VendorMaster" EntitySet="VendorMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VendorMaster_StateMaster" Association="Self.FK_VendorMaster_StateMaster">
+      <End Role="StateMaster" EntitySet="StateMaster" />
+      <End Role="VendorMaster" EntitySet="VendorMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VendorMaster_VendorMaster1" Association="Self.FK_VendorMaster_VendorMaster1">
+      <End Role="VendorTypeMaster" EntitySet="VendorTypeMaster" />
+      <End Role="VendorMaster" EntitySet="VendorMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VirtualGodownMaster_BranchMaster" Association="Self.FK_VirtualGodownMaster_BranchMaster">
+      <End Role="BranchMaster" EntitySet="BranchMaster" />
+      <End Role="VirtualGodownMaster" EntitySet="VirtualGodownMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VirtualGodownMaster_GodownMaster" Association="Self.FK_VirtualGodownMaster_GodownMaster">
+      <End Role="GodownMaster" EntitySet="GodownMaster" />
+      <End Role="VirtualGodownMaster" EntitySet="VirtualGodownMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Walk-inClientMaster_CityMaster1" Association="Self.FK_Walk-inClientMaster_CityMaster1">
+      <End Role="CityMaster" EntitySet="CityMaster" />
+      <End Role="Walk-inClientMaster" EntitySet="Walk-inClientMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Walk-inClientMaster_StateMaster1" Association="Self.FK_Walk-inClientMaster_StateMaster1">
+      <End Role="StateMaster" EntitySet="StateMaster" />
+      <End Role="Walk-inClientMaster" EntitySet="Walk-inClientMaster" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
