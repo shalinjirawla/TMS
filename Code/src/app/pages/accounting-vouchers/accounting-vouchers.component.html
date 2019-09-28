@@ -11,14 +11,14 @@
               <div class="col-md-11">
                 <!-- Account Finance List -->
               </div>
-              
+
               <div class="col-md-1 btnStyle">
                 <button class="btn btn-raised shadow-z-2 btn-info" (click)="ShowPopUp()">Add New</button>
               </div>
             </div>
             <div class="row">
               <div class="myclass">
-                <table class="table table-hover" cellspacing="0" id="ConvertData">
+                <table class="table table-hover" cellspacing="0">
                   <thead>
                     <tr>
                       <th>Requirement No</th>
@@ -50,12 +50,205 @@
                 </table>
               </div>
             </div>
+
+
+
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+
+
+<form id="PdfData" [formGroup]="AccountingVoouchersForm" class="col-md-12">
+
+  <br>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <label class=" control-label">Requirement No</label>
+        <div class="">
+          <input class="form-control" type="text" placeholder="Requirement No" formControlName="requirementNo"
+            disabled />
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="form-group">
+        <label class=" control-label">Requirement Date</label>
+        <div class="">
+          <input class="form-control" type="date" placeholder="Requirement Date" formControlName="requirementDate"
+            disabled />
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="form-group">
+        <label class="control-label">DR Ledger Name To</label>
+        <div class="">
+          <select class="form-control" formControlName="DRLedgerNameTo" disabled>
+            <option value="">--Select--</option>
+            <option *ngFor="let cont of ledgerModel" value={{cont.id}}>
+              {{cont.ledgername}}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row">
+
+    <div class="col-md-4">
+      <div class="form-group">
+        <label class=" control-label">DR Amount </label>
+        <div class="">
+          <input class="form-control" type="text" placeholder="DR Amount" formControlName="DRAmount" disabled />
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="form-group">
+        <label class="control-label">DR Ledger Name From</label>
+        <div class="">
+          <select class="form-control" formControlName="DRLedgerNameFrom" disabled>
+            <option value="">--Select--</option>
+            <option *ngFor="let cont of ledgerModel" value={{cont.id}}>
+              {{cont.ledgername}}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="form-group">
+        <label class=" control-label">Remark</label>
+        <div class="">
+          <input class="form-control" type="text" placeholder="Remark" formControlName="remark" disabled />
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row">
+
+    <div class="col-md-4">
+      <div class="form-group">
+        <label class="control-label">Requirement Type</label>
+        <div class="">
+          <select class="form-control" formControlName="requirementType" disabled>
+            <option value="">--Select--</option>
+            <option *ngFor="let cont of requirementType" value={{cont.Name}}>
+              {{cont.Name}}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="form-group">
+        <label class=" control-label">Reference No</label>
+        <div class="">
+          <input class="form-control" type="text" placeholder="Reference No" formControlName="referenceNo" disabled />
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="form-group">
+        <label class=" control-label">Challan No</label>
+        <div class="">
+          <input class="form-control" type="text" placeholder="Challan No" formControlName="challanNo" disabled />
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row">
+
+    <div class="col-md-4">
+      <div class="form-group">
+        <label class=" control-label">RENT</label>
+        <div class="">
+          <input class="form-control" type="text" placeholder="RENT" formControlName="RENT" required disabled>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="form-group">
+        <label class=" control-label">SALARY</label>
+        <div class="">
+          <input class="form-control" type="text" placeholder="SALARY" formControlName="SALARY" disabled />
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="form-group">
+        <label class=" control-label">ADMIN</label>
+        <div class="">
+          <input class="form-control" type="text" placeholder="SALARY" formControlName="ADMIN" required disabled />
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row">
+
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="filePicker">File Upload</label><br>
+        <input #file1 type="file" accept='image/*' (change)="preview(file1.files,$event)" disabled />
+        <br><br>
+        <img [src]="imgURL" height="200" *ngIf="imgURL">
+        <br>
+        <br>
+        <!-- <button type="button" (click)="downloadFile(imgURL)" class="btn btn-raised shadow-z-2 btn-default"
+             aria-label="Close">
+             <i class="fa fa-download" aria-hidden="true"></i>Download</button> -->
+        <br>
+
+      </div>
+
+
+    </div>
+
+    <div class="col-md-4">
+      <div class="checkbox h-30">
+        <label class="control-label">Is Approve</label>
+        <div class="">
+          <input type="checkbox" formControlName="IsApprove" />
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="form-group">
+        <label class=" control-label">Reject Remark</label>
+        <div class="">
+          <input class="form-control" type="text" placeholder="Reject Remark" formControlName="rejectremark" />
+        </div>
+      </div>
+    </div>
+
+  </div>
+</form>
+
+
+
+
 
 <ng-template #template>
   <form [formGroup]="AccountingVoouchersForm" (ngSubmit)="SaveDetail(AccountingVoouchersForm.value)">
@@ -421,11 +614,10 @@
             </div>
 
             <div class="col-md-4">
-              <div class="form-group">
-                <label class=" control-label">Is Approve</label>
+              <div class="checkbox h-30">
+                <label class="control-label">Is Approve</label>
                 <div class="">
-                  <input class="form-control" type="checkbox" placeholder="SALARY"
-                    (change)="onCheckboxChange(list,$event)" />
+                  <input type="checkbox" formControlName="IsApprove" />
                 </div>
               </div>
             </div>
@@ -434,22 +626,27 @@
               <div class="form-group">
                 <label class=" control-label">Reject Remark</label>
                 <div class="">
-                  <input class="form-control" type="text" placeholder="Reject Remark" />
+                  <input class="form-control" type="text" placeholder="Reject Remark" formControlName="rejectremark" />
                 </div>
               </div>
             </div>
 
           </div>
 
+
           <button type="button" class="btn btn-raised shadow-z-2 btn-default" previousStep>Go to previous step</button>
           <button type="button" class="btn btn-raised shadow-z-2 btn-default"
-            [disabled]="!AccountingVoouchersForm.valid" (click)="DataValue1($event)" nextStep>Go to next step</button>
+            [disabled]="!AccountingVoouchersForm.valid" nextStep>Go
+            to next step</button>
         </wizard-step>
 
         <wizard-step stepTitle="step 3">
           <br>
           <h4>DataFile</h4>
-
+          <br>
+          <div *ngFor="let angu of data">
+            <input type="button" value="Approved data file " (click)="captureScreen(angu.id)" />
+          </div>
 
           <br>
           <button type="button" class="btn btn-raised shadow-z-2 btn-default" previousStep>Go to previous step</button>

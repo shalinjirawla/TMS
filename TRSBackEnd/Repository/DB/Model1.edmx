@@ -835,6 +835,28 @@
           <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="voucherNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="voucherDate" Type="nvarchar" MaxLength="50" />
+          <Property Name="requirementType" Type="nvarchar" MaxLength="50" />
+          <Property Name="DRLedgerTo" Type="int" />
+          <Property Name="DRAmount" Type="varchar" MaxLength="50" />
+          <Property Name="DRLedgerFrom" Type="int" />
+          <Property Name="DRAmount1" Type="varchar" MaxLength="50" />
+          <Property Name="Remark" Type="nvarchar" MaxLength="50" />
+          <Property Name="BillByBill" Type="nvarchar" MaxLength="50" />
+          <Property Name="referenceNo" Type="varchar" MaxLength="50" />
+          <Property Name="challanNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="Rent" Type="nvarchar" MaxLength="50" />
+          <Property Name="Salary" Type="nvarchar" MaxLength="50" />
+          <Property Name="Admin" Type="nvarchar" MaxLength="50" />
+          <Property Name="FileUpload" Type="nvarchar(max)" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
         <EntityType Name="PreDelivery">
           <Key>
             <PropertyRef Name="id" />
@@ -992,6 +1014,8 @@
           <Property Name="SALARY" Type="nvarchar" MaxLength="50" />
           <Property Name="ADMIN" Type="nvarchar" MaxLength="50" />
           <Property Name="fileupload" Type="nvarchar(max)" />
+          <Property Name="IsApprove" Type="bit" />
+          <Property Name="rejectremark" Type="nvarchar" MaxLength="50" />
           <Property Name="isActive" Type="bit" />
         </EntityType>
         <EntityType Name="ReserveBooking">
@@ -2456,6 +2480,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Payment_Ledger2">
+          <End Role="Ledger" Type="Self.Ledger" Multiplicity="0..1" />
+          <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ledger">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="DRLedgerTo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Payment_Ledger3">
+          <End Role="Ledger" Type="Self.Ledger" Multiplicity="0..1" />
+          <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ledger">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="DRLedgerFrom" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_PreDelivery_GodownMaster">
           <End Role="GodownMaster" Type="Self.GodownMaster" Multiplicity="0..1" />
           <End Role="PreDelivery" Type="Self.PreDelivery" Multiplicity="*" />
@@ -3066,6 +3114,7 @@
           <EntitySet Name="OutwardMaster" EntityType="Self.OutwardMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PackingMaster" EntityType="Self.PackingMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PackingTypeMaster" EntityType="Self.PackingTypeMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PreDelivery" EntityType="Self.PreDelivery" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PrintingStationary" EntityType="Self.PrintingStationary" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ReceiptMaster" EntityType="Self.ReceiptMaster" Schema="dbo" store:Type="Tables" />
@@ -3469,6 +3518,14 @@
           <AssociationSet Name="FK_PackingMaster_BookingMaster" Association="Self.FK_PackingMaster_BookingMaster">
             <End Role="BookingMaster" EntitySet="BookingMaster" />
             <End Role="PackingMaster" EntitySet="PackingMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Payment_Ledger2" Association="Self.FK_Payment_Ledger2">
+            <End Role="Ledger" EntitySet="Ledger" />
+            <End Role="Payment" EntitySet="Payment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Payment_Ledger3" Association="Self.FK_Payment_Ledger3">
+            <End Role="Ledger" EntitySet="Ledger" />
+            <End Role="Payment" EntitySet="Payment" />
           </AssociationSet>
           <AssociationSet Name="FK_PreDelivery_GodownMaster" Association="Self.FK_PreDelivery_GodownMaster">
             <End Role="GodownMaster" EntitySet="GodownMaster" />
@@ -4908,6 +4965,15 @@
           <AssociationSet Name="FK_Requirement_Ledger1" Association="TRSModel.FK_Requirement_Ledger1">
             <End Role="Ledger" EntitySet="Ledgers" />
             <End Role="Requirement" EntitySet="Requirements" />
+          </AssociationSet>
+          <EntitySet Name="Payments" EntityType="TRSModel.Payment" />
+          <AssociationSet Name="FK_Payment_Ledger2" Association="TRSModel.FK_Payment_Ledger2">
+            <End Role="Ledger" EntitySet="Ledgers" />
+            <End Role="Payment" EntitySet="Payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Payment_Ledger3" Association="TRSModel.FK_Payment_Ledger3">
+            <End Role="Ledger" EntitySet="Ledgers" />
+            <End Role="Payment" EntitySet="Payments" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="ServiceLocationMaster">
@@ -7530,6 +7596,8 @@
           <NavigationProperty Name="StateMaster" Relationship="TRSModel.FK_Ledger_StateMaster" FromRole="Ledger" ToRole="StateMaster" />
           <NavigationProperty Name="Requirements" Relationship="TRSModel.FK_Requirement_Ledger" FromRole="Ledger" ToRole="Requirement" />
           <NavigationProperty Name="Requirements1" Relationship="TRSModel.FK_Requirement_Ledger1" FromRole="Ledger" ToRole="Requirement" />
+          <NavigationProperty Name="Payments" Relationship="TRSModel.FK_Payment_Ledger2" FromRole="Ledger" ToRole="Payment" />
+          <NavigationProperty Name="Payments1" Relationship="TRSModel.FK_Payment_Ledger3" FromRole="Ledger" ToRole="Payment" />
           </EntityType>
         <Association Name="FK_Ledger_CityMaster">
           <End Type="TRSModel.CityMaster" Role="CityMaster" Multiplicity="0..1" />
@@ -7586,6 +7654,8 @@
           <Property Name="isActive" Type="Boolean" />
           <NavigationProperty Name="Ledger" Relationship="TRSModel.FK_Requirement_Ledger" FromRole="Requirement" ToRole="Ledger" />
           <NavigationProperty Name="Ledger1" Relationship="TRSModel.FK_Requirement_Ledger1" FromRole="Requirement" ToRole="Ledger" />
+          <Property Name="IsApprove" Type="Boolean" />
+          <Property Name="rejectremark" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_Requirement_Ledger">
           <End Type="TRSModel.Ledger" Role="Ledger" Multiplicity="0..1" />
@@ -7608,6 +7678,54 @@
             </Principal>
             <Dependent Role="Requirement">
               <PropertyRef Name="DRLedgerNameFrom" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="voucherNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="voucherDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="requirementType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DRLedgerTo" Type="Int32" />
+          <Property Name="DRAmount" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DRLedgerFrom" Type="Int32" />
+          <Property Name="Remark" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BillByBill" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="referenceNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="challanNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Rent" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Salary" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Admin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FileUpload" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="Ledger" Relationship="TRSModel.FK_Payment_Ledger2" FromRole="Payment" ToRole="Ledger" />
+          <NavigationProperty Name="Ledger1" Relationship="TRSModel.FK_Payment_Ledger3" FromRole="Payment" ToRole="Ledger" />
+          <Property Name="DRAmount1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_Payment_Ledger2">
+          <End Type="TRSModel.Ledger" Role="Ledger" Multiplicity="0..1" />
+          <End Type="TRSModel.Payment" Role="Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ledger">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="DRLedgerTo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Payment_Ledger3">
+          <End Type="TRSModel.Ledger" Role="Ledger" Multiplicity="0..1" />
+          <End Type="TRSModel.Payment" Role="Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ledger">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="DRLedgerFrom" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -8966,6 +9084,8 @@
           <EntitySetMapping Name="Requirements">
             <EntityTypeMapping TypeName="TRSModel.Requirement">
               <MappingFragment StoreEntitySet="Requirement">
+                <ScalarProperty Name="rejectremark" ColumnName="rejectremark" />
+                <ScalarProperty Name="IsApprove" ColumnName="IsApprove" />
                 <ScalarProperty Name="isActive" ColumnName="isActive" />
                 <ScalarProperty Name="fileupload" ColumnName="fileupload" />
                 <ScalarProperty Name="ADMIN" ColumnName="ADMIN" />
@@ -8981,6 +9101,29 @@
                 <ScalarProperty Name="requirementType" ColumnName="requirementType" />
                 <ScalarProperty Name="requirementDate" ColumnName="requirementDate" />
                 <ScalarProperty Name="requirementNo" ColumnName="requirementNo" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Payments">
+            <EntityTypeMapping TypeName="TRSModel.Payment">
+              <MappingFragment StoreEntitySet="Payment">
+                <ScalarProperty Name="DRAmount1" ColumnName="DRAmount1" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="FileUpload" ColumnName="FileUpload" />
+                <ScalarProperty Name="Admin" ColumnName="Admin" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="Rent" ColumnName="Rent" />
+                <ScalarProperty Name="challanNo" ColumnName="challanNo" />
+                <ScalarProperty Name="referenceNo" ColumnName="referenceNo" />
+                <ScalarProperty Name="BillByBill" ColumnName="BillByBill" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="DRLedgerFrom" ColumnName="DRLedgerFrom" />
+                <ScalarProperty Name="DRAmount" ColumnName="DRAmount" />
+                <ScalarProperty Name="DRLedgerTo" ColumnName="DRLedgerTo" />
+                <ScalarProperty Name="requirementType" ColumnName="requirementType" />
+                <ScalarProperty Name="voucherDate" ColumnName="voucherDate" />
+                <ScalarProperty Name="voucherNo" ColumnName="voucherNo" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -80,7 +80,8 @@ import { BillService } from './shared/service-proxy/billService';
 import { LedgerGroupService } from './shared/service-proxy/ledgergroupService';
 import { LedgerService } from './shared/service-proxy/ledgerService';
 import { CostCentreService } from './shared/service-proxy/costcentreService';
-import {AccountingVouchersService} from './shared/service-proxy/accountingvouchersService';
+import { AccountingVouchersService } from './shared/service-proxy/accountingvouchersService';
+import { PaymentService } from './shared/service-proxy/paymentService';
 
 @NgModule({
     declarations: [
@@ -88,7 +89,6 @@ import {AccountingVouchersService} from './shared/service-proxy/accountingvouche
         FullLayoutComponent,
         ContentLayoutComponent,
         LoginMasterComponent,
-        // AccountingVouchersComponent,
     ],
     imports: [
         BrowserAnimationsModule,
@@ -106,7 +106,7 @@ import {AccountingVouchersService} from './shared/service-proxy/accountingvouche
     providers: [StateMasterService, CityMasterService
         , RegionMasterService, BranchMasterService,
         GodownMasterService, VirtualGodownMasterService,
-        RegularClientMasterService, BookingMasterService, DatePipe, PackingMasterServiceService, RtoServiceService, AreaMasterService, GoddownOwnerDetailService, BankMasterServiceService, BranchRateMasterService, LoginServicesService, RegistrationComponent, RegistrationService, DashboardComponent, freightMasterService, crossingMasterService, ServiceLocationMaster, ContractMasterService, WalkInClientMasterService, CommodityTypemasterService, CommoditymasterService, PackingTypemasterService, DepartmentmasterService, LateReportReasonMasterService, VendorTypeMasterService, VendorMasterService, VehiclemodelMasterService, VehicleTypeMasterService, VehicleMasterService, LocalVelicleContractMasterService, StandardLorryHireService, DriverMasterService, DocumentAllocationMasterService, OutwardMasterService, InwardMasterService, DeliveryMasterService, ReceiptMasterService, AccountMasterService, SeriesGenerationOperationService, PrintingStationaryOperationService, DocumentSeriesAllocationOperationService, ConsignmentOperationService, ReserveOperationService, UploadPackingSlipService, TruckArrivalService, TruckUnloadingService, GodownDeliveryService, PreDeliveryService, DDLocalChallanService, DoorDeliveryConfirmService, BillService, LedgerGroupService, LedgerService, CostCentreService,AccountingVouchersService],
+        RegularClientMasterService, BookingMasterService, DatePipe, PackingMasterServiceService, RtoServiceService, AreaMasterService, GoddownOwnerDetailService, BankMasterServiceService, BranchRateMasterService, LoginServicesService, RegistrationComponent, RegistrationService, DashboardComponent, freightMasterService, crossingMasterService, ServiceLocationMaster, ContractMasterService, WalkInClientMasterService, CommodityTypemasterService, CommoditymasterService, PackingTypemasterService, DepartmentmasterService, LateReportReasonMasterService, VendorTypeMasterService, VendorMasterService, VehiclemodelMasterService, VehicleTypeMasterService, VehicleMasterService, LocalVelicleContractMasterService, StandardLorryHireService, DriverMasterService, DocumentAllocationMasterService, OutwardMasterService, InwardMasterService, DeliveryMasterService, ReceiptMasterService, AccountMasterService, SeriesGenerationOperationService, PrintingStationaryOperationService, DocumentSeriesAllocationOperationService, ConsignmentOperationService, ReserveOperationService, UploadPackingSlipService, TruckArrivalService, TruckUnloadingService, GodownDeliveryService, PreDeliveryService, DDLocalChallanService, DoorDeliveryConfirmService, BillService, LedgerGroupService, LedgerService, CostCentreService, AccountingVouchersService, PaymentService],
     bootstrap: [AppComponent]
 
 })

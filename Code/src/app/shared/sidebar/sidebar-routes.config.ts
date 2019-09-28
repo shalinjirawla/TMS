@@ -177,7 +177,7 @@ this.R = [
                     //     path: '/bill', title: 'bill', icon: 'ft-cpu', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: []
                     // },
                     {
-                        path: 'delivery',  title: 'Door Delivery', icon: 'ft-crosshair', class: 'has-sub', badge: '', badgeClass: 'badge badge-pill badge-danger float-right mr-1 mt-1 ', isExternalLink: false,
+                        path: 'delivery', title: 'Door Delivery', icon: 'ft-crosshair', class: 'has-sub', badge: '', badgeClass: 'badge badge-pill badge-danger float-right mr-1 mt-1 ', isExternalLink: false,
                         submenu: [
                             {
                                 path: '/predelivery', title: 'Pre Delivery', icon: 'ft-cpu', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: []
@@ -189,8 +189,8 @@ this.R = [
                                 path: '/doordeliveryconfirm', title: 'Door Delivery Confirm', icon: 'ft-cpu', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: []
                             },
                             {
-                                 path: '/bill', title: 'bill', icon: 'ft-cpu', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: []
-                             },
+                                path: '/bill', title: 'bill', icon: 'ft-cpu', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: []
+                            },
                         ]
                     },
                 ]
@@ -205,7 +205,7 @@ this.R = [
         submenu: [
             {
                 path: '/account', title: 'Account', icon: 'icon-crop', class: 'has-sub', badge: '', badgeClass: 'badge badge-pill badge-danger float-right mr-1 mt-1', isExternalLink: false,
-                 submenu: [
+                submenu: [
                     {
                         path: '/ledgergroup', title: 'Ledger group', icon: 'ft-cpu', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: []
                     },
@@ -215,14 +215,22 @@ this.R = [
                     {
                         path: '/costcentre', title: 'Cost Centre', icon: 'ft-cpu', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: []
                     },
-                 ]
+                ]
             },
             {
-                path: '/accountingvouchers', title: 'Accounting Vouchers', icon: 'ft-cpu', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: []
+                path: '/accountingvouchers', title: 'Accounting Vouchers', icon: 'ft-cpu', class: 'has-sub', badge: '', badgeClass: 'badge badge-pill badge-danger float-right mr-1 mt-1', isExternalLink: false,
+                submenu: [
+                    {
+                        path: '/requirement', title: 'Requirement', icon: 'ft-cpu', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: []
+                    },
+                    {
+                        path: '/payment', title: 'Payment', icon: 'ft-cpu', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: []
+                    },
+                ]
             },
         ]
     },
-   
+
 ];
 
 export const ROUTES: RouteInfo[] = this.R;

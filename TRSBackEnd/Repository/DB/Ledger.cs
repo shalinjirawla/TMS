@@ -20,6 +20,7 @@ namespace Repository.DB
             this.Requirements = new HashSet<Requirement>();
             this.Requirements1 = new HashSet<Requirement>();
             this.Payments = new HashSet<Payment>();
+            this.Payments1 = new HashSet<Payment>();
         }
     
         public int id { get; set; }
@@ -51,5 +52,7 @@ namespace Repository.DB
         public virtual ICollection<Requirement> Requirements1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Payment> Payments { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Payment> Payments1 { get; set; }
     }
 }

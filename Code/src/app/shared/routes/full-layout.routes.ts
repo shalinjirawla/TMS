@@ -55,7 +55,7 @@ export const Full_ROUTES: Routes = [
     loadChildren: './pages/regular-client-master/regular-client-master.module#RegularClientMasterModule',
     canActivate: [AuthGuardService]
   },
-  
+
   {
     path: 'rtomaster',
     loadChildren: './pages/rto-master/rto-master.module#RtoMasterModule',
@@ -292,8 +292,13 @@ export const Full_ROUTES: Routes = [
     canActivate: [AuthGuardService]
   },
   {
-    path: 'accountingvouchers',
+    path: 'requirement',
     loadChildren: './pages/accounting-vouchers/accounting-vouchers.module#AccountingVouchersModule',
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'payment',
+    loadChildren: './pages/payment/payment.module#PaymentModule',
     canActivate: [AuthGuardService]
   },
 ];

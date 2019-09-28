@@ -25,7 +25,7 @@ import { DriverMasterService } from '../../shared/service-proxy/driverMasterServ
 import { BookingModel } from '../../shared/model/BookingModel';
 import { BookingMasterService } from '../../shared/service-proxy/bookingMasterService';
 
-import {DatePipe} from '@angular/common';
+import { DatePipe } from '@angular/common';
 
 const swalWithBootstrapButtons = Swal.mixin({
   confirmButtonClass: 'btn btn-raised shadow-z-2 btn-success',
@@ -48,7 +48,7 @@ export class OutwardMasterComponent implements OnInit {
   rows: any;
   hk: OutwardModel;
   ChallanType: any[];
-  dataTable:any;
+  dataTable: any;
 
   vehicleMasterModels: VehicleMasterModel[] = [];
   branchMasterModel: BranchModel[] = [];
@@ -67,7 +67,7 @@ export class OutwardMasterComponent implements OnInit {
   public imagePath;
   public imagePath1
   imgURL: any;
-  imgURL1:any;
+  imgURL1: any;
   Fileuploadstring: any;
   Fileuploadstring1: any;
 
@@ -85,8 +85,8 @@ export class OutwardMasterComponent implements OnInit {
     private vendorService: VendorMasterService,
     private driverService: DriverMasterService,
     private bookingService: BookingMasterService,
-    private changederectoryRef:ChangeDetectorRef,
-    private datepipe:DatePipe,
+    private changederectoryRef: ChangeDetectorRef,
+    private datepipe: DatePipe,
   ) { }
 
   ngOnInit() {
@@ -155,7 +155,7 @@ export class OutwardMasterComponent implements OnInit {
       id: [0],
       challandate: [''],
       vehicleNo: [''],
-      scheduledArriDate:[''],
+      scheduledArriDate: [''],
       vehiclecapacityMT: [''],
       challantype: [''],
       challanNo: [''],
@@ -198,8 +198,8 @@ export class OutwardMasterComponent implements OnInit {
       this.rows = res;
 
       this.changederectoryRef.detectChanges();
-      const  table:any =$('table');
-      this.dataTable=table.DataTable();
+      const table: any = $('table');
+      this.dataTable = table.DataTable();
     });
   }
 
@@ -222,8 +222,8 @@ export class OutwardMasterComponent implements OnInit {
     debugger
     if (TruckHireValues != null && TruckHireValues != undefined) {
       this.TotalAmount = parseInt(TruckHireValues) + parseInt(OtheChargeValues);
-      this.TDSamount = (this.TotalAmount * this.tdsvals)/100;
-      
+      this.TDSamount = (this.TotalAmount * this.tdsvals) / 100;
+
       this.TotalAmount = this.TotalAmount - this.TDSamount;
       this.outwardMasterForm.patchValue({
         TDSamount: this.TDSamount,
@@ -253,85 +253,85 @@ export class OutwardMasterComponent implements OnInit {
           }
           this.hidepopup();
           this.OutwardList();
-          this.handleFileSelect(event);         
+          this.handleFileSelect(event);
         });
       }
     }
   }
 
-  ShowData(data:number){
-    this.Title="Edit Outward",
-    this.outwardService.GetOutwardModel(data).subscribe((res:OutwardModel)=>{
-      var date1=this.datepipe.transform(res.challandate,'yyyy-MM-dd');
-      var date2=this.datepipe.transform(res.CNdate,'yyyy-MM-dd');
-      this.imgURL=res.drivinglicenceAttach;
-      this.imgURL1=res.loadinglicenceAttach;
-      this.outwardMasterForm.patchValue({
-        id:res.id,
-        challandate:date1,
-        vehicleNo:res.vehicleNo,
-        vehiclecapacityMT:res.vehiclecapacityMT,
-        challantype:res.challantype,
-        challanNo:res.challanNo,
-        frombranch:res.frombranch,
-        tobranch:res.tobranch,
-        brokerloadingslipno:res.brokerloadingslipno,
-        brokername:res.brokername,
-        drivername:res.drivername,
-        driverlicenceNo:res.driverlicenceNo,
-        drivermobileNo:res.drivermobileNo,
-        CNno:res.CNno,
-        CNdate:date2,
-        bookingbranch:res.bookingbranch,
-        deliverylocation:res.deliverylocation,
-        deliverytype:res.deliverytype,
-        balancepackeges:res.balancepackeges,
-        balanceweight:res.balanceweight,
-        loadedpackages:res.loadedpackages,
-        loadedweight:res.loadedweight,
-        rollno:res.rollno,
-        truckhirechareges:res.truckhirechareges,
-        TDS:res.TDS,
-        TDSamount:res.TDSamount,
-        totaltruckhire:res.totaltruckhire,
-        othercharges:res.othercharges,
-        advence:res.advence,
-        advencepayableAt:res.advencepayableAt,
-        balancepayableAt:res.balancepayableAt,
-        RC:res.RC,
-        PAN:res.PAN,
-        drivinglicenceAttach:res.deliverylocation,
-        loadinglicenceAttach:res.loadinglicenceAttach,
-        TransitDays:res.TransitDays,
-      });
-      this.ShowPopUp();
-    })
+  ShowData(data: number) {
+    this.Title = "Edit Outward",
+      this.outwardService.GetOutwardModel(data).subscribe((res: OutwardModel) => {
+        var date1 = this.datepipe.transform(res.challandate, 'yyyy-MM-dd');
+        var date2 = this.datepipe.transform(res.CNdate, 'yyyy-MM-dd');
+        this.imgURL = res.drivinglicenceAttach;
+        this.imgURL1 = res.loadinglicenceAttach;
+        this.outwardMasterForm.patchValue({
+          id: res.id,
+          challandate: date1,
+          vehicleNo: res.vehicleNo,
+          vehiclecapacityMT: res.vehiclecapacityMT,
+          challantype: res.challantype,
+          challanNo: res.challanNo,
+          frombranch: res.frombranch,
+          tobranch: res.tobranch,
+          brokerloadingslipno: res.brokerloadingslipno,
+          brokername: res.brokername,
+          drivername: res.drivername,
+          driverlicenceNo: res.driverlicenceNo,
+          drivermobileNo: res.drivermobileNo,
+          CNno: res.CNno,
+          CNdate: date2,
+          bookingbranch: res.bookingbranch,
+          deliverylocation: res.deliverylocation,
+          deliverytype: res.deliverytype,
+          balancepackeges: res.balancepackeges,
+          balanceweight: res.balanceweight,
+          loadedpackages: res.loadedpackages,
+          loadedweight: res.loadedweight,
+          rollno: res.rollno,
+          truckhirechareges: res.truckhirechareges,
+          TDS: res.TDS,
+          TDSamount: res.TDSamount,
+          totaltruckhire: res.totaltruckhire,
+          othercharges: res.othercharges,
+          advence: res.advence,
+          advencepayableAt: res.advencepayableAt,
+          balancepayableAt: res.balancepayableAt,
+          RC: res.RC,
+          PAN: res.PAN,
+          drivinglicenceAttach: res.deliverylocation,
+          loadinglicenceAttach: res.loadinglicenceAttach,
+          TransitDays: res.TransitDays,
+        });
+        this.ShowPopUp();
+      })
   }
 
-  DeleteOutward(id:number){
+  DeleteOutward(id: number) {
     swalWithBootstrapButtons({
-      title:'Are you sure?',
-      text:"You Won't be able to revert this!",
-      type:'warning',
-      showCancelButton:true,
-      confirmButtonText:'Yes, delete it!',
-      cancelButtonText:'No, cancel!',
-      reverseButtons:true
-    }).then((result)=>{
-      if(result.value){
+      title: 'Are you sure?',
+      text: "You Won't be able to revert this!",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, cancel!',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.value) {
         this.outwardService.DeleteOutward(id)
-        .subscribe((Response:boolean)=>{
-          //this.destroy();
-          this.OutwardList();
-        });
+          .subscribe((Response: boolean) => {
+            //this.destroy();
+            this.OutwardList();
+          });
         swalWithBootstrapButtons(
           'Deleted!',
           'Your file has been deleted.',
           'success'
         );
-      }else if(
+      } else if (
         result.dismiss === Swal.DismissReason.cancel
-      ){
+      ) {
         swalWithBootstrapButtons(
           'Cancelled',
           'Data is safe : )',

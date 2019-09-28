@@ -350,6 +350,7 @@
     <Compile Include="Model\OutwardModel.cs" />
     <Compile Include="Model\PackingModel.cs" />
     <Compile Include="Model\PackingTypeModel.cs" />
+    <Compile Include="Model\PaymentModel.cs" />
     <Compile Include="Model\PreDeliveryModel.cs" />
     <Compile Include="Model\PrintingStationaryModel.cs" />
     <Compile Include="Model\ReceiptModel.cs" />
@@ -407,7 +408,6 @@
     <Compile Include="Repository\OutwardRepo.cs" />
     <Compile Include="Repository\PackingRepo.cs" />
     <Compile Include="Repository\PackingTypeRepo.cs" />
-    <Compile Include="Repository\PaymentRepo.cs" />
     <Compile Include="Repository\PreDeliveryRepo.cs" />
     <Compile Include="Repository\PrintingStationaryRepo.cs" />
     <Compile Include="Repository\ReceiptRepo.cs" />
@@ -462,7 +462,7 @@
     <Compile Include="Model\CostCentreModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\PaymentModel.cs" />
+    <Compile Include="Repository\PaymentRepo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
