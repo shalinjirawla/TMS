@@ -30,6 +30,8 @@ namespace Repository.DB
         public string ADMIN { get; set; }
         public string fileupload { get; set; }
         public Nullable<bool> isActive { get; set; }
+        public Nullable<bool> IsApprove { get; set; }
+        public string rejectremark { get; set; }
     
         public virtual Ledger Ledger { get; set; }
         public virtual Ledger Ledger1 { get; set; }

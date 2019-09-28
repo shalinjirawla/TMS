@@ -14,6 +14,8 @@ export class accountingVouchersModel{
     ADMIN:string;
     fileupload:string;
     referenceNo:string;
+    IsApprove:boolean;
+    rejectremark:string;
     // requirementNo1:string;
     // requirementDate1:Date;
     // requirementType1:string;

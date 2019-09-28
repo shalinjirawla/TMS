@@ -82,5 +82,6 @@ namespace Repository.DB
         public virtual DbSet<Ledger> Ledgers { get; set; }
         public virtual DbSet<CostCentre> CostCentres { get; set; }
         public virtual DbSet<Requirement> Requirements { get; set; }
+        public virtual DbSet<Payment> Payments { get; set; }
     }
 }

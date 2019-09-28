@@ -47,5 +47,11 @@ namespace TRSBackEnd.Controllers
             var data = requirement.DeleteRequirement(id);
             return Ok(data);
         }
+
+        public IHttpActionResult GetResponceAccount(int id)
+        {
+            var data = requirement.GetResponceAccount(id);
+            return Ok(data);
+        }
     }
 }

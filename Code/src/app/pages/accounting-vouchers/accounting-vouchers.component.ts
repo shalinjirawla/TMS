@@ -18,6 +18,7 @@ import { DatePipe } from '@angular/common';
 import jsPDF from 'jspdf';
 import * as html2canvas from 'html2canvas';
 import * as jspdf from 'jspdf';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 const swalWithBootstrapButtons = Swal.mixin({
   confirmButtonClass: 'btn btn-raised shadow-z-2 btn-success',
@@ -46,6 +47,9 @@ export class AccountingVouchersComponent implements OnInit {
   random: any;
   value: any;
   id: any;
+  allRows: any;
+  user = [];
+  data: any;
 
   private base64textString: String = "";
   public imagePath;
@@ -90,6 +94,7 @@ export class AccountingVouchersComponent implements OnInit {
   hidepopup() {
     this.modalRef.hide();
     this.LoadForm();
+    $("#PdfData").hide();
     // this.preview(evt);
   }
 
@@ -111,6 +116,8 @@ export class AccountingVouchersComponent implements OnInit {
       SALARY: [''],
       ADMIN: [''],
       fileupload: [''],
+      IsApprove: [''],
+      rejectremark: [''],
       // requirementNo1: [''],
       // requirementDate1: [''],
       // requirementType1: [''],
@@ -159,11 +166,14 @@ export class AccountingVouchersComponent implements OnInit {
   AccountingVouchersList() {
     this.accountingvouchersService.GetRequirementModels().subscribe((res: accountingVouchersModel[]) => {
       this.rows = res;
+      this.data = res;
 
       this.changedetectorRef.detectChanges();
       const table: any = $('table');
       this.dataTable = table.DataTable();
     })
+    $("#PdfData").hide();
+    // $("#PdfData").removeClass();
   }
 
   getRendomNo(max) {
@@ -199,6 +209,7 @@ export class AccountingVouchersComponent implements OnInit {
   }
 
   ShowData(data: number) {
+    debugger
     this.Title = "Edit Accounting Vouchers";
     this.accountingvouchersService.GetRequirement(data).subscribe((res: accountingVouchersModel) => {
       let date = this.datepipe.transform(res.requirementDate, 'yyyy-MM-dd');
@@ -220,6 +231,8 @@ export class AccountingVouchersComponent implements OnInit {
         SALARY: res.SALARY,
         ADMIN: res.ADMIN,
         fileupload: res.fileupload,
+        IsApprove: res.IsApprove,
+        rejectremark: res.rejectremark,
         // requirementNo1: res.requirementNo1,
         // requirementDate1: date1,
         // requirementType1: res.requirementType1,
@@ -252,10 +265,23 @@ export class AccountingVouchersComponent implements OnInit {
     this.AccountingVoouchersForm.controls.RENT.setValue(obj.RENT);
     this.AccountingVoouchersForm.controls.SALARY.setValue(obj.SALARY);
     this.AccountingVoouchersForm.controls.ADMIN.setValue(obj.ADMIN);
+    this.AccountingVoouchersForm.controls.IsApprove.setValue(obj.IsApprove);
+    this.AccountingVoouchersForm.controls.rejectremark.setValue(obj.rejectremark);
     this.AccountingVoouchersForm.controls.fileupload.setValue(obj.fileupload = this.Fileuploadstring);
     this.AccountingVouchersList();
     this.handleFileSelect(event);
   }
+
+  // EditData(i){
+  //   if (this.requirementType != null && this.requirementType != undefined && this.requirementType.length > 0) {
+  //     for (var a = 0; a < this.requirementType.length; a++) {
+  //       debugger
+  //       if ( && this.requirementType[a]['id'] == 1) {
+  //         this.requirementType[a]['Selected'] = true;
+  //       }
+  //     }
+  //   }
+  // }
 
   DeleteAccountingVouchers(id: number) {
     swalWithBootstrapButtons({
@@ -290,53 +316,50 @@ export class AccountingVouchersComponent implements OnInit {
     });
   }
 
-  DataValue1(data: number) {
+  finishFunction() {
+    this.hidepopup();
+  }
 
-    this.SaveDetail();
-    // this.DataValue();
-    // this.AccountingVoouchersForm.controls.id.patchValue("id");
-    // debugger
-    // let id = this.AccountingVoouchersForm.controls.id.value;
-    debugger
-    let obj = Object.assign({}, this.hk, this.AccountingVoouchersForm.value);
-    this.accountingvouchersService.SaveRequirement(obj).subscribe((res: boolean) => {
-      let id = this.AccountingVoouchersForm.controls.id.value;
-      this.rows=res;
-      //this.AccountingVoouchersForm.controls.id.patchValue(this.rows = res);
+  captureScreen(data: number) {
+
+    this.accountingvouchersService.GetRequirement(data).subscribe((res: accountingVouchersModel) => {
+      let date = this.datepipe.transform(res.requirementDate, 'yyyy-MM-dd');
+      this.AccountingVoouchersForm.patchValue({
+        id: res.id,
+        requirementNo: res.requirementNo,
+        requirementDate: date,
+        requirementType: res.requirementType,
+        DRLedgerNameTo: res.DRLedgerNameTo,
+        DRAmount: res.DRAmount,
+        DRLedgerNameFrom: res.DRLedgerNameFrom,
+        DRAmount1: res.DRAmount1,
+        remark: res.remark,
+        challanNo: res.challanNo,
+        referenceNo: res.referenceNo,
+        RENT: res.RENT,
+        SALARY: res.SALARY,
+        ADMIN: res.ADMIN,
+        fileupload: res.fileupload,
+      })
     })
-    //this.AccountingVoouchersForm.setValue(obj);
 
-    // this.accountingvouchersService.().subscribe((res: accountingVouchersModel[]) => {
-    //   this.AccountingVoouchersForm.patchValue({
-    //     id: res = id,
-    //   })
-    // })
+    debugger
+    let data1 = document.getElementById("PdfData")
+    html2canvas(data1).then(canvas => {
+      var imgWidth = 208;
+      var pageHeight = 295;
+      var imgHeight = canvas.height * imgWidth / canvas.width;
+      var heightLeft = imgHeight;
 
-    // var data1 = document.createElement('ConvertData');
-    // html2canvas(data1).then(canvas => {
+      const contentDataURL = canvas.toDataURL('image/png')
+      let pdf = new jspdf('p', 'mm', 'a4');
+      var position = 0;
+      pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)
+      pdf.save('P1.pdf');
+    })
 
-    //   var imgWidth = 208;
-    //   var pageHeight = 295;
-    //   var imgHeight = canvas.height * imgWidth / canvas.width;
-    //   var heightLeft = imgHeight;
+    $("#PdfData").show();
 
-    //   const contentDataURL = canvas.toDataURL('image/png')
-    //   let pdf = new jspdf('p', 'mm', 'a4');
-    //   var positions = 0;
-    //   pdf.addImage(contentDataURL, 'PNG', 0, positions, imgWidth, imgHeight)
-    //   pdf.save('MYPdf.pdf');
-    // })
-
-    // var doc = new jsPDF();
-    // var content = document.getElementById("#ConvertData")
-    // html2canvas(content).then(canvas => {
-    //   doc.addImage(canvas.toDataURL("image/png"), 'PNG', 15, 14, 180, 110);
-    // });
-
-    // let doc = new jsPDF();
-    // doc.addHTML(this.template.elementRef, function () {
-    //   doc.save("obrz.pdf");
-    // });
   }
 
 
@@ -384,23 +407,23 @@ export class AccountingVouchersComponent implements OnInit {
   }
   // fileupload2
 
-  previews(files1, evt) {
-    if (files1.length === 0)
-      return;
+  // previews(files1, evt) {
+  //   if (files1.length === 0)
+  //     return;
 
-    var mimeType1 = files1[0].type;
-    if (mimeType1.match(/image\/*/) == null) {
-      return;
-    }
+  //   var mimeType1 = files1[0].type;
+  //   if (mimeType1.match(/image\/*/) == null) {
+  //     return;
+  //   }
 
-    var reader1 = new FileReader();
-    this.imagePath = files1;
-    reader1.readAsDataURL(files1[0]);
-    reader1.onload = (_event) => {
-      this.imgURL1 = reader1.result;
-      this.Fileuploadstring1 = this.imgURL1;
-    }
-  }
+  //   var reader1 = new FileReader();
+  //   this.imagePath = files1;
+  //   reader1.readAsDataURL(files1[0]);
+  //   reader1.onload = (_event) => {
+  //     this.imgURL1 = reader1.result;
+  //     this.Fileuploadstring1 = this.imgURL1;
+  //   }
+  // }
 
   onCheckboxChange(id, event) {
     debugger
@@ -415,7 +438,3 @@ export class AccountingVouchersComponent implements OnInit {
   }
 
 }
-
-
-
-// https://stackblitz.com/edit/angular-multi-step-form?file=src%2Fapp%2Fapp.component.html

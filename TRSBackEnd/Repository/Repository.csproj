@@ -186,6 +186,9 @@
     <Compile Include="DB\PackingTypeMaster.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="DB\Payment.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="DB\PreDelivery.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -291,6 +294,7 @@
     <Compile Include="Interface\IOutwardRepo.cs" />
     <Compile Include="Interface\IPackingRepo.cs" />
     <Compile Include="Interface\IPackingTypeRepo.cs" />
+    <Compile Include="Interface\IPaymentRepo.cs" />
     <Compile Include="Interface\IPreDeliveryRepo.cs" />
     <Compile Include="Interface\IPrintingStationaryRepo.cs" />
     <Compile Include="Interface\IReceiptRepo.cs" />
@@ -403,6 +407,7 @@
     <Compile Include="Repository\OutwardRepo.cs" />
     <Compile Include="Repository\PackingRepo.cs" />
     <Compile Include="Repository\PackingTypeRepo.cs" />
+    <Compile Include="Repository\PaymentRepo.cs" />
     <Compile Include="Repository\PreDeliveryRepo.cs" />
     <Compile Include="Repository\PrintingStationaryRepo.cs" />
     <Compile Include="Repository\ReceiptRepo.cs" />
@@ -455,6 +460,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\CostCentreModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Model\PaymentModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

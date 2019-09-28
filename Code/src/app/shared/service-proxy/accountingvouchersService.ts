@@ -48,4 +48,18 @@ export class AccountingVouchersService {
         });
     }
 
+    GetRequirementAccount(id: number): Observable<accountingVouchersModel> {
+        let abc: accountingVouchersModel;
+        const url = `${this.base_url}/GetResponceAccount?id=${id}`;
+        return this.http.get(url, httpOptions).pipe((response: any) => {
+            return abc = response;
+        })
+    }
+
+    // downloadPDF(): any {
+    //     return this.http.get(this.base_url, { responseType: 'blob' as 'json' })
+    //         .map(res => {
+    //             return new Blob([res], { type: 'application/pdf', });
+    //         });
+    // }
 }

@@ -22,7 +22,11 @@ namespace Repository.Repository
             try
             {
                 var data = tRSEntities.Requirements.Where(x => x.isActive == true).ToList();
+                //var data1 = tRSEntities.Payments.Where(x => x.IsActive == true).ToList();
+
+               // List<PaymentModel> paymentModels = new List<PaymentModel>();
                 List<RequirementModel> requirementModels = new List<RequirementModel>();
+
                 foreach (var item in data)
                 {
                     RequirementModel model = new RequirementModel
@@ -37,11 +41,13 @@ namespace Repository.Repository
                         DRAmount1 = item.DRAmount1,
                         remark = item.remark,
                         challanNo = item.challanNo,
-                        referenceNo=item.referenceNo,
+                        referenceNo = item.referenceNo,
                         RENT = item.RENT,
                         SALARY = item.SALARY,
                         ADMIN = item.ADMIN,
                         fileupload = item.fileupload,
+                        IsApprove = item.IsApprove,
+                        rejectremark = item.rejectremark,
                         //requirementNo1 = item.requirementNo1,
                         //requirementDate1 = item.requirementDate1,
                         //requirementType1 = item.requirementType1,
@@ -59,7 +65,30 @@ namespace Repository.Repository
                     };
                     requirementModels.Add(model);
                 }
+                //foreach (var item in data1)
+                //{
+                //    PaymentModel models = new PaymentModel
+                //    {
+                //        id = item.id,
+                //        voucherNo = item.voucherNo,
+                //        voucherDate = item.voucherDate,
+                //        requirementType = item.requirementType,
+                //        DRLedger = item.DRLedger,
+                //        DRAmount = item.DRAmount,
+                //        Remark = item.Remark,
+                //        BillByBill = item.BillByBill,
+                //        referenceNo = item.referenceNo,
+                //        challanNo = item.challanNo,
+                //        Rent = item.Rent,
+                //        Salary = item.Salary,
+                //        Admin = item.Admin,
+                //        FileUpload = item.FileUpload,
+                //        IsActive = true,
+                //    };
+                //    paymentModels.Add(models);
+                //}
                 return requirementModels;
+               // return paymentModels;
             }
             catch (Exception e)
             {
@@ -90,6 +119,8 @@ namespace Repository.Repository
                         SALARY = model.SALARY,
                         ADMIN = model.ADMIN,
                         fileupload = model.fileupload,
+                        IsApprove=model.IsApprove,
+                        rejectremark=model.rejectremark,
                         //requirementNo1 = model.requirementNo1,
                         //requirementDate1=model.requirementDate1,
                         //requirementType1 = model.requirementType1,
@@ -147,6 +178,8 @@ namespace Repository.Repository
                     model.SALARY = data.SALARY;
                     model.ADMIN = data.ADMIN;
                     model.fileupload = data.fileupload;
+                    model.IsApprove = data.IsApprove;
+                    model.rejectremark = data.rejectremark;
                     //model.requirementNo1 = data.requirementNo1;
                     //model.requirementDate1 = data.requirementDate1;
                     //model.requirementType1 = data.requirementType1;
@@ -195,6 +228,7 @@ namespace Repository.Repository
                     data.SALARY = model.SALARY;
                     data.ADMIN = model.ADMIN;
                     data.fileupload = model.fileupload;
+                    data.IsApprove = model.IsApprove;
                     //data.requirementNo1 = model.requirementNo1;
                     //data.requirementDate1 = model.requirementDate1;
                     //data.requirementType1 = model.requirementType1;
@@ -239,6 +273,38 @@ namespace Repository.Repository
                 {
                     return false;
                 }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public RequirementModel GetResponceAccount(int id)
+        {
+            try
+            {
+                var data = tRSEntities.Requirements.Where(x => x.id == id && x.isActive == true).FirstOrDefault();
+                RequirementModel model = new RequirementModel();
+                model.id = data.id;
+                model.requirementNo = data.requirementNo;
+                model.requirementDate = data.requirementDate;
+                model.requirementType = data.requirementType;
+                model.DRLedgerNameTo = data.DRLedgerNameTo;
+                model.DRAmount = data.DRAmount;
+                model.DRLedgerNameFrom = data.DRLedgerNameFrom;
+                model.DRAmount1 = data.DRAmount1;
+                model.remark = data.remark;
+                model.challanNo = data.challanNo;
+                model.referenceNo = data.referenceNo;
+                model.RENT = data.RENT;
+                model.SALARY = data.SALARY;
+                model.ADMIN = data.ADMIN;
+                model.fileupload = data.fileupload;
+                model.IsApprove = data.IsApprove;
+                model.rejectremark = data.rejectremark;
+                return model;
             }
             catch (Exception)
             {

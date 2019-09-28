@@ -14,5 +14,6 @@ namespace Repository.Interface
         RequirementModel GetRequirement(int id);
         bool UpdateRequirement(RequirementModel model);
         bool DeleteRequirement(int id);
+        RequirementModel GetResponceAccount(int id);
     }
 }

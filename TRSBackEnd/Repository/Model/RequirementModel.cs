@@ -24,5 +24,10 @@ namespace Repository.Model
         public string ADMIN { get; set; }
         public string fileupload { get; set; }
         public Nullable<bool> isActive { get; set; }
+        public Nullable<bool> IsApprove { get; set; }
+        public string rejectremark { get; set; }
+
+        public List<PaymentModel> paymentModels { get; set; }
+        public List<RequirementModel> requirementModels { get; set; }
     }
 }
