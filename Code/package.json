@@ -41,7 +41,7 @@
     "ng-multiselect-dropdown": "^0.2.1",
     "ng2-archwizard": "^2.1.0",
     "ngx-bootstrap": "^3.0.1",
-    "node-sass": "^4.12.0",
+    "node-sass": "^4.13.1",
     "popper.js": "^1.14.4",
     "resize-observer-polyfill": "^1.4.2",
     "rxjs": "^5.5.2",
